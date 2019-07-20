@@ -1,0 +1,5 @@
+A list of potential names for characters. Every NPC needs a unique name for the
+hit-list mechanic to work.
+
+Min-ritz
+Detler

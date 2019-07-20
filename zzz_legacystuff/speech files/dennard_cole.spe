@@ -1,0 +1,67 @@
+<?php
+
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+	case SPSI_CONVERSING:
+		if (percentageToBool(50) && isset($this->speAnnex['qst_golem']))
+		{
+			global $player;
+
+			switch ($player->addQuest($this->speAnnex['qst_golem']))
+			{
+				case QS_NOT_STARTED:
+					$speech[] =
+					[
+						[
+							'I could use your help with something! ',
+							'Please help me! ',
+							'Tell me, are you looking for work? I have something I need done. ',
+						],
+						'There\'s a family of golems just north of here. ',
+						[
+							'They need to die. ',
+							'They\'re disgusting; I hate them. We need them gone! ',
+							'Would you be so kind as to kill them for me? '
+						],
+						[
+							'I\'ll see you well paid for your efforts. ',
+							'There will be a bit of cash in it for you. ',
+						]
+					];
+					break;
+				case QS_IN_PROGRESS:
+					$speech[] =
+					[
+						[
+							'How\'s that golem slaying going? ',
+							'Killed any of those golems yet? '
+						],
+						[
+							'I can still hear their rocky groans. ',
+							'I can smell them from here. ',
+							'Not all dead yet, huh? ',
+						]
+					];
+					break;
+				case QS_COMPLETE:
+					$speech[] =
+					[
+						[
+							'Thanks for sorting out that golem problem before. ',
+							'Thanks for taking care of those golems. ',
+							'It\'s so much nicer around here without those bloody golems around. ',
+						],
+						[
+							'I won\'t forget a favour like that. ',
+							'They\'re such grubby creatures. '
+						]
+					];
+					break;
+			}
+		}
+		break;
+}

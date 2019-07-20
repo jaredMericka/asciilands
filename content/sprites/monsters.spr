@@ -1,0 +1,87 @@
+<?php
+//
+//$zombieColour = '#0f0';
+//
+//$spr_zombie_m = new Sprite([
+//	[ // Both hands up
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, $zombieColour, 'o'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		4 => new SpriteElement(null, '#400', '&lambda;'),
+//	],
+//	[ // Left hand down, right hand up
+//		1 => new SpriteElement(null, $zombieColour, 'o'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		4 => new SpriteElement(null, '#400', '&lambda;'),
+//	],
+//	[ // Both hands down
+//		1 => new SpriteElement(null, $zombieColour, 'o'),
+//		3 => new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, '#400', '&lambda;'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//	],
+//	[ // Left hand up, right hand down
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, $zombieColour, 'o'),
+//		4 => new SpriteElement(null, '#400', '&lambda;'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//	],
+//]);
+//
+//$spr_zombie_f = new Sprite([
+//	[ // Both hands up
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, $zombieColour, 'o'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		4 => new SpriteElement(null, '#400', '&Delta;'),
+//	],
+//	[ // Left hand up, right hand down
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, $zombieColour, 'o'),
+//		4 => new SpriteElement(null, '#400', '&Delta;'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//	],
+//	[ // Both hands down
+//		1 => new SpriteElement(null, $zombieColour, 'o'),
+//		3 => new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, '#400', '&Delta;'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//	],
+//	[ // Left hand down, right hand up
+//		1 => new SpriteElement(null, $zombieColour, 'o'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		new SpriteElement(null, $zombieColour, '&deg;'),
+//		4 => new SpriteElement(null, '#400', '&Delta;'),
+//	],
+//]);
+//
+//$spr_zombieCorpse_m = spr_personCorpse($spr_zombie_m, '#f50');
+//$spr_zombieCorpse_f = spr_personCorpse($spr_zombie_f, '#f50');
+//
+//$zombieSpriteSet =
+//[
+//	SPRI_MALE			=> $spr_zombie_m,
+//	SPRI_MALE_CORPSE	=> $spr_zombieCorpse_m,
+//	SPRI_FEMALE			=> $spr_zombie_f,
+//	SPRI_FEMALE_CORPSE	=> $spr_zombieCorpse_f
+//];
+//
+//$spr_skeleton = new Sprite([
+//	1 => new SpriteElement(null, '#fda', '&#x2640;'),
+//	3 => new SpriteElement(null, '#fda', '&deg;'),
+//	4 => new SpriteElement(null, '#fda', '&Lambda;'),
+//	5 => new SpriteElement(null, '#fda', '&deg;'),
+//	]);
+//
+//$spr_skeleton_corpse = new Sprite([
+//	3 => new SpriteElement(null, '#fda', '&#x2640;'),
+//	4 => new SpriteElement(null, '#fda', '&omega;'),
+//	5 => new SpriteElement(null, '#fda', '<'),
+//	]);
+//
+//$skeletonSpriteSet =
+//[
+//	SPRI_DEFAULT	=> $spr_skeleton,
+//	SPRI_CORPSE		=> $spr_skeleton_corpse
+//];

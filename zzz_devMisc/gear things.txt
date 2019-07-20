@@ -1,0 +1,13 @@
+Needed behaviours:
+
+Push enemies out of the way (swap and knock-back variations)
+run through crowds
+recoil after hitting something
+recoil if something hits you?
+stuff happening for a short time on kill
+chance to telelport to random location instead of taking a hit.
+spawn stuff
+pick-pocketing on hit
+steal their shit during fight lol (incl. bullet-catch gloves that let you catch arrows -> dodge damage and free arrow)
+stuff happeneing on taking damage
+slowiing shit down when you hit it

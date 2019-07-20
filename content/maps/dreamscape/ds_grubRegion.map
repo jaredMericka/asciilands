@@ -1,0 +1,212 @@
+<?php
+
+//=========================================<editor-fold desc="Assets Workbench">
+// ASSETS WORKBENCH
+//=========================================
+// Make your assets here. Create set classes or build
+// esoteric assets up from scratch.
+//=========================================
+
+$common = new set_common();
+$bricks = new set_masonry(set_masonry::COL_DREAMSCAPE);
+$edge = new set_edges($bricks->colour);
+
+$stone = new set_masonry(set_masonry::COL_DREAMSCAPE);
+$faders = new set_faders('#000');
+$wp = new set_waypoint();
+
+$t_topBricks = $bricks->t_bigWall_top();
+$t_topBricks->TPL = TPL_OPENGROUND;
+
+$t_void	= new Tile('#000', array('&nbsp;','.'), false, 15, null, 100);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Tile Key">
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$t_void,
+	$t_topBricks,
+	$bricks->t_bigWall(-1),
+	$bricks->t_bigWall(-2),
+	$bricks->t_bigWall(-4),
+	$bricks->t_stairs(),
+	$wp->t_wp_tl(),
+	$wp->t_wp_t(),
+	$wp->t_wp_tr(),
+	$wp->t_wp_l(),
+	$wp->t_wp_bl(),
+	$wp->t_wp_br(),
+	$wp->t_wp_mid(),
+	$stone->t_cairn_w(),
+	$stone->t_cairn_s(),
+	$wp->t_cp(),
+	$bricks->t_pavers(1),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Scenery Key">
+// SCENERY KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	$wp->scn_tile_side(),
+	$stone->scn_cairn_l(),
+	$stone->scn_cairn_r(),
+	$stone->scn_rock(),
+	$common->scn_fade_up_b('#000'),
+	$common->scn_fade_up_t('#000'),
+	$edge->scn_nw(),
+	$edge->scn_n(),
+	$edge->scn_ne(),
+	$edge->scn_e(),
+	$edge->scn_se(),
+	$edge->scn_s(),
+	$edge->scn_sw(),
+	$edge->scn_w(),
+	$edge->scn_nsw(),
+	$edge->scn_nse(),
+	new Scenery(obj_fire::getSprite()),
+	$bricks->scn_paverSide(),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Assets">
+// MATERIAL ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/materials/uncommon_metals.mat";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Array">
+// MATERIAL ARRAY
+//=========================================
+// Add materials that are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+
+];
+
+$this->materials = array_merge($this->materials, $commonMaterials);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Item Assets">
+// ITEM ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+//require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Workbench">
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+// Make some stuff
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Quest Workbench">
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Set up some quests
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Array">
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+	'100:100' => new obj_checkpointWaypoint(),
+
+	'87:72' => new obj_waypoint(WP_EFFENDON_GROVE, 80, 44, MAP_EFFENDONGROVE),
+	'134:100' => new obj_waypoint(WP_GRUB_TOWN, 92, 89, MAP_GRUBTOWN),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Extra Stuff">
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->minimapTop = 0;
+//	$this->minimapLeft = 0;
+//	$this->minimapRight = 100;
+//	$this->minimapBottom = 100;
+
+//	$this->isDark			= true;		// Light objects only affect dark maps
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+//</editor-fold>
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

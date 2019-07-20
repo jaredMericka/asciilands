@@ -1,0 +1,113 @@
+<?php
+
+$lightGreen = '#0a0';
+$darkGreen = '#090';
+
+$spr_toadstool = new Sprite([
+	0 => new SpriteElement(null, '#f54', '&#x2584;'),
+	1 => new SpriteElement('#f54', '#fff', ':'),
+	2 => new SpriteElement(null, '#f54', '&#x2584;'),
+	4 => new SpriteElement(null, '#dc9', '&#x2588;'),
+	]);
+
+$spr_toadleft = new Sprite([
+	1 => new SpriteElement(null, '#f54', '&#x2584;'),
+	2 => new SpriteElement('#f54', '#fff', ':'),
+	3 => new SpriteElement('#f54', '#fff', '.'),
+	4 => new SpriteElement('#f54', '#fff', ':'),
+	5 => new SpriteElement('#f54', '#fff', '&#x00B7;'),
+	]);
+
+$spr_toadmid = new Sprite([
+	0 => new SpriteElement('#f54', '#fff', '&#x00B7;'),
+	1 => new SpriteElement('#f54', '#fff', '.'),
+	2 => new SpriteElement('#f54', '#fff', ':'),
+	3 => new SpriteElement('#f54', '#fff', '.'),
+	4 => new SpriteElement('#f54', '#fff', ':'),
+	5 => new SpriteElement('#f54', '#fff', '&#x00B7;'),
+	]);
+
+$spr_toadright = new Sprite([
+	0 => new SpriteElement('#f54', '#fff', ':'),
+        1 => new SpriteElement(null, '#f54', '&#x2584;'),
+	3 => new SpriteElement('#f54', '#fff', '.'),
+	4 => new SpriteElement('#f54', '#fff', ':'),
+	5 => new SpriteElement('#f54', '#fff', '&#x00B7;'),
+	]);
+
+$spr_toadstalk = new Sprite([
+	0 => new SpriteElement(null, '#cb8', '&#x2590;'),
+	1 => new SpriteElement('#dc9', '#cb8', '&#x2551;'),
+	2 => new SpriteElement(null, '#cb8', '&#x258c;'),
+	3 => new SpriteElement(null, '#cb8', '&#x2590;'),
+	4 => new SpriteElement('#dc9', '#cb8', '&#x2551;'),
+	5 => new SpriteElement(null, '#cb8', '&#x258c;'),
+	]);
+
+$spr_vines1 = new Sprite([
+	1 => new SpriteElement(null, '#392', '&#x03b6;'),
+	4 => new SpriteElement(null, '#392', '&#x03be;'),
+	]);
+
+$spr_vines2 = new Sprite([
+	0 => new SpriteElement(null, '#392', '&#x03be;'),
+        2 => new SpriteElement(null, '#392', '&#x00a7;'),
+	3 => new SpriteElement(null, '#392', '&#x03b6;'),
+        5 => new SpriteElement(null, '#392', '&#x03be;'),
+	]);
+
+$spr_vinesShort1 = new Sprite([
+	0 => new SpriteElement(null, '#392', '&#x03b6;'),
+	2 => new SpriteElement(null, '#392', '&#x03be;'),
+	]);
+
+$spr_vinesShort2 = new Sprite([
+	1 => new SpriteElement(null, '#392', '&#x03b4;'),
+	]);
+
+$spr_vinesMixed1 = new Sprite([
+	0 => new SpriteElement(null, '#392', '&#x03b6;'),
+	2 => new SpriteElement(null, '#392', '&#x03be;'),
+    	5 => new SpriteElement(null, '#392', '&#x03b6;'),
+	]);
+
+$spr_vinesMixed2 = new Sprite([
+	0 => new SpriteElement(null, '#392', '&#x03be;'),
+	2 => new SpriteElement(null, '#392', '&#x03b6;'),
+    	3 => new SpriteElement(null, '#392', '&#x03b4;'),
+	]);
+
+$spr_forest_tl = new Sprite([
+	1 => new SpriteElement(null, $darkGreen, '&#x2584;'),
+	2 => new SpriteElement($darkGreen, $darkGreen, '&#x2580;'),
+	3 => new SpriteElement(null, $darkGreen, '&#x2584;'),
+	4 => new SpriteElement($darkGreen, $darkGreen, '&nbsp'),
+	5 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	]);
+
+$spr_forest_tr = new Sprite([
+	0 => new SpriteElement($darkGreen, $darkGreen, '&nbsp;'),
+	1 => new SpriteElement(null, $darkGreen, '&#x2584;'),
+	3 => new SpriteElement($darkGreen, $darkGreen, '&nbsp;'),
+	4 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	5 => new SpriteElement(null, $darkGreen, '&#x2584;'),
+	]);
+
+
+$spr_forest_bl = new Sprite([
+	0 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	1 => new SpriteElement($darkGreen, $lightGreen, '&nbsp;'),
+	2 => new SpriteElement($darkGreen, $darkGreen, '&#x2584;'),
+	4 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	5 => new SpriteElement($darkGreen, $lightGreen, '&nbsp;'),
+	]);
+
+$spr_forest_br = new Sprite([
+	0 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	1 => new SpriteElement($darkGreen, $darkGreen, '&#x2584;'),
+	2 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	3 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	4 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	]);
+
+?>

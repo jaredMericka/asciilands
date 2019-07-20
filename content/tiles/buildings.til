@@ -1,0 +1,5 @@
+<?php
+
+$t_wickerRoof_l =	new Tile('#984', ['/', '/', '/', '/', '/', '/'], false);
+$t_wickerRoof_m =	new Tile('#984', ['|', '|', '|', '|', '|', '|'], false);
+$t_wickerRoof_r =	new Tile('#984', ['\\', '\\', '\\', '\\', '\\', '\\'], false);

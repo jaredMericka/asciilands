@@ -1,0 +1,17 @@
+<?php
+
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+	case SPSI_CONVERSING:
+		$speech[] =
+		[
+			[
+				'I run along a predefined path!'
+			]
+		];
+		break;
+}

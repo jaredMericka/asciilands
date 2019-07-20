@@ -1,0 +1,13 @@
+<?php
+
+$t_swamp                = new Tile('#35e', array('v', 'V', 'w', 'W'), true, '#272');
+
+$t_wallMoss             = new Tile('#456', array('_', 'I', '_', 'L', '_','_'), false, '#142');
+$t_wallFloorMoss	= new Tile('#99a', array('L', '_', 'L', 'L', 'L', '_'), true, '#364');
+$t_wallTopMoss		= new Tile('#789', array('L', '_','_','_', 'I', '_', ), false, '#364');
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+?>

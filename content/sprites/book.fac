@@ -1,0 +1,12 @@
+<?php
+
+function spr_book($character, $cover, $trim)
+{
+	return new Sprite([
+		//3 => new spriteElement(null, $cover, '&#x2590;'),
+		4 => new SpriteElement($cover, $trim, $character),
+		5 => new SpriteElement(null, '#ffd', '&#x258c;')
+	]);
+}
+
+?>

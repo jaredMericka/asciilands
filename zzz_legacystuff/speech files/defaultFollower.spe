@@ -1,0 +1,44 @@
+<?php
+
+if ($this->owner->hasBehaviour(BHVK_MOVEMENT))
+{
+	$speech =
+	[
+		[
+			'Ok great! You lead the way! ',
+			'Yeah, I\'ll follow you. ',
+			'Right behind you! '
+		],
+		[
+			'Let me know if you want to ',
+			'Just tell me if you need me to ',
+		],
+		[
+			'wait behind.',
+			'hold my position.',
+			'guard the area.',
+		]
+	];
+}
+else
+{
+	$speech =
+	[
+		[
+			'Alright, I\'ll wait here. ',
+			'I\'ll stay here. ',
+			'I\'ll watch this area. '
+		],
+		[
+			'Let me know if you want to ',
+			'Just tell me if you need me to ',
+		],
+		[
+			'follow again.',
+			'come with you.',
+			'watch your back.',
+		]
+	];
+}
+
+

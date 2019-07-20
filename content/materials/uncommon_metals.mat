@@ -1,0 +1,31 @@
+<?php
+
+$mat_sunSteel = new mat_metal('sun steel', 'Forged by the Sun Smiths. Holds the forges\' heat for years resulting in a semi-permanently hot metal.', '#fda',
+	[	// Damage proclivities
+		DMG_FIRE => '1'
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+		DMG_COLD => '2'
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);
+
+$mat_crackleIron = new mat_metal('crackle iron', 'Permantly charged and reactive to compression. A mysterious invention of the smiths in the Stormshire.', '#226',
+	[	// Damage proclivities
+		DMG_ELECTRIC => '1'
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+		DMG_ELECTRIC => '2'
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);

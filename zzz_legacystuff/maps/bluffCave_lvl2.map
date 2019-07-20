@@ -1,0 +1,94 @@
+<?php
+
+	update_thoughts('It\'s damp down here.');
+
+    //======================
+    // LOAD TILES
+    //======================
+    require "{$rootPath}content/tiles/caves.til";
+
+    $this->viewHeight = 7;
+    $this->viewWidth = 7;
+
+    $this->tileKey = array(
+		'd' => $t_rockDarkness,
+
+        'w' => $t_rockWall,
+		'f' => $t_rockFloor,
+		's' => $t_rockStairs,
+        );
+
+    //=========================
+    // LOAD OBJECTS
+    //=========================
+//	require "{$rootPath}content/sprites/people.fac";
+	require "{$rootPath}content/sprites/book.fac";
+
+    require "{$rootPath}content/sprites/field.spr";
+    require "{$rootPath}content/sprites/treasure.spr";
+    require "{$rootPath}content/sprites/weapons.spr";
+	require "{$rootPath}content/sprites/tools.spr";
+//	require "{$rootPath}content/sprites/monsters.spr";
+
+    // This only tells the map how to interpret the spr_map file. It simply lays
+    // out sprites and sets the canEnter boolean.
+    $this->sceneryKey = array(
+		new Scenery($spr_ladder)
+    );
+
+	$spr_hermit = spr_person('#fff', '#aaa', 'A', 'Q');
+	$spr_hermitCorpse = spr_personCorpse($spr_hermit);
+	$spr_hermitBook = spr_book('h', '#222', '#fca');
+	$itm_hermitRamblings = new itm_textItem('Hermit Ramblings', 'The scribblings of a retard.', $spr_hermitBook, 'hermitRamblings.tex', '#ffa', '#000', 15);
+
+//	$eqp_lightWand = new eqp_torch('Light Wand', 'It emits a radient light!', $spr_lightWand, 4, '#fd7', 0.1);
+
+//	$obj_hazeSpecs = new eqp_hat('Haze Specs', 'Some weird glasses or something.', $spr_hazeSpecs,
+//		[
+//			new ebhv_illuminate(1, null, 0.3, false),
+//			new ebhv_changeAttribute(DS_EVASIVENESS, 10)
+//		]);
+
+//	require "{$rootPath}content/items/stuff.php";
+	require "{$rootPath}content/items/weapons.php";
+
+	$this->objects = array(
+		new obj_portal('Bluff cave ladder', [$spr_ladder], 17, 51, 7, 5, 'bluffCave'),
+
+		new obj_sign('Cave note', [$spr_paper], 32, 13,'This ought to make it a bit easier to see. I hid it here because I don\'t need it any more. Enjoy it.<br> - Anonymous', '#ffd', '#000'),
+
+//        new obj_collectible($eqp_lightWand, 34, 13),
+//		new obj_collectible($eqp_hazeSpecs, 6, 34),
+
+
+		new dude_NPC_basic('Henry the hermit', [$spr_hermit], 42, 24, 'bluffCaveHermit'),
+
+		new obj_collectible($itm_hermitRamblings, 44, 20),
+
+		new obj_lightBlock('Light Block', [$spr_wallBrick, SPRI_ACTIVE => $spr_lightBrick], 19, 31, 5, '#0ff', 0.1),
+
+		new dude_basicEnemy('Skeleton', [$spr_skeleton, SPRI_CORPSE => $spr_skeleton_corpse], 59, 52),
+		new dude_basicEnemy('Skeleton', [$spr_skeleton, SPRI_CORPSE => $spr_skeleton_corpse], 61, 52),
+		new dude_basicEnemy('Skeleton', [$spr_skeleton, SPRI_CORPSE => $spr_skeleton_corpse], 59, 60),
+		new dude_basicEnemy('Skeleton', [$spr_skeleton, SPRI_CORPSE => $spr_skeleton_corpse], 61, 64),
+		new dude_basicEnemy('Skeleton', [$spr_skeleton, SPRI_CORPSE => $spr_skeleton_corpse], 59, 68),
+	);
+
+	$this->overlayColour	= '#000';
+	$this->overlayOpacity	= 0.7;
+
+	$this->isDark = true;
+	$this->isUnderground = true;
+
+
+
+
+//	$GLOBALS['player']->inventory->add($eqp_lightWand);
+//	$GLOBALS['player']->inventory->add($eqp_hazeSpecs);
+//
+//	$GLOBALS['player']->inventory->add($itm_wep_psnBlade);
+//	$GLOBALS['player']->inventory->add($itm_wep_fireBlade);
+//	$GLOBALS['player']->inventory->add($itm_wep_coldBlade);
+//	$GLOBALS['player']->inventory->add($itm_wep_ltnBlade);
+//	$GLOBALS['player']->inventory->add($itm_wep_sharpBlade);
+//	$GLOBALS['player']->inventory->add($itm_wep_waterBlade);

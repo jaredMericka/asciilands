@@ -1,0 +1,24 @@
+<?php
+
+$speech =
+	[
+		'Hello.',
+		[
+			'I could say any number of things! ',
+			'My speech is a test! ',
+			'You never know what I might say! '
+		],
+		'Some people like that about me ',
+		[
+			'and that works for me!',
+			'but other hate me for it. Oh well. '
+		],
+		[
+			'That\'s enough test talking. ',
+			'It was nice talking to you. ',
+			'I hope you don\'t hate me. '
+		],
+		'Bye!'
+	];
+
+

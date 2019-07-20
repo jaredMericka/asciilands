@@ -1,0 +1,80 @@
+<?php
+
+$mat_oak = new mat_wood('oak', 'Solid and useful wood.', '#a84',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+		DMGDL_BLUNT		=> 1.4,
+		DMGDL_MISSILE	=> 1.2,
+	],
+	[	// Defence proclivities
+		DMGDL_BLUNT		=> 2.0,
+		DMGDL_CUT		=> 2.0,
+		DMGDL_POINT		=> 2.0,
+		DMGDL_MISSILE	=> 2.0,
+		DMGDL_PLASMA	=> -0.1,
+
+		DMG_FIRE		=> -0.3,
+	],
+	[	// Attribute proclivities
+		DS_FORCE		=> 1.5,
+		DS_STRENGTH		=> 1.8,
+		DS_RESILIENCE	=> 2.1,
+	],
+	[	// Attribute requirements
+		DS_STRENGTH		=> 1.1,
+		DS_FORCE		=> 1.2,
+	]
+	);
+
+$mat_cypress = new mat_wood('cypress', 'Mystical wood of ancient secrets.', '#987',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+		DMGDL_PLASMA	=> 2.0
+	],
+	[	// Defence proclivities
+		DMGDL_BLUNT		=> 1.5,
+		DMGDL_CUT		=> 1.6,
+		DMGDL_POINT		=> 1.2,
+		DMGDL_MISSILE	=> 1.4,
+		DMGDL_PLASMA	=> 1,
+
+		DMG_FIRE		=> -0.5,
+	],
+	[	// Attribute proclivities
+		DS_DISRUPTION	=> '2',
+		DS_DISCIPLINE	=> 2,
+		DS_FOCUS		=> 2,
+		DS_EP_MAX		=> '2.5',
+	],
+	[	// Attribute requirements
+		DS_FOCUS		=> '2'
+	]
+	);
+
+$mat_cedar = new mat_wood('cedar', 'Grown in the cemetaries, the tree of the dead.', '#975',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);
+
+$mat_redWood = new mat_wood('red wood', 'Hard and sturdy construction wood.', '#832',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);

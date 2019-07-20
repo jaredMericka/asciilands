@@ -1,0 +1,213 @@
+<?php
+
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+	case SPSI_GREETING:
+		$speech[] =
+		[
+			[
+				'Hello there, ' . ($player->gender === GND_MALE ? 'sonny' : 'm\'darlin'),
+			],
+			[
+				'! ',
+				'. '
+			],
+			[
+				'What brings you to my home? ',
+				'How can I help you? ',
+				'Something you needed? '
+			]
+		];
+
+		if (isset($this->inventory->CUR)) // We're talking to a shop keeper
+		{
+			global $currencies;
+
+			$vendorCUR = $this->inventory->CUR;
+			$acceptedCurrencyName = $currencies[$vendorCUR]->name;
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_SAYING_BYE:
+		$speech[] =
+		[
+			[
+				'\'Till next time',
+				'See you later',
+			],
+			[
+				', then!',
+				', then.',
+				'!',
+				'.'
+			]
+		];
+		break;
+
+	case SPSI_CONVERSING:
+		$speech[] =
+		[
+			[
+				'Have you seen my hives? ',
+				'You want to see my hives? ',
+			],
+			'...',
+			[
+				'No! My bee hives! ',
+				'No, no, not like that! Bee hives! '
+			],
+			[
+				'My father was a bee-keeper, too, y\'know. ',
+				'I care for the colony started by my father. ',
+			],
+			[
+				'He always used to say that they keep life sweet. He wasn\'t a very funny man. '
+			]
+		];
+
+		$player->addQuest($this->speAnnex['peltQuest']);
+		break;
+
+	case SPSI_BUYING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		}
+		break;
+
+	case SPSI_SELLING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+
+			if ($topic instanceof Equipment)
+			{
+//				$speech[] =
+//				[
+//					[
+//
+//					]
+//				];
+			}
+		}
+
+
+		break;
+
+	case SPSI_SELLING_NE:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+			$topicPlayerMoney = $GLOBALS['player']->wallet->getAmount($topic->lastUsedCUR, true);
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_GIVING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_TAKING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_FOLLOWING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+
+	case SPSI_WAITING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+}

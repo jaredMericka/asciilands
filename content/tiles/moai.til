@@ -1,0 +1,14 @@
+<?php
+
+$moaiColour = '#964';
+
+$t_moai_1 = new Tile($moaiColour,['&nbsp;','&nbsp;','&nbsp;','&#x2584;','&#x2584;','&#x2584;'],false,-2);
+$t_moai_2 = new Tile($moaiColour,['&nbsp;','&nbsp;','&#x2588;','&#x2584;','&#x2584;','&#x2588;'],false,-2);
+$t_moai_3 = new Tile($moaiColour,['&#x2580;','&#x2580;','&nbsp;','&nbsp;','&nbsp;','&nbsp;'],false,-2);
+$t_moai_4 = new Tile($moaiColour,['&#x2590;','&#x2580;','&#x2588;','&#x2590;','&nbsp;','&#x2588;'],false,-2);
+$t_moai_5 = new Tile($moaiColour,['&nbsp;','&nbsp;','&#x2580;','&nbsp;','&nbsp;','&#x2550;'],false,-2);
+$t_moai_6 = new Tile($moaiColour,['&#x2580;','&nbsp;','&#x2588;','&#x2550;','&nbsp;','&#x2588;'],false,-2);
+$t_moai_7 = new Tile($moaiColour,['&#x2584;','&#x2584;','&#x2584;','&#x2588;','&#x2588;','&#x2588;'],false,-2);
+$t_moai_8 = new Tile($moaiColour,['&#x2584;','&#x2584;','&#x2588;','&#x2588;','&#x2588;','&#x2588;'],false,-2);
+
+

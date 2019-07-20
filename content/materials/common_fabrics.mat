@@ -1,0 +1,97 @@
+<?php
+
+$mat_leather = new mat_skin('leather', 'Sturdy and waterproof', '#a84', //spr_animalSkin('#a84'),
+	null,
+	null,
+	[
+		DMGDL_CUT		=> 1.3,
+		DMGDL_POINT		=> '1.2',
+		DMGDL_LIQUID	=> 2.0,
+
+		DMG_COLD		=> 1.5,
+		DMG_TRAUMA		=> 1.2,
+		DMG_INFECTION	=> '1.4',
+		DMG_WATER		=> 2.0,
+	],
+	[
+		DS_FINESSE		=> 1.3,
+		DS_EVASIVENESS	=> 1.4,
+	],
+	null
+	);
+
+$mat_hide = new mat_skin('hide', 'Tough animal skin.', '#753',
+	null,
+	null,
+	[
+		DMGDL_CUT		=> 1.5,
+		DMGDL_POINT		=> 1.2,
+		DMGDL_LIQUID	=> 1.5,
+
+		DMG_COLD		=> 2.0,
+		DMG_TRAUMA		=> 1.2,
+		DMG_INFECTION	=> 1.5,
+		DMG_WATER		=> 1.6,
+	],
+	[
+		DS_FINESSE		=> 1.2,
+		DS_EVASIVENESS	=> 1.2,
+		DS_STRENGTH		=> 1.7,
+	],
+	null
+	);
+
+$mat_canvas = new mat_lightFabric('canvas', 'Fairly weak cloth.', '#dda',
+	null,
+	null,
+	[
+		DMG_COLD	=> 1.1,
+	],
+	[
+		DS_EVASIVENESS	=> 1.5,
+		DS_FINESSE		=> 1.3,
+		DS_DEXTERITY		=> 1.8,
+	],
+	null
+	);
+
+$mat_fineSilk = new mat_lightFabric('fine silk', 'Beautiful and fine silk. Should fetch a high price.', '#c00',
+	null,
+	null,
+	[
+		DMGDL_VAPOUR	=> 1.5,
+		DMGDL_PLASMA	=> 1.8,
+	],
+	[
+		DS_MAGIC		=> 1.9,
+		DS_DISRUPTION	=> 2.0,
+		DS_DISCIPLINE	=> 1.8,
+	],
+	null
+	);
+
+$mat_silk = new mat_lightFabric('silk', 'Soft but strong.', '#44c',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);
+
+$mat_quilt = new mat_lightFabric('quilt', 'Will keep you warm and absorb a weak blow.', '#642',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);

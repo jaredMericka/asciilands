@@ -1,0 +1,3246 @@
+<?php
+
+// CAUTION!
+// NEVER EDIT A REQ FILE!
+
+
+class set_common extends AssetSet
+{
+	public function t_solid ($colour, $TPL = null)
+	{
+		$TPL = $TPL ? $TPL : TPL_LOWOBSTACLE;
+
+		return new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], $TPL, $colour);
+	}
+
+	public function t_stairs ($col_top, $col_front = null)
+	{
+		$col_front = $col_front ? $col_front : tint($col_top, -3);
+
+		return new Tile($col_top, ['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_STAIRS, $col_front);
+	}
+
+	public function scn_archDoor ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_half,
+			1 => $slm_full,
+			2 => $slm_half,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_l ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_half,
+			1 => $slm_full,
+			2 => $slm_full,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_r ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_full,
+			1 => $slm_full,
+			2 => $slm_half,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_half ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2584;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2584;'),
+		]));
+	}
+
+	public function scn_archDoor_half_l ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2584;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]));
+	}
+
+	public function scn_archDoor_half_r ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement($colour, null, '&nbsp;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2584;'),
+		]));
+	}
+
+	public function scn_fade_up_t ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2591;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2592;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2592;'),
+		]), null, true);
+	}
+
+	public function scn_fade_up_b ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2593;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement($colour,  null, '&nbsp;'),
+			4 => new SpriteElement($colour,  null, '&nbsp;'),
+			5 => new SpriteElement($colour,  null, '&nbsp;'),
+		]), null, true);
+	}
+
+	public function scn_fade_down_t ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour,  null, '&nbsp;'),
+			1 => new SpriteElement($colour,  null, '&nbsp;'),
+			2 => new SpriteElement($colour,  null, '&nbsp;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2593;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_fade_down_b ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2592;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2592;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2591;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+
+	public function scn_fade_right ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_fade_left ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+}
+
+
+class set_wood extends AssetSet
+{
+	public $colour;
+
+	const TINT_LIGHT	= 1;
+	const TINT_DARK		= -2;
+	const TINT_DARKER	= -3;
+
+	public function __construct($colour = null)
+	{
+		$this->colour = $colour ? $colour : '#960';
+	}
+
+	public function sprs_doubleDoors ($col_panel = null, $col_handle = null, $col_gap = null)
+	{
+		$col_panel = $this->getColour($this->colour, $col_panel);
+		$col_handle = $col_handle ? $col_handle : '#ddd';
+		$col_handle = $col_gap ? $col_gap : tint($col_panel, 2);
+
+		$slm_doubleDoorPanel	= new SpriteElement($col_panel, null, '&nbsp;');
+		$slm_doubleDoorGap		= new SpriteElement($col_panel, $col_gap, '&#x2502;');
+		$slm_doubleDoorHandle	= new SpriteElement($col_panel, $col_handle, '&bull;');
+
+		$slm_doubleDoorOpenLeft	= new SpriteElement(null, $col_panel, '&#x258C');
+		$slm_doubleDoorOpenRight	= new SpriteElement(null, $col_panel, '&#x2590');
+
+		$spr_closed = new Sprite([
+			0 => $slm_doubleDoorPanel,
+			1 => $slm_doubleDoorGap,
+			2 => $slm_doubleDoorPanel,
+
+			3 => $slm_doubleDoorHandle,
+			4 => $slm_doubleDoorGap,
+			5 => $slm_doubleDoorHandle
+		]);
+
+		$spr_open = new Sprite([
+			0 => $slm_doubleDoorOpenLeft,
+			2 => $slm_doubleDoorOpenRight,
+			3 => $slm_doubleDoorOpenLeft,
+			5 => $slm_doubleDoorOpenRight
+		]);
+
+		return [
+			SPRI_CLOSED => $spr_closed,
+			SPRI_OPEN => $spr_open
+		];
+
+	}
+
+	function t_planks ($colour = null)
+	{
+		$colour		= $this->getColour($this->colour, $colour);
+		$col_dark	= tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, array('&#x0251C;', '&#x02524;', '&#x02502;', '&#x02502;', '&#x0251C;', '&#x02524;'), TPL_OPENGROUND, $col_dark);
+	}
+
+	function t_stairs ($colour = null)
+	{
+		$colour		= $this->getColour($this->colour, $colour);
+		$col_dark	= tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	function scn_planksSide ($colour = null)
+	{
+		$colour	= $this->getColour($this->colour, $colour);
+		$colour	= tint($colour, self::TINT_DARK);
+
+		$slm = new SpriteElement(null, $colour, '&#x2580;');
+
+		return new Scenery(new Sprite([
+			0 => $slm,
+			1 => $slm,
+			2 => $slm,
+		]));
+	}
+
+	function scn_planksSide_post ($colour = null)
+	{
+		$colour	= $this->getColour($this->colour, $colour);
+		$col_dark	= tint($colour, self::TINT_DARK);
+
+		$slm = new SpriteElement(null, $col_dark, '&#x2580;');
+
+		return new Scenery(new Sprite([
+			0 => $slm,
+			1 => new SpriteElement($col_dark, null, '&nbsp;'),
+			2 => $slm,
+			4 => new SpriteElement($colour, $col_dark, '&#x02590;'),
+		]), TPL_VERTICAL);
+	}
+
+	function scn_post ($colour = null)
+	{
+		$colour	= $this->getColour($this->colour, $colour);
+		$col_dark	= tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			1 => new SpriteElement($colour, $col_dark, '&#x02590;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x02590;'),
+		]), TPL_VERTICAL);
+	}
+
+	function scn_railing ($colour = null)
+	{
+		$colour	= $this->getColour($this->colour, $colour);
+		$colour	= tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2580;'),
+			4 => new SpriteElement($colour,  null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_fence ($colour = null)
+	{
+		$colour	= $this->getColour($this->colour, $colour);
+		$col_dark	= tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$col_dark, '&#x2584;'),
+			1 => new SpriteElement($colour, $col_dark, '&#x2590;'),
+			2 => new SpriteElement(null,$col_dark, '&#x2584;'),
+			3 => new SpriteElement(null,$col_dark, '&#x2584;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2590;'),
+			5 => new SpriteElement(null,$col_dark, '&#x2584;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_crate ($col_top = null)
+	{
+		$col_top	= $this->getColour($this->colour, $col_top);
+		$col_front	= tint($col_top, self::TINT_DARK);
+
+		$col_top_dark	= tint($col_top, -1);
+		$col_front_dark	= tint($col_front, -1);
+
+		return new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null,$col_top, '&#x2590;'),
+				1 => new SpriteElement($col_top, $col_top_dark, '&#x039e;'),
+				2 => new SpriteElement(null,$col_top, '&#x258c;'),
+				3 => new SpriteElement(null,$col_front, '&#x2590;'),
+				4 => new SpriteElement($col_front, $col_front_dark, '&#x2044;'),
+				5 => new SpriteElement(null,$col_front, '&#x258c;'),
+			],
+		]), TPL_HIGHOBSTACLE);
+	}
+
+//	function createWoodAssets($name, $colour)
+//	{
+//		$colour_light = tint($colour, 1, true);
+//		$colour_dark = tint($colour, -2, true);
+//		$colour_vDark = tint($colour, -3, true);
+//
+//		$slm_post = new SpriteElement($colour, $colour_dark, '&#x02590;');
+//		$slm_bridgeSide = new SpriteElement(null, $colour_dark, '&#x2580;');
+//
+//		$spr_planksSide = new Sprite([
+//			$slm_bridgeSide, $slm_bridgeSide, $slm_bridgeSide
+//		]);
+//
+
+//
+//
+//		return [
+//			"t_{$name}_planks" => new Tile($colour_light, array('&#x0251C;', '&#x02524;', '&#x02502;', '&#x02502;', '&#x0251C;', '&#x02524;'), TPL_OPENGROUND, -2),
+//
+//			"t_{$name}_logWall" => new Tile($colour, ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;'], TPL_VERTICAL, 1),
+//			"t_{$name}_logFloor" => new Tile($colour_light, ['&#x251c;', '&#x2524;', '&#x2502;', '&#x2524;', '&#x251c;', '&#x253c;'], TPL_OPENGROUND, -1),
+//
+//			"t_{$name}_wallTop_h" => new Tile($colour_vDark, ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2584;', '&#x2584;', '&#x2584;'], TPL_HIGHOBSTACLE, 1),
+//			"t_{$name}_wallTop_v" => new Tile($colour_vDark, ['&#x258c;', '&nbsp;', '&#x2590;', '&#x258c;', '&nbsp;', '&#x2590;'], TPL_HIGHOBSTACLE, 1),
+//			"t_{$name}_wallTop_x" => new Tile($colour_vDark, ['/', '&OverBar;', '&#x005c;', '&#x005c;', '_', '/'], TPL_HIGHOBSTACLE, 1),
+//
+//			"t_{$name}_wickerRoof_l" => new Tile($colour, ['/', '/', '/', '/', '/', '/'], TPL_HIGHOBSTACLE),
+//			"t_{$name}_wickerRoof_m" => new Tile($colour, ['|', '|', '|', '|', '|', '|'], TPL_HIGHOBSTACLE),
+//			"t_{$name}_wickerRoof_r" => new Tile($colour, ['\\', '\\', '\\', '\\', '\\', '\\'], TPL_HIGHOBSTACLE),
+//
+//			"t_{$name}_tileRoof" => new Tile($colour, ['U', 'U', 'U', 'U', 'U', 'U'], TPL_HIGHOBSTACLE, -2),
+//
+//		];
+//	}
+
+}
+
+class set_furniture extends AssetSet
+{
+	public $col_frame;
+	public $col_fabric;
+
+	const TINT_TOP = 2;
+
+	public function __construct($col_frame = null, $col_fabric = null)
+	{
+		$this->col_frame	= $col_frame	? $col_frame	: '#740';
+		$this->col_fabric	= $col_fabric	? $col_fabric	: '#c55';
+	}
+
+	public function t_tableTop ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+
+		return new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_tableFront_l ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+		$colour_light = tint($colour, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour_light, null, '&nbsp;'),
+			1 => new SpriteElement($colour_light, null, '&nbsp;'),
+			2 => new SpriteElement($colour_light, null, '&nbsp;'),
+			3 => new SpriteElement(null, $colour, '&#x2590;'),
+			4 => new SpriteElement(null, $colour, '&#x2580;'),
+			5 => new SpriteElement(null, $colour, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_tableFront_m ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+		$colour_light = tint($colour, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour_light, null, '&nbsp;'),
+			1 => new SpriteElement($colour_light, null, '&nbsp;'),
+			2 => new SpriteElement($colour_light, null, '&nbsp;'),
+			3 => new SpriteElement(null, $colour, '&#x2580;'),
+			4 => new SpriteElement(null, $colour, '&#x2580;'),
+			5 => new SpriteElement(null, $colour, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_tableFront_r ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+		$colour_light = tint($colour, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour_light, null, '&nbsp;'),
+			1 => new SpriteElement($colour_light, null, '&nbsp;'),
+			2 => new SpriteElement($colour_light, null, '&nbsp;'),
+			3 => new SpriteElement(null, $colour, '&#x2580;'),
+			4 => new SpriteElement(null, $colour, '&#x2580;'),
+			5 => new SpriteElement(null, $colour, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_tableHalf_t ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+		$colour_light = tint($colour, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour_light, null, '&nbsp;'),
+			1 => new SpriteElement($colour_light, null, '&nbsp;'),
+			2 => new SpriteElement($colour_light, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_tableHalf_b ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+		$colour_light = tint($colour, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			3 => new SpriteElement($colour_light, null, '&nbsp;'),
+			4 => new SpriteElement($colour_light, null, '&nbsp;'),
+			5 => new SpriteElement($colour_light, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_chair_l ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+
+		return new Scenery(new Sprite([
+			2 => new SpriteElement(null, $colour, '&#x258c;'),
+			3 => new SpriteElement(null, $colour, '&#x2590;'),
+			4 => new SpriteElement(null, $colour, '&#x2580;'),
+			5 => new SpriteElement(null, $colour, '&#x258c;'),
+		]));
+	}
+
+	public function scn_chair_r ($colour = null)
+	{
+		$colour = $this->getColour($this->col_frame, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $colour, '&#x2590;'),
+			3 => new SpriteElement(null, $colour, '&#x2590;'),
+			4 => new SpriteElement(null, $colour, '&#x2580;'),
+			5 => new SpriteElement(null, $colour, '&#x258c;'),
+		]));
+	}
+
+	public function scn_bed_tl ($col_frame = null, $col_fabric = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		$col_fabric		= $this->getColour($this->col_fabric, $col_fabric);
+		$col_fabric_top	= tint($col_fabric, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_frame_top, '&#x2584;'),
+			3 => new SpriteElement($col_frame_top, null, '&nbsp;'),
+			4 => new SpriteElement('#bbb', '#fff', '&#x2584;'),
+			5 => new SpriteElement($col_fabric_top, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_bed_tr ($col_frame = null, $col_fabric = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		$col_fabric		= $this->getColour($this->col_fabric, $col_fabric);
+		$col_fabric_top	= tint($col_fabric, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			2 => new SpriteElement(null, $col_frame_top, '&#x2584;'),
+			3 => new SpriteElement($col_fabric_top, null, ' '),
+			4 => new SpriteElement($col_fabric_top, null, ' '),
+			5 => new SpriteElement($col_frame_top, null, ' '),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_bed_bl ($col_frame = null, $col_fabric = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		$col_fabric		= $this->getColour($this->col_fabric, $col_fabric);
+		$col_fabric_top	= tint($col_fabric, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($col_frame, null, ' '),
+//			1 => new SpriteElement($col_fabric, $col_fabric_top, '&#x2580;'),
+			1 => new SpriteElement('#888', '#bbb', '&#x2580;'),
+			2 => new SpriteElement($col_fabric, $col_fabric_top, '&#x2580;'),
+			3 => new SpriteElement($col_frame, null, ' '),
+			4 => new SpriteElement(null, $col_frame, '&#x2580;'),
+			5 => new SpriteElement(null, $col_frame, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_bed_br ($col_frame = null, $col_fabric = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		$col_fabric		= $this->getColour($this->col_fabric, $col_fabric);
+		$col_fabric_top	= tint($col_fabric, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($col_fabric, $col_fabric_top, '&#x2580;'),
+			1 => new SpriteElement($col_fabric, $col_fabric_top, '&#x2580;'),
+			2 => new SpriteElement($col_frame, null, ' '),
+			3 => new SpriteElement(null, $col_frame, '&#x2580;'),
+			4 => new SpriteElement(null, $col_frame, '&#x2580;'),
+			5 => new SpriteElement($col_frame, null, ' '),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelf_tl ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+			3 => new SpriteElement(null,$col_frame_top, '&#x2590;'),
+			4 => new SpriteElement($col_frame_top, $col_frame_top, '&nbsp;'),
+			5 => new SpriteElement($col_frame_top, $col_frame_top, '&nbsp;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelf_ml ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+			0 => new SpriteElement(null,$col_frame, '&#x2590;'),
+			1 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			2 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			3 => new SpriteElement(null,$col_frame, '&#x2590;'),
+			4 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			5 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelf_bl ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+			0 => new SpriteElement(null,$col_frame, '&#x2590;'),
+			1 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			2 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelfCabinet_bl ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+
+		return new Scenery(new Sprite([
+		[
+			0 => new SpriteElement(null,$col_frame, '&#x2590;'),
+			1 => new SpriteElement($col_frame, $col_frame, '&nbsp;'),
+			2 => new SpriteElement($col_frame, '#aaa', '&bull;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelf_tr ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+			3 => new SpriteElement($col_frame_top, $col_frame_top, '&nbsp;'),
+			4 => new SpriteElement($col_frame_top, $col_frame_top, '&nbsp;'),
+			5 => new SpriteElement(null,$col_frame_top, '&#x258c;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelf_mr ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+			0 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			1 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			2 => new SpriteElement(null,$col_frame, '&#x258c;'),
+			3 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			4 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			5 => new SpriteElement(null,$col_frame, '&#x258c;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelf_br ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+			0 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			1 => new SpriteElement($col_frame_top, $col_frame, '&#x203e;'),
+			2 => new SpriteElement(null,$col_frame, '&#x258c;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_shelfCabinet_br ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+
+		return new Scenery(new Sprite([
+		[
+			0 => new SpriteElement($col_frame, '#aaa', '&bull;'),
+			1 => new SpriteElement($col_frame, $col_frame, '&nbsp;'),
+			2 => new SpriteElement(null,$col_frame, '&#x258c;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+	public function scn_smallTable ($col_frame = null)
+	{
+		$col_frame		= $this->getColour($this->col_frame, $col_frame);
+		$col_frame_top	= tint($col_frame, self::TINT_TOP);
+
+		return new Scenery(new Sprite([
+		[
+//			0 => new SpriteElement(null, $col_frame, '&#x2017;'),
+//			1 => new SpriteElement($col_frame_top, $col_frame, '&#x2017;'),
+//			2 => new SpriteElement(null, $col_frame, '&#x2017;'),
+			0 => new SpriteElement(null, $col_frame_top, '&#x2590;'),
+			1 => new SpriteElement($col_frame_top, null, '&nbsp;'),
+			2 => new SpriteElement(null, $col_frame_top, '&#x258c;'),
+			3 => new SpriteElement(null, $col_frame, '&#x2590;'),
+			4 => new SpriteElement(null, $col_frame, '&#x2580;'),
+			5 => new SpriteElement(null, $col_frame, '&#x258c;'),
+		]]), TPL_HIGHOBSTACLE);
+	}
+
+}
+
+
+
+class set_masonry extends AssetSet
+{
+	public $colour;
+
+	const TINT_TOP				= 3;
+	const TINT_PAVERS			= 3;
+	const TINT_PAVERS_SIDE		= 0;
+//	const TINT_PAVERS			= 5;
+//	const TINT_PAVERS_SIDE		= 2;
+	const TINT_DARK				= -2;
+	const TINT_VOID				= -5;
+
+	const COL_DREAMSCAPE		= '#737';
+	const COL_REDBRICK			= '#832';
+	const COL_DIRT				= '#972';
+
+	public function __construct($colour = null)
+	{
+		$this->colour = $this->getColour('#654', $colour);
+	}
+
+	function t_bigWall ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		return new Tile($colour, ['_', 'I', '_', 'L', '_', '_'], TPL_VERTICAL);
+	}
+
+	function t_bigWall_top ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['L', '_', '_', '_', 'I', '_'], TPL_HIGHOBSTACLE);
+	}
+
+	function t_bigWall_void ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+		return new Tile($colour, ['L', '_', '_', '_', 'I', '_'], TPL_HIGHOBSTACLE);
+	}
+
+	function t_smallWall ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		return new Tile($colour, ['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1);
+	}
+
+	function t_smallWall_top ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1);
+	}
+
+	function t_smallWall_void ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+		return new Tile($colour, ['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1);
+	}
+
+	function t_pavers ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_PAVERS);
+		return new Tile($colour, ['L', '_', 'L', 'L', 'L', '_'], TPL_OPENGROUND, -1);
+	}
+
+	function t_stairs ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour_top = tint($colour, self::TINT_PAVERS);
+		return new Tile($colour_top, ['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_OPENGROUND, $colour);
+	}
+
+	function t_stonyFloor ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['O','(',')','(',')','O'], TPL_OPENGROUND, -1);
+	}
+
+	function t_cliff ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		return new Tile($colour, ['&nbsp;','_','/','/','&#x005c;','&nbsp;'], TPL_VERTICAL);
+	}
+
+	function t_cliff_top ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['/','&nbsp;','&nbsp;','&nbsp;', '_', '/'], TPL_OPENGROUND);
+	}
+
+	function t_cliff_void ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+		return new Tile($colour, ['/','&#x005c;','&nbsp;','&#x005c;','&nbsp;','&nbsp;'], TPL_WALL);
+	}
+
+	function t_cairn_w ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2588;','&nbsp;','&nbsp;','&#x258c;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE, $col_dark);
+	}
+
+	function t_cairn ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&nbsp;','&nbsp;','&nbsp;','&nbsp;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE, $col_dark);
+	}
+
+	function t_cairn_s ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&nbsp;','&nbsp;','&nbsp;','&#x2584;', '&#x2588;', '&#x2588;'], TPL_HIGHOBSTACLE, $col_dark);
+	}
+
+	function t_tiles ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+
+
+		return new Tile($colour, ['&#x2588;','&#x258c;','&nbsp;','&nbsp;', '&#x2590;', '&#x2588;'], TPL_OPENGROUND, -1);
+	}
+
+	function spr_brick ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+		$col_top = tint($colour, self::TINT_TOP);
+
+		return new Sprite([
+			new SpriteElement($col_top, $col_dark, 'L'),
+			new SpriteElement($col_top, $col_dark, '_'),
+			new SpriteElement($col_top, $col_dark, '_'),
+			new SpriteElement($colour, $col_top, 'L'),
+			new SpriteElement($colour, $col_top, '_'),
+			new SpriteElement($colour, $col_top, '_')
+		]);
+	}
+
+	function scn_paverSide ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_PAVERS_SIDE);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $colour, '&#x2580;'),
+			1 => new SpriteElement(null, $colour, '&#x2580;'),
+			2 => new SpriteElement(null, $colour, '&#x2580;'),
+		]));
+	}
+
+	function scn_rock ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_dark, '&#x2590;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($col_dark, null, '&nbsp;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_rock_sign ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_dark, '&#x2590;'),
+			1 => new SpriteElement($colour, $col_dark, '&#x2261;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($col_dark, null, '&nbsp;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_tl ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			1 => new SpriteElement(null, $col_dark, '&#x2590;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $col_dark, '&#x2584;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x258c;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_bl ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($col_dark, null, '&nbsp;'),
+			1 => new SpriteElement($col_dark, $col_dark, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $col_dark, '&#x2580;'),
+			4 => new SpriteElement($col_dark, null, '&nbsp;'),
+			5 => new SpriteElement($col_dark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_tr ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($colour, null, '&nbsp;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_br ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			5 => new SpriteElement(null, $col_dark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_cairn_l ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_dark, '&#x2584;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $col_dark, '&#x2580;'),
+			4 => new SpriteElement($col_dark, null, '&nbsp;'),
+			5 => new SpriteElement($col_dark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_cairn_r ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($col_dark, $colour, '&nbsp;'),
+			4 => new SpriteElement($col_dark, null, '&nbsp;'),
+			5 => new SpriteElement(null, $col_dark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_crack_t ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+
+		return new Scenery(new Sprite([
+			[
+				1 => new SpriteElement(null, $colour, '&#x258c;'),
+				4 => new SpriteElement($colour, null, '&nbsp;'),
+			],
+		]));
+	}
+
+	function scn_crack_b ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+
+		return new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null, $colour, '&#x2590;'),
+				1 => new SpriteElement($colour, null, '&nbsp;'),
+				2 => new SpriteElement(null, $colour, '&#x258c;'),
+				3 => new SpriteElement($colour, null, '&nbsp;'),
+				4 => new SpriteElement($colour, null, '&nbsp;'),
+				5 => new SpriteElement(null, $colour, '&#x258c;'),
+			],
+		]));
+	}
+}
+
+
+class set_faders extends AssetSet
+{
+	public $colour;
+
+	public function __construct($colour)
+	{
+		$this->colour = $colour;
+	}
+
+	public function t_solid ($colour = null, $TPL = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$TPL = $TPL ? $TPL : TPL_LOWOBSTACLE;
+
+		return new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], $TPL, $colour);
+	}
+
+	public function scn_down_1 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2591;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2592;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2592;'),
+		]), null, true);
+	}
+
+	public function scn_down_2 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2593;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement($colour,  null, '&nbsp;'),
+			4 => new SpriteElement($colour,  null, '&nbsp;'),
+			5 => new SpriteElement($colour,  null, '&nbsp;'),
+		]), null, true);
+	}
+
+	public function scn_up_1 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour,  null, '&nbsp;'),
+			1 => new SpriteElement($colour,  null, '&nbsp;'),
+			2 => new SpriteElement($colour,  null, '&nbsp;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2593;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_up_2 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2592;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2592;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2591;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+
+	public function scn_right ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_left ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+}
+
+
+class set_rug extends AssetSet
+{
+	public $col_rug;
+	public $col_trim;
+	public $col_detail;
+
+	public function __construct($col_rug = null, $col_trim = null, $col_detail = null)
+	{
+		$this->col_rug		= $col_rug		? $col_rug		: '#99e';
+		$this->col_detail	= $col_detail	? $col_detail	: tint($col_rug, -3);
+		$this->col_trim		= $col_trim		? $col_trim		: '#ffc';
+	}
+
+	public function scn_trim_l ($col_trim = null)
+	{
+		$col_trim = $this->getColour($this->col_trim, $col_trim);
+		$col_trim_dark = tint($col_trim, -6);
+
+		return new Scenery(new Sprite([
+			2 => new SpriteElement($col_trim, $col_trim_dark, '&#x039e;'),
+			5 => new SpriteElement($col_trim, $col_trim_dark, '&#x039e;'),
+		]));
+	}
+
+	public function scn_trim_r ($col_trim = null)
+	{
+		$col_trim = $this->getColour($this->col_trim, $col_trim);
+		$col_trim_dark = tint($col_trim, -6);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($col_trim, $col_trim_dark, '&#x039e;'),
+			3 => new SpriteElement($col_trim, $col_trim_dark, '&#x039e;'),
+		]));
+	}
+
+	public function t_triangles_t ($col_rug = null, $col_detail = null)
+	{
+		$col_rug = $this->getColour($this->col_rug, $col_rug);
+		$col_detail = $this->getColour($this->col_detail, $col_detail);
+
+		return new Tile($col_rug, ['&#x2550;', '&#x2550;', '&#x2550;', '&#x25b2;', '&#x25b2;', '&#x25b2;'], true, $col_detail);
+
+	}
+
+	public function t_triangles_b ($col_rug = null, $col_detail = null)
+	{
+		$col_rug = $this->getColour($this->col_rug, $col_rug);
+		$col_detail = $this->getColour($this->col_detail, $col_detail);
+
+		return new Tile($col_rug, ['&#x25bc;', '&#x25bc;', '&#x25bc;', '&#x2550;', '&#x2550;', '&#x2550;'], true, $col_detail);
+
+	}
+}
+
+
+class set_candles extends AssetSet
+{
+	public $col_candle;
+	public $col_flames;
+	public $col_wood;
+	public $col_metal;
+
+	const POS_LEFT		= 1;
+	const POS_MIDDLE	= 2;
+	const POS_RIGHT		= 3;
+
+	public function __construct ($col_candle = null, $col_flames = null, $col_wood = null, $col_metal = null)
+	{
+		$this->col_candle	= $col_candle	? $col_candle	: '#fde';
+		$this->col_flames	= $col_flames	? $col_flames	: '#fa0';
+		$this->col_wood		= $col_wood		? $col_wood		: '#740';
+		$this->col_metal	= $col_metal	? $col_metal	: '#ccc';
+	}
+
+	private function slm_candle ($colour)
+	{
+		$colour_dark = tint($colour, -2);
+
+		return new SpriteElement($colour, $colour_dark, '&#x2590;');
+	}
+
+	private function slms_flames ($colour)
+	{
+		return [
+			new SpriteElement(null, $colour, '&#x2666;'),
+			new SpriteElement(null, $colour, '&#x25bc;'),
+			new SpriteElement(null, $colour, '&#x2666;'),
+			new SpriteElement(null, $colour, '&#x25b2;'),
+		];
+	}
+
+	public function scn_candle ($POS = null, $col_candle = null, $col_flames = null)
+	{
+		$POS = $POS ? $POS : self::POS_MIDDLE;
+
+		$col_candle	= $this->getColour($this->col_candle, $col_candle);
+		$col_flames	= $this->getColour($this->col_flames, $col_flames);
+
+		$slms_flames = $this->slms_flames($col_flames);
+		$slm_candle = $this->slm_candle($col_candle);
+
+		$POS_flames = $POS - 1;
+		$POS_candle = $POS + 2;
+
+		return new Scenery(new Sprite([
+			[
+				$POS_flames => $slms_flames[0],
+				$POS_candle => $slm_candle,
+			],
+			[
+				$POS_flames => $slms_flames[1],
+				$POS_candle => $slm_candle,
+			],
+			[
+				$POS_flames => $slms_flames[2],
+				$POS_candle => $slm_candle,
+			],
+			[
+				$POS_flames => $slms_flames[3],
+				$POS_candle => $slm_candle,
+			],
+		]), TPL_HIGHOBSTACLE);
+	}
+
+
+}
+
+
+class set_stove extends AssetSet
+{
+	const TINT_TOP = 2;
+
+	public $col_iron;
+
+	public $col_fire_1 = '#f60';
+	public $col_fire_2 = '#f90';
+	public $col_fire_3 = '#fc0';
+
+	public function __construct($col_iron = null)
+	{
+		$this->col_iron = $col_iron ? $col_iron : '#222';
+	}
+
+	public function t_stove_top ($col_iron = null)
+	{
+		$col_iron = $this->getColour($this->col_iron, $col_iron);
+		$col_iron_top = tint($col_iron, self::TINT_TOP);
+
+		return new Tile($col_iron_top, ['&nbsp;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;', '&#x2584;'], TPL_HIGHOBSTACLE, $col_iron);
+	}
+
+	public function scn_stove_l ($col_iron = null) { return new Scenery($this->spr_stove_l($col_iron), TPL_HIGHOBSTACLE); }
+	public function spr_stove_l ($col_iron = null)
+	{
+		$col_iron = $this->getColour($this->col_iron, $col_iron);
+
+		return new Sprite([
+			[
+				0 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				1 => new SpriteElement($this->col_fire_1, $col_iron, '&#x256b;'),
+				2 => new SpriteElement($this->col_fire_1, $col_iron, '&#x256b;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x2580;'),
+			],
+			[
+				0 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				1 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				2 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x2580;'),
+			],
+			[
+				0 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				1 => new SpriteElement($this->col_fire_3, $col_iron, '&#x256b;'),
+				2 => new SpriteElement($this->col_fire_3, $col_iron, '&#x256b;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x2580;'),
+			],
+			[
+				0 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				1 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				2 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2590;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x2580;'),
+			],
+		]);
+	}
+
+	public function scn_stove_r ($col_iron = null) { return new Scenery($this->spr_stove_r($col_iron), TPL_HIGHOBSTACLE); }
+	public function spr_stove_r ($col_iron = null)
+	{
+		$col_iron = $this->getColour($this->col_iron, $col_iron);
+
+		return new Sprite([
+			[
+				0 => new SpriteElement($this->col_fire_1, $col_iron, '&#x256b;'),
+				1 => new SpriteElement($this->col_fire_1, $col_iron, '&#x256b;'),
+				2 => new SpriteElement(null,$col_iron, '&#x258c;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x258c;'),
+			],
+			[
+				0 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				1 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				2 => new SpriteElement(null,$col_iron, '&#x258c;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x258c;'),
+			],
+			[
+				0 => new SpriteElement($this->col_fire_3, $col_iron, '&#x256b;'),
+				1 => new SpriteElement($this->col_fire_3, $col_iron, '&#x256b;'),
+				2 => new SpriteElement(null,$col_iron, '&#x258c;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x258c;'),
+			],
+			[
+				0 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				1 => new SpriteElement($this->col_fire_2, $col_iron, '&#x256b;'),
+				2 => new SpriteElement(null,$col_iron, '&#x258c;'),
+				3 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement(null,$col_iron, '&#x258c;'),
+			],
+		]);
+	}
+
+	public function scn_stove_small ($col_iron = null) { return new Scenery($this->spr_stove_small($col_iron)); }
+	public function spr_stove_small ($col_iron = null)
+	{
+		$col_iron = $this->getColour($this->col_iron, $col_iron);
+
+		return new Sprite([
+			[
+				0 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				1 => new SpriteElement($this->col_fire_1, $col_iron, '&#x2593;'),
+				2 => new SpriteElement($col_iron, '#777', '&#x2190;'),
+				3 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement($col_iron,  null, '&nbsp;'),
+			],
+			[
+				0 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				1 => new SpriteElement($this->col_fire_2, $col_iron, '&#x2593;'),
+				2 => new SpriteElement($col_iron, '#777', '&#x2190;'),
+				3 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement($col_iron,  null, '&nbsp;'),
+			],
+			[
+				0 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				1 => new SpriteElement($this->col_fire_3, $col_iron, '&#x2593;'),
+				2 => new SpriteElement($col_iron, '#777', '&#x2190;'),
+				3 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement($col_iron,  null, '&nbsp;'),
+			],
+			[
+				0 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				1 => new SpriteElement($this->col_fire_2, $col_iron, '&#x2593;'),
+				2 => new SpriteElement($col_iron, '#777', '&#x2190;'),
+				3 => new SpriteElement($col_iron,  null, '&nbsp;'),
+				4 => new SpriteElement(null,$col_iron, '&#x2580;'),
+				5 => new SpriteElement($col_iron,  null, '&nbsp;'),
+			],
+		]);
+	}
+
+	public function scn_saucepan ()
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,  '#aaa', '&#x2584;'),
+			1 => new SpriteElement(null,  '#a60', '&#x2500;'),
+		]));
+	}
+
+	public function scn_baconAndEggs ()
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement('#f88', '#ffa', '|'),
+			2 => new SpriteElement('#fff', '#f80', '&bull;'),
+		]));
+	}
+
+	public function scn_steam ($int_locations)
+	{
+		$locations = intToBinaryBools($int_locations, 3);
+
+		$l = new SpriteElement(null, '#999', '(');
+		$r = new SpriteElement(null, '#999', ')');
+
+		return new Scenery(new Sprite([
+			[
+				3 => $locations[0] ? $l : null,
+				4 => $locations[1] ? $l : null,
+				5 => $locations[2] ? $l : null,
+			],
+			[
+				3 => $locations[0] ? $r : null,
+				4 => $locations[1] ? $r : null,
+				5 => $locations[2] ? $r : null,
+			],
+		]));
+	}
+}
+
+class NPC_vendor extends NPC
+{
+	public $CUR;
+
+	public function __construct($name, $spriteSet, $gender = GND_MALE, $speechFile = null, $CUR = null, $NPCIs = null, $wares = [])
+	{
+		$canBuy = isset($canBuy) ? $canBuy : true;
+		$canSell = isset($canSell) ? $canSell : true;
+
+		$this->FAC = FAC_NPC_NEUTRAL;
+
+		$this->CUR = isset($CUR) ? $CUR : CUR_GOLD;
+
+		parent::__construct($name, $spriteSet, $gender, $speechFile);
+
+		if ($NPCIs instanceof NPCInteraction) $NPCIs = [$NPCIs];
+
+		if (is_array($NPCIs))
+		{
+			foreach ($NPCIs as $NPCI)
+			{
+				$this->addNPCI($NPCI);
+			}
+		}
+
+		global $currencies; //XXX
+		console_echo("{$this->name} deals in {$currencies[$this->CUR]->name}");
+
+		$this->inventory->CUR = $this->CUR;
+		foreach ($wares as $thing)
+		{
+			$this->inventory->add($thing);
+		}
+	}
+}
+
+class npci_repair extends NPCInteraction
+{
+	public $efficiency;
+	public $mask;
+
+	public function __construct($efficiency = null, Mask $mask = null)
+	{
+		$efficiency = $efficiency ? $efficiency : 80;
+		if ($efficiency <= 1) $efficiency *= 100;
+
+		$this->efficiency = min([max([$efficiency, 50]), 100]);
+		$this->mask = $mask;
+
+		parent::__construct("Repair ({$efficiency}%)", "Repair items to {$this->efficiency}% of their original quality.");
+	}
+
+	public function onClick($UIN)
+	{
+		global $player;
+		global $currencies;
+
+		$CUR = $this->owner->CUR ? $this->owner->CUR : CUR_GOLD;
+
+		$update = new stdClass();
+		$update->type = $this->key;
+		$update->items = [];
+		$update->curSym = $currencies[$CUR]->symbol;
+		$update->eff = $this->efficiency;
+
+		foreach ($player->inventory->contents as $key => $item)
+		{
+			if ($this->mask && !$this->mask->compare($item)) continue;
+
+			if ($item->durability < $item->durabilityMax)
+			{
+				$update_item = new stdClass();
+
+				$update_item->name = $item->name;
+				$update_item->id = $item->id;
+				$update_item->dur = $item->durability;
+				$update_item->durMax = $item->durabilityMax;
+
+				$update_item->price = number_format(convertCurrency($this->getRepairPrice($item), CUR_GOLD, $CUR));
+
+				$update->items[] = $update_item;
+			}
+		}
+
+		update(UPD_INTERACTIONS, $update);
+	}
+
+	public function onItemClick($UIN, $content)
+	{
+		global $player;
+		$item = $player->inventory->getItemByIndex($content);
+
+
+		if (!$item)
+		{
+			update_thoughts('Hey, where\'d it go?');
+			return;
+		}
+
+		if ($this->mask && !$this->mask->compare($item))
+		{
+			// Packet hacking detected
+			return;
+		}
+
+		switch ($UIN)
+		{
+			case UIN_CLICK:
+				$item->inspect();
+				break;
+			case UIN_RIGHT_CLICK:
+				if ($player->wallet->remove($this->getRepairPrice($item), $this->owner->CUR))
+				{
+					$this->repairItem($item);
+
+					$update = new stdClass();
+					$update->type = $this->key;
+
+					$itemUpdate = new stdClass();
+					$itemUpdate->id = $item->id;
+					$itemUpdate->delete = true;
+
+					$update->items = [$itemUpdate];
+
+					update(UPD_INTERACTIONS, $update);
+				}
+				else
+				{
+					$this->owner->speak(SPSI_REPAIRING_NE, $item);
+				}
+
+				break;
+		}
+	}
+
+	public function getRepairPrice (Item $item)
+	{
+		$repairPrice = $item->durabilityMax - $item->durability;
+
+		$repairPrice += ($repairPrice * ($item->level / 6));
+
+		$repairPrice *= $this->efficiency / 10;
+
+		if ($item->isBroken) $repairPrice += 2;
+
+		return $repairPrice;
+	}
+
+	public function repairItem (Item $item)
+	{
+		$recovery = ceil(($item->durabilityMax - $item->durability) * ($this->efficiency / 100));
+
+		console_echo("Current durability: <<#fff>>({$item->durability}/{$item->durabilityMax})<>", '#aaf', CNS_ITEMS);
+		console_echo("Recovery: <<#fff>>$recovery<>", '#aaf', CNS_ITEMS);
+
+		$this->owner->speak(SPSI_REPAIRING, $item);
+
+		$item->durability += $recovery;
+		$item->durabilityMax = $item->durability;
+	}
+}
+
+class npci_sell extends NPCInteraction
+{
+	public $mask;
+	public $sa_rate;
+
+	public function __construct(Mask $mask = null, $sa_rate = null)
+	{
+//		$this->onGainItem = true;
+//		$this->onLoseItem = true;
+
+		$name = 'Sell';
+		$description = 'View saleable items.';
+
+		$this->mask = $mask;
+
+		// Keeping prices consistent is ideal but offering a bonus for having the right item for an esoteric purchaser makes sense, too.
+		// This is why you can only change the rate if it has a mask.
+		if ($mask && $sa_rate) $this->sa_rate = $sa_rate;
+
+		parent::__construct($name, $description);
+
+		$this->cooldown = 0;
+	}
+
+	public function onClick($UIN)
+	{
+		global $player;
+		global $currencies;
+
+		$CUR = $this->owner->CUR ? $this->owner->CUR : CUR_GOLD;
+
+		$update = new stdClass();
+
+		$update->type = $this->key;
+		$update->CURsym = $currencies[$CUR]->symbol;
+		$update->items = $player->inventory->getAjaxObjects($CUR, $this->sa_rate, $this->mask);
+
+		update(UPD_INTERACTIONS, $update);
+	}
+
+	public function onItemClick($UIN, $content)
+	{
+		global $player;
+
+		$CUR = $this->owner->CUR ? $this->owner->CUR : CUR_GOLD;
+
+		console_echo("{$UIN} {$content}");
+
+		$item = $player->inventory->getItemByIndex($content);
+
+		$quantity = 1;
+
+		switch ($UIN)
+		{
+			case UIN_CLICK:
+				$item->inspect();
+				break;
+			case UIN_CTRL_RIGHT_CLICK:
+				$quantity = $item->quantity;
+			case UIN_RIGHT_CLICK:
+				if ($player->inventory->sell($item, $this->owner, $CUR, $quantity, $this->sa_rate))
+				{
+//					console_var_dump($item);	// This is what you hoped
+					$player->engagement->speak(SPSI_BUYING, $item);
+//					$this->updatePanel($item);
+				}
+				else
+				{
+					$player->engagement->speak('I can\'t buy that.');
+				}
+				break;
+		}
+	}
+
+	public function updatePanel(Item $item)
+	{
+		global $currencies;
+
+		$update = new stdClass();
+
+		$update->gentle	= true;
+		$update->type	= $this->key;
+		$update->CURsym	= $currencies[$this->owner->CUR]->symbol;
+		$update->items	= [$item->getAjaxObject($this->owner->CUR)];
+
+		update(UPD_INTERACTIONS, $update);
+	}
+
+//	public function onGainItem(Item $item) { $this->updatePanel($item); }
+//	public function onLoseItem(Item $item) { $this->updatePanel($item); }
+}
+
+class npci_buy extends NPCInteraction
+{
+	public $mask;
+	public $sa_rate;
+
+	public function __construct(Mask $mask = null, $sa_rate = null)
+	{
+		$this->onGainItem = true;
+		$this->onLoseItem = true;
+
+		$name = 'Buy';
+		$description = 'View items for sale.';
+
+		$this->mask = $mask;
+
+		// Keeping prices consistent is ideal but offering a bonus for having the right item for an esoteric purchaser makes sense, too.
+		// This is why you can only change the rate if it has a mask.
+		if ($mask && $sa_rate) $this->sa_rate = $sa_rate;
+
+		parent::__construct($name, $description);
+
+		$this->cooldown = 0;
+	}
+
+	public function onClick($UIN)
+	{
+		global $currencies;
+
+		$CUR = $this->owner->CUR ? $this->owner->CUR : CUR_GOLD;
+
+		$update = new stdClass();
+
+		$update->type = $this->key;
+		$update->CURsym = $currencies[$CUR]->symbol;
+		$update->items = $this->owner->inventory->getAjaxObjects($CUR, $this->sa_rate, $this->mask);
+
+		update(UPD_INTERACTIONS, $update);
+	}
+
+	public function onItemClick($UIN, $content)
+	{
+		global $player;
+
+		$CUR = $this->owner->CUR ? $this->owner->CUR : CUR_GOLD;
+
+		console_echo("{$UIN} {$content}");
+
+		$item = $this->owner->inventory->getItemByIndex($content);
+
+		$quantity = 1;
+
+		switch ($UIN)
+		{
+			case UIN_CLICK:
+				$item->inspect();
+				break;
+			case UIN_CTRL_RIGHT_CLICK:
+				$quantity = $item->quantity;
+			case UIN_RIGHT_CLICK:
+				if($this->owner->inventory->sell($item, $player, $CUR, $quantity, $this->sa_rate))
+				{
+//					console_var_dump($item);
+					$this->owner->speak(SPSI_SELLING, $item);
+//					$this->updatePanel($item);
+				}
+				else
+				{
+					$this->owner->speak(SPSI_SELLING_NE, $item);
+				}
+				break;
+		}
+	}
+
+	public function updatePanel(Item $item)
+	{
+		global $currencies;
+
+		$update = new stdClass();
+
+		$update->gentle	= true;
+		$update->type	= $this->key;
+		$update->CURsym	= $currencies[$this->owner->CUR]->symbol;
+		$update->items	= [$item->getAjaxObject($this->owner->CUR)];
+
+		update(UPD_INTERACTIONS, $update);
+	}
+
+//	public function onGainItem(Item $item) { $this->updatePanel($item); }
+//	public function onLoseItem(Item $item) { $this->updatePanel($item); }
+
+	public function onGainItem(Item $item)
+	{
+		console_echo('npci_buy onGainItem before updatePanel');
+		$this->updatePanel($item);
+		console_echo('npci_buy onGainItem after updatePanel');
+	}
+
+	public function onLoseItem(Item $item)
+	{
+		console_echo('npci_buy onLoseItem before updatePanel');
+		$this->updatePanel($item);
+		console_echo('npci_buy onLoseItem after updatePanel');
+	}
+}
+
+class eqp_belt extends a_eqp_apparel
+{
+	const MAT_STRAP = 0;
+	const MAT_BUCKLE = 1;
+
+	public $DSs_req_mod		= 0.1;
+	public $DSs_mod			= 0.1;
+	public $DMGs_def_mod	= 0.1;
+
+	function __construct($level = null, $name = null, $description = null, $spriteSet = null)//, $DSs_req = null, $DSs = null, $DMGs_def = null, $behaviours = null)
+	{
+		$this->EQP = EQP_BELT;
+		parent::__construct($level, $name, $description, $spriteSet);//, EQP_BELT, $DSs_req, $DSs, $DMGs_def, $behaviours);
+	}
+
+	public function getShoppingLists()
+	{
+		return [
+			'belt' => [
+				self::MAT_STRAP => 'mat_heavyFabric',
+				self::MAT_BUCKLE => 'mat_metal',
+			]
+		];
+	}
+
+	public function getSpriteSet()
+	{
+		return [ SPRI_DEFAULT => new Sprite([
+			3 => new SpriteElement(tint($this->materials[self::MAT_STRAP]->colour, 1), '#000', '&#x0387;'),
+			4 => new SpriteElement($this->materials[self::MAT_STRAP]->colour, $this->materials[self::MAT_BUCKLE]->colour, 'E'),
+			5 => new SpriteElement(tint($this->materials[self::MAT_STRAP]->colour, -1), '#000', '&#x0387;'),
+		])];
+	}
+
+	function getName()
+	{
+		return "{$this->materials[self::MAT_STRAP]->name} {$this->noun}";
+	}
+
+	function getDescription()
+	{
+		return "A {$this->materials[self::MAT_STRAP]->name} {$this->noun} with a buckle of {$this->materials[self::MAT_BUCKLE]->name}.";
+	}
+
+	protected function applyQuirks()
+	{
+		parent::applyQuirks();
+	}
+}
+
+abstract class a_eqp_apparel extends Equipment
+{
+	public $DMGs_def		= null;
+
+	public $DMGs_def_mod	= 1;
+	public $DMGs_def_count	= 1;
+
+	public function __construct($level = null, $name = null, $description = null, $spriteSet = null)//, $EQP, $DSs_req = null, $DSs = null, $DMGs_def = null, $behaviours = null)
+	{
+		$this->ICATs[] = ICAT_ARMOR;
+
+		parent::__construct($level, $name, $description, $spriteSet);//, $EQP, $DSs_req, $DSs, null, $DMGs_def, $behaviours);
+	}
+
+	protected function fillGaps()
+	{
+		parent::fillGaps();
+
+		if (!isset($this->DMGs_def))	$this->DMGs_def	= $this->generateDMGs_def();
+	}
+
+	protected function consolidate($problems = [])
+	{
+//		$this->problemCheck($problems);
+
+		return parent::consolidate($problems);
+	}
+
+	function generateDMGs_def($number = null)
+	{
+		global $DMGDL_constants;
+		global $DMG_constants;
+
+		$base = (10 + ($this->level ^ 1.2)) * $this->DMGs_def_mod;
+		if (!isset($number)) $number = $this->DMGs_def_count;
+
+		$DMGs_def = [];
+
+		for ($i = getNuancedValue($number, 50); $i > 0; $i--)
+		{
+			if (mt_rand(0, 4))
+			{
+				$DMGs_def[$DMGDL_constants[array_rand($DMGDL_constants)]] = $base;
+			}
+			else
+			{
+				$DMGs_def[$DMG_constants[array_rand($DMG_constants)]] = $base;
+			}
+		}
+
+		return $this->getRequiredStats('DMGs_def') + $DMGs_def;
+	}
+
+	function equals(Item $item)
+	{
+		if (parent::equals($item))
+		{
+			if ($this->DSs		!== $item->DSs		) return false;
+			if ($this->DMGs_def	!== $item->DMGs_def	) return false;
+			if ($this->DSs_req	!== $item->DSs_req	) return false;
+		}
+		else
+		{
+			return false;
+		}
+		return true;
+	}
+
+	protected function applyQuirks()
+	{
+		global $DS_names;
+
+		switch ($this->DS_base)
+		{
+			case DS_STRENGTH:
+				if (percentageToBool(60))
+				{
+					$this->DSs[DS_INTELLECT] = getNuancedValue(-5 - ($this->level ^ 1.2), 13);
+				}
+
+				if (percentageToBool(40))
+				{
+					$this->DSs[DS_HP_MAX] = mt_rand($this->level * 5, ($this->level + 2) * 5);
+				}
+				break;
+			case DS_AGILITY:
+
+				break;
+
+			case DS_MAGIC:
+				if (percentageToBool(50))
+				{
+					// Penalise strength equal to a fraction of the magic requirement.
+					$this->DSs[DS_STRENGTH] = getNuancedValue($this->DSs_req[DS_MAGIC], 10) / 5;
+				}
+
+				if (percentageToBool(80))
+				{
+					if (percentageToBool(70))
+					{
+						// Bonus to energy
+						if (!isset($this->DSs[DS_EP_MAX])) $this->DSs[DS_EP_MAX] = getNuancedValue(10 + ($this->level * 1.5), 10);
+					}
+					else
+					{
+						// Percentage bonus to energy recharge
+						if (!isset($this->DSs[DS_RECHARGE])) $this->DSs[DS_RECHARGE] = mt_rand(5, 20) . '%';
+					}
+				}
+				break;
+			case DS_CHARISMA:
+
+				break;
+			case DS_INTELLECT:
+
+				break;
+		}
+
+		if (percentageToBool(30)) // Take a stat, tripple it, make it an onTakeHit bonus.
+		{
+			global $DS_typed;
+			$DS = array_rand($this->DSs);
+
+			if ($this->DSs[$DS] > 0 && in_array($DS, $DS_typed))
+			{
+				$value = $this->DSs[$DS] * 3;
+
+				unset($this->DSs[$DS]);
+
+				$duration = mt_rand(10, 25);
+
+				$chance = mt_rand(10, 30);
+
+				$this->addBehaviour(new ebhv_chanceToAlterOwnStat(TRG_TAKE_HIT, $DS, $value, $chance, $duration));
+			}
+		}
+	}
+}
+
+class eqp_boots extends a_eqp_apparel
+{
+	const MAT_IN = 0;
+	const MAT_OUT = 1;
+
+	public $DSs_req_mod		= 0.4;
+	public $DSs_mod			= 0.4;
+	public $DMGs_def_mod	= 0.5;
+
+	function __construct($level = null, $name = null, $description = null, $spriteSet = null)
+	{
+		$this->EQP = EQP_BOOTS;
+		parent::__construct($level, $name, $description, $spriteSet);
+	}
+
+	public function getShoppingLists()
+	{
+		return [
+			'slippers' => [
+				self::MAT_IN => 'mat_lightFabric',
+				self::MAT_OUT => 'mat_lightFabric',
+			],
+			'boots' => [
+				self::MAT_IN => 'mat_lightFabric',
+				self::MAT_OUT => 'mat_heavyFabric',
+			],
+			'rugged boots' => [
+				self::MAT_IN => 'mat_heavyFabric',
+				self::MAT_OUT => 'mat_heavyFabric',
+			],
+			'heavy boots' => [
+				self::MAT_IN => 'mat_heavyFabric',
+				self::MAT_OUT => 'mat_metal',
+			],
+		];
+	}
+
+	function getSpriteSet()
+	{
+		$spriteSet = [];
+
+		$spriteSet[SPRI_DEFAULT] = new Sprite([
+			0 => new SpriteElement(null, $this->materials[self::MAT_IN]->colour, '&#x2584;'),
+			2 => new SpriteElement(null, $this->materials[self::MAT_IN]->colour, '&#x2584;'),
+			3 => new SpriteElement(null, $this->materials[self::MAT_OUT]->colour, '&#x255c;'),
+			5 => new SpriteElement(null, $this->materials[self::MAT_OUT]->colour, '&#x2559;'),
+		]);
+
+		return $spriteSet;
+	}
+
+	function getName()
+	{
+		return "{$this->materials[self::MAT_OUT]->name} {$this->noun}";
+	}
+
+	public function getDescription()
+	{
+		return "{$this->materials[self::MAT_IN]->name} lined {$this->noun} of {$this->materials[self::MAT_OUT]->name}.";
+	}
+
+	protected function applyQuirks()
+	{
+		switch($this->DS_base)
+		{
+			case DS_STRENGTH:
+
+				break;
+			case DS_AGILITY:
+
+				break;
+			case DS_MAGIC:
+
+				break;
+			case DS_CHARISMA:
+
+				break;
+			case DS_INTELLECT:
+
+				break;
+		}
+
+		parent::applyQuirks();
+	}
+}
+
+class eqp_gloves extends a_eqp_apparel
+{
+	const MAT_IN = 0;
+	const MAT_OUT = 1;
+
+	public $DSs_req_mod		= 0.3;
+	public $DSs_mod			= 0.3;
+	public $DMGs_def_mod	= 0.3;
+
+	function __construct($level = null, $name = null, $description = null, $spriteSet = null)
+	{
+		$this->EQP = EQP_GLOVES;
+		parent::__construct($level, $name, $description, $spriteSet);
+	}
+
+	public function getShoppingLists()
+	{
+		return [
+			'gloves' => [
+				self::MAT_IN => 'mat_lightFabric',
+				self::MAT_OUT => 'mat_lightFabric',
+			],
+			'mits' => [
+				self::MAT_IN => 'mat_lightFabric',
+				self::MAT_OUT => 'mat_heavyFabric',
+			],
+			'heveay mits' => [
+				self::MAT_IN => 'mat_heavyFabric',
+				self::MAT_OUT => 'mat_heavyFabric',
+			],
+			'gauntlets' => [
+				self::MAT_IN => 'mat_heavyFabric',
+				self::MAT_OUT => 'mat_metal',
+			],
+		];
+	}
+
+	function getSpriteSet()
+	{
+		$spriteSet = [];
+
+		if		($this->materials[self::MAT_OUT] instanceof mat_metal)			$char = '&#x0448;';
+		else if	($this->materials[self::MAT_OUT] instanceof mat_heavyFabric)	$char = 'w';
+		else if	($this->materials[self::MAT_OUT] instanceof mat_lightFabric)	$char = '&#x03c9;';
+
+		$spe_fingers	= new SpriteElement(null, $this->materials[self::MAT_OUT]->colour, $char);
+		$spe_cuff		= new SpriteElement(null, $this->materials[self::MAT_IN]->colour, '&#x2580;');
+
+
+		$spriteSet[SPRI_DEFAULT] = new Sprite([
+			0 => $spe_fingers,
+			2 => $spe_fingers,
+			3 => $spe_cuff,
+			5 => $spe_cuff
+		]);
+
+//		&#x02c6; // Another potential character...look for more.
+
+		$spe_overSPriteChar = new SpriteElement(null, $this->materials[self::MAT_OUT]->colour, '&deg;');
+
+		$spriteSet[SPRI_OVERSPRITE] = new Sprite([
+			3 => $spe_overSPriteChar,
+			5 => $spe_overSPriteChar,
+		]);
+
+		return $spriteSet;
+	}
+
+	public function getDescription()
+	{
+		return "{$this->materials[self::MAT_IN]->name} lined {$this->noun} of {$this->materials[self::MAT_OUT]->name}.";
+	}
+
+	function getName()
+	{
+		return "{$this->materials[self::MAT_OUT]->name} {$this->noun}";
+	}
+
+	protected function applyQuirks()
+	{
+		switch($this->DS_base)
+		{
+			case DS_STRENGTH:
+				if (percentageToBool(30)) $this->addBehaviour(new ebhv_frustration(mt_rand(5, 10), mt_rand(10, 30)));
+				break;
+			case DS_AGILITY:
+
+				break;
+			case DS_MAGIC:
+
+				break;
+			case DS_CHARISMA:
+
+				break;
+			case DS_INTELLECT:
+
+				break;
+		}
+
+		parent::applyQuirks();
+	}
+}
+
+class dbhv_leaveLootableCorpse extends DudeBehaviour
+{
+	function __construct($spriteSet)
+	{
+		$this->onDeath = true;
+
+		if (isset($spriteSet[SPRI_CORPSE]))
+		{
+			$this->spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_CORPSE];
+		}
+		else
+		{
+			$this->spriteSet[SPRI_CORPSE] = Dude::getCorpseSprite($spriteSet[SPRI_DEFAULT]);
+		}
+
+		$description  = 'Leaves a lootable corpse.';
+		parent::__construct($description, BHVK_CORPSE, 1);
+	}
+
+	function onDeath(Attack $attack)
+	{
+		global $map;
+
+		console_echo("Leaving corpse of {$this->owner->name}", '#faf');
+
+		if (isset($this->owner->spriteSet[SPRI_CORPSE]))
+		{
+			$this->spriteSet[SPRI_CORPSE] = $this->owner->spriteSet[SPRI_CORPSE];
+			$this->owner->changeLayer(LAYER_CHEST);
+			$this->owner->setSPRI(SPRI_CORPSE);
+		}
+
+		$obj_corpse = new obj_corpse(
+			"Corpse of {$this->owner->name}",
+			[$this->spriteSet[SPRI_CORPSE]],
+			$this->owner->inventory->contents);
+
+		$obj_corpse->n_offset = $this->owner->n_offset;
+		$obj_corpse->w_offset = $this->owner->w_offset;
+
+		if (isset($map->objects[$this->owner->n_offset][$this->owner->w_offset][LAYER_COLLECTIBLE]))
+		{
+			$existingObject = $map->objects[$this->owner->n_offset][$this->owner->w_offset][LAYER_COLLECTIBLE];
+
+			$obj_corpse->inventory->locked = false;
+			if (isset($existingObject->item))
+			{
+				$obj_corpse->inventory->add($existingObject->item);
+			}
+			elseif (isset($existingObject->inventory))
+			{
+				$existingObject->inventory->locked = false;
+
+				foreach ($existingObject->inventory->contents as $item)
+				{
+					$obj_corpse->inventory->add($existingObject->inventory->pullItem($item));
+				}
+
+				$existingObject->inventory->locked = true;
+			}
+			$obj_corpse->inventory->locked = true;
+		}
+		console_echo("<<#fff>>\"{$this->owner->name}\"<> is about to be a corpse.");
+		$this->owner->changeTo($obj_corpse);
+		console_echo("<<#fff>>\"{$this->owner->name}\"<> should now be a corpse.");
+	}
+
+
+}
+
+class dbhv_fleeWhenAttacked extends DudeBehaviour
+{
+//	public $oldMovement = null;
+
+	public $safeDistance;
+	public $target;
+	public $fleecooldown;
+
+	public $dbhv;
+
+	function __construct($safeDistance = 20, $fleecooldown = 0.4)
+	{
+		$this->onDefend = true;
+		$this->onIdle = true;
+
+		$description = 'Flees when attacked.';
+		$this->safeDistance = $safeDistance;
+		$this->fleecooldown = $fleecooldown;
+
+		parent::__construct($description, 'flee');
+	}
+
+	function onDefend(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+		$this->target = $attack->attacker;
+		console_echo("{$this->owner->name} is fleeing {$this->target->name}.");
+
+		$this->dbhv = new obhv_flee($attack->attacker, $this->fleecooldown);
+
+		$this->owner->addBehaviour($this->dbhv);
+
+	}
+
+	function onIdle()
+	{
+		if (isset($this->target) && $this->owner->distanceFrom($this->target) > $this->safeDistance)
+		{
+			console_echo("{$this->owner->name} is no longer fleeing {$this->target->name}.");
+
+			$this->owner->removeBehaviour($this->dbhv);
+
+			unset($this->target);
+		}
+	}
+}
+
+class dbhv_speak extends DudeBehaviour
+{
+
+	static $oddsOfCombatSpeech = 50;
+
+	public function __construct($SPSIs_exceptions = null)
+	{
+		if (!isset($SPSIs_exceptions)) $SPSIs_exceptions = [];
+
+		$this->onReaction	= in_array(SPSI_CONVERSING,	$SPSIs_exceptions) === false;
+		$this->onEngage		= in_array(SPSI_GREETING,	$SPSIs_exceptions) === false;
+		$this->onDisengage	= in_array(SPSI_SAYING_BYE,	$SPSIs_exceptions) === false;
+
+		$this->onAttack		= in_array(SPSI_ATTACKING,	$SPSIs_exceptions) === false;
+		$this->onMiss		= in_array(SPSI_MISSING,	$SPSIs_exceptions) === false;
+		$this->onStrike		= in_array(SPSI_STRIKING,	$SPSIs_exceptions) === false;
+		$this->onKill		= in_array(SPSI_KILLING,	$SPSIs_exceptions) === false;
+
+		$this->onDefend		= in_array(SPSI_DEFENDING,	$SPSIs_exceptions) === false;
+		$this->onDeflect	= in_array(SPSI_DEFLECTING,	$SPSIs_exceptions) === false;
+		$this->onTakeHit	= in_array(SPSI_TAKING_HIT,	$SPSIs_exceptions) === false;
+		$this->onDeath		= in_array(SPSI_DYING,		$SPSIs_exceptions) === false;
+
+		$description = "Greets, converses and dismisses when interacted with.";
+
+		parent::__construct($description, BHVK_SPEAK);
+	}
+
+	public function onEngage(Player $player)
+	{
+		if (!$player->handleEventOfInterest(EOI_ENGAGE_NPC, $this->owner))
+		{
+			$this->owner->speak(SPSI_GREETING, null, true);
+		}
+	}
+
+	public function onDisengage(Player $player)
+	{
+			$this->owner->speak(SPSI_SAYING_BYE, null, true);
+	}
+
+	public function onReaction(AsObject $instigator, $DIR)
+	{
+		if ($instigator instanceof Player) $this->owner->speak(SPSI_CONVERSING);
+	}
+
+
+	public function onAttack(Attack $attack)
+	{
+		if (percentageToBool(self::$oddsOfCombatSpeech)) $this->owner->speak(SPSI_ATTACKING, $attack);
+	}
+
+	public function onMiss(Attack $attack)
+	{
+		if (percentageToBool(self::$oddsOfCombatSpeech)) $this->owner->speak(SPSI_MISSING, $attack);
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		if (percentageToBool(self::$oddsOfCombatSpeech)) $this->owner->speak(SPSI_STRIKING, $attack);
+	}
+
+	public function onKill(Attack $attack)
+	{
+		$this->owner->speak(SPSI_KILLING, $attack);
+	}
+
+	public function onDefend(Attack $attack)
+	{
+		if (percentageToBool(self::$oddsOfCombatSpeech)) $this->owner->speak(SPSI_DEFENDING, $attack);
+	}
+
+	public function onDeflect(Attack $attack)
+	{
+		if (percentageToBool(self::$oddsOfCombatSpeech)) $this->owner->speak(SPSI_DEFLECTING, $attack);
+	}
+
+	public function onTakeHit(Attack $attack)
+	{
+		if (percentageToBool(self::$oddsOfCombatSpeech)) $this->owner->speak(SPSI_TAKING_HIT, $attack);
+	}
+
+	public function onDeath(Attack $attack)
+	{
+		$this->owner->speak(SPSI_DYING, $attack);
+	}
+}
+
+class ebhv_chanceToAlterOwnStat extends EquipmentBehaviour
+{
+	public $status;
+	public $chance;
+
+	function __construct($TRG, $DS, $amount, $chance, $duration)
+	{
+		global $TRG_readable;
+		global $DS_names;
+
+		$this->$TRG = true;
+		$this->chance = $chance;
+
+		if ($amount > 0)
+		{
+			$whatDo = 'increase';
+			$sprite = spr_DS_boost($DS);
+		}
+		else
+		{
+			$whatDo = 'decrease';
+			$sprite = spr_DS_lower($DS);
+		}
+
+		$name = ucwords("{$whatDo} {$DS_names[$DS]}");
+
+
+		$s_description = ucfirst("{$whatDo}s {$DS_names[$DS]} by {$amount}.");
+		$this->status = new Status($name, $s_description, $sprite, $duration, false, [$DS => $amount]);
+
+		$this->goldValue = $this->status->getGoldValue() * ($this->chance / 100);
+
+		$description = "{$chance}% chance to {$whatDo} {$DS_names[$DS]} by {$amount} for {$duration} secs {$TRG_readable[$TRG]}.";
+
+		parent::__construct($description, null, 0);
+	}
+
+	function onAttack	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+	function onMiss		(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+	function onStrike	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+	function onKill		(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+
+	function onDefend	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+	function onDeflect	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+	function onTakeHit	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+	function onDeath	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply(); }
+
+	function apply()
+	{
+		$this->owner->owner->addStatus(clone $this->status);
+	}
+}
+
+class obhv_replenishItems extends ObjectBehaviour
+{
+	public $masks;
+	public $target;
+
+	const MAX = 10;
+	const MIN = 1;
+	const DEF = 8;
+
+	public function __construct($masks = null, $target = null)
+	{
+		$this->onGainItem	= true;
+		$this->onLoseItem	= true;
+		$this->onIdle		= true;
+
+		if (isset($masks))
+		{
+			if (!is_array($masks)) $masks = [$masks];
+
+			$this->masks = serialize($masks);
+		}
+
+		if ($target)	$this->target = max([self::MIN, min([self::MAX, $target])]);
+		else			$this->target = self::DEF;
+
+		parent::__construct('Replenishes items over time', null);
+	}
+
+	public function onLoseItem(Item $item)
+	{
+		if ($this->masks)
+		{
+			console_echo('Using in-house masks for replenished item', '#aaa', CNS_BEHAVIOUR);
+			$masks = unserialize($this->masks);
+			$mask = $masks[array_rand($masks)];
+
+			if (!isset($mask->class))
+			{
+				$mask->class = get_class($item);
+			}
+		}
+		else
+		{
+			console_echo('Using class-only mask for replenished item', '#aaa', CNS_BEHAVIOUR);
+			$mask = new Mask($item,
+				[
+					'class',
+				]);
+		}
+
+		$equipment = Equipment::constructFromMask($mask);
+
+		console_echo('Resulting item:', '#aaa');
+
+		$this->owner->inventory->add($equipment);
+	}
+
+	public function onGainItem(Item $item)
+	{
+		$this->onLoseItem = false;
+
+		console_echo('Does this npc have too many items?', '#faa');
+		if (count($this->owner->inventory->contents) > $this->target)
+		{
+			console_echo('TOO MANY ITEMS!', '#ffa');
+			$firstItem = reset($this->owner->inventory->contents);
+			if ($firstItem instanceof Item)
+			{
+				console_var_dump($firstItem, '#faf');
+				$this->owner->inventory->pullItem($firstItem);
+				console_echo('Well we pulled it, now what?', '#faa', CNS_ITEMS);
+			}
+		}
+		else console_echo('SUFFICIENTLY FEW ITEMS!', '#afa');
+
+		$this->onLoseItem = true;
+	}
+
+	public function onIdle()
+	{
+//		if ($this->masks)
+//		{
+//			console_echo('Using in-house masks for replenished item', '#aaa', CNS_BEHAVIOUR);
+//			$masks = unserialize($this->masks);
+//			$mask = $masks[array_rand($masks)];
+//
+//			if (!isset($mask->class))
+//			{
+//				$mask->class = get_class($item);
+//			}
+//		}
+//		else
+//		{
+//			console_echo('Using class-only mask for replenished item', '#aaa', CNS_BEHAVIOUR);
+//			$mask = new Mask($item,
+//				[
+//					'class',
+//				]);
+//		}
+//
+//		$equipment = Equipment::constructFromMask($mask);
+//
+//		console_echo('Resulting item:', '#aaa');
+//		console_var_dump($equipment, '#aaa');
+//
+//		$this->owner->inventory->add($equipment);
+	}
+}
+
+class obj_portal extends AsObject
+
+{
+	public function __construct($name, $spriteSet, $teleport_n_offset, $teleport_w_offset, $MAP = null, $strip_DIR = null, $strip_length = null)
+	{
+		$this->addBehaviour(
+			new obhv_teleporter($teleport_n_offset, $teleport_w_offset, $MAP)
+		);
+
+		if (isset($strip_DIR, $strip_length))
+		{
+			$start = 1;
+
+			switch ($strip_DIR)
+			{
+				case DIR_NORTH:
+					$strip_length = 0 - $strip_length;
+					$start = -1;
+				case DIR_SOUTH:
+					for ($n_offset = $start; $n_offset < $strip_length; $n_offset ++)
+					{
+						$this->constituents[$n_offset][0] = new ObjectConstituent($spriteSet);
+					}
+					break;
+
+				case DIR_WEST:
+					$strip_length = 0 - $strip_length;
+					$start = -1;
+				case DIR_EAST:
+					for ($w_offset = $start; $w_offset < $strip_length; $w_offset ++)
+					{
+						$this->constituents[0][$w_offset] = new ObjectConstituent($spriteSet);
+					}
+					break;
+			}
+		}
+
+		parent::__construct($name, $spriteSet, LAYER_PORTAL);
+	}
+}
+
+
+
+class obhv_teleporter extends ObjectBehaviour
+{
+	public $n_offset;
+	public $w_offset;
+	public $map;
+
+	public function __construct($n_offset, $w_offset, $MAP = null)
+	{
+		$this->onReaction = true;
+
+		$description = "Teleports to {$n_offset}:{$w_offset}"
+		. ($MAP ? " - {$MAP}." : '.');
+
+		$this->n_offset	= $n_offset;
+		$this->w_offset	= $w_offset;
+		$this->map		= $MAP;
+
+		parent::__construct($description, BHVK_TELEPORT, 0);
+	}
+
+	public function onReaction(AsObject $instigator, $DIR)
+	{
+		global $view;
+		global $player;
+
+		if ($instigator === $player)
+        {
+			if ($this->owner->constituents)
+			{
+				$destination_n_offset = $player->n_offset - $this->owner->n_offset + $this->n_offset;
+				$destination_w_offset = $player->w_offset - $this->owner->w_offset + $this->w_offset;
+
+				switch ($DIR)
+				{
+					case DIR_NORTH:	$destination_n_offset --;
+					case DIR_SOUTH:	$destination_n_offset ++;
+					case DIR_WEST:	$destination_w_offset --;
+					case DIR_EAST:	$destination_w_offset ++;
+				}
+
+				console_echo("<<#fff>>{$this->owner->name}<> has constituents!", '#ffa', CNS_BEHAVIOUR);
+			}
+			else
+			{
+				$destination_n_offset = $this->n_offset;
+				$destination_w_offset = $this->w_offset;
+
+				console_echo("<<#fff>>{$this->owner->name}<> has no constituents.", '#afa', CNS_BEHAVIOUR);
+			}
+
+            console_echo("Entering the {$this->owner->name} portal!");		//XXX
+
+			$this->owner->permitEntry = false;
+			$player->move($destination_n_offset, $destination_w_offset, $this->map);
+
+            $view->forceUpdate = true;
+            return false;
+        }
+	}
+}
+
+class qres_giveItem extends QuestResult
+{
+	public $item;
+
+	public function __construct(Item $item)
+	{
+		$this->item = $item;
+
+		$description = "Receive {$item->name}.";
+		parent::__construct($description);
+	}
+
+	public function deliver(Player $recipient)
+	{
+		$recipient->inventory->add($this->item);
+	}
+}
+
+class tsk_itemCount extends Task
+{
+	public $EOI = EOI_INVENTORY;
+
+	public $descriptionBase;
+
+	public $item;
+	public $requiredCount;
+	public $existingCount;
+
+	public $mask;
+
+	public $includeExisting;
+	public $matchProperties;
+
+	public $currentCount = 0;
+
+	public function __construct(Mask $mask, $requiredCount, $includeExisting = false)
+	{
+		$this->mask = $mask;
+		$this->requiredCount = $requiredCount;
+		$this->includeExisting = $includeExisting;
+
+
+		if (isset($mask->name)) $name = $mask->name;
+		elseif (isset($mask->class)) $name = getReadableClass($mask->class, $requiredCount > 1);
+
+		$this->descriptionBase = "Acquire {$this->requiredCount} {$name}" . ($this->matchProperties ? ' (or similar).' : '.');
+
+		$this->description = $this->descriptionBase;
+	}
+
+	/**
+	 *
+	 * @param type $args
+	 * @return type
+	 */
+	public function check($args)
+	{
+		$ownerCount = $this->quest->owner->inventory->getItemCount($this->mask);
+
+		if ($this->currentCount !== $ownerCount)
+		{
+			$this->currentCount = $ownerCount;
+
+			$remaining = $this->requiredCount - $ownerCount;// - ($this->includeExisting ? 0 : $this->existingCount);
+			$this->description = $this->descriptionBase . " ({$remaining} to go)";
+			update_task($this);
+		}
+
+		if ($ownerCount >= $this->requiredCount)
+		{
+			$this->description = $this->descriptionBase;
+			$this->complete();
+		}
+	}
+
+	function onActivate()
+	{
+		$this->existingCount = $ownerCount = $this->quest->owner->inventory->getItemCount($this->mask);
+		if (!$this->includeExisting)
+		{
+			$this->requiredCount += $this->existingCount;
+		}
+		$this->check(null);
+	}
+}
+
+class tsk_talkToNPC extends Task
+{
+	public $EOI = EOI_ENGAGE_NPC;
+
+	public $mask;
+	public $speech;
+
+	public function __construct(NPC $NPC, $speech = null)
+	{
+		$this->mask = new Mask($NPC, ['name', 'class']);
+
+		$this->description = "Talk to {$NPC->name}.";
+		$this->speech = $speech;
+	}
+
+	public function check($args)
+	{
+		list($NPC) = $args;
+
+		if ($this->mask->compare($NPC))
+		{
+			if ($this->speech) $NPC->speak($this->speech);
+			$this->complete();
+		}
+	}
+}
+
+class eqp_sword extends a_eqp_weapon
+{
+	public $DMGDL = DMGDL_CUT;
+
+	const MAT_BLADE	= 0;
+	const MAT_HILT	= 1;
+
+	public $DS_base_choices = [
+		DS_STRENGTH,
+		DS_AGILITY,
+		DS_INTELLECT
+	];
+
+	public $technique = [
+		TEQT_MELEE =>
+		[
+			TEQ_DAMAGE		=> [DS_STRENGTH => 1],
+			TEQ_HIT_CHANCE	=> [DS_FINESSE => 0.7, DS_INERTIA => 0.5],
+			TEQ_CRIT_DAMAGE	=> [DS_CONTROL => 1],
+			TEQ_CRIT_CHANCE	=> [DS_BALANCE => 1],
+			TEQ_DEFENCE		=> [DS_AGILITY => 1],
+			TEQ_DODGE_CHANCE	=> [DS_EVASIVENESS => 1],
+
+			TEQ_ATTACK_SPEED	=> [DS_DEXTERITY => 0.5, DS_FINESSE => 0.5, DS_INERTIA => -0.2],
+			TEQ_CONSISTENCY	=> [DS_CONTROL => 1],
+		]
+	];
+
+	public function __construct($level = null, $name = null, $description = null, $spriteSet = null)
+	{
+		$this->ICATs[] = ICAT_WEAPON;
+
+		parent::__construct($level, $name, $description, $spriteSet);
+	}
+
+	public function getShoppingLists()
+	{
+		return [
+			'sword' => [
+				self::MAT_HILT => 'mat_metal',
+				self::MAT_BLADE => 'mat_metal',
+			],
+			'sword1' => [
+				self::MAT_HILT => 'mat_wood',
+				self::MAT_BLADE => 'mat_metal',
+			]
+		];
+	}
+
+	public function getSpriteSet()
+	{
+		$bladeChars = ['&#x007c;', '&#x2502;', '&#x2320;', '&#x2193;', ')'];
+		$hiltChars	= ['T', 'I', '&#x0166;', '&#x2020;'];
+		$guardChars = [null, null, '('];
+
+		$bladeChar	= $bladeChars[array_rand($bladeChars)];
+		$hiltChar	= $hiltChars[array_rand($hiltChars)];
+		$guardChar	= $guardChars[array_rand($guardChars)];
+
+		if ($guardChar) $guardColour = (mt_rand(0, 1) ? $this->materials[self::MAT_BLADE]->colour : $this->materials[self::MAT_HILT]->colour);
+
+		$spe_blade = new SpriteElement(null, $this->materials[self::MAT_BLADE]->colour, $bladeChar);
+
+		$sprite = new Sprite([
+			1 => $spe_blade,
+			3 => ($guardChar ? new SpriteElement(null, $guardColour, $guardChar) : null),
+			4 => new SpriteElement(null, $this->materials[self::MAT_HILT]->colour, $hiltChar)
+		]);
+
+		$overSprite = new Sprite([
+			0 => $spe_blade,
+			3 => ($guardChar ? new SpriteElement(null, $guardColour, '@') : null),
+		]);
+
+		return [
+			SPRI_DEFAULT => $sprite,
+			SPRI_OVERSPRITE => $overSprite
+		];
+	}
+
+	function getName()
+	{
+		return "{$this->materials[self::MAT_BLADE]->name} {$this->noun}";
+	}
+
+	function getDescription()
+	{
+		return "{$this->materials[self::MAT_HILT]->name} hilted, {$this->materials[self::MAT_BLADE]->name} bladed {$this->noun}.";
+	}
+
+	protected function applyQuirks()
+	{
+		global $DMG_names;
+
+//		if (count($this->DMGs) <= 2 && percentageToBool(20))
+		if (count($this->DMGs) <= 2) // A chance to split one damage type into two.
+		{
+			$maxDMG = array_search(max($this->DMGs), $this->DMGs);
+			$newDamage = getNuancedValue($this->DMGs[$maxDMG] / 2, 20);
+			$this->DMGs[$maxDMG] *= 0.5;
+
+			$newDMG = array_rand(array_diff_key($DMG_names, $this->DMGs));
+
+			$this->DMGs[$newDMG] = $newDamage;
+		}
+
+		// Fix up all this shit; make it make more sense.
+
+		$maxDMG = array_search(max($this->DMGs), $this->DMGs); // gotta renew this in case it got changed in the above if.
+		$relativeDamage = $this->DMGs[$maxDMG] / ($this->level * $this->DMGs_mod);
+
+		console_echo("Relative damage coefficient for <<#afa>>{$this->name}<> : <<#faf>>{$relativeDamage}<>", '#fff');
+
+//		if ($this->DMGs && max($this->DMGs) >= $highBase)
+
+
+		if ($relativeDamage > 1.5)
+		{
+			global $DMG_colours;
+
+			foreach($this->spriteSet[SPRI_DEFAULT]->frames as &$frame)
+			{
+				$frame[1]->fg = getBetweenColour($frame[1]->fg, $DMG_colours[$maxDMG]);
+			}
+		}
+
+		if ($relativeDamage > 2)
+		{
+			global $DMG_osprs;
+
+			$this->spriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_DEFAULT]->augment($DMG_osprs[$maxDMG]);
+		}
+
+		parent::applyQuirks();
+	}
+}
+
+abstract class a_eqp_weapon extends Equipment
+{
+	public $DMGDL			= null; // This should just be one DMGDL constant.
+	public $DMGs			= null; // This should be an array.
+
+	public $DMGs_mod		= 1;
+	public $DMGs_count		= 1;
+
+	public $cooldown		= 1;
+
+	public function __construct($level = null, $name = null, $description = null, $spriteSet = null)
+	{
+		$this->ICATs[] = ICAT_WEAPON;
+		$this->EQP = EQP_HAND;
+
+		parent::__construct($level, $name, $description, $spriteSet);
+	}
+
+	protected function fillGaps()
+	{
+		parent::fillGaps();
+
+//		if (!isset($this->DMGs)) $this->generateDMGs();
+		if (!$this->DMGs) $this->generateDMGs();
+
+		if (!isset($this->spriteSet[SPRI_OVERSPRITE]))
+		{
+			if ($slm = $this->spriteSet[SPRI_DEFAULT]->frames[0][1])
+			{
+				$this->spriteSet[SPRI_OVERSPRITE] = new Sprite([0 => $slm]);
+			}
+			else
+			{
+				$this->spriteSet[SPRI_OVERSPRITE] =
+					new Sprite(
+						[
+							[0 => new SpriteElement(null, '#0f0', '#')],
+							[0 => new SpriteElement(null, '#f0f', '#')]
+						]
+					);
+			}
+		}
+	}
+
+	protected function consolidate($problems = [])
+	{
+		if (!isset($this->DMGDL)) $problems[] = 'damage delivery method missing';
+
+		$this->problemCheck($problems);
+
+		parent::consolidate($problems);
+	}
+
+	public function generateDMGs($number = null)
+	{
+		global $DMG_constants;
+
+		$base = (5 + ($this->level ^ 1.2)) * $this->DMGs_mod;
+		if (!isset($number)) $number = $this->DMGs_count;
+
+		$this->DMGs[DMG_TRAUMA] = $base;
+
+		for ($i = 1; $i < $number; $i ++)
+		{
+			$DMG = array_rand($DMG_constants);
+			if (isset($this->DMGs[$DMG])) continue;
+			$this->DMGs[$DMG] = $base;
+		}
+
+		$this->DMGs = $this->getRequiredStats('DMGs') + $this->DMGs;
+	}
+
+	protected function applyQuirks()
+	{
+		if (isset($this->DMGs[DMG_POISON]))
+		{
+			$damage = getNuancedValue($this->DMGs[DMG_POISON] * 6, 20);
+			$duration = mt_rand(5, 8);
+
+//			$this->addBehaviour(new ebhv_dealDamagePerSecond(
+//				$this->DMGDL,
+//				[DMG_POISON => $damage], $duration, 0));
+
+			$this->addBehaviour(new ebhv_dmg_poison($damage, $duration));
+
+			unset($this->DMGs[DMG_POISON]);
+		}
+
+//		if (percentageToBool(30))
+		if (true)
+		{
+			$DMG = array_search(max($this->DMGs), $this->DMGs);
+
+			$damage = getNuancedValue($this->DMGs[$DMG] * 3, 10);
+			$duration = mt_rand(3, 5);
+
+			switch ($DMG)
+			{
+				case DMG_TRAUMA:	$behaviour = new ebhv_dmg_trauma($damage, $duration); break;
+				case DMG_FIRE:		$behaviour = new ebhv_dmg_fire($damage, $duration); break;
+				case DMG_COLD:		$behaviour = new ebhv_dmg_cold($damage, $duration); break;
+				case DMG_ELECTRIC:	$behaviour = new ebhv_dmg_electric($damage, $duration); break;
+				case DMG_WATER:		$behaviour = new ebhv_dmg_water($damage, $duration); break;
+//				case DMG_POISON:	$behaviour = new ebhv_dmg_poison($damage, $duration); break;
+				case DMG_INFECTION:	$behaviour = new ebhv_dmg_infection($damage, $duration); break;
+			}
+
+			if ($behaviour instanceof EquipmentBehaviour) $this->addBehaviour($behaviour);
+		}
+	}
+
+	function equals(Item $item)
+	{
+		if (parent::equals($item))
+		{
+			if ($this->DSs		!== $item->DSs		) return false;
+			if ($this->DMGs		!== $item->DMGs		) return false;
+			if ($this->DSs_req	!== $item->DSs_req	) return false;
+			if ($this->DMGDL	!== $item->DMGDL	) return false;
+		}
+		else
+		{
+			return false;
+		}
+		return true;
+	}
+}
+
+class ebhv_dmg_infection extends EquipmentBehaviour
+{
+	public $damage;
+	public $duration;
+
+	public $DMGDL;
+
+	public function __construct($damage, $duration, $DMGDL = null)
+	{
+		global $DMGDL_names;
+
+		$this->onStrike = true;
+
+		$this->damage = $damage;
+		$this->duration = $duration;
+
+		$this->DMGDL = $DMGDL;
+		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(20) ? DMGDL_LIQUID : DMGDL_VAPOUR;
+
+		$description = "Infects opponent causing {$this->damage} infection (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Infected opponents may infect adjacent allies.";
+
+		$this->goldValue = ($damage / $duration) * 0.16;
+
+		parent::__construct($description, null, 1); // Oosenupt
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+		global $DMG_colours;
+		global $DMG_icons;
+		global $DMGDL_names;
+
+		$damage = new dbhv_takeDamagePerSecond(
+			$attack->attacker,
+			$this->DMGDL,
+			[DMG_INFECTION => $this->damage / $this->duration],
+			$this->duration);
+
+		$status = new Status(
+			'Infected',
+			"Infected and taking {$this->damage} infection (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds.",
+			$DMG_icons[DMG_INFECTION],
+			$this->duration,
+			false,
+			null,	// ddue stats
+			null,	// damage
+			null	// defence
+		);
+
+		$status->behaviours = [$damage];
+
+		$attack->target->addStatus($status);
+
+		update_combat("<<#fff>>{$attack->target->name}<> is <<{$DMG_colours[DMG_INFECTION]}>>infected<>!");
+	}
+}
+
+class ebhv_dmg_trauma extends EquipmentBehaviour
+{
+	public $damage;
+	public $duration;
+
+	public $DMGDL;
+
+	public function __construct($damage, $duration, $DMGDL = null)
+	{
+		global $DMGDL_names;
+
+		$this->onStrike = true;
+
+		$this->damage = $damage;
+		$this->duration = $duration;
+
+		$this->DMGDL = $DMGDL;
+		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(40) ? DMGDL_CUT : DMGDL_POINT;
+
+		$description = "Causes open wounds dealing {$this->damage} trauma (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds.";
+
+		$this->goldValue = ($damage / $duration) * 0.16;
+
+		parent::__construct($description, null, 1); // Oosenupt
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+		global $DMG_colours;
+		global $DMG_icons;
+		global $DMGDL_names;
+
+		$status = new Status(
+			'Open wounds',
+			"Wounded taking {$this->damage} trauma damage (via {$DMGDL_names[$this->DMGDL]}) over {$this->duration} seconds.",
+			$DMG_icons[DMG_TRAUMA],
+			$this->duration,
+			false,
+			null,
+			null,
+			[
+				DMGDL_LIQUID => 0 - ($this->damage),
+				DMG_INFECTION => 0 - ($this->damage),
+				DMG_POISON => 0 - ($this->damage),
+			]);
+
+		$status->behaviours = [];
+
+		$damage = new dbhv_takeDamagePerSecond(
+			$attack->attacker,
+			$this->DMGDL,
+			[DMG_TRAUMA => $this->damage / $this->duration],
+			$this->duration);
+
+		$status->behaviours[] = $damage;
+
+		$attack->target->addStatus($status);
+
+		update_combat("<<#fff>>{$attack->target->name}<> is <<{$DMG_colours[DMG_TRAUMA]}>>bleeding<>!");
+	}
+}
+
+class ebhv_dmg_cold extends EquipmentBehaviour
+{
+	public $damage;
+	public $duration;
+
+	public $DMGDL;
+
+	public function __construct($damage, $duration, $DMGDL = null)
+	{
+		global $DMGDL_names;
+
+		$this->onStrike = true;
+
+		$this->damage = $damage;
+		$this->duration = $duration;
+
+		$this->DMGDL = $DMGDL;
+		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(30) ? DMGDL_LIQUID : DMGDL_VAPOUR;
+
+		$description = "Deals {$this->damage} cold (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Critical hits freeze the enemy in place.";
+
+		$this->goldValue = ($damage / $duration) * 0.16;
+
+		parent::__construct($description, null, 1); // Oosenupt
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+		global $DMGDL_names;
+		global $DMG_colours;
+		global $DMG_icons;
+
+		$status = new Status(
+			'Frozen',
+			"Frozen and taking {$this->damage} cold damage (via {$DMGDL_names[$this->DMGDL]}) over {$this->duration} seconds.",
+			$DMG_icons[DMG_COLD],
+			$this->duration,
+			false,
+			[
+				DS_SPEED => '200%',
+				DS_SPEED_FAST => '200%',
+			],
+			null,
+			[
+				DMG_FIRE => $this->damage * $this->duration,
+			]
+		);
+
+		$damage = new dbhv_takeDamagePerSecond(
+			$attack->attacker,
+			$this->DMGDL,
+			[DMG_COLD => $this->damage / $this->duration]
+		);
+
+		$status->behaviours[] = $damage;
+
+//		if (percentageToBool($this->chanceToFreeze))
+		if ($attack->isCrit)
+		{
+			update_sound(SND_FROZEN);
+
+			$movement = new obhv_pauseMovement();
+			update_combat("<<#fff>>{$attack->target->name}<> is <<{$DMG_colours[DMG_COLD]}>>frozen<>!");
+
+			$status->behaviours[] = $movement;
+			$status->spriteEffects[] = $DMG_colours[DMG_COLD];
+		}
+
+
+		$attack->target->addStatus($status);
+	}
+}
+
+class ebhv_dmg_electric extends EquipmentBehaviour
+{
+	public $damage;
+	public $duration;
+
+	public $DMGDL;
+
+	public function __construct($damage, $duration, $DMGDL = null)
+	{
+		global $DMGDL_names;
+
+		$this->onStrike = true;
+
+		$this->damage = $damage;
+		$this->duration = $duration;
+
+		$this->DMGDL = $DMGDL;
+		if (!isset($this->DMGDL)) $this->DMGDL = DMGDL_PLASMA;
+
+		$description = "Deals {$this->damage} electric (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds and cuts all agility related stats between 10% and 80%.";
+
+		$this->goldValue = ($damage / $duration) * 0.16;
+
+		parent::__construct($description, null, 1); // Oosenupt
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+		global $DMG_icons;
+		global $DS_types;
+		global $DMGDL_names;
+
+		$agilityPenalty = '-' . mt_rand(10, 80) . '%';
+
+		$DSs = [DS_AGILITY => $agilityPenalty];
+		foreach ($DS_types[DS_AGILITY] as $DS)
+		{
+			$DSs[$DS] = $agilityPenalty;
+		}
+
+		$status = new Status(
+			'Electrocution',
+			"Electrocuted taking {$this->damage} electric damage (via {$DMGDL_names[$this->DMGDL]}) over {$this->duration} seconds and agility reduced by {$agilityPenalty}.",
+			$DMG_icons[DMG_ELECTRIC],
+			$this->duration,
+			false,
+			$DSs
+		);
+
+		$damage = new dbhv_takeDamagePerSecond(
+			$attack->attacker,
+			$this->DMGDL,
+			[DMG_ELECTRIC => $this->damage / $this->duration]
+		);
+
+		$status->behaviours[] = $damage;
+
+		$attack->target->addStatus($status);
+	}
+}

@@ -1,0 +1,15 @@
+<?php
+
+$speech = [
+	[
+	'Oh what sport! ',
+	'Hahaha! ',
+	'I\'m such an ass! '
+	],
+	'I saw you picking up that stuff so I thought I\'d grab as much of it as I can! ',
+	[
+		'Fuck ya later, sucker!',
+		'I\'m off to the west coast to celebrate my new acquisitions!',
+		'Better keep being a douche! Bye!'
+	]
+];

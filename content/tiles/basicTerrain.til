@@ -1,0 +1,26 @@
+<?php
+//
+$t_water		= new Tile('#44e', array('&nbsp;','&nbsp;','~'), TPL_LOWOBSTACLE);
+$t_waterFall	= new Tile('#44e', array('&nbsp;','|'), TPL_VERTICAL);
+
+
+$t_shallows		= new Tile('#88b', array('.',':','&nbsp;','&nbsp;'), TPL_OPENGROUND, -1);
+$t_sand			= new Tile('#ec8', array(':', '.'), TPL_OPENGROUND, -2);
+$t_grass		= new Tile('#272', array('v', 'V', 'w', 'W'), TPL_OPENGROUND, 1);
+$t_bridge		= new Tile('#962', array('&#x0251C;', '&#x02524;', '&#x02502;', '&#x02502;', '&#x0251C;', '&#x02524;'), TPL_OPENGROUND, -2);
+$t_pavers		= new Tile('#986', array('L', '_', 'L', 'L', 'L', '_'), TPL_OPENGROUND, -2);
+
+$t_wallFloor	= new Tile('#99a', array('L', '_', 'L', 'L', 'L', '_'), TPL_OPENGROUND, -2);
+
+$t_wallTop		= new Tile('#789', array('L', '_','_','_', 'I', '_', ), TPL_HIGHOBSTACLE);
+
+$t_wallSide		= new Tile('#456', array('_', 'I', '_', 'L', '_','_'), TPL_VERTICAL);
+$t_cliff		= new Tile('#863', array('&nbsp;','_','/','/','&#x005c;','&nbsp;'), TPL_VERTICAL);
+$t_cliffLadder		= new Tile('#863', array('&#x0251C;','&#x02500','&#x02524','&#x0251C;','&#x02500','&#x02524'), TPL_OPENGROUND, '#aaa');
+
+$t_wallStairs		= new Tile('#789', array('&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'), TPL_OPENGROUND, -2);
+
+$t_grass_1 = new Tile('#071', ['v', 'V', 'w', 'W'], TPL_OPENGROUND, 1, null, null, true);
+$t_grass_2 = new Tile('#271', ['v', 'V', 'w', 'W'], TPL_OPENGROUND, 1, null, null, true);
+$t_grass_3 = new Tile('#471', ['v', 'V', 'w', 'W'], TPL_OPENGROUND, 1, null, null, true);
+$t_grass_4 = new Tile('#671', ['v', 'V', 'w', 'W'], TPL_OPENGROUND, 1, null, null, true);

@@ -1,0 +1,380 @@
+<?php
+
+//<editor-fold desc="crap">
+
+//=========================================
+// TILES
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/tiles/basicTerrain.til";
+require "{$rootPath}content/tiles/grassMudDirt.til";
+require "{$rootPath}content/tiles/brickBuilder.fac";
+require "{$rootPath}content/tiles/buildings.til";
+//require "{$rootPath}content/tiles/caves.til";
+//require "{$rootPath}content/tiles/dreamscape.til";
+//require "{$rootPath}content/tiles/indoors.til";
+//require "{$rootPath}content/tiles/moai.til";
+//require "{$rootPath}content/tiles/swamp.til";
+
+foreach (createStoneAssets('rock', '#863') as $name => $asset) { $$name = $asset; }
+foreach (createStoneAssets('redBrick', '#843') as $name => $asset) { $$name = $asset; }
+foreach (createStoneAssets('stone', '#555') as $name => $asset) { $$name = $asset; }
+foreach (createWoodAssets('wood', '#962') as $name => $asset) { $$name = $asset; }
+foreach ($wa = createWoodAssets('sticks', '#a83') as $name => $asset) { $$name = $asset; }
+
+
+//=========================================
+// SPRITES
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/sprites/animals.spr";
+//require "{$rootPath}content/sprites/book.fac";
+require "{$rootPath}content/sprites/commonItems.fac";
+//require "{$rootPath}content/sprites/cow.spr";
+//require "{$rootPath}content/sprites/denseForest.spr";
+require "{$rootPath}content/sprites/doors.spr";
+require "{$rootPath}content/sprites/edges.fac";
+//require "{$rootPath}content/sprites/fencing.spr";
+require "{$rootPath}content/sprites/field.spr";
+//require "{$rootPath}content/sprites/food.spr";
+//require "{$rootPath}content/sprites/furniture.spr";
+//require "{$rootPath}content/sprites/grubParts.spr";
+//require "{$rootPath}content/sprites/materials.spr";
+//require "{$rootPath}content/sprites/money.fac";
+//require "{$rootPath}content/sprites/monsters.spr";
+//require "{$rootPath}content/sprites/people.fac";
+require "{$rootPath}content/sprites/portal.fac";
+require "{$rootPath}content/sprites/spiderWebs.php";
+//require "{$rootPath}content/sprites/sword.fac";
+//require "{$rootPath}content/sprites/tools.spr";
+//require "{$rootPath}content/sprites/treasure.spr";
+require "{$rootPath}content/sprites/trees.fac";
+require "{$rootPath}content/sprites/trees.spr";
+//require "{$rootPath}content/sprites/weapons.spr";
+
+foreach (createEdges('rock', $t_rock_cliff) as $name => $asset) { $$name = $asset; }
+
+//$spe_apple = new SpriteElement(null, '#a00', '&bull;');
+//foreach (createTreeAssets('tree', '#0a0', null, $spe_apple) as $name => $asset) { $$name = $asset; }
+
+//foreach (createTreeAssets('tree', '#c70') as $name => $asset) { $$name = $asset; }
+foreach (createTreeAssets('tree', '#0a0') as $name => $asset) { $$name = $asset; }
+
+//=========================================
+// MATERIALS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/materials/basicFabrics.mat";
+require "{$rootPath}content/materials/basicMetals.mat";
+require "{$rootPath}content/materials/basicWoods.mat";
+
+
+//=========================================
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$t_water,
+	$t_water->tint(),
+	$t_shallows,
+	$t_shallows->tint(),
+	$t_sand,
+	$t_sand->tint(),
+	$t_grass,
+	$t_grass->tint(),
+	$t_mud,
+	$t_mud->tint(),
+	$t_otherGrass,
+	$t_otherGrass->tint(),
+	$t_longGrass,
+	$t_longGrass->tint(),
+	$t_longGrassMud,
+	$t_longGrassMud->tint(),
+	$t_muddyWater,
+	$t_muddyWater->tint(),
+
+	$t_rock_cliff,
+	$t_rock_cliff->tint(),
+	$t_rock_cliffTop,
+	$t_rock_cliffTop->tint(),
+	$t_rock_stairs,
+	$t_rock_stairs->tint(),
+
+	$t_waterFall,
+	$t_waterFall->tint(),
+
+	$t_redBrick_smallWall,
+	$t_redBrick_smallWall->tint(),
+
+	$t_rock_pavers,
+	$t_rock_pavers->tint(),
+
+	$t_rock_smallWall,
+	$t_rock_smallWall->tint(),
+
+	$t_sticks_wickerRoof_l,
+	$t_sticks_wickerRoof_l->tint(),
+	$t_sticks_wickerRoof_m,
+	$t_sticks_wickerRoof_m->tint(),
+	$t_sticks_wickerRoof_r,
+	$t_sticks_wickerRoof_r->tint(),
+
+	$t_wood_planks,
+	$t_wood_planks->tint(),
+];
+
+
+
+
+//=========================================
+// SPRITE KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	$scn_tree_stump,
+	$scn_tree_trunk,
+	$scn_tree_tree_tl,
+	$scn_tree_tree_tm,
+	$scn_tree_tree_tr,
+	$scn_tree_tree_bl,
+	$scn_tree_tree_bm,
+	$scn_tree_tree_br,
+
+	$scn_rock_n,
+	$scn_rock_s,
+	$scn_rock_e,
+	$scn_rock_w,
+
+	$scn_rock_ne,
+	$scn_rock_nw,
+	$scn_rock_se,
+	$scn_rock_sw,
+
+	$scn_rock_ews,
+
+	$scn_wood_planksSide,
+	$scn_wood_planksSidePost,
+
+	new Scenery($spr_web_nw),
+	new Scenery($spr_web_ne),
+	new Scenery($spr_web_sw),
+	new Scenery($spr_web_se),
+
+	$scn_wood_post,
+
+	$scn_tree_bush_w,
+	$scn_tree_bush_ew,
+	$scn_tree_bush_ew_trunk,
+	$scn_tree_bush_e,
+	$scn_tree_bush_ns,
+	$scn_tree_bush_nsew,
+	$scn_tree_bush_n,
+	$scn_tree_bush_s,
+
+	$scn_stone_rock,
+	$scn_stone_bigRock_tl,
+	$scn_stone_bigRock_tr,
+	$scn_stone_bigRock_bl,
+	$scn_stone_bigRock_br,
+
+	new Scenery(halveSprite(tileToSprite($t_redBrick_wallSide), false), TPL_VERTICAL),
+];
+
+
+//=========================================
+// MATERIAL ARRAY
+//=========================================
+// Add materials are are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+	$mat_silk,
+	$mat_canvas,
+	$mat_leather,
+	$mat_hide,
+	$mat_bronze,
+	$mat_steel,
+	$mat_iron,
+	$mat_oak,
+	$mat_redWood,
+];
+
+//=========================================
+// ITEMS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+
+//</editor-fold>
+
+//=========================================
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+$doorSpriteSet = [
+	SPRI_OPEN => $spr_wood_doubleDoorOpen,
+	SPRI_CLOSED => $spr_wood_doubleDoor
+	];
+
+$doorSpriteSet_light = [
+	SPRI_OPEN => $spr_sticks_doubleDoorOpen,
+	SPRI_CLOSED => $spr_sticks_doubleDoor
+	];
+
+$obj_darkDoor = new obj_door('Door', $doorSpriteSet);
+$obj_lightDoor = new obj_door('Door', $doorSpriteSet_light);
+
+
+$obj_yirinDoor = new obj_door('Door', $doorSpriteSet_light, $itm_yirinKey);
+
+$obj_yirinKey = new obj_collectible($itm_yirinKey);
+
+//$obj_longhouseEntrance = new obj_portal('Longhouse door', null, 21, 20, 'grubTown_longhouse');
+$obj_longhouseEntrance = new obj_portal('Longhouse door', null, 21, 20, MAP_GRUBTOWN_LONGHOUSE);
+//$obj_pokeyHouseEntrance = new obj_portal('Pokey house door', null, 5, 4, 'grubTown_pokeyHouse');
+$obj_pokeyHouseEntrance = new obj_portal('Pokey house door', null, 5, 4, MAP_GRUBTOWN_POKEYHOUSE);
+
+//$obj_bentHouseEntrance = new obj_portal('Bent house door', null, 7, 10, 'grubTown_bentHouse');
+$obj_bentHouseEntrance = new obj_portal('Bent house door', null, 7, 10, MAP_GRUBTOWN_BENTHOUSE);
+
+$obj_frog = new dude_frog();
+$obj_fireFrog = new dude_frog(DMG_FIRE);
+
+$obj_ghost = new dude_ghost();
+
+//$obj_spiderCaveEntrance = new obj_portal('Spider Cave entrance', $spr_door_hole, 34, 19, 'grubTown_spiderCave');
+$obj_spiderCaveEntrance = new obj_portal('Spider Cave entrance', $spr_door_hole, 34, 19, MAP_GRUBTOWN_SPIDERCAVE);
+
+$obj_grubtownSign = new obj_sign('Sign', [$spr_sign], 'Grubtown ->', '#b50', '#e95');
+$obj_popSign = new obj_sign('Sign', [$spr_sign], "Welcome to Grubtown!\nPopulation: 2", '#b50', '#e95');
+
+//$obj_menageriePortal = new obj_portal('Menagerie portal', [spr_portal('#0ff')], 55, 64, 'debugMenagerie');
+$obj_menageriePortal = new obj_portal('Menagerie portal', [spr_portal('#0ff')], 55, 64, MAP_DEBUGMENAGERIE);
+
+//=========================================
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Set up some quests
+
+//=========================================
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+	'154:138' => $obj_grubtownSign,
+	'174:206' => $obj_popSign,
+
+	'166:211' => $obj_longhouseEntrance,
+	'167:211' => clone $obj_darkDoor,
+	'173:210' => $obj_pokeyHouseEntrance,
+	'174:210' => clone $obj_darkDoor,
+	'171:219' => $obj_bentHouseEntrance,
+	'172:219' => $obj_yirinDoor,
+	'184:217' => clone $obj_lightDoor,
+	'184:224' => clone $obj_darkDoor,
+
+	'184:183' => clone $obj_fireFrog,
+	'192:176' => clone $obj_fireFrog,
+	'171:184' => clone $obj_fireFrog,
+	'168:161' => clone $obj_fireFrog,
+	'183:170' => clone $obj_fireFrog,
+	'187:172' => clone $obj_fireFrog,
+	'180:155' => clone $obj_fireFrog,
+	'169:178' => clone $obj_fireFrog,
+
+	'205:183' => $obj_spiderCaveEntrance,
+
+	'172:199' => new dude_punchBag(),
+
+	'205:211' => clone $obj_ghost,
+	'212:199' => clone $obj_ghost,
+	'218:223' => clone $obj_ghost,
+	'226:207' => clone $obj_ghost,
+
+	'181:205' => $obj_menageriePortal,
+];
+
+
+//=========================================
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+update_thoughts('A bit damp under foot.');
+
+//$player->addSkill(new skl_teleport());
+$player->addSkill(new skl_fireBall());
+//$player->addSkill(new skl_frozenBall());
+//$player->addSkill(new skl_fireySwell());
+//$player->addSkill(new skl_electricalStorm());
+
+//$player->addPassive(new psv_frustration());
+//$player->addSkill(new psv_frustration());
+
+//$this->viewHeight		= 10;
+//$this->viewWidth		= 10;
+
+//$this->overlayColour	= '#000';
+//$this->overlayOpacity	= 0.7;
+
+//$this->isDark			= true;		// Light objects only affect dark maps
+
+//$this->isUnderground	= true;
+//$this->isIndoor			= true;
+
+//$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//$this->territory		= null;		// NOT YET SUPPORTED
+//$this->continent		= null;		// NOT YET SUPPORTED
+//$this->district			= null;		// NOT YET SUPPORTED
+//$this->landOwner		= null;		// NOT YET SUPPORTED
+//$this->landLord			= null;		// NOT YET SUPPORTED
+//$this->landKing			= null;		// NOT YET SUPPORTED
+//$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

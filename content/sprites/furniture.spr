@@ -1,0 +1,106 @@
+<?php
+
+$furnitureColour = '#842';
+$furnitureColour2 = tint($furnitureColour, -2);
+
+$spr_chair_r = new Sprite([
+	0 => new SpriteElement(null, $furnitureColour, '&#x2590;'),
+	3 => new SpriteElement(null, $furnitureColour, '&#x2590;'),
+	4 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	5 => new SpriteElement(null, $furnitureColour, '&#x258c;'),
+	]);
+
+$spr_chair_l = new Sprite([
+	2 => new SpriteElement(null, $furnitureColour, '&#x258c;'),
+	3 => new SpriteElement(null, $furnitureColour, '&#x2590;'),
+	4 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	5 => new SpriteElement(null, $furnitureColour, '&#x258c;'),
+	]);
+
+$t_tableTop = new Tile($furnitureColour2, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], false);
+
+$spr_tableFront_l = new Sprite([
+	0 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	1 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	2 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	3 => new SpriteElement(null, $furnitureColour, '&#x2590;'),
+	4 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	5 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	]);
+
+$spr_tableFront_r = new Sprite([
+	0 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	1 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	2 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	3 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	4 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	5 => new SpriteElement(null, $furnitureColour, '&#x258c;'),
+	]);
+
+$spr_tableFront_m = new Sprite([
+	0 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	1 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	2 => new SpriteElement($furnitureColour2, null, '&nbsp;'),
+	3 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	4 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	5 => new SpriteElement(null, $furnitureColour, '&#x2580;'),
+	]);
+
+$spr_meal = new Sprite([ // This is the worst sprite since the sack with the exclaimation mark.
+	0 => new SpriteElement('#ffe', '#a22', '&#x03c9;'),
+	1 => new SpriteElement('#ffe', '#2a2', ':'),
+	2 => new SpriteElement(null, '#ddd', '&#x040f;'),
+	5 => new SpriteElement(null, '#ddd', '|'),
+	]);
+
+$spr_armChair = new Sprite([
+	0 => new SpriteElement(null, '#d88', '&#x2590;'),
+	1 => new SpriteElement(null, '#d88', '&#x2588;'),
+	2 => new SpriteElement(null, '#d88', '&#x258c;'),
+	3 => new SpriteElement(null, '#c44', '&#x2588;'),
+	4 => new SpriteElement('#d88', '#c44', '&#x2584;'),
+	5 => new SpriteElement(null, '#c44', '&#x2588;'),
+	]);
+
+$spr_sofa_l = new Sprite([
+	0 => new SpriteElement(null, '#d88', '&#x2590;'),
+	1 => new SpriteElement(null, '#d88', '&#x2588;'),
+	2 => new SpriteElement(null, '#d88', '&#x2588;'),
+	3 => new SpriteElement(null, '#c44', '&#x2588;'),
+	4 => new SpriteElement('#d88', '#c44', '&#x2584;'),
+	5 => new SpriteElement('#d88', '#c44', '&#x2584;'),
+	]);
+
+$spr_sofa_r = new Sprite([
+	0 => new SpriteElement(null, '#d88', '&#x2588;'),
+	1 => new SpriteElement(null, '#d88', '&#x2588;'),
+	2 => new SpriteElement(null, '#d88', '&#x258c;'),
+	3 => new SpriteElement('#d88', '#c44', '&#x2584;'),
+	4 => new SpriteElement('#d88', '#c44', '&#x2584;'),
+	5 => new SpriteElement(null, '#c44', '&#x2588;'),
+	]);
+
+$spr_candleArbra = new Sprite([
+	0 => new SpriteElement(null, '#aaa', '&#x2559;'),
+	1 => new SpriteElement(null, '#aaa', '&#x256b;'),
+	2 => new SpriteElement(null, '#aaa', '&#x255c;'),
+	4 => new SpriteElement(null, '#aaa', '&#x2568;'),
+]);
+
+$spr_candleFlames = new Sprite([
+	[
+		3 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+		4 => new SpriteElement(null, '#fa0', '&#x2666;'),
+		5 => new SpriteElement(null, '#fa0', '&#x25bc;'),
+	],
+	[
+		3 => new SpriteElement(null, '#fa0', '&#x2666;'),
+		4 => new SpriteElement(null, '#fa0', '&#x25bc;'),
+		5 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+	],
+	[
+		3 => new SpriteElement(null, '#fa0', '&#x25bc;'),
+		4 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+		5 => new SpriteElement(null, '#fa0', '&#x2666;'),
+	],
+]);

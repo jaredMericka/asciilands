@@ -1,0 +1,261 @@
+12/06/13
+
+- Fixed teleport event
+    - Player no longer jumps to opposite side of teleporter
+    - Player no longer does a "double step" out the exit of a teleporter
+    - Teleporting will now always update the client map (no more failing to teleport then updating on the next motion in a new location)
+
+- Further teaks to tile creation
+    - Tiles will now accept a hex colour as the $disparity variable as an override for the $fg colour rather than using calculation
+
+
+13/06/13
+
+- Put tree sprites in a separate file
+
+- Changed .ts file extension to .til and sprite collection files are now .spr
+
+- Changed the way collision events work
+    - Collision events now recieve the item colliding with them as the $instigator
+    - Use of $instigator objects means objects can collide with any other objects and show different behaviour
+
+- Completely revamped the way sprites are rendered
+	- Sprites no longer clear the entire tile; they now only occupy the characters used in the sprite
+	- Rendering of the view should a fair bit less laggy on account of the optimisation accomplised as part of this modification
+
+PLANNED:
+
++ Further optimising the view-rendering by using a dynamic sprite external CSS similar to the current way tiles are rendered
+	+ This should decrease the amount of string information being changed inside the redrawView method
+
++ Making a bunch of functions which churn out commonly created objects or tiles
+	+ e.g., makePaper($n_offset, $w_offset, $context, $text); rather than the current way.
+
+
+14/06/13
+
+- Started changing the way objects work in a very fundamental way.
+
+! The code is currently in disarray! I think it still runs but it's got half-implemented central features etc.
+! Be careful and don't convert other items to be compatible with this version!
+
+
+15/06/13
+
+- Revamped the way objects are handled
+	- The object class has now been completely depreciated and removed. mapObjects are the way forward.
+	- Collision events have been replaced by custom collision methods within each subClass of mapObject.
+	- Special mapObjects can be made for special events (there is one such example in the current build).
+
+- Added Banj's b'day box (it's involved with the secret place).
+
+PLANNED:
+
++ Reorganising the folder tree to divide all files between two cetgories; "engine" and "content".
+
+
+16/06/13
+
+- Changed the Location panel to work like a proper panel and not some hard-coded garbage.
+
+- Added new panel: pnl_mind
+	- This is where the players basic thoughts will be recorded. Basically, it'll provide little tips.
+	- As a general rule, thoughts should be concise and pertinent (e.g., "Found $itemName." or "Can't move $object.").
+
+
+17/06/13
+
+- Added collectable items!
+	- The player now has an inventory and a wallet. The wallet holds money of different currencies and the inventory holds items.
+	- Money will have variable exchange rates depending on time, location and exchanger.
+	- Certain locations will only accept certain currencies so you'll need to know ahead of time where you're going if you want a good exchange rate.
+	- Gold will be the benchmark currency but gold will very rarely be accepted as currency.
+		- Paying in gold will always be over-paying.
+
+- Changed the Mind panel to the "Thoughts" panel. It makes more sense that way.
+
+- Big updates to the debug panel
+	- pnl_debug now handles errors and prints them in red.
+		- This should reduce (but not eliminate) errors interupting the ajax queries.
+	- pnl_debug has a new function: debug_var_dump($string).
+		- This allows us [devs] to use var_dump capability and dump variables to the debug panel.
+		- Dumped variables will appear in blue.
+
+- Changed the delimiters used to strip apart the status string.
+	- '#' and '%' can now be passed in the update string, just not if they're adjaced (i.e., '##' or '%%').
+
+
+18/06/13
+
+- Added "factory sprites".
+    - .fac files under the sprites directory will hold methods for creating sprites rather than sprites themselves.
+    - This feature is experimental at this time.
+
+- Completely destoryed, rebuilt, destroyed and restored the way status checks are made.
+	- They should be marginally more efficient and responsive now.
+
+
+19/06/13
+
+- Improvements made to the wallet system.
+	- Currencies each have a symbol used when the currency is shown in the UI.
+	- Most improvements are inoticable to the user but simplify monetary operations.
+
+- Created the currency class.
+    - Each money will have a currency.
+        - The currency dictates the value of the currency compared to gold and holds data for creating item sprites etc.
+
+
+20/06/13
+
+- Inventory items now stack.
+	- The number of items you have is aligned to the left and the item name is aligned to the right.
+
+- Made significant changes to the way panels are built and their information accessed.
+	- These changes have NO visible effect t othe user but should make it easier to continue developing panels.
+	- They are still awful to work with, just less awful.
+
+- We now have javascript syntax highlighting in PHP files!
+	- I thought I devised a cool method but it turns out people just do this; I didn't innovate shit.
+
+- Major naming convention change:
+	- The layers in the world are now TILES -> SCENERY -> OBJECTS.
+	- Objects are active or interactable entities as they exisist in the map.
+		- OBJECTS CAN NOT BE HELD BY THE PLAYER OR ANYTHING LIKE THAT.
+			- An object exists only in the context of the map. Once the player collects it, it becomes an "item".
+			- To make a ceollectable item in the map, first we create the item then we put the item inside a collectable object. When the player interacts with the object, the object disappears and the player recieves an item.
+				- I'll make a graphic to explain this.
+	- Many basic object operations (like moving and deleting) are / will be handled inside the map class. This is fine since objects can't exist outside of the map anyway (I can't stress this enough).
+
+
+23/06/13
+
+- Spent all weekend modifying movement handling javascript.
+    - Still not perfect but it's better than it was.
+
+
+24/06/13
+
+- Modified the way moving objects work:
+    - Random movement is awful; moving objects now follow the following pattern:
+        - Choose a direction (including sitting still).
+        - Chose a number of times to move in that direction (between 1 and 6 [arbitrary]).
+        - Move in that direction [or rest] for that number of moves.
+            - This can be interrupted by obstacles; they'll start the process again.
+        - This makes the movement look much more...purposeful?
+    - Moving objects can also push objects!
+        - They will eventually be able to interact with all objects.
+    - The idle refresh rate is now dicated by the fasted moving object in view.
+        - The base refresh rate is 1fps but this can be automatically increased and drecreased if a moving object is missing out on moves on account of a low refresh rate.
+        - The maximum frame rate is 5fps.
+        - The view tends towards entropy; once moving objects are out of view, they no longer move (except to finish the run of moves in the direction they are going).
+            - This means they can't come back IN view once they are out.
+                - This means a screen left to rest will eventually empy out and return to the base framerate of 1fps.
+
+- Introduced the concept of "sprite sets"
+	- When creating an object, you can pass in an array of sprites instead of a single sprite.
+	- The first sprite in the array will be used as the object's default sprite but the others can be referenced from inside the object.
+	- Test case is the (modified) party portal.
+		- Two sprites are passed in (blue portal, red portal) and the sprite is changed when the present is pushed in.
+	- The sprite key code didn't need to change and still works. Not entirely sure how that's possible.
+
+PLANNED:
+
++ Maybe looking at the possibility of stacking objects on tiles whilst carefully handling their interactions.
+
+
+25/06/13
+
+- Added map overlay.
+	- There is now a layer over the map whose colour and opacity can be set via the $map->setOverlay() function.
+	- This allows a tint of any colour or strength to be applied to the map without having to change the tiles or sprites.
+	- Current test areas are:
+		- Touching a moving sack will tint the screen red (potential damage indicator).
+		- Bluff cave is now dark.
+	- This can be used for fog, dawn/dusk, other weather effects or status indicators.
+
+
+26/06/13
+
+- Added a "light wand" in the bluff cave:
+	- It lights up when you're in the bluff cave.
+	- This will be a test item / location for a rather large plan I have for making objects interact with certain maps or map types.
+		- e.g., The light wand will only change the overlay in maps marked as "dark" and "indoor".
+
+- Changed the way special objects are stored but I hate it and will be revising it soon.
+
+
+27/06/13
+
+- Modifed light wand to make it so that only one instance will spawn.
+	- By that I mean it will not spawn if you already have one.
+		- The method used will need to be refined if it's to be applied to everything.
+
+- Changed the way .map files are used:
+	- The map constructor now takes 0 parameters.
+	- The map constructor takes the map's name out of the player object so no map name is needed.
+		- The thinking behind this is that there will never be any reason to instantiate a map that the  player is not currently in.
+	- The .map file is included INSIDE the map constructor. This means that the .map file is purely a declaration of variables and includes.
+		- If the map needs something and it isn't included in the .map file, it will error out.
+	- Preceding the include point of the .map file, a whole bunch of useful things are redecalred as global variables
+		- (i.e., the currencies, $player, $rootpath)
+		- This allows for currency sprites, player status and inventory checks etc. to be done on map load.
+			- This ability will become more important moving forward.
+
+- The people at the start now stop if you collide with them (not if they collide with you).
+	- They also start moving again if they touch each other.
+	- You can essentially play touch-tiggy with them now.
+		- I don't see why you'd want to; they're not particularly competetive and they only help each other by accident.
+
+28/06/13
+
+- Animated sprites are here:
+	- You can now pass a multidimensional array of sprite elements to a sprite and it will interpret each second teir array as a frame in the sprite.
+	- You can have any number of frames but don't be stupid about it.
+	- The frame to display is calculated by applying modulus against the sprite's frame count and the number of frames drawn since the map was first rendered.
+	- Normal, existing, non-animated sprites are just treated as single framed animated sprites.
+		- This has someone reduced the lag.
+			- I have no idea how.
+
+29/06/13
+
+- Added devTools directory and the first dedicated dev tool: makeMSL
+    - This will simply take an mtl file and replace all letters with symbols so that the renderer knows not to count them.
+    - This should be used so that when mtl files are then modified, they can easily be extended to the msl. Symbols will help the algorithm know which characters to replace from the msl and which to retain.
+
+
+06/07/13
+
+- I've been slack with the changelog but most work has been code-tweaking and re-writing.
+
+- Most prominent re-write is the new collision system.
+    - Collisions now happen in 6 parts instead of 1.
+        - The Instigator runs three collision events and the receiver runs 3 reaction events.
+            - There are three so that subclasses have plenty of opportunities to intercept with special behaviors and override functions that will fire at the right moment.
+
+- Also removed all debugging features from view.
+    - The R key is now used to reset the game and the debug panel is now accessed by pressing ~.
+        - The debug panel has been completely re-written and now opens in a new window.
+
+- Use of the debug window sould follow these rules:
+    - All colours should use only letters in their hexidecimal.
+    - '#faa' is reserved for errors and '#fff' is reserved for messages created when loading the map.
+
+12/06/13
+
+- All I've worked on between this morning and the previous changelog update is re-writing the way objects and currencies work.
+- Neither are finished yet but it's close.
+
+- Made a major update to the dev-tool used to make MSLs.
+	- Now searches for a matching MSL file and merges the existing MSL data with the new cyphered MTL.
+	- No longer assigns different characters to capital letters (darkened tiles).
+		- Finally this is a fully useful tool.
+		- I might make it save the MSL, too but that seems risky right now.
+
+- NOTE: If there's a particularly annoying character being used for a particular tile, just change it with a Find & Replace (ctrl+h).
+
+
+17/10/13
+
+- Turns out this was too annoying to do every time a change was made.
+	- It's the thought that counts.

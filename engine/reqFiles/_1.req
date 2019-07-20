@@ -1,0 +1,1714 @@
+<?php
+
+// CAUTION!
+// NEVER EDIT A REQ FILE!
+
+
+class set_common extends AssetSet
+{
+	public function t_solid ($colour, $TPL = null)
+	{
+		$TPL = $TPL ? $TPL : TPL_LOWOBSTACLE;
+
+		return new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], $TPL, $colour);
+	}
+
+	public function t_stairs ($col_top, $col_front = null)
+	{
+		$col_front = $col_front ? $col_front : tint($col_top, -3);
+
+		return new Tile($col_top, ['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_STAIRS, $col_front);
+	}
+
+	public function scn_archDoor ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_half,
+			1 => $slm_full,
+			2 => $slm_half,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_l ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_half,
+			1 => $slm_full,
+			2 => $slm_full,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_r ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_full,
+			1 => $slm_full,
+			2 => $slm_half,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_half ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2584;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2584;'),
+		]));
+	}
+
+	public function scn_archDoor_half_l ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2584;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]));
+	}
+
+	public function scn_archDoor_half_r ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement($colour, null, '&nbsp;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2584;'),
+		]));
+	}
+
+	public function scn_fade_up_t ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2591;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2592;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2592;'),
+		]), null, true);
+	}
+
+	public function scn_fade_up_b ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2593;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement($colour,  null, '&nbsp;'),
+			4 => new SpriteElement($colour,  null, '&nbsp;'),
+			5 => new SpriteElement($colour,  null, '&nbsp;'),
+		]), null, true);
+	}
+
+	public function scn_fade_down_t ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour,  null, '&nbsp;'),
+			1 => new SpriteElement($colour,  null, '&nbsp;'),
+			2 => new SpriteElement($colour,  null, '&nbsp;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2593;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_fade_down_b ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2592;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2592;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2591;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+
+	public function scn_fade_right ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_fade_left ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+}
+
+/**
+ * Sprites: OPEN, CLOSED
+ */
+class obj_door extends AsObject
+
+{
+	public function __construct($name, $spriteSet, $keyItem = null)
+	{
+		$this->addBehaviour(
+			new obhv_door($spriteSet[SPRI_OPEN], $keyItem)
+		);
+
+		$spriteSet[SPRI_DEFAULT] = $spriteSet[SPRI_CLOSED];
+
+		parent::__construct($name, $spriteSet, LAYER_DOOR_CLOSED);
+	}
+}
+
+
+class obhv_door extends ObjectBehaviour
+{
+	public $isOpen;
+	public $keyMask;
+
+	public function __construct(Sprite $openSprite = null, Item $keyItem = null)
+	{
+		$this->onReaction = true;
+		if ($keyItem) $this->keyMask = new Mask($keyItem, ['name', 'description', 'class']);
+		$this->spriteSet[SPRI_OPEN] = $openSprite;
+		$description = 'Opens like a door.';
+		parent::__construct($description, BHVK_PRIMARY);
+	}
+
+	public function onReaction(AsObject $instigator, $DIR)
+	{
+		if ($this->isOpen)
+		{
+			$this->owner->permitEntry = true;
+			return;
+		}
+		if (!($instigator instanceof Dude && $instigator->canOpenDoors)) return;
+
+		// Door opening dudes only beyond this point.
+		if ($this->keyMask && $instigator->inventory->hasItem($this->keyMask) === false)
+		{
+			update_thoughts("I'll need a {$this->keyMask->name} to get through this {$this->owner->name}.");
+			return;
+		}
+
+		if (isset($this->spriteSet[SPRI_OPEN]))
+		{
+			$this->owner->setSPRI(SPRI_OPEN);// = $this->spriteSet[SPRI_OPEN];
+			$this->isOpen = true;
+			$this->owner->changeLayer(LAYER_DOOR_OPEN);
+		}
+		else
+		{
+			// We have no way of showing that this door is open so we'll just
+			// have to get rid of it.
+			$this->owner->destroy();
+		}
+	}
+}
+
+class nme_skeleton extends Enemy
+{
+	public $FAC = FAC_MONSTER;
+
+	public $DSs = [
+		DS_HANDICAP => 0.7,
+		DS_HP_MAX => 80,
+		DS_REGENERATION => 0,
+//		DS_EPMAX => 100,
+//		DS_RECHARGE => 1,
+		DS_LUCK => 120,
+//		DS_ATTACKSPEED => 1,
+//		DS_SPEED => 1,
+//		DS_SPEED_FAST => 0.4,
+//		DS_DAMAGE => 100,
+//		DS_HITCHANCE => 100,
+//		DS_CRITDAMAGE => 100,
+//		DS_CRITCHANCE => 100,
+//		DS_DEFENCE => 100,
+//		DS_ENERGYUSE => 100,
+//		DS_STRENGTH => 100,
+//		DS_FORCE => 100,
+//		DS_RESILIENCE => 100,
+//		DS_CONTROL => 100,
+//		DS_INERTIA => 100,
+//		DS_RECOVERY => 100,
+//		DS_AGILITY => 100,
+//		DS_DEXTERITY => 100,
+//		DS_EVASIVENESS => 100,
+//		DS_FINESSE => 100,
+//		DS_BALANCE => 100,
+//		DS_REACH => 100,
+//		DS_MAGIC => 100,
+//		DS_DISRUPTION => 100,
+//		DS_DISCIPLINE => 100,
+//		DS_FOCUS => 100,
+//		DS_INSANITY => 100,
+//		DS_CHARISMA => 100,
+//		DS_REPUTATION => 100,
+//		DS_NOTORIETY => 100,
+//		DS_FAME => 100,
+//		DS_DISCOUNT => 100,
+//		DS_BARGAINING => 100,
+//		DS_LEADERSHIP => 100,
+//		DS_INTELLECT => 100,
+//		DS_TENACITY => 100,
+//		DS_KNOWLEDGE => 100,
+//		DS_HEURISTICS => 100,
+//		DS_JUDGEMENT => 100,
+	];
+
+	public $DMGs_def = [
+
+	];
+
+	public $lvl_DSs = [
+		DS_HP_MAX => 3
+	];
+
+	public $lvl_DMGs = [
+		DMG_TRAUMA => 2
+	];
+
+	public function __construct()
+	{
+
+		$spriteSet = self::getSpriteSet();
+		$name = 'skeleton';
+
+		parent::__construct($name, $spriteSet);
+
+
+		$this->DMGs = [
+			DMG_TRAUMA => 20
+		];
+
+//		global $player;
+
+	}
+
+	function getLootArray()
+	{
+		return [
+
+		];
+	}
+
+	static function getSpriteSet($colour = null)
+	{
+		if (!isset($colour)) $colour = '#fda';
+
+		$spr_skeleton = new Sprite([
+			1 => new SpriteElement(null, $colour, '&#x2640;'),
+			3 => new SpriteElement(null, $colour, '&deg;'),
+			4 => new SpriteElement(null, $colour, '&Lambda;'),
+			5 => new SpriteElement(null, $colour, '&deg;'),
+			]);
+
+		$spr_skeleton_corpse = new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2640;'),
+			4 => new SpriteElement(null, $colour, '&omega;'),
+			5 => new SpriteElement(null, $colour, '<'),
+			]);
+
+		return [
+			SPRI_DEFAULT	=> $spr_skeleton,
+			SPRI_CORPSE		=> $spr_skeleton_corpse
+		];
+	}
+}
+
+class obhv_chase extends ObjectBehaviour
+{
+	public $direction;
+//	public $repeats = 0;
+	public $chase;
+	public $target;
+	public static $directions = [DIR_NORTH, DIR_SOUTH, DIR_EAST, DIR_WEST];
+	public $failedDirections = [];
+	public $pauseOnTouch;
+	public $personalSpace;
+
+	public function __construct(AsObject $target, $cooldown = null, $pauseOnTouch = 1, $personalSpace = null)
+	{
+		$this->onIdle		= true;
+		$this->onCollision	= true;
+		$this->onRegister	= true;
+
+		$this->target		= $target->id;
+		if (!$cooldown)	$cooldown = 1;
+		$cooldown			= ($cooldown >= 0.2 ? $cooldown : 0.2);
+		$this->pauseOnTouch	= $pauseOnTouch;
+		// If this is extended, it must be obhv_flee.
+		$this->chase = get_class($this) === get_class();
+
+		$description = ($this->chase ? 'Chases' : 'Flees') . " {$target->name} at ". 1 / $cooldown .' RPS.'; // This will always say "chase"
+
+		$this->personalSpace = $personalSpace;
+
+		parent::__construct($description, BHVK_MOVEMENT, $cooldown);
+	}
+
+	public function onRegister()
+	{
+		if (!($this->owner instanceof Dude)) return;
+
+		if ($this->owner->speed_fast)
+		{
+			console_echo("{$this->owner->name} has had the speed of its chase behaviour over-ridden.", '#f00');
+			$this->cooldown = $this->owner->speed_fast;
+		}
+		else if ($this->owner->speed)
+		{
+			console_echo("{$this->owner->name} has had the speed of its chase behaviour over-ridden.", '#f00');
+			$this->cooldown = $this->owner->speed;
+		}
+		else {console_echo("{$this->owner->name} hasn't had its speed over-ridden.", '#f00');}
+	}
+
+	public function onCollision(AsObject $receiver, $DIR)
+	{
+		if ($receiver === $this->target)
+		{
+			$this->extendcooldown($this->pauseOnTouch);
+		}
+	}
+
+	public function onIdle()
+	{
+		global $map;
+
+		if (!($target = $map->objectRegister[$this->target])) $this->expiaryTime = 0;
+
+		if ($this->chase && $this->personalSpace)
+		{
+			console_echo("{$this->owner->name} is considering {$target->name}'s personal space. ({$this->personalSpace})", '#ccc');
+			if ($this->owner->distanceFrom($target) <= $this->personalSpace)
+			{
+				console_echo("{$this->owner->name} is respecting {$target->name}'s personal space.", '#fff');
+				return;
+			}
+			console_echo("{$this->owner->name} is disregarding {$target->name}'s personal space.", '#ccc');
+		}
+
+		if ($this->owner->n_offset > $target->n_offset)
+		{
+			$this->direction = ($this->chase ? DIR_NORTH : DIR_SOUTH);
+		}
+		elseif ($this->owner->n_offset < $target->n_offset)
+		{
+			$this->direction = ($this->chase ? DIR_SOUTH : DIR_NORTH);
+		}
+		else
+		{
+			$this->direction = null;
+		}
+
+		if (!isset($this->direction)
+			|| in_array($this->direction, $this->failedDirections)
+			|| mt_rand(0,1))
+		{
+
+			if ($this->owner->w_offset > $target->w_offset)
+			{
+				$this->direction = ($this->chase ? DIR_WEST : DIR_EAST);
+			}
+			elseif ($this->owner->w_offset < $target->w_offset)
+			{
+				$this->direction = ($this->chase ? DIR_EAST : DIR_WEST);
+			}
+		}
+
+		if (in_array($this->direction, $this->failedDirections))
+		{
+			$otherDirections = array_diff(self::$directions, $this->failedDirections);
+			if (count($otherDirections) === 0)
+			{
+				global $DIR_opposites;
+
+				$this->failedDirections = [];
+				$this->direction = array_rand($DIR_opposites);
+			}
+			else
+			{
+				$this->direction = $otherDirections[array_rand($otherDirections)];
+			}
+		}
+
+		if (isset($this->direction))
+		{
+			// We have our direction? Good. Try to move in that direction.
+			if ($this->owner->moveInDirection($this->direction))
+			{
+				// Alright, we're here now. Decrement the repeates and hit the
+				// cool-down timer thing.
+				// $this->triggercooldown();
+				$this->failedDirections = [];
+			}
+			else
+			{
+				// Ok, that didn't work and we don't want to try again. Add
+				// the direction we just moved to the list of unmovable
+				// directions.
+				// We still have to trigger the cooldown in case they activated
+				// something with the collision EVEN THOUGH they didn't move.
+				// $this->triggercooldown();
+				$this->failedDirections[] = $this->direction;
+			}
+		}
+	}
+}
+
+class obhv_wander extends ObjectBehaviour
+{
+	public $direction;
+	public $repeats = 0;
+
+	public static $DIRs = [DIR_NORTH, DIR_SOUTH, DIR_WEST, DIR_EAST];
+
+	public function __construct($cooldown = 1)
+	{
+		$this->onIdle		= true;
+		$this->onRegister	= true;
+
+		$description = 'Wanders around randomly.';
+		$cooldown		= ($cooldown >= 0.2 ? $cooldown : 0.2);
+
+		parent::__construct($description, BHVK_MOVEMENT, $cooldown);
+	}
+
+	public function onRegister()
+	{
+		if (isset($this->owner->speed))
+		{
+			console_echo("{$this->owner->name} has had the speed of its wander behaviour over-ridden.", '#f00');
+			$this->cooldown = $this->owner->speed;
+		}
+		else {console_echo("{$this->owner->name} hasn't had its speed over-ridden.", '#f00');}
+	}
+
+	public function onIdle()
+	{
+		if ($this->owner->engagement !== null) return;
+
+		// Do we know where we're going? If we have nothing to repeat, better
+		// find out where to go.
+		if ($this->repeats <= 0)
+		{
+			// We're wandering so it's random. Thank shit we're not chasing
+			// anyone.
+			$this->direction = self::$DIRs[array_rand(self::$DIRs)];
+			$this->repeats = mt_rand(0,6);
+		}
+
+		if (isset($this->direction))
+		{
+			// We have our direction? Good. Try to move in that direction.
+			if ($this->owner->moveInDirection($this->direction))
+			{
+				// Alright, we're here now. Decrement the repeates and hit the
+				// cool-down timer thing.
+				$this->repeats--;
+				// $this->triggercooldown();
+			}
+			else
+			{
+				// Ok, that didn't work and we don't want to try again. Clear
+				// remaining repeats to we can get some fresh instructions
+				// in here.
+				$this->repeats = 0;
+			}
+		}
+	}
+}
+
+class obhv_addBehaviourOnProximity extends ObjectBehaviour
+{
+	public $target;
+	public $proximity;
+	public $range;
+
+	public $behaviours;
+
+	public $isActive = false;
+
+	public function __construct($target, $behaviours, $proximity = null, $range = null)
+	{
+		$this->onIdle = true;
+
+		$this->behaviours = is_array($behaviours) ? $behaviours : [$behaviours];
+
+		$this->proximity = isset($proximity) ? $proximity : 5;
+		$this->range = isset($range) ? $range : 10;
+
+		if ($target instanceof Player) $target = null;
+
+		$this->target = $target;
+
+		parent::__construct('Adds behaviours on proximity', id(), 1);
+	}
+
+	public function onIdle()
+	{
+		$target = isset($this->target) ? $this->target : $GLOBALS['player'];
+
+		if ($this->isActive)
+		{
+			if ($this->owner->distanceFrom($target) > $this->range)
+			{
+				foreach ($this->behaviours as $behaviour)
+				{
+					$this->owner->removeBehaviour($behaviour);
+				}
+				$this->isActive = false;
+			}
+		}
+		else
+		{
+			if ($this->owner->distanceFrom($target) < $this->proximity)
+			{
+				foreach ($this->behaviours as $behaviour)
+				{
+					$this->owner->addBehaviour($behaviour);
+				}
+				$this->isActive = true;
+			}
+		}
+	}
+
+	public function __clone()
+	{
+		$newBehaviours = [];
+
+		foreach ($this->behaviours as $behaviour)
+		{
+			$newBehaviours[] = clone $behaviour;
+		}
+
+		$this->behaviours = $newBehaviours;
+	}
+}
+
+class dbhv_leaveLootableCorpse extends DudeBehaviour
+{
+	function __construct($spriteSet)
+	{
+		$this->onDeath = true;
+
+		if (isset($spriteSet[SPRI_CORPSE]))
+		{
+			$this->spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_CORPSE];
+		}
+		else
+		{
+			$this->spriteSet[SPRI_CORPSE] = Dude::getCorpseSprite($spriteSet[SPRI_DEFAULT]);
+		}
+
+		$description  = 'Leaves a lootable corpse.';
+		parent::__construct($description, BHVK_CORPSE, 1);
+	}
+
+	function onDeath(Attack $attack)
+	{
+		global $map;
+
+		console_echo("Leaving corpse of {$this->owner->name}", '#faf');
+
+		if (isset($this->owner->spriteSet[SPRI_CORPSE]))
+		{
+			$this->spriteSet[SPRI_CORPSE] = $this->owner->spriteSet[SPRI_CORPSE];
+			$this->owner->changeLayer(LAYER_CHEST);
+			$this->owner->setSPRI(SPRI_CORPSE);
+		}
+
+		$obj_corpse = new obj_corpse(
+			"Corpse of {$this->owner->name}",
+			[$this->spriteSet[SPRI_CORPSE]],
+			$this->owner->inventory->contents);
+
+		$obj_corpse->n_offset = $this->owner->n_offset;
+		$obj_corpse->w_offset = $this->owner->w_offset;
+
+		if (isset($map->objects[$this->owner->n_offset][$this->owner->w_offset][LAYER_COLLECTIBLE]))
+		{
+			$existingObject = $map->objects[$this->owner->n_offset][$this->owner->w_offset][LAYER_COLLECTIBLE];
+
+			$obj_corpse->inventory->locked = false;
+			if (isset($existingObject->item))
+			{
+				$obj_corpse->inventory->add($existingObject->item);
+			}
+			elseif (isset($existingObject->inventory))
+			{
+				$existingObject->inventory->locked = false;
+
+				foreach ($existingObject->inventory->contents as $item)
+				{
+					$obj_corpse->inventory->add($existingObject->inventory->pullItem($item));
+				}
+
+				$existingObject->inventory->locked = true;
+			}
+			$obj_corpse->inventory->locked = true;
+		}
+		console_echo("<<#fff>>\"{$this->owner->name}\"<> is about to be a corpse.");
+		$this->owner->changeTo($obj_corpse);
+		console_echo("<<#fff>>\"{$this->owner->name}\"<> should now be a corpse.");
+	}
+
+
+}
+
+class nme_ghost extends Enemy
+{
+	public $FAC = FAC_MONSTER;
+
+	public $DSs = [
+
+	];
+
+	public $DMGs_def = [
+		DMG_WATER => 500,
+		DMG_POISON => 500,
+		DMG_FIRE => -10,
+
+		DMGDL_CUT => 15,
+		DMGDL_BLUNT => 20,
+		DMGDL_MISSILE => 15,
+		DMGDL_PLASMA => -10,
+	];
+
+	public $TEQT		= TEQT_MAGIC;
+	public $TEQT_def	= TEQT_MAGIC;
+
+	public function __construct($DMG = null)
+	{
+		if ($DMG)
+		{
+			global $DMG_colours;
+			global $DMG_names;
+
+			$spriteSet = self::getSprite($DMG_colours[$DMG], '#fff');
+			$name = "{$DMG_names[$DMG]} ghost";
+		}
+		else
+		{
+			$spriteSet = self::getSprite('#fff', '#fff');
+			$name = 'ghost';
+		}
+
+		parent::__construct($name, $spriteSet);
+
+		if ($DMG)
+		{
+			$this->DMGs = [
+				DMG_TRAUMA => 5,
+				$DMG => 15
+			];
+		}
+		else
+		{
+			$this->DMGs = [
+				DMG_TRAUMA => 15
+			];
+		}
+
+		$this->addBehaviour(new dbhv_alterAttackerHealthOnDefend('-50%', TRG_DEATH, 100));
+	}
+
+	function getLootArray()
+	{
+		return [
+
+		];
+	}
+
+	static function getSprite($bodyColour, $eyeColour = null)
+	{
+		$bodyColour = tint($bodyColour, 5);
+		if (!isset($eyeColour))$eyeColour = tint($bodyColour, -3);
+
+		$sprite = new Sprite([
+			[
+				0 => new SpriteElement(null, $bodyColour, '('),
+				1 => new SpriteElement(null, $eyeColour, '&#x221e;'),
+				2 => new SpriteElement(null, $bodyColour, ')'),
+				3 => new SpriteElement(null, $bodyColour, '/'),
+				4 => new SpriteElement(null, $bodyColour, '/'),
+			],
+			[
+				0 => new SpriteElement(null, $bodyColour, '('),
+				1 => new SpriteElement(null, $eyeColour, '&#x221e;'),
+				2 => new SpriteElement(null, $bodyColour, ')'),
+				3 => new SpriteElement(null, $bodyColour, '('),
+				4 => new SpriteElement(null, $bodyColour, '('),
+			],
+			[
+				0 => new SpriteElement(null, $bodyColour, '('),
+				1 => new SpriteElement(null, $eyeColour, '&#x221e;'),
+				2 => new SpriteElement(null, $bodyColour, ')'),
+				4 => new SpriteElement(null, $bodyColour, ')'),
+				5 => new SpriteElement(null, $bodyColour, ')'),
+			],
+			[
+				0 => new SpriteElement(null, $bodyColour, '('),
+				1 => new SpriteElement(null, $eyeColour, '&#x221e;'),
+				2 => new SpriteElement(null, $bodyColour, ')'),
+				4 => new SpriteElement(null, $bodyColour, '\\'),
+				5 => new SpriteElement(null, $bodyColour, '\\'),
+			],
+			[
+				0 => new SpriteElement(null, $bodyColour, '('),
+				1 => new SpriteElement(null, $eyeColour, '&#x221e;'),
+				2 => new SpriteElement(null, $bodyColour, ')'),
+				4 => new SpriteElement(null, $bodyColour, ')'),
+				5 => new SpriteElement(null, $bodyColour, ')'),
+			],
+			[
+				0 => new SpriteElement(null, $bodyColour, '('),
+				1 => new SpriteElement(null, $eyeColour, '&#x221e;'),
+				2 => new SpriteElement(null, $bodyColour, ')'),
+				3 => new SpriteElement(null, $bodyColour, '('),
+				4 => new SpriteElement(null, $bodyColour, '('),
+			],
+		]);
+
+		$corpse = new Sprite([[]]);
+
+		return [
+			SPRI_DEFAULT => $sprite,
+			SPRI_CORPSE => $corpse
+		];
+	}
+}
+
+class dbhv_alterAttackerHealthOnDefend extends DudeBehaviour
+{
+	public $alteration;
+	public $chance;
+
+	function __construct($alteration, $TRG, $chance = 100)
+	{
+		 $this->alteration = $alteration;
+		 $this->$TRG = true;
+		 $this->chance = $chance;
+
+		$description = "Alters attacker's HP by {$alteration}";
+
+		parent::__construct($description, null);
+	}
+
+	function onAttack	(Attack $attack)
+	{
+		if (percentageToBool($this->chance))
+		{
+			$this->apply($attack);
+		}
+	}
+
+	function onMiss		(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+	function onStrike	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+	function onKill		(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+	function onDefend	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+	function onDeflect	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+	function onTakeHit	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+	function onDeath	(Attack $attack) { if (percentageToBool($this->chance)) $this->apply($attack); }
+
+	function apply(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+
+		$attack->attacker ->alterHP($this->alteration);
+
+
+		console_echo("Things Have Happened.");
+	}
+}
+
+
+class nme_giantSpider extends Enemy
+{
+	public $FAC = FAC_ANIMAL;
+
+	protected $DSs = [
+		DS_HANDICAP		=> 0.7,
+		DS_HP_MAX		=> 200,
+		DS_EP_MAX		=> 40,
+		DS_LUCK			=> 10,
+		DS_SPEED		=> 0.8,
+		DS_SPEED_FAST	=> 0.4,
+		DS_STRENGTH		=> 110,
+		DS_FORCE		=> 90,
+		DS_RESILIENCE	=> 75,
+		DS_CONTROL		=> 200,
+		DS_INERTIA		=> 60,
+		DS_RECOVERY		=> 190,
+		DS_AGILITY		=> 200,
+		DS_DEXTERITY	=> 240,
+		DS_EVASIVENESS	=> 215,
+		DS_FINESSE		=> 190,
+		DS_BALANCE		=> 300,
+		DS_REACH		=> 300,
+		DS_MAGIC		=> 20,
+		DS_DISRUPTION	=> 10,
+		DS_DISCIPLINE	=> 5,
+		DS_FOCUS		=> 100,
+		DS_INSANITY		=> 300,
+		DS_CHARISMA		=> 1,
+		DS_REPUTATION	=> 1,
+		DS_NOTORIETY	=> 200,
+		DS_FAME			=> 1,
+		DS_DISCOUNT		=> 1,
+		DS_BARGAINING	=> 1,
+		DS_LEADERSHIP	=> 1,
+		DS_INTELLECT	=> 12,
+		DS_TENACITY		=> 150,
+		DS_KNOWLEDGE	=> 1,
+		DS_HEURISTICS	=> 70,
+		DS_JUDGEMENT	=> 130,
+	];
+
+	public $technique = [
+		TEQT_MELEE => [
+			TEQ_DAMAGE		=> [DS_INSANITY => 0.6, DS_FORCE => 0.4, DS_STRENGTH => 0.4],
+			TEQ_HIT_CHANCE	=> [DS_REACH => 0.2, DS_DEXTERITY => 0.5],
+			TEQ_CRIT_DAMAGE	=> [DS_FINESSE => 1],
+			TEQ_CRIT_CHANCE	=> [DS_FINESSE => 1],
+			TEQ_DEFENCE		=> [DS_RESILIENCE => 1],
+			TEQ_DODGE_CHANCE	=> [DS_EVASIVENESS => 1],
+
+			TEQ_ATTACK_SPEED	=> [DS_DEXTERITY => 0.7, DS_FINESSE => 0.3, DS_INERTIA => -0.3],
+			TEQ_CONSISTENCY	=> [DS_INTELLECT => 1, DS_HEURISTICS => 0.5],
+		]
+	];
+
+	public $DMGs = [DMG_TRAUMA => 3];
+
+	public $DMGDL = DMGDL_POINT;
+
+	public function __construct($level = 1)
+	{
+		$this->level = $level;
+
+		$name = 'Giant spider';
+		$spriteSet = $this->getSpriteSet();
+
+		$this->constituents[0][1] = new ObjectConstituent($this->getSpriteSet(true));
+
+		$this->addBehaviour(new dbhv_dealDamageOverTime(DMGDL_LIQUID, [DMG_POISON => 10], 6, 0));
+
+		parent::__construct($name, $spriteSet);
+	}
+
+	function getLootArray()
+	{
+		return [
+
+		];
+	}
+
+	public function getSpriteSet($rightSide = false)
+	{
+		if ($rightSide)
+		{
+			return [
+				SPRI_DEFAULT => new Sprite([
+					0 => new SpriteElement('#888', '#f00', ':'),
+					1 => new SpriteElement(null, '#fff', '_'),
+					3 => new SpriteElement(null, '#ff0', '&#x25bc;'),
+					4 => new SpriteElement(null, '#fff', '\\'),
+					5 => new SpriteElement(null, '#fff', '\\'),
+					]),
+
+				SPRI_CORPSE => new Sprite([
+					0 => new SpriteElement(null, '#ff0', '&#x25b2;'),
+					1 => new SpriteElement(null, '#fff', '\\'),
+					2 => new SpriteElement(null, '#fff', '\\'),
+					3 => new SpriteElement('#888', '#000', '='),
+					4 => new SpriteElement(null, '#fff', '/'),
+					5 => new SpriteElement(null, '#fff', '/'),
+					])
+			];
+		}
+		else
+		{
+			return [
+				SPRI_DEFAULT => new Sprite([
+					1 => new SpriteElement(null, '#fff', '_'),
+					2 => new SpriteElement('#888', '#f00', ':'),
+					3 => new SpriteElement(null, '#fff', '/'),
+					4 => new SpriteElement(null, '#fff', '/'),
+					5 => new SpriteElement(null, '#ff0', '&#x25bc;'),
+					]),
+
+				SPRI_CORPSE => new Sprite([
+					0 => new SpriteElement(null, '#fff', '/'),
+					1 => new SpriteElement(null, '#fff', '/'),
+					2 => new SpriteElement(null, '#ff0', '&#x25b2;'),
+					3 => new SpriteElement(null, '#fff', '\\'),
+					4 => new SpriteElement(null, '#fff', '\\'),
+					5 => new SpriteElement('#888', '#000', '='),
+					])
+			];
+		}
+	}
+}
+
+class dbhv_dealDamageOverTime extends DudeBehaviour
+{
+	public $DMGDL;
+	public $DMGs;
+	public $duration;
+
+	public $overSprite;
+
+	public function __construct($DMGDL, $DMGs, $duration, $cooldown)
+	{
+		global $DMG_names;
+		global $DMGDL_names;
+
+		$this->onStrike = true;
+
+		$description = "Deals ";
+
+		$multipleDamages = false;
+		foreach ($DMGs as $DMG => $value)
+		{
+			if ($multipleDamages) $description .= ', ';
+			$description .= "{$value} {$DMG_names[$DMG]}";
+			$multipleDamages = true;
+		}
+		$description .= " via {$DMGDL_names[$DMGDL]} over {$duration} seconds";
+
+		$this->DMGs = $DMGs;
+		$this->DMGDL = $DMGDL;
+		$this->duration = $duration;
+
+		$this->keySuffix = '234';
+
+		parent::__construct($description, 'DMG_OVER_TIME', $cooldown);
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		console_echo('Applying damage over time', '#faf');		//XXX
+
+		if ($attack->target instanceof Dude && $attack->isBaseAttack)
+		{
+			global $DMG_icons;
+
+			$maxDMG = array_search(max($this->DMGs), $this->DMGs);
+
+			$status = new Status('DoT', 'Taking damage over time', $DMG_icons[$maxDMG], $this->duration);
+			$status->behaviours = [new dbhv_takeDamagePerSecond($attack->attacker, $this->DMGDL, $this->DMGs)];
+
+			$attack->target->addStatus($status);
+		}
+	}
+}
+
+class nme_golem extends Enemy
+{
+	public $FAC = FAC_MONSTER;
+
+	public $big;
+
+	public $material;
+
+	protected $DSs = [
+		DS_HANDICAP		=> 1.2,
+		DS_HP_MAX		=> 240,
+		DS_EP_MAX		=> 120,
+		DS_LUCK			=> 80,
+		DS_SPEED		=> 1.6,
+		DS_SPEED_FAST	=> 1.6,
+		DS_STRENGTH		=> 370,
+		DS_FORCE		=> 410,
+		DS_RESILIENCE	=> 320,
+		DS_CONTROL		=> 40,
+		DS_INERTIA		=> 220,
+		DS_RECOVERY		=> 10,
+		DS_AGILITY		=> 2,
+		DS_DEXTERITY	=> 40,
+		DS_EVASIVENESS	=> 1,
+		DS_FINESSE		=> 1,
+		DS_BALANCE		=> 200,
+		DS_REACH		=> 270,
+		DS_MAGIC		=> 90,
+		DS_DISRUPTION	=> 30,
+		DS_DISCIPLINE	=> 100,
+		DS_FOCUS		=> 170,
+		DS_INSANITY		=> 8,
+		DS_CHARISMA		=> 70,
+		DS_REPUTATION	=> 1,
+		DS_NOTORIETY	=> 1,
+		DS_FAME			=> 1,
+		DS_DISCOUNT		=> 1,
+		DS_BARGAINING	=> 1,
+		DS_LEADERSHIP	=> 1,
+		DS_INTELLECT	=> 40,
+		DS_TENACITY		=> 5,
+		DS_KNOWLEDGE	=> 60,
+		DS_HEURISTICS	=> 140,
+		DS_JUDGEMENT	=> 190,
+	];
+
+	protected $DMGs = [
+		DMG_TRAUMA => 15,
+	];
+
+	public $technique = [
+		TEQT_MELEE => [
+			TEQ_DAMAGE		=> [DS_STRENGTH => 0.6, DS_FORCE => 0.5],
+			TEQ_HIT_CHANCE	=> [DS_CONTROL => 0.2, DS_INERTIA => 0.5, DS_REACH => 0.7],
+			TEQ_CRIT_DAMAGE	=> [DS_FORCE => 1],
+			TEQ_CRIT_CHANCE	=> [DS_DEXTERITY => 1],
+			TEQ_DEFENCE		=> [DS_RESILIENCE => 1],
+			TEQ_DODGE_CHANCE	=> [DS_EVASIVENESS => 1],
+		],
+		TEQT_MAGIC => [
+			TEQ_DAMAGE		=> [DS_MAGIC => 0.8, DS_DISRUPTION => 0.5],
+			TEQ_HIT_CHANCE	=> [DS_DISCIPLINE => 1],
+			TEQ_CRIT_DAMAGE	=> [DS_FOCUS => 0.5],
+			TEQ_CRIT_CHANCE	=> [DS_DISCIPLINE => 0.5, DS_DISRUPTION => 0.7],
+			TEQ_DEFENCE		=> [DS_FOCUS => 1],
+			TEQ_DODGE_CHANCE	=> [DS_FOCUS => 1],
+		]
+	];
+
+	public function __construct($material, $big = false)
+	{
+		$this->material = $material;
+
+		$this->big = $big;
+
+		$name = ($big ? 'Big ' : '') . "{$this->material->name} golem";
+
+		$spriteSet = $this->getSpriteSet();
+		if ($big) $this->bigSetup();
+
+		parent::__construct($name, $spriteSet, GND_MALE);
+
+
+		$this->addBehaviour(new dbhv_crippleOnHit(50, 80, 10));
+
+		$this->applyMaterialProperties();
+	}
+
+	function getLootArray()
+	{
+		return [
+
+		];
+	}
+
+	public function getSpriteSet()
+	{
+		$golemColour = $this->material->colour;
+
+		if ($this->big)
+		{
+			$bl = new Sprite([
+				0 => new SpriteElement($golemColour, null, ' '),
+				2 => new SpriteElement($golemColour, null, ' '),
+				3 => new SpriteElement($golemColour, null, ' '),
+				4 => new SpriteElement(null, $golemColour, '&#x258c;'),
+				5 => new SpriteElement(null, $golemColour, '&#x258c;'),
+				]);
+
+			$bl_corpse = new Sprite([
+				2 => new SpriteElement($golemColour, '#000', '-'),
+				3 => new SpriteElement(null, $golemColour, '&#x2584;'),
+				4 => new SpriteElement($golemColour, null, ' '),
+				5 => new SpriteElement($golemColour, null, ' '),
+				]);
+
+			return [
+				SPRI_DEFAULT => $bl,
+				SPRI_CORPSE => $bl_corpse,
+			];
+		}
+		else
+		{
+			$spr_golem = new Sprite([
+				0 => new SpriteElement(null, $golemColour, '&#x2584;'),
+				1 => new SpriteElement($golemColour, '#000', '&#x201c;'),
+				2 => new SpriteElement(null, $golemColour, '&#x2584;'),
+				3 => new SpriteElement(null, $golemColour, '&#x258c;'),
+				4 => new SpriteElement(null, $golemColour, '&Pi;'),
+				5 => new SpriteElement(null, $golemColour, '&#x2590;'),
+				]);
+
+			$spr_golem_corpse = new Sprite([
+				3 => new SpriteElement(null, $golemColour, '&#x2584;'),
+				4 => new SpriteElement($golemColour, '#000', '-'),
+				5 => new SpriteElement(null, $golemColour, '&#x2584;'),
+				]);
+
+			return [
+				SPRI_DEFAULT => $spr_golem,
+				SPRI_CORPSE => $spr_golem_corpse,
+			];
+		}
+
+
+	}
+
+	public function bigSetup()
+	{
+		$golemColour = $this->material->colour;
+
+		$tl = new Sprite([
+			2 => new SpriteElement($golemColour, '#000', '.'),
+			3 => new SpriteElement($golemColour, null, ' '),
+			4 => new SpriteElement($golemColour, null, ' '),
+			5 => new SpriteElement($golemColour, null, ' '),
+			]);
+
+		$tr = new Sprite([
+			0 => new SpriteElement($golemColour, '#000', '.'),
+			3 => new SpriteElement($golemColour, null, ' '),
+			4 => new SpriteElement($golemColour, null, ' '),
+			5 => new SpriteElement($golemColour, null, ' '),
+			]);
+
+//		$bl = new Sprite([
+//			0 => new SpriteElement($golemColour, null, ' '),
+//			2 => new SpriteElement($golemColour, null, ' '),
+//			3 => new SpriteElement($golemColour, null, ' '),
+//			4 => new SpriteElement(null, $golemColour, '&#x258c;'),
+//			5 => new SpriteElement(null, $golemColour, '&#x258c;'),
+//			]);
+
+		$br = new Sprite([
+			0 => new SpriteElement($golemColour, null, ' '),
+			2 => new SpriteElement($golemColour, null, ' '),
+			3 => new SpriteElement(null, $golemColour, '&#x2590;'),
+			4 => new SpriteElement(null, $golemColour, '&#x2590;'),
+			5 => new SpriteElement($golemColour, null, ' '),
+			]);
+
+		$br_corpse = new Sprite([
+			0 => new SpriteElement($golemColour, '#000', '-'),
+			3 => new SpriteElement($golemColour, null, ' '),
+			4 => new SpriteElement($golemColour, null, ' '),
+			5 => new SpriteElement(null, $golemColour, '&#x2584;'),
+			]);
+
+		$this->constituents[0][1] = new ObjectConstituent([SPRI_DEFAULT => $br, SPRI_CORPSE => $br_corpse]);
+		$this->constituents[-1][0] = new ObjectConstituent([$tl]);
+		$this->constituents[-1][1] = new ObjectConstituent([$tr]);
+
+		$dropees = [];
+		$dropees[-1][0] = null;
+		$dropees[-1][1] = null;
+		$this->addBehaviour(new dbhv_dropConstituentsOnDeath($dropees));
+	}
+
+	public function applyMaterialProperties()
+	{
+		$arrays = ['DMGs', 'DMGs_def', 'DSs'];
+
+		foreach ($arrays as $statType)
+		{
+			if (!isset($this->$statType)) continue;
+
+			if (isset($this->$statType) && !empty($this->$statType))
+			{
+				foreach ($this->$statType as $key => &$value)
+				{
+					$multiplier = 0;
+					$array = $this->material->$statType;
+					if (isset($array[$key])) $multiplier += $array[$key] -1;
+					$value = $value + ($value * $multiplier);
+				}
+			}
+		}
+	}
+}
+
+
+
+
+class dbhv_crippleOnHit extends DudeBehaviour
+{
+	public $status;
+
+	function __construct($speedPercentage, $strengthPercentage, $cooldown = 0)
+	{
+		$this->onStrike = true;
+
+		$DSs = [
+			DS_SPEED => $speedPercentage . '%',
+			DS_SPEED_FAST => $speedPercentage . '%',
+			DS_STRENGTH => '-' . $strengthPercentage . '%',
+		];
+
+		$statusDescription = "Speed reduced by {$speedPercentage}%, Strength reduced by {$strengthPercentage}%";
+
+		$sprite = new Sprite([
+			0 => new SpriteElement(null, '#f00', '\\'),
+			1 => new SpriteElement(null, '#f00', 'v'),
+			2 => new SpriteElement(null, '#f00', '/'),
+			3 => new SpriteElement('#fda', '#000', '-'),
+			4 => new SpriteElement('#fda', '#000', '_'),
+			5 => new SpriteElement('#fda', '#000', '-'),
+			]);
+
+		$this->status = new Status('Crippled', $statusDescription, $sprite, 8, false, $DSs); // This needs to be created AT THE TIME OF USE! fix this.
+
+		$description = "On hit, cripples the target which has its speed reduced by {$speedPercentage}% and strength reduced by {$strengthPercentage}%";
+		parent::__construct($description, 'crip', $cooldown);
+	}
+
+	function onStrike(Attack $attack)
+	{
+		console_echo("Adding cripple status to {$attack->target->name}", '#faa');
+		$attack->target->addStatus(clone $this->status);
+	}
+}
+
+class dbhv_dropConstituentsOnDeath extends DudeBehaviour
+{
+	public $dropees;
+
+	public function __construct($dropees)
+	{
+		$this->onDeath = true;
+
+		$this->dropees = $dropees;
+
+		parent::__construct('Drops some constituents when the owner dies.', null);
+	}
+
+	public function onDeath(Attack $attack)
+	{
+		console_echo('Dropping some constituents!');
+		$this->owner->constituentClear();
+		foreach ($this->dropees as $n_offset => $w_offsets)
+		{
+			foreach ($w_offsets as $w_offset => $null)
+			{
+				unset($this->owner->constituents[$n_offset][$w_offset]);
+			}
+		}
+		$this->owner->constituentPlace();
+
+		$this->delete();
+	}
+}
+
+class nme_frog extends Enemy
+{
+	public $FAC = FAC_ANIMAL;
+
+	public $DSs = [
+
+	];
+
+	public $DMGs_def = [
+		DMG_WATER => 500,
+		DMG_POISON => 500,
+		DMG_FIRE => -10,
+	];
+
+	public function __construct($DMG = null)
+	{
+		if ($DMG)
+		{
+			global $DMG_colours;
+			global $DMG_names;
+
+			$spriteSet = self::getSprite($DMG_colours[$DMG], '#000');
+			$name = "{$DMG_names[$DMG]} frog";
+		}
+		else
+		{
+			$spriteSet = self::getSprite('#0a0', '#ff0');
+			$name = 'giant frog';
+		}
+
+		parent::__construct($name, $spriteSet);
+
+		if ($DMG)
+		{
+			$this->DMGs = [
+				DMG_TRAUMA => 5,
+				$DMG => 15
+			];
+		}
+		else
+		{
+			$this->DMGs = [
+				DMG_TRAUMA => 15
+			];
+		}
+	}
+
+	function getLootArray()
+	{
+		return [
+
+		];
+	}
+
+	static function getSprite($bodyColour, $eyeColour)
+	{
+		$bodyColour_dark = tint($bodyColour, -3);
+
+		$spr_frog_up = new Sprite([
+			0 => new SpriteElement(null, $bodyColour, '&#x2514;'),
+			1 => new SpriteElement($bodyColour, $eyeColour, '&#x201d;'),
+			2 => new SpriteElement(null, $bodyColour, '&#x2518;'),
+			3 => new SpriteElement(null, $bodyColour, '<'),
+			4 => new SpriteElement(null, $bodyColour_dark, '&#x2580;'),
+			5 => new SpriteElement(null, $bodyColour, '>'),
+			]);
+
+		$spr_frog_down = new Sprite([
+			0 => new SpriteElement(null, $bodyColour, '<'),
+			1 => new SpriteElement(null, $bodyColour_dark, '&#x2584;'),
+			2 => new SpriteElement(null, $bodyColour, '>'),
+			3 => new SpriteElement(null, $bodyColour_dark, '&#x250c;'),
+			4 => new SpriteElement($bodyColour, $eyeColour, '&#x201e;'),
+			5 => new SpriteElement(null, $bodyColour, '&#x2510;'),
+			]);
+
+		return [
+			SPRI_DEFAULT => $spr_frog_down,
+			SPRI_NORTH => $spr_frog_up,
+			SPRI_SOUTH => $spr_frog_down
+		];
+	}
+}
+
+//class dude_zombie extends Dude
+class nme_zombie extends Enemy
+{
+	public $DSs =
+	[
+		DS_HANDICAP => 0.3,
+		DS_HP_MAX => 140,
+		DS_EP_MAX => 80,
+		DS_LUCK => 0,
+		DS_SPEED => 1,
+		DS_SPEED_FAST => 0.4,
+		DS_ATTACKSPEED => 0.4,
+		DS_STRENGTH => 90,
+		DS_FORCE => 70,
+		DS_RESILIENCE => 130,
+		DS_CONTROL => 20,
+		DS_INERTIA => 110,
+		DS_RECOVERY => 70,
+		DS_AGILITY => 40,
+		DS_DEXTERITY => 20,
+		DS_EVASIVENESS => 10,
+		DS_FINESSE => 5,
+		DS_BALANCE => 60,
+		DS_MAGIC => 5,
+		DS_DISRUPTION => 4,
+		DS_DISCIPLINE => 2,
+		DS_FOCUS => 3,
+		DS_INSANITY => 200,
+		DS_CHARISMA => 0,
+		DS_REPUTATION => 0,
+		DS_NOTORIETY => 20,
+		DS_FAME => 0,
+		DS_DISCOUNT => 0,
+		DS_BARGAINING => 0,
+		DS_LEADERSHIP => 0,
+		DS_INTELLECT => 10,
+		DS_TENACITY => 40,
+		DS_KNOWLEDGE => 0,
+		DS_HEURISTICS => 20,
+		DS_JUDGEMENT => 10,
+	];
+
+	public function __construct($name = null, $spriteSet = null, $gender = null, $DSs = [])
+	{
+		if (!isset($gender)) $gender = percentageToBool(52) ? GND_MALE : GND_FEMALE;
+
+		$spriteSet = $this->getSpriteSet();
+
+		if ($gender === GND_FEMALE)
+		{
+			$spriteSet[SPRI_DEFAULT] = $spriteSet[SPRI_FEMALE];
+			if (isset($spriteSet[SPRI_FEMALE_CORPSE])) $spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_FEMALE_CORPSE];
+		}
+		else
+		{
+			$spriteSet[SPRI_DEFAULT] = $spriteSet[SPRI_MALE];
+			if (isset($spriteSet[SPRI_MALE_CORPSE])) $spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_MALE_CORPSE];
+		}
+
+		$this->FAC			= FAC_MONSTER;
+
+		$this->DMGs			= [DMG_TRAUMA => 6, DMG_POISON	=> 15];
+		$this->DMGDL		= DMGDL_POINT;
+
+		$this->addBehaviour(
+			new dbhv_zombify($spriteSet)
+		);
+
+		$this->DMGs_def	= [DMG_POISON => 100, DMG_FIRE => -15, DMGDL_BLUNT => 30];
+
+//		parent::__construct($name, $spriteSet, $gender, null, $DSs);
+		parent::__construct($name, $spriteSet);
+	}
+
+	function getLootArray()
+	{
+		return [
+
+		];
+	}
+
+	/*
+	 * The whole $newSpriteSet thing in this function is a fucking mess but
+	 * there's all kinds of weird stuff going on with the sprite key holding
+	 * references and stuff like that. This is a good guide for future objects
+	 * that might have comples sprite clonging problems.
+	 */
+	function __clone()
+	{
+		parent::__clone();
+
+		$this->gender = percentageToBool(52) ? GND_MALE : GND_FEMALE;
+
+		$newSpriteSet = [];
+
+		if ($this->gender === GND_FEMALE)
+		{
+			$newSpriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_FEMALE];
+			if (isset($this->spriteSet[SPRI_FEMALE_CORPSE])) $newSpriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_FEMALE_CORPSE];
+		}
+		else
+		{
+			$newSpriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_MALE];
+			if (isset($this->spriteSet[SPRI_MALE_CORPSE])) $newSpriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_MALE_CORPSE];
+		}
+
+		$this->spriteSet = $newSpriteSet + $this->spriteSet;
+
+//		$this->defaultSprite = $this->spriteSet[SPRI_DEFAULT];
+		$this->sprite = $this->spriteSet[SPRI_DEFAULT];
+	}
+
+	function getSpriteSet($colour = null)
+	{
+		if (!isset($colour) )$colour = '#0f0';
+
+		$spr_zombie_m = new Sprite([
+			[ // Both hands up
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&lambda;'),
+			],
+			[ // Left hand down, right hand up
+				1 => new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&lambda;'),
+			],
+			[ // Both hands down
+				1 => new SpriteElement(null, $colour, 'o'),
+				3 => new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, '#400', '&lambda;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+			[ // Left hand up, right hand down
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				4 => new SpriteElement(null, '#400', '&lambda;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+		]);
+
+		$spr_zombie_f = new Sprite([
+			[ // Both hands up
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&Delta;'),
+			],
+			[ // Left hand up, right hand down
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				4 => new SpriteElement(null, '#400', '&Delta;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+			[ // Both hands down
+				1 => new SpriteElement(null, $colour, 'o'),
+				3 => new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, '#400', '&Delta;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+			[ // Left hand down, right hand up
+				1 => new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&Delta;'),
+			],
+		]);
+
+		$spr_zombieCorpse_m = self::getCorpseSprite($spr_zombie_m, '#f50');
+		$spr_zombieCorpse_f = self::getCorpseSprite($spr_zombie_f, '#f50');
+
+
+		return [
+			SPRI_MALE			=> $spr_zombie_m,
+			SPRI_MALE_CORPSE	=> $spr_zombieCorpse_m,
+			SPRI_FEMALE			=> $spr_zombie_f,
+			SPRI_FEMALE_CORPSE	=> $spr_zombieCorpse_f
+		];
+	}
+}
+
+
+
+
+class dbhv_zombify extends DudeBehaviour
+{
+
+	public function __construct($spriteSet, $cooldown = 1)
+	{
+		$this->onCollision = true;
+
+		$description = "Contact with a dude will turn the dude into a clone.";
+
+		if (isset($spriteSet[SPRI_MALE]))
+		{
+			$this->spriteSet[SPRI_MALE] = $spriteSet[SPRI_MALE];
+			if (isset($spriteSet[SPRI_MALE_CORPSE]))
+			{
+				$this->spriteSet[SPRI_MALE_CORPSE] = $spriteSet[SPRI_MALE_CORPSE];
+			}
+			else
+			{
+				$this->spriteSet[SPRI_MALE_CORPSE] = Dude::getCorpseSprite($spriteSet[SPRI_MALE]);
+			}
+
+		}
+
+		if (isset($spriteSet[SPRI_FEMALE]))
+		{
+			$this->spriteSet[SPRI_FEMALE] = $spriteSet[SPRI_FEMALE];
+			if (isset($spriteSet[SPRI_FEMALE_CORPSE]))
+			{
+				$this->spriteSet[SPRI_FEMALE_CORPSE] = $spriteSet[SPRI_FEMALE_CORPSE];
+			}
+			else
+			{
+				$this->spriteSet[SPRI_FEMALE_CORPSE] = Dude::getCorpseSprite($spriteSet[SPRI_FEMALE]);
+			}
+		}
+
+		parent::__construct($description, BHVK_PRIMARY, $cooldown);
+	}
+
+	public function onCollision(AsObject $receiver, $DIR)
+	{
+		if ($receiver instanceof Dude && !($receiver instanceof Player) && !($receiver instanceof nme_zombie))
+		{
+			$zombie = clone $this->owner;
+
+			$zombie->name = "Zombified {$receiver->name}";
+
+			if ($receiver->gender === GND_MALE && isset($this->spriteSet[SPRI_MALE]))
+			{
+				$zombie->spriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_MALE];
+				$zombie->spriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_MALE_CORPSE];
+			}
+
+			if ($receiver->gender === GND_FEMALE && isset($this->spriteSet[SPRI_FEMALE]))
+			{
+				$zombie->spriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_FEMALE];
+				$zombie->spriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_FEMALE_CORPSE];
+			}
+
+			$zombie->sprite = $zombie->spriteSet[SPRI_DEFAULT];
+
+			// AHH SHIT WHAT IS ALL THIS CODE DOING? WHY?
+
+			$receiver->changeTo($zombie);
+		}
+	}
+}
+
+class skl_EDITOR_teleport extends a_skl_EDITOR
+{
+	public function __construct()
+	{
+		$name = 'Move to';
+
+		$sprite = new Sprite([
+			0 => new SpriteElement(null, '#0ff', '\\'),
+			1 => new SpriteElement(null, '#fff', '\\'),
+			2 => new SpriteElement(null, '#0ff', '\\'),
+			3 => new SpriteElement(null, '#0ff', '/'),
+			4 => new SpriteElement(null, '#fff', '/'),
+			5 => new SpriteElement(null, '#0ff', '/'),
+			]);
+
+		parent::__construct($name, $sprite);
+	}
+
+	public function getDescription()
+	{
+		return 'Go wherever';
+	}
+
+	function onUse($n_offset, $w_offset)
+	{
+		if (!isset($n_offset, $w_offset))
+		{
+			update_thoughts('I can\'t see my end point!');
+			return;
+		}
+
+		if ($this->owner->move($n_offset, $w_offset))
+		{
+			global $view;
+			$view->forceUpdate = true;
+
+			return true;
+		}
+
+		return false;
+	}
+}
+
+
+/**
+ * This abstract class just exists to that as I modify skill stuff, the editor
+ * skills don't have to keep being updated to comply with the base-classes.
+ */
+abstract class a_skl_EDITOR extends Skill
+{
+	public function onChangeLevel() { }
+	public function getRelatedSkills() { return []; }
+}

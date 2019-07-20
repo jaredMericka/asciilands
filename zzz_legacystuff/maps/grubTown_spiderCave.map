@@ -1,0 +1,242 @@
+<?php
+
+//=========================================<editor-fold desc="Tile Assets">
+// TILE ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/tiles/basicTerrain.til";
+//require "{$rootPath}content/tiles/brickBuilder.fac";
+//require "{$rootPath}content/tiles/buildings.til";
+require "{$rootPath}content/tiles/caves.til";
+//require "{$rootPath}content/tiles/dreamscape.til";
+//require "{$rootPath}content/tiles/grassMudDirt.til";
+//require "{$rootPath}content/tiles/indoors.til";
+//require "{$rootPath}content/tiles/moai.til";
+//require "{$rootPath}content/tiles/rugs.fac";
+//require "{$rootPath}content/tiles/swamp.til";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Sprite Assets">
+// SPRITE ASSETS (mixed)
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/sprites/animals.spr";
+//require "{$rootPath}content/sprites/book.fac";
+require "{$rootPath}content/sprites/commonItems.fac";
+//require "{$rootPath}content/sprites/cow.spr";
+//require "{$rootPath}content/sprites/denseForest.spr";
+//require "{$rootPath}content/sprites/doors.spr";
+//require "{$rootPath}content/sprites/edges.fac";
+//require "{$rootPath}content/sprites/fencing.spr";
+require "{$rootPath}content/sprites/field.spr";
+//require "{$rootPath}content/sprites/food.spr";
+//require "{$rootPath}content/sprites/furniture.fac";
+//require "{$rootPath}content/sprites/furniture.spr";
+//require "{$rootPath}content/sprites/grubParts.spr";
+//require "{$rootPath}content/sprites/materials.spr";
+//require "{$rootPath}content/sprites/money.fac";
+//require "{$rootPath}content/sprites/monsters.spr";
+//require "{$rootPath}content/sprites/people.fac";
+//require "{$rootPath}content/sprites/portal.fac";
+require "{$rootPath}content/sprites/spiderWebs.php";
+//require "{$rootPath}content/sprites/sword.fac";
+require "{$rootPath}content/sprites/tools.spr";
+//require "{$rootPath}content/sprites/treasure.spr";
+//require "{$rootPath}content/sprites/trees.spr";
+//require "{$rootPath}content/sprites/weapons.spr";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Assets Workbench">
+// ASSETS WORKBENCH
+//=========================================
+// Make your assets here. Run factory methods or build
+// esoteric assets up from scratch.
+//=========================================
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Tile Key">
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$t_rockDarkness,
+	$t_rockDarkness->tint(),
+	$t_rockWall,
+	$t_rockWall->tint(),
+	$t_rockFloor,
+	$t_rockFloor->tint(),
+	$t_rockStairs,
+	$t_rockStairs->tint(),
+
+	$t_rockLadder,
+	$t_rockLadder->tint(),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Scenery Key">
+// SCENERY KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	new Scenery($spr_light),
+	new Scenery($spr_web_nw),
+	new Scenery($spr_web_ne),
+	new Scenery($spr_web_sw),
+	new Scenery($spr_web_se),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Assets">
+// MATERIAL ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/materials/basicFabrics.mat";
+require "{$rootPath}content/materials/basicMetals.mat";
+require "{$rootPath}content/materials/specialMetals.mat";
+require "{$rootPath}content/materials/basicWoods.mat";
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Array">
+// MATERIAL ARRAY
+//=========================================
+// Add materials that are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+	$mat_steel,
+	$mat_bronze,
+	$mat_cedar,
+	$mat_crackleIron,
+	$mat_leather
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Item Assets">
+// ITEM ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Workbench">
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+$obj_caveExit = new obj_portal('Spider Cave exit', null, 206, 183, MAP_OLDGRUBTOWN);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Quest Workbench">
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Set up some quests
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Array">
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+
+	'35:19' => $obj_caveExit,
+	'35:20' => $obj_caveExit,
+
+	'55:32' => clone $dude_giantSpider,
+	'56:38' => clone $dude_giantSpider,
+	'56:41' => clone $dude_giantSpider,
+	'32:46' => clone $dude_giantSpider,
+	'22:43' => clone $dude_giantSpider,
+	'19:41' => clone $dude_giantSpider,
+	'6:23' => clone $dude_giantSpider,
+	'7:27' => clone $dude_giantSpider,
+	'15:16' => clone $dude_giantSpider,
+	'18:16' => clone $dude_giantSpider,
+	'30:50' => clone $dude_giantSpider,
+
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Extra Stuff">
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+update_thoughts('I can hear them hissing...');
+
+$this->viewHeight		= 9;
+$this->viewWidth		= 9;
+
+	$this->overlayColour	= '#000';
+	$this->overlayOpacity	= 0.7;
+
+	$this->isDark			= true;		// Light objects only affect dark maps
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+//</editor-fold>
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

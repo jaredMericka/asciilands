@@ -1,0 +1,45 @@
+<?php
+
+$spr_wineBottle = new Sprite([
+	1 => new SpriteElement(null, '#084', '&#x2590;'),
+	4 => new SpriteElement('#084', '#a05', '&#x25a0;'),
+	5 => new SpriteElement(null, '#084', '&#x258c;'),
+	]);
+
+$spr_wineGlass = new Sprite([
+	1 => new SpriteElement(null, '#ddd', 'U'),
+	4 => new SpriteElement(null, '#ddd', '&#x2534;'),
+	]);
+
+$spr_rawSteak = new Sprite([
+	0 => new SpriteElement(null, '#f88', '&#x2584;'),
+	1 => new SpriteElement('#f88', '#fff', '&#x252c;'),
+	2 => new SpriteElement('#f88', null, ' '),
+	3 => new SpriteElement(null, '#f88', '&#x2580;'),
+	4 => new SpriteElement('#f88', '#fff', '|'),
+	]);
+
+$spr_cookedSteak = new Sprite([
+	0 => new SpriteElement(null, '#964', '&#x2584;'),
+	1 => new SpriteElement('#964', '#ea7', '&#x252c;'),
+	2 => new SpriteElement('#964', null, ' '),
+	3 => new SpriteElement(null, '#964', '&#x2580;'),
+	4 => new SpriteElement('#964', '#ea7', '|'),
+	]);
+
+$spr_burntSteak = new Sprite([
+	0 => new SpriteElement(null, '#543', '&#x2584;'),
+	1 => new SpriteElement('#543', '#999', '&#x252c;'),
+	2 => new SpriteElement('#543', null, ' '),
+	3 => new SpriteElement(null, '#543', '&#x2580;'),
+	4 => new SpriteElement('#543', '#999', '|'),
+	]);
+
+$spr_root = new Sprite([
+	0 => new SpriteElement(null, '#a83', '&#x2584;'),
+	1 => new SpriteElement(null, '#a83', '&#x2584;'),
+	2 => new SpriteElement('#963', '#a83', '&#x2580;'),
+	3 => new SpriteElement('#a83', '#963', '&#x2584;'),
+	4 => new SpriteElement(null, '#a83', '('),
+	5 => new SpriteElement(null, '#963', '&#x03bb;'),
+	]);

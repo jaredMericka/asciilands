@@ -1,0 +1,306 @@
+<?php
+
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+
+	case SPSI_GREETING:
+		global $player;
+		if (isset($player->completedQuests['Yirin\'s Spider Scourge']))
+		{
+			$speech[] =
+			[
+				[
+					"Welcome back, {$player->name}! ",
+					'Good to see you again! ',
+					"{$player->name}! You're always a welcome sight. "
+				]
+			];
+		}
+		else
+		{
+			$speech[] =
+			[
+				[
+					'If you\'re looking for the leader around here, you\'ve found him. ',
+					'I\'m in charge around here. ',
+				],
+				[
+					'Are you looking for work? ',
+					'Did you come here to help us out? ',
+					'Is it in your nature to help those in need? ',
+					'You look like you could handle yourself, fancy some work? '
+				],
+				'Talk to me if you\'re interested',
+			];
+		}
+
+	case SPSI_SAYING_BYE:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+
+	case SPSI_CONVERSING:
+
+		global $player;
+
+		switch ($player->addQuest($this->speAnnex['qst_spiderScourge']))
+		{
+			case QS_NOT_STARTED:
+
+				$cashAdvance = new itm_money(CUR_FENT, 5);
+
+				$speech[] =
+				[
+					[
+						'You want to help us out? ',
+						'You\'re here to help? ',
+						'You\'re willing to give us a hand? ',
+					],
+					[
+						'Good! ',
+						'Excellent! ',
+						'Very good! '
+					],
+					'I\'ve never been a wealthy man but I\'ve worked for even less money than I\'ve owned over the years. ',
+					[
+						'I\'ve got an eye and a mind for treasure hunting. ',
+						'Treasure, or more importantly it\'s whereabouts, has been my trade. '
+					],
+					[
+						'It\'s like I can feel something in my bones when it\'s near by ',
+						'I\'ve developed quite a knack for finding some of the best hidden items of value '
+					],
+					[
+						'and I have a strong feeling about a cave around here. ',
+						'and I\'m sure there\'s something big hidden in a cave just near here. '
+					],
+					[
+						'There is a problem, however; ',
+						'The trouble is that '
+					],
+					'The cave is infested with giant spiders. ',
+					[
+						'Absolutely crawling with them. ',
+						'They have a nest in there or something. ',
+					],
+					[
+						'My eye-sight isn\'t great so I\'m no use fighting in the dark ',
+						'Good luck getting a bunch of this town\'s fools together to fetch it...'
+					],
+					[
+						'but you look like you\'d be able to handle it, or at least put a dent in their numbers. ',
+						'but I think you just might have what it takes to clear them out. ',
+					],
+					[
+						'I\'ll lend you my old sword for the task. ',
+						'You can take my sword with you. ',
+					],
+					'It hasn\'t seen battle for nigh on a decade but it\'s still as sharp as it was on the day it was forged. Here\'s the key to my house. The same key opens my lock-box. Take the sword and anything else you might need and let me know how it goes for you.',
+					[
+						'Before you go, take this money and see if you can buy something helpful with it. ',
+						'Here\'s some money for kit. ',
+					],
+					[
+						"There's only {$cashAdvance->name} there but it should be enough for a bit of kit. ",
+						"It's {$cashAdvance->name} and that should get you something handy. ",
+					]
+				];
+
+				$player->inventory->add($this->speAnnex['itm_houseKey']);
+				$player->inventory->add($cashAdvance);
+
+			break;
+
+			case QS_IN_PROGRESS:
+				$speech[] =
+				[
+					[
+						'Did you find that old torch I have in there? ',
+						'Have you got my torch? ',
+						'Did you grab that torch from my house? ',
+					],
+					[
+						'It\'s not going to do you much good unless you light it. ',
+						'It won\'t help much if you haven\'t lit it. ',
+					],
+					[
+						'Try sticking it in the fireplace over there. ',
+						'The fireplace over there should get it going. ',
+					]
+				];
+
+				$speech[] =
+				[
+					[
+						'Did you buy anything from Dennard? ',
+						'Did you pay a visit to Dennard Cole? ',
+						'Have you bought any gear from Dennard? ',
+						'Did you spend that money I gave you? Dennard should have something useful for you. ',
+					],
+					[
+						'He lives in the little house just south of here. ',
+						'You\'ll find him in the little shack just south of here. ',
+					]
+				];
+			break;
+
+			case QS_COMPLETE:
+
+			break;
+
+			case QS_FAILED:
+
+			break;
+
+			case QS_ABANDONED:
+
+			break;
+		}
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+
+	case SPSI_BUYING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		}
+		break;
+
+	case SPSI_SELLING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+
+			if ($topic instanceof Equipment)
+			{
+//				$speech[] =
+//				[
+//					[
+//
+//					]
+//				];
+			}
+		}
+
+
+		break;
+
+	case SPSI_SAYING_MORE:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+			$topicPlayerMoney = $GLOBALS['player']->wallet->getAmount($topic->lastUsedCUR, true);
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_GIVING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_TAKING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_FOLLOWING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+
+	case SPSI_WAITING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+}

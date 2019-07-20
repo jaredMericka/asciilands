@@ -1,0 +1,462 @@
+<?php
+
+// These sprites are used and called from all over the place. This keeps them
+// central without having to cehck for prior inclusion.
+
+///////////////////////////////////
+// FIRE
+///////////////////////////////////
+
+$col_fire		= '#fc0';
+
+$slm_fire_1		= new SpriteElement(null, $col_fire, ')');
+$slm_fire_2		= new SpriteElement(null, $col_fire, '(');
+
+$ospr_fire	= new Sprite([
+	[
+		0 => $slm_fire_1,
+		2 => $slm_fire_1,
+	],
+	[
+		0 => $slm_fire_2,
+		2 => $slm_fire_2,
+	]
+]);
+
+$spr_fireEffect = new Sprite([
+	[
+		0 => $slm_fire_1,
+		5 => $slm_fire_1,
+	],
+	[
+		1 => $slm_fire_2,
+		3 => $slm_fire_2,
+	],
+	[
+		2 => $slm_fire_1,
+		4 => $slm_fire_2,
+	],
+]);
+
+$spr_fireIcon = new Sprite([
+	0 => new SpriteElement(null, $col_fire, '('),
+	1 => new SpriteElement(null, $col_fire, '('),
+	3 => new SpriteElement(null, $col_fire, '('),
+	4 => new SpriteElement(null, $col_fire, '&#x25b2;'),
+	5 => new SpriteElement(null, $col_fire, ')'),
+]);
+
+///////////////////////////////////
+// COLD
+///////////////////////////////////
+
+$col_cold		= '#fff';
+
+$slm_cold_1		= new SpriteElement(null, $col_cold, '*');
+$slm_cold_2		= new SpriteElement(null, $col_cold, '+');
+$slm_cold_3		= new SpriteElement(null, $col_cold, '.');
+
+$ospr_cold	= new Sprite([
+	[
+		0 => $slm_cold_1,
+		2 => $slm_cold_3,
+	],
+	[
+		0 => $slm_cold_2,
+	],
+	[
+		0 => $slm_cold_3,
+		2 => $slm_cold_1,
+	],
+	[
+		2 => $slm_cold_2,
+	],
+]);
+
+$spr_coldEffect = new Sprite([
+	[
+		0 => $slm_cold_1,
+		4 => $slm_cold_3,
+	],
+	[
+		0 => $slm_cold_2,
+		2 => $slm_cold_1,
+	],
+	[
+		0 => $slm_cold_3,
+		4 => $slm_cold_1,
+		2 => $slm_cold_2,
+	],
+	[
+		4 => $slm_cold_2,
+		2 => $slm_cold_3,
+	],
+]);
+
+
+$spr_coldIcon = new Sprite([
+	0 => new SpriteElement(null, $col_cold, '&#x25b2;'),
+	1 => new SpriteElement(null, $col_cold, '&#x25bc;'),
+	2 => new SpriteElement(null, $col_cold, '&#x25b2;'),
+	3 => new SpriteElement(null, $col_cold, '&#x25bc;'),
+	4 => new SpriteElement(null, $col_cold, '&#x25b2;'),
+	5 => new SpriteElement(null, $col_cold, '&#x25bc;'),
+]);
+
+///////////////////////////////////
+// POISON
+///////////////////////////////////
+
+$col_poison		= '#0d0';
+
+$slm_poison_1	= new SpriteElement(null, $col_poison, '&deg;');
+$slm_poison_2	= new SpriteElement(null, $col_poison, '&bull;');
+$slm_poison_3	= new SpriteElement(null, $col_poison, 'o');
+
+$ospr_poison	= new Sprite([
+	[
+		0 => $slm_poison_1,
+		2 => $slm_poison_2,
+	],
+	[
+		0 => $slm_poison_2,
+		2 => $slm_poison_3,
+	],
+	[
+		0 => $slm_poison_3,
+		2 => $slm_poison_2,
+	],
+	[
+		0 => $slm_poison_2,
+		2 => $slm_poison_1,
+	],
+]);
+
+$spr_poisonEffect = new Sprite([
+	[
+		0 => $slm_poison_3,
+		5 => $slm_poison_1,
+	],
+	[
+		4 => $slm_poison_1,
+		5 => $slm_poison_2,
+	],
+	[
+		0 => $slm_poison_1,
+		4 => $slm_poison_2,
+		5 => $slm_poison_3,
+	],
+	[
+		0 => $slm_poison_2,
+		4 => $slm_poison_3,
+	],
+]);
+
+$spr_poisonIcon = new Sprite([
+	1 => new SpriteElement(null, $col_poison, '&#x2640;'),
+	4 => new SpriteElement(null, $col_poison, 'X'),
+]);
+
+///////////////////////////////////
+// ELECTRIC
+///////////////////////////////////
+
+$col_electric	= '#0df';
+
+$slm_electric_0	= new SpriteElement(null, $col_electric, '&mdash;');
+$slm_electric_l	= new SpriteElement(null, $col_electric, '>');
+$slm_electric_r	= new SpriteElement(null, $col_electric, '<');
+
+$ospr_electric	= new Sprite([
+	[
+		0 => $slm_electric_0,
+		2 => $slm_electric_0,
+	],
+	[
+		0 => $slm_electric_l,
+		2 => $slm_electric_r,
+	],
+]);
+
+$spr_electricEffect = new Sprite([
+	[
+		1 => $slm_electric_l,
+		2 => $slm_electric_0,
+		3 => $slm_electric_r,
+	],
+	[
+		0 => $slm_electric_0,
+		1 => $slm_electric_r,
+		5 => $slm_electric_l,
+	],
+]);
+
+$spr_electricIcon = new Sprite([
+	1 => new SpriteElement(null, $col_electric, '\\'),
+	4 => new SpriteElement(null, $col_electric, '/'),
+	5 => new SpriteElement(null, $col_electric, '&#x03bb;'),
+	]);
+
+///////////////////////////////////
+// WATER
+///////////////////////////////////
+
+$col_water		= '#8af';
+
+$slm_water_1	= new SpriteElement(null, $col_water, '&deg;');
+$slm_water_2	= new SpriteElement(null, $col_water, '&bull;');
+$slm_water_3	= new SpriteElement(null, $col_water, '.');
+
+$ospr_water		= new Sprite([
+	[
+		0 => $slm_water_1,
+		2 => $slm_water_3,
+	],
+	[
+		0 => $slm_water_2,
+	],
+	[
+		0 => $slm_water_3,
+		2 => $slm_water_1,
+	],
+	[
+		2 => $slm_water_2,
+	],
+]);
+
+$spr_waterEffect = new Sprite([
+	[
+		1 => $slm_water_3,
+		5 => $slm_water_1,
+	],
+	[
+		3 => $slm_water_1,
+		5 => $slm_water_2,
+	],
+	[
+		1 => $slm_water_1,
+		3 => $slm_water_2,
+		5 => $slm_water_3,
+	],
+	[
+		1 => $slm_water_2,
+		3 => $slm_water_3,
+	],
+]);
+
+$spr_waterIcon = new Sprite([
+	0 => new SpriteElement(null, $col_water, '&#x2591;'),
+	1 => new SpriteElement(null, $col_water, '&#x2591;'),
+	2 => new SpriteElement(null, $col_water, '&#x2591;'),
+	3 => new SpriteElement(null, $col_water, 'H'),
+	4 => new SpriteElement(null, $col_water, '&#x00b2;'),
+	5 => new SpriteElement(null, $col_water, 'O'),
+]);
+
+///////////////////////////////////
+// TRAUMA
+///////////////////////////////////
+
+$col_trauma		= '#c00';
+
+//$slm_trauma_1	= new SpriteElement(null, $col_trauma, '&deg;');
+//$slm_trauma_2	= new SpriteElement(null, $col_trauma, '&bull;');
+//$slm_trauma_3	= new SpriteElement(null, $col_trauma, '.');
+
+$slm_trauma_1	= new SpriteElement(null, $col_trauma, '&#x0387');
+$slm_trauma_2	= new SpriteElement(null, $col_trauma, '&bull;');
+$slm_trauma_3	= new SpriteElement(null, $col_trauma, '&#x263c;');
+$slm_trauma_4	= new SpriteElement(null, $col_trauma, 'O');
+
+$ospr_trauma	= new Sprite([
+	[
+		0 => $slm_trauma_1,
+		2 => $slm_trauma_3,
+	],
+	[
+		0 => $slm_trauma_2,
+		2 => $slm_trauma_4,
+	],
+	[
+		0 => $slm_trauma_3,
+		2 => $slm_trauma_1,
+	],
+	[
+		0 => $slm_trauma_4,
+		2 => $slm_trauma_2,
+	],
+]);
+
+$spr_traumaEffect = new Sprite([
+	[
+		1 => $slm_trauma_4,
+		5 => $slm_trauma_1,
+	],
+	[
+		3 => $slm_trauma_1,
+		5 => $slm_trauma_2,
+	],
+	[
+		1 => $slm_trauma_1,
+		3 => $slm_trauma_2,
+		5 => $slm_trauma_3,
+	],
+	[
+		1 => $slm_trauma_2,
+		5 => $slm_trauma_4,
+		3 => $slm_trauma_3,
+	],
+	[
+		1 => $slm_trauma_3,
+		3 => $slm_trauma_4,
+	],
+]);
+
+$spr_traumaIcon = new Sprite([
+	0 => new SpriteElement(null, $col_trauma, '&#x25bc;'),
+	1 => new SpriteElement(null, $col_trauma, '&#x25bc;'),
+	2 => new SpriteElement(null, $col_trauma, '&#x25bc;'),
+	3 => new SpriteElement(null, $col_trauma, '&#x25b2;'),
+	4 => new SpriteElement(null, $col_trauma, '&#x25b2;'),
+	5 => new SpriteElement(null, $col_trauma, '&#x25b2;'),
+]);
+
+///////////////////////////////////
+// INFECTION
+///////////////////////////////////
+
+$col_infection		= '#ff0';
+
+$slm_infection_1	= new SpriteElement(null, $col_infection, '&#x03be;');
+$slm_infection_2	= new SpriteElement(null, $col_infection, '&#x03c2;');
+$slm_infection_3	= new SpriteElement(null, $col_infection, 'S');
+
+$ospr_infection		= new Sprite([
+	[
+		0 => $slm_infection_1,
+		2 => $slm_infection_2,
+	],
+	[
+		0 => $slm_infection_2,
+		2 => $slm_infection_3,
+	],
+	[
+		0 => $slm_infection_3,
+		2 => $slm_infection_1,
+	]
+]);
+
+$spr_infectionEffect	= new Sprite([
+	[
+		0 => $slm_infection_1,
+		2 => $slm_infection_2,
+		4 => $slm_infection_3,
+	],
+	[
+		0 => $slm_infection_2,
+		2 => $slm_infection_3,
+		4 => $slm_infection_1,
+	],
+	[
+		0 => $slm_infection_3,
+		2 => $slm_infection_1,
+		4 => $slm_infection_2,
+	]
+]);
+
+$spr_infectionIcon = new Sprite([	// This is shit and garbage; change it.
+	1 => new SpriteElement(null, $col_infection, 'V'),
+	3 => new SpriteElement(null, $col_infection, '>'),
+	4 => new SpriteElement(null, $col_infection, '&bull;'),
+	5 => new SpriteElement(null, $col_infection, '<'),
+]);
+
+
+$DMG_osprs = [
+	DMG_COLD		=> $ospr_cold,
+	DMG_ELECTRIC	=> $ospr_electric,
+	DMG_FIRE		=> $ospr_fire,
+	DMG_POISON		=> $ospr_poison,
+	DMG_WATER		=> $ospr_water,
+	DMG_TRAUMA		=> $ospr_trauma,
+	DMG_INFECTION	=> $ospr_infection,
+];
+
+$DMG_effects = [
+	DMG_COLD		=> $spr_coldEffect,
+	DMG_ELECTRIC	=> $spr_electricEffect,
+	DMG_FIRE		=> $spr_fireEffect,
+	DMG_POISON		=> $spr_poisonEffect,
+	DMG_WATER		=> $spr_waterEffect,
+	DMG_TRAUMA		=> $spr_traumaEffect,
+	DMG_INFECTION	=> $spr_infectionEffect,
+];
+
+$DMG_icons = [
+	DMG_COLD		=> $spr_coldIcon,
+	DMG_ELECTRIC	=> $spr_electricIcon,
+	DMG_FIRE		=> $spr_fireIcon,
+	DMG_POISON		=> $spr_poisonIcon,
+	DMG_WATER		=> $spr_waterIcon,
+	DMG_TRAUMA		=> $spr_traumaIcon,
+	DMG_INFECTION	=> $spr_infectionIcon,
+];
+
+$DMG_colours = [
+	DMG_COLD => $col_cold,
+	DMG_ELECTRIC => $col_electric,
+	DMG_FIRE => $col_fire,
+	DMG_POISON => $col_poison,
+	DMG_WATER => $col_water,
+	DMG_TRAUMA => $col_trauma,
+	DMG_INFECTION => $col_infection,
+];
+
+///////////////////////////////////
+// DSs
+///////////////////////////////////
+
+function spr_DS_boost($DS)
+{
+	global $DS_names;
+	global $DS_colours;
+
+	$letter = strtoupper(substr($DS_names[$DS], 0, 1));
+	$DS_base = $DS - ($DS % 100);
+
+	$spe_letter = new SpriteElement(null, '#fff', $letter);
+	$spe_solid = new SpriteElement(null, $DS_colours[$DS_base], '&#x25b2;');
+//	$spe_hollow = new SpriteElement(null, $DS_colours[$DS_base], '&Delta;');
+	$spe_hollow = new SpriteElement(null, $DS_colours[$DS_base], '&#x039b;');
+
+	return new Sprite([
+		[ 3 => $spe_solid,	4 => $spe_letter ],
+		[ 0 => $spe_hollow,	4 => $spe_letter ],
+		[ 4 => $spe_letter ],
+		[ 5 => $spe_solid,	4 => $spe_letter ],
+		[ 2 => $spe_hollow,	4 => $spe_letter ],
+		[ 4 => $spe_letter ],
+	]);
+}
+
+function spr_DS_lower($DS)
+{
+	global $DS_names;
+	global $DS_colours;
+
+	$letter = strtoupper(substr($DS_names[$DS], 0, 1));
+	$DS_base = $DS - ($DS % 100);
+
+	$spe_letter = new SpriteElement(null, '#fff', $letter);
+	$spe_solid = new SpriteElement(null, $DS_colours[$DS_base], '&#x25bc;');
+	$spe_hollow = new SpriteElement(null, $DS_colours[$DS_base], 'V');
+
+	return new Sprite([
+		[ 0 => $spe_solid,	1 => $spe_letter ],
+		[ 3 => $spe_hollow,	1 => $spe_letter ],
+		[ 1 => $spe_letter ],
+		[ 2 => $spe_solid,	1 => $spe_letter ],
+		[ 5 => $spe_hollow,	1 => $spe_letter ],
+		[ 1 => $spe_letter ],
+	]);
+}

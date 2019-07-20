@@ -1,0 +1,190 @@
+<?php
+
+//=========================================<editor-fold desc="Assets Workbench">
+// ASSETS WORKBENCH
+//=========================================
+// Make your assets here. Create set classes or build
+// esoteric assets up from scratch.
+//=========================================
+
+$common = new set_common();
+$rock = new set_masonry(set_masonry::COL_DIRT);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Tile Key">
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$rock->t_cliff_void(),
+	$rock->t_cliff(),
+	$rock->t_cliff(-1),
+	$rock->t_stonyFloor(),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Scenery Key">
+// SCENERY KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	$common->scn_fade_up_t('#ffa'),
+	$common->scn_fade_up_b('#ffa'),
+	$rock->scn_rock(-1),
+	$rock->scn_bigRock_tl(-1),
+	$rock->scn_bigRock_tr(-1),
+	$rock->scn_bigRock_bl(-1),
+	$rock->scn_bigRock_br(-1),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Assets">
+// MATERIAL ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/materials/uncommon_fabrics.mat";
+//require "{$rootPath}content/materials/uncommon_metals.mat";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Array">
+// MATERIAL ARRAY
+//=========================================
+// Add materials that are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+
+];
+
+$this->materials = array_merge($this->materials, $commonMaterials);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Item Assets">
+// ITEM ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+//require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Workbench">
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+$mainEntrance = new obj_portal('Main entry', null, 34, 277, MAP_LOWERGRUBFIELDS);
+$secretExit = new obj_portal('Secret exit', null, 19, 285, MAP_LOWERGRUBFIELDS);
+
+$baskins = new nme_thief();
+$baskins->level = $this->level + 2;
+$baskins->name = 'Baskins';
+
+$thief = new nme_thief();
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Quest Workbench">
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Set up some quests
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Array">
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+	'23:75' => $secretExit,
+	'48:40' => $mainEntrance,
+	'48:41' => $mainEntrance,
+
+	'4:58'	=> $baskins,
+
+	'38:39' => clone $thief,
+	'34:34' => clone $thief,
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Extra Stuff">
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->minimapTop = 0;
+//	$this->minimapLeft = 0;
+//	$this->minimapRight = 100;
+//	$this->minimapBottom = 100;
+
+//	$this->isDark			= true;		// Light objects only affect dark maps
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+//</editor-fold>
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

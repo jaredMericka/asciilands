@@ -1,0 +1,41 @@
+<?php
+
+$col_waypoint = '#875';
+
+$t_waypoint_nw	= new Tile($col_waypoint, ['&#x2554;', '&#x2550;', '&#x2550;', '&#x2551;', '&nbsp;', '&#x2554;'],	TPL_OPENGROUND, -1);
+$t_waypoint_ne	= new Tile($col_waypoint, ['&#x2550;', '&#x2550;', '&#x2557;', '&#x2557;', '&nbsp;', '&#x2551;'],	TPL_OPENGROUND, -1);
+$t_waypoint_n	= new Tile($col_waypoint, ['&#x2550;', '&#x2550;', '&#x2550;', '&#x2550;', '&#x2550;', '&#x2550;'],	TPL_OPENGROUND, -1);
+$t_waypoint_w	= new Tile($col_waypoint, ['&#x2551;', '&nbsp;', '&#x2551;', '&#x2551;', '&nbsp;', '&#x2551;'],	TPL_OPENGROUND, -1);
+$t_waypoint_sw	= new Tile($col_waypoint, ['&#x2551;', '&nbsp;', '&#x255a;', '&#x255a;', '&#x2550;', '&#x2550;'],	TPL_OPENGROUND, -1);
+$t_waypoint_se	= new Tile($col_waypoint, ['&#x255d;', '&nbsp;', '&#x2551;', '&#x2550;', '&#x2550;', '&#x255d;'],	TPL_OPENGROUND, -1);
+
+
+//$t_void			= new Tile('#000', array('&nbsp;','.'), false, 15, null, 100);
+//
+//$t_edge			= new Tile('#747', array('_', 'I', '_', 'L', '_','_'), false, -2);
+//$t_floor		= new Tile('#a7a', array('L', '_','_','_', 'I', '_', ), true, -2);
+//$t_stairs		= new Tile('#a7a', array('&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'), true, -2);
+//
+//$t_carpet_h		= new Tile('#b00', ['&#x2500;','&#x2500;','&#x2500;','&#x2500;','&#x2500;','&#x2500;'], true, '#ff0');
+//$t_carpet_v		= new Tile('#b00', ['&#x2502;','&nbsp;','&#x2502;','&#x2502;','&nbsp;','&#x2502;'], true, '#ff0');
+//
+//
+//$moaiColour = '#858';
+//
+//$t_moai_1 = new Tile($moaiColour, ['&nbsp;','&nbsp;','&nbsp;','&#x2584;','&#x2584;','&#x2584;'], false, -2);
+//$t_moai_2 = new Tile($moaiColour, ['&nbsp;','&nbsp;','&#x2588;','&#x2584;','&#x2584;','&#x2588;'], false, -2);
+//$t_moai_3 = new Tile($moaiColour, ['&#x2580;','&#x2580;','&nbsp;','&nbsp;','&nbsp;','&nbsp;'], false, -2);
+//$t_moai_4 = new Tile($moaiColour, ['&#x2590;','&#x2580;','&#x2588;','&#x2590;','&nbsp;','&#x2588;'], false, -2);
+//$t_moai_5 = new Tile($moaiColour, ['&nbsp;','&nbsp;','&#x2580;','&nbsp;','&nbsp;','&#x2550;'], false, -2);
+//$t_moai_6 = new Tile($moaiColour, ['&#x2580;','&nbsp;','&#x2588;','&#x2550;','&nbsp;','&#x2588;'], false, -2);
+//$t_moai_7 = new Tile($moaiColour, ['&#x2584;','&#x2584;','&#x2584;','&#x2588;','&#x2588;','&#x2588;'], false, -2);
+//$t_moai_8 = new Tile($moaiColour, ['&#x2584;','&#x2584;','&#x2588;','&#x2588;','&#x2588;','&#x2588;'], false, -2);
+//
+//
+//$spr_diamondStar = new Sprite([
+//	1 => new SpriteElement(null, '#fff', '&#x2666;')
+//]);
+//
+//$spr_midStar = new Sprite([
+//	1 => new SpriteElement(null, '#fff', '*')
+//]);

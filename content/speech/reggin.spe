@@ -1,0 +1,198 @@
+<?php
+
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+	case SPSI_GREETING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($this->NPCIs)) // We're talking to a special NPC
+		{
+			global $currencies;
+
+			$vendorCUR = $this->inventory->CUR;
+			$acceptedCurrencyName = $currencies[$vendorCUR]->name;
+
+			if (isset($this->NPCIs['npci_buy']))
+			{
+//				$speech[] =
+//				[
+//					[
+//
+//					]
+//				];
+			}
+
+			if (isset($this->NPCIs['npci_sell']))
+			{
+//				$speech[] =
+//				[
+//					[
+//
+//					]
+//				];
+			}
+
+		}
+		break;
+
+	case SPSI_SAYING_BYE:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+
+	case SPSI_CONVERSING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		$player->addQuest($this->speAnnex['baskins']);
+		break;
+
+	case SPSI_BUYING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		}
+		break;
+
+	case SPSI_SELLING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+
+			if ($topic instanceof Equipment)
+			{
+//				$speech[] =
+//				[
+//					[
+//
+//					]
+//				];
+			}
+		}
+
+
+		break;
+
+	case SPSI_SELLING_NE:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+			$topicPrice = $topic->getPrice($topic->lastUsedCUR, true);
+			$topicPlayerMoney = $GLOBALS['player']->wallet->getAmount($topic->lastUsedCUR, true);
+
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_GIVING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_TAKING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+
+		if (isset($topic) && $topic instanceof Item)
+		{
+//			$speech[] =
+//			[
+//				[
+//
+//				]
+//			];
+		}
+		break;
+
+	case SPSI_FOLLOWING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+
+	case SPSI_WAITING:
+//		$speech[] =
+//		[
+//			[
+//
+//			]
+//		];
+		break;
+}

@@ -1,0 +1,23 @@
+<?php
+
+function createRugAssets($name, $mainColour, $patternColour, $trimColour)
+{
+	$trimColour_dark = tint($trimColour, -6);
+
+	$tasselLeft = new Sprite([
+	2 => new SpriteElement($trimColour, $trimColour_dark, '&#x039e;'),
+	5 => new SpriteElement($trimColour, $trimColour_dark, '&#x039e;'),
+	]);
+
+	$tasselRight = new Sprite([
+	0 => new SpriteElement($trimColour, $trimColour_dark, '&#x039e;'),
+	3 => new SpriteElement($trimColour, $trimColour_dark, '&#x039e;'),
+	]);
+
+	return [
+		"t_{$name}_trigTop" => new Tile($mainColour, ['&#x2550;', '&#x2550;', '&#x2550;', '&#x25b2;', '&#x25b2;', '&#x25b2;'], true, $patternColour),
+		"t_{$name}_trigBottom" => new Tile($mainColour, ['&#x25bc;', '&#x25bc;', '&#x25bc;', '&#x2550;', '&#x2550;', '&#x2550;'], true, $patternColour),
+		"scn_{$name}_tasselLeft" => new Scenery($tasselLeft),
+		"scn_{$name}_tasselRight" => new Scenery($tasselRight),
+	];
+}

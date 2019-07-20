@@ -1,0 +1,75 @@
+<?php
+
+//function spr_animalSkin($colour, $eyeColour = '#000')
+//{
+//	return new Sprite([
+//		0 => new SpriteElement($colour, $eyeColour, '&#x201a;'),
+//		1 => new SpriteElement(null, $colour, '&#x2584;'),
+//		2 => new SpriteElement($colour, null, null),
+//		3 => new SpriteElement($colour, $eyeColour, '&#x2019;'),
+//		4 => new SpriteElement(null, $colour, '&#x2580;'),
+//		5 => new SpriteElement($colour, null, null),
+//	]);
+//}
+//
+//function spr_fabricRoll($colour, $trimColour)
+//{
+//	return new Sprite([
+//		0 => new SpriteElement(tint($colour, -1), $trimColour, '@'),
+//		1 => new SpriteElement(tint($colour, 1), $colour, '&#x2584;'),
+//		2 => new SpriteElement(tint($colour, 1), $colour, '&#x2584;'),
+//		4 => new SpriteElement($colour, $trimColour, '&#x2026;'),
+//		5 => new SpriteElement($colour, $trimColour, '&#x2026;'),
+//	]);
+//}
+//
+//function spr_ingots($colour)
+//{
+//	return new Sprite([
+//		0 => new SpriteElement(null, $colour, '&#x2584;'),
+//		1 => new SpriteElement(null, $colour, '&#x2584;'),
+//		2 => new SpriteElement(null, $colour, '&#x2584;'),
+//		3 => new SpriteElement(tint($colour, -2), $colour, '&#x2500;'),
+//		4 => new SpriteElement(tint($colour, -2), $colour, '&#x2500;'),
+//		5 => new SpriteElement(tint($colour, -2), $colour, '&#x2500;'),
+//	]);
+//}
+//
+//function spr_wood($colour)
+//{
+//	$tint = tint($colour, -2);
+//	return new Sprite([
+//		0 => new SpriteElement(null, $colour, '&#x2584;'),
+//		1 => new SpriteElement(null, $colour, '&#x2584;'),
+//		2 => new SpriteElement(null, $colour, '&#x2584;'),
+//		3 => new SpriteElement($colour, $tint, '&#x2584;'),
+//		4 => new SpriteElement($colour, $tint, '&#x2584;'),
+//		5 => new SpriteElement($colour, $tint, '&#x2584;'),
+//	]);
+//}
+//
+//function spr_bone($colour)
+//{
+//	return new Sprite([
+//		1 => new SpriteElement(null, $colour, '_'),
+//		2 => new SpriteElement(null, $colour, '_'),
+//		3 => new SpriteElement(null, $colour, '('),
+//		4 => new SpriteElement(null, $colour, '('),
+//		5 => new SpriteElement(null, $colour, '('),
+//	]);
+//}
+//
+//function spr_stone($colour)
+//{
+//	$top			= tint($colour, 3, true);
+//	$brickTopDetail	= tint($colour, 6, true);
+//
+//	return new Sprite([
+//		new SpriteElement($top, $brickTopDetail, 'L'),
+//		new SpriteElement($top, $brickTopDetail, '_'),
+//		new SpriteElement($top, $brickTopDetail, '_'),
+//		new SpriteElement($colour, $top, 'L'),
+//		new SpriteElement($colour, $top, '_'),
+//		new SpriteElement($colour, $top, '_')
+//	]);
+//}

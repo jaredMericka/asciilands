@@ -1,0 +1,256 @@
+<?php
+
+/**
+ * Returns an named array of stone realted assets.
+ * Results should be assigned to variables using a foreach on return.
+ *
+ * Names are:
+ * "t_{$name}_wallSide"
+ * "t_{$name}_wallTop"
+ * "t_{$name}_wallSide_o"
+ * "t_{$name}_wallTop_o"
+ * "t_{$name}_smallWall"
+ * "t_{$name}_smallWallTop"
+ * "t_{$name}_pavers"
+ * "t_{$name}_stairs"
+ * "t_{$name}_cliff"
+ * "t_{$name}_cliffTop"
+ * "t_{$name}_cairn_w"
+ * "t_{$name}_cairn"
+ * "t_{$name}_cairn_s"
+ * "spr_{$name}_brick"
+ * "spr_{$name}_paverSide"
+ * "spr_{$name}_rock"
+ * "spr_{$name}_rock_sign"
+ * "spr_{$name}_bigRock_tl"
+ * "spr_{$name}_bigRock_tr"
+ * "spr_{$name}_bigRock_bl"
+ * "spr_{$name}_bigRock_br"
+ */
+function createStoneAssets($name, $colour)
+{
+	$top			= tint($colour, 3, true);
+	$pavers			= tint($colour, 5, true);
+	$paversSide		= tint($colour, 2, true);
+	$brickTopDetail	= tint($colour, 6, true);
+	$indoorTop		= tint($colour, -3, true);
+
+	$rockDark		= tint($colour, -2, true);
+
+	$rockVoid		= tint($colour, -5, true);
+
+	return [
+		"t_{$name}_wallSide"	=> new Tile($colour,	['_', 'I', '_', 'L', '_', '_'], TPL_VERTICAL),
+		"t_{$name}_wallTop"		=> new Tile($top,		['L', '_', '_', '_', 'I', '_'], TPL_HIGHOBSTACLE),
+
+		"t_{$name}_wallSide_o"	=> new Tile($colour,	['_', 'I', '_', 'L', '_', '_'], TPL_OPENGROUND, null, true),
+		"t_{$name}_wallTop_o"	=> new Tile($top,		['L', '_', '_', '_', 'I', '_'], TPL_OPENGROUND, null, true),
+
+		"t_{$name}_smallWall"	=> new Tile($colour,	['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1),
+		"t_{$name}_smallWallTop"	=> new Tile($top,	['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_HIGHOBSTACLE, -1),
+
+		"t_{$name}_pavers"		=> new Tile($pavers,	['L', '_', 'L', 'L', 'L', '_'], TPL_OPENGROUND, -1),
+		"t_{$name}_stairs"		=> new Tile($top,		['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_OPENGROUND, $colour),
+		"t_{$name}_floor"		=> new Tile($top,		['O','(',')','(',')','O'],TPL_OPENGROUND,-1),
+
+		"t_{$name}_cliff"		=> new Tile($colour,	['&nbsp;','_','/','/','&#x005c;','&nbsp;'], TPL_VERTICAL),
+		"t_{$name}_cliffTop"	=> new Tile($top,		['/','&nbsp;','&nbsp;','&nbsp;', '_', '/'], TPL_OPENGROUND),
+		"t_{$name}_rockVoid"	=> new Tile($rockVoid,	['/','&#x005c;','&nbsp;','&#x005c;','&nbsp;','&nbsp;'], TPL_WALL),
+
+		"t_{$name}_cairn_w"	=> new Tile($colour,		['&#x2588;','&nbsp;','&nbsp;','&#x258c;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE, $rockDark, null, null, true),
+		"t_{$name}_cairn"	=> new Tile($colour,		['&nbsp;','&nbsp;','&nbsp;','&nbsp;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE, $rockDark, null, null, true),
+		"t_{$name}_cairn_s"	=> new Tile($colour,		['&nbsp;','&nbsp;','&nbsp;','&#x2584;', '&#x2588;', '&#x2588;'], TPL_HIGHOBSTACLE, $rockDark, null, null, true),
+
+		"spr_{$name}_brick"		=> new Sprite([
+			new SpriteElement($top, $brickTopDetail, 'L'),
+			new SpriteElement($top, $brickTopDetail, '_'),
+			new SpriteElement($top, $brickTopDetail, '_'),
+			new SpriteElement($colour, $top, 'L'),
+			new SpriteElement($colour, $top, '_'),
+			new SpriteElement($colour, $top, '_')
+		]),
+
+		"scn_{$name}_paverSide"	=> new Scenery(new Sprite([
+			0 => new SpriteElement(null, $paversSide, '&#x2580;'),
+			1 => new SpriteElement(null, $paversSide, '&#x2580;'),
+			2 => new SpriteElement(null, $paversSide, '&#x2580;'),
+		])),
+
+//		"scn_{$name}_rock" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, $colour, '&#x2590;'),
+//			1 => new SpriteElement($top, null, '&nbsp;'),
+//			2 => new SpriteElement(null, $top, '&#x2584;'),
+//			3 => new SpriteElement($colour, null, '&nbsp;'),
+//			4 => new SpriteElement($top, $colour, '&#x2584;'),
+//			5 => new SpriteElement($top, null, '&nbsp;'),
+//		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_rock" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $rockDark, '&#x2590;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($rockDark, null, '&nbsp;'),
+			4 => new SpriteElement($colour, $rockDark, '&#x2584;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_rock_sign" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $rockDark, '&#x2590;'),
+			1 => new SpriteElement($colour, $rockDark, '&#x2261;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($rockDark, null, '&nbsp;'),
+			4 => new SpriteElement($colour, $rockDark, '&#x2584;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bigRock_tl" => new Scenery(new Sprite([
+			1 => new SpriteElement(null, $rockDark, '&#x2590;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $rockDark, '&#x2584;'),
+			4 => new SpriteElement($colour, $rockDark, '&#x258c;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bigRock_bl" => new Scenery(new Sprite([
+			0 => new SpriteElement($rockDark, null, '&nbsp;'),
+//			1 => new SpriteElement($top, $colour, '&#x2584;'),
+			1 => new SpriteElement($rockDark, $rockDark, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $rockDark, '&#x2580;'),
+			4 => new SpriteElement($rockDark, null, '&nbsp;'),
+			5 => new SpriteElement($rockDark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bigRock_tr" => new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($colour, null, '&nbsp;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bigRock_br" => new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement($colour, $rockDark, '&#x2584;'),
+			4 => new SpriteElement($colour, $rockDark, '&#x2584;'),
+			5 => new SpriteElement(null, $rockDark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_cairn_left" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $rockDark, '&#x2584;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $rockDark, '&#x2580;'),
+			4 => new SpriteElement($rockDark, null, '&nbsp;'),
+			5 => new SpriteElement($rockDark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_cairn_right" => new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($rockDark, $colour, '&nbsp;'),
+			4 => new SpriteElement($rockDark, null, '&nbsp;'),
+			5 => new SpriteElement(null, $rockDark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE),
+	];
+}
+
+function createWoodAssets($name, $colour)
+{
+	$colour_light = tint($colour, 1, true);
+	$colour_dark = tint($colour, -2, true);
+	$colour_vDark = tint($colour, -3, true);
+
+	$slm_post = new SpriteElement($colour, $colour_dark, '&#x02590;');
+	$slm_bridgeSide = new SpriteElement(null, $colour_dark, '&#x2580;');
+
+	$spr_planksSide = new Sprite([
+		$slm_bridgeSide, $slm_bridgeSide, $slm_bridgeSide
+	]);
+
+	$spr_planksSidePost = new Sprite([
+		0 => $slm_bridgeSide,
+		1 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		2 => $slm_bridgeSide,
+		4 => $slm_post
+	]);
+
+	$spr_post = new Sprite([
+		1 => $slm_post,
+		4 => $slm_post
+	]);
+
+	$spr_log = new Sprite([
+		0 => new SpriteElement(null, null, '&#x2580;'),
+		1 => new SpriteElement(null, null, '&#x2580;'),
+		2 => new SpriteElement(null, null, '&#x2580;'),
+		3 => new SpriteElement(null, null, '&#x2580;'),
+		4 => new SpriteElement(null, null, '&#x2580;'),
+		5 => new SpriteElement(null, null, '&#x2580;'),
+	]);
+
+	$slm_doubleDoorPanel	= new SpriteElement($colour, null, '&nbsp;');
+	$slm_doubleDoorGap		= new SpriteElement($colour, $colour_light, '&#x2502;');
+	$slm_doubleDoorHandle	= new SpriteElement($colour, '#ddd', '&bull;');
+
+	$slm_doubleDoorOpenLeft	= new SpriteElement(null, $colour, '&#x258C');
+	$slm_doubleDoorOpenRight	= new SpriteElement(null, $colour, '&#x2590');
+
+	$spr_doubleDoorClosed = new Sprite([
+		$slm_doubleDoorPanel, $slm_doubleDoorGap, $slm_doubleDoorPanel,
+		$slm_doubleDoorHandle, $slm_doubleDoorGap, $slm_doubleDoorHandle
+	]);
+
+	$spr_doubleDoorOpen = new Sprite([
+		$slm_doubleDoorOpenLeft, 2 => $slm_doubleDoorOpenRight,
+		$slm_doubleDoorOpenLeft, 5 => $slm_doubleDoorOpenRight
+	]);
+
+	$spr_bridgeRail = new Sprite([
+		[
+			3 => new SpriteElement(null, $colour_dark, '&#x2580;'),
+			4 => new SpriteElement($colour_dark,  null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour_dark, '&#x2580;'),
+		],
+	]);
+
+	$spr_fence = new Sprite([
+	[
+		0 => new SpriteElement(null,$colour_dark, '&#x2584;'),
+		1 => new SpriteElement($colour, $colour_dark, '&#x2590;'),
+		2 => new SpriteElement(null,$colour_dark, '&#x2584;'),
+		3 => new SpriteElement(null,$colour_dark, '&#x2584;'),
+		4 => new SpriteElement($colour, $colour_dark, '&#x2590;'),
+		5 => new SpriteElement(null,$colour_dark, '&#x2584;'),
+	],
+]);
+
+	return [
+		"t_{$name}_planks" => new Tile($colour_light, array('&#x0251C;', '&#x02524;', '&#x02502;', '&#x02502;', '&#x0251C;', '&#x02524;'), TPL_OPENGROUND, -2),
+
+		"t_{$name}_logWall" => new Tile($colour, ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;'], TPL_VERTICAL, 1),
+		"t_{$name}_logFloor" => new Tile($colour_light, ['&#x251c;', '&#x2524;', '&#x2502;', '&#x2524;', '&#x251c;', '&#x253c;'], TPL_OPENGROUND, -1),
+
+		"t_{$name}_wallTop_h" => new Tile($colour_vDark, ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2584;', '&#x2584;', '&#x2584;'], TPL_HIGHOBSTACLE, 1),
+		"t_{$name}_wallTop_v" => new Tile($colour_vDark, ['&#x258c;', '&nbsp;', '&#x2590;', '&#x258c;', '&nbsp;', '&#x2590;'], TPL_HIGHOBSTACLE, 1),
+		"t_{$name}_wallTop_x" => new Tile($colour_vDark, ['/', '&OverBar;', '&#x005c;', '&#x005c;', '_', '/'], TPL_HIGHOBSTACLE, 1),
+
+		"t_{$name}_wickerRoof_l" => new Tile($colour, ['/', '/', '/', '/', '/', '/'], TPL_HIGHOBSTACLE),
+		"t_{$name}_wickerRoof_m" => new Tile($colour, ['|', '|', '|', '|', '|', '|'], TPL_HIGHOBSTACLE),
+		"t_{$name}_wickerRoof_r" => new Tile($colour, ['\\', '\\', '\\', '\\', '\\', '\\'], TPL_HIGHOBSTACLE),
+
+		"t_{$name}_tileRoof" => new Tile($colour, ['U', 'U', 'U', 'U', 'U', 'U'], TPL_HIGHOBSTACLE, -2),
+
+		"scn_{$name}_planksSide" => new Scenery($spr_planksSide),
+		"scn_{$name}_planksSidePost" => new Scenery($spr_planksSidePost, TPL_HIGHOBSTACLE),
+		"scn_{$name}_post" => new Scenery($spr_post, TPL_HIGHOBSTACLE),
+		"scn_{$name}_rail" => new Scenery($spr_bridgeRail, TPL_HIGHOBSTACLE),
+		"scn_{$name}_fence" => new Scenery($spr_fence, TPL_HIGHOBSTACLE),
+
+		"spr_{$name}_doubleDoor" => $spr_doubleDoorClosed,
+		"spr_{$name}_doubleDoorOpen" => $spr_doubleDoorOpen,
+	];
+}

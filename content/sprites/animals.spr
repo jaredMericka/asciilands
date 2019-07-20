@@ -1,0 +1,45 @@
+<?php
+
+$spr_cow = new Sprite([
+        [//stationary
+
+		0 => new SpriteElement('#fff', '#000', '&#x2580;'),
+		1 => new SpriteElement('#fff', '#000', '&#x25ac;'),
+		2 => new SpriteElement('#fff', '#000', '&#x2584;'),
+        3 => new SpriteElement(null, '#000', '&#x2551;'),
+        5 => new SpriteElement(null, '#000', '&#x2551;'),
+        ],
+        [//running
+			0 => new SpriteElement('#fff', '#000', '&#x2580;'),
+			1 => new SpriteElement('#fff', '#000', '&#x25ac;'),
+			2 => new SpriteElement('#fff', '#000', '&#x2584;'),
+            new SpriteElement(null, '#000', '/'),
+            new SpriteElement(null, '#000', 'X'),
+            new SpriteElement(null, '#000', '&#x005c;'),
+        ],
+        ]);
+
+
+$spr_frog_up = new Sprite([
+	0 => new SpriteElement(null, '#0a0', '&#x2514;'),
+	1 => new SpriteElement('#0a0', '#ff0', '&#x201d;'),
+	2 => new SpriteElement(null, '#0a0', '&#x2518;'),
+	3 => new SpriteElement(null, '#0a0', '<'),
+	4 => new SpriteElement(null, '#080', '&#x2580;'),
+	5 => new SpriteElement(null, '#0a0', '>'),
+	]);
+
+$spr_frog_down = new Sprite([
+	0 => new SpriteElement(null, '#0a0', '<'),
+	1 => new SpriteElement(null, '#080', '&#x2584;'),
+	2 => new SpriteElement(null, '#0a0', '>'),
+	3 => new SpriteElement(null, '#080', '&#x250c;'),
+	4 => new SpriteElement('#0a0', '#ff0', '&#x201e;'),
+	5 => new SpriteElement(null, '#0a0', '&#x2510;'),
+	]);
+
+$frogStriteSet = [
+	SPRI_DEFAULT => $spr_frog_down,
+	SPRI_NORTH => $spr_frog_up,
+	SPRI_SOUTH => $spr_frog_down
+];

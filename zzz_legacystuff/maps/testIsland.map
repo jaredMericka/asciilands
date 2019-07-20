@@ -1,0 +1,366 @@
+<?php
+
+//======================
+// LOAD TILES
+//======================
+require "{$rootPath}content/tiles/basicTerrain.til";
+require "{$rootPath}content/tiles/moai.til";
+require "{$rootPath}content/tiles/brickBuilder.fac";
+require "{$rootPath}content/sprites/trees.spr";
+
+foreach (createStoneAssets('wall', '#456') as $varNAme => $asset) { $$varNAme = $asset; }
+
+// Ok, we don't need to allocate keys anymore but DON'T delete things out of
+// keys once they've been added to the map. If you want to get rid of an asset,
+// replace it will a null. This will free up the slot without skewing all the
+// keys that come after it.
+$this->tileKey = [
+	$t_water,
+
+	$t_cliff,
+	$t_wall_wallSide,
+	$t_grass,
+	$t_shallows,
+	$t_wall_pavers,
+
+	$t_moai_1,
+	$t_moai_2,
+	$t_moai_3,
+	$t_moai_4,
+	$t_moai_5,
+	$t_moai_6,
+	$t_moai_7,
+	$t_moai_8,
+
+	$t_pavers,
+
+	$t_sand,
+	$t_wall_wallTop,
+	$t_bridge,
+	$t_waterFall,
+
+	$t_logWall,
+	$t_logRoof,
+
+	$t_wall_stairs
+	];
+
+//=========================
+// LOAD OBJECTS
+//=========================
+
+// Factory sprites
+//require "{$rootPath}content/sprites/people.fac";
+require "{$rootPath}content/sprites/portal.fac";
+require "{$rootPath}content/sprites/book.fac";
+require "{$rootPath}content/sprites/commonItems.fac";
+
+// Sprite sheets
+//require "{$rootPath}engine/core/coreSprites.spr";
+require "{$rootPath}content/sprites/field.spr";
+require "{$rootPath}content/sprites/treasure.spr";
+require "{$rootPath}content/sprites/tools.spr";
+require "{$rootPath}content/sprites/weapons.spr";
+require "{$rootPath}content/sprites/monsters.spr";
+require "{$rootPath}content/sprites/animals.spr";
+require "{$rootPath}content/sprites/doors.spr";
+
+
+
+// Create factory sprites.
+$spr_gumKey		= spr_key('#edd');
+$spr_bluePortal = spr_portal('#0ff');
+$spr_redPortal	= spr_portal('#f30');
+$spr_credBook	= spr_book('&equiv;', '#a00', '#f90');
+$spr_tottm		= spr_book('&dagger;', '#00a', '#fff');
+$spr_healthPot	= spr_bottle('#f00', '&#x2665;', '#fdd');
+//$spr_healthPot	= spr_bottle();
+
+// This only tells the map how to interpret the .msl file. It simply lays
+// out sprites and sets the canEnter boolean.
+$this->sceneryKey = [
+	new Scenery($spr_bridgeSide, true),
+	new Scenery($spr_bridgeSidePost),
+	new Scenery($spr_fire),
+	new Scenery($spr_fence),
+	new Scenery($spr_sack),
+
+	new Scenery($spr_tree_tl),
+	new Scenery($spr_tree_tm),
+	new Scenery($spr_tree_tr),
+
+	new Scenery($spr_tree_bl),
+	new Scenery($spr_tree_bm),
+	new Scenery($spr_tree_br),
+
+	new Scenery($spr_treeTrunk),
+	new Scenery($spr_treeStump),
+
+	new Scenery($spr_post),
+	new Scenery($spr_fencePost),
+	new Scenery($spr_pine1),
+	new Scenery($spr_pine2),
+	new Scenery($spr_tree),
+	new Scenery($spr_bush),
+	new Scenery($spr_wallCrack),
+	new Scenery($spr_chest),
+	new Scenery($spr_deadTree),
+
+	new Scenery($spr_logCabinJunction),
+];
+
+require "{$rootPath}content/items/banners.php";
+//require "{$rootPath}content/items/weapons.php";
+require "{$rootPath}content/items/stuff.php";
+
+//$itm_helm		= new eqp_hat('Helm', 'Feels pretty sturdy.', new SpriteElement(null, '#ddd', '&#x0a72;'), []);
+//$itm_helm->defence = [DMGDL_CUT => 30, DMGDL_BLUNT => 5, DMG_COLD => 15, DMG_TRAUMA => 10];
+
+
+
+$itm_gumKey		= new Item('Gum key', 'The tag says "Gum key".', $spr_gumKey);
+$itm_credBook	= new itm_textItem('Book of Credits', 'This book contains the names of those who contributed to this world.', $spr_credBook, 'credBook.tex', '#ffd', '#000', 12);
+$itm_tottm		= new itm_textItem('Teachings of the Tortured Man', 'The teachings of the Tortured Man (abridged edition). This is the religios text of the Servants of the Trotured Man.', $spr_tottm, 'tottm.tex', '#ffd', '#000', 12);
+$itm_healthPot	= new itm_healthPotion('Little health potion', $spr_healthPot, 20, 5);
+$itm_healthPot->quantity = 8;
+
+
+//$dude_npc01_sprite = spr_person_rand();
+//$dude_npc02_sprite = spr_person_rand(GND_FEMALE);
+//$dude_npc03_sprite = spr_person_rand();
+//$dude_npc04_sprite = spr_person_rand(GND_FEMALE);
+//$dude_npc05_sprite = spr_person_rand();
+//$dude_npc06_sprite = spr_person_rand();
+//$dude_npc07_sprite = spr_person_rand();
+//$dude_npc08_sprite = spr_person_rand();
+//$dude_npc09_sprite = spr_person_rand(GND_FEMALE);
+//$dude_npc10_sprite = spr_person_rand();
+//$dude_npc11_sprite = spr_person_rand(GND_FEMALE);
+//$dude_npc12_sprite = spr_person_rand();
+//$dude_npc13_sprite = spr_person_rand(GND_FEMALE);
+//$dude_npc14_sprite = spr_person_rand();
+//$dude_npc15_sprite = spr_person_rand();
+//$dude_npc16_sprite = spr_person_rand();
+//$dude_npc17_sprite = spr_person_rand();
+//$dude_npc18_sprite = spr_person_rand(GND_FEMALE);
+//
+//$dude_npc01	= new dude_basicNPC('Strow',	[$dude_npc01_sprite], 5, 4);
+//$dude_npc02	= new dude_basicNPC('Jeddard',	[$dude_npc02_sprite], 5, 7, null, GND_FEMALE);
+//$dude_npc03	= new dude_basicNPC('Gorlos',	[$dude_npc03_sprite], 5, 9);
+//$dude_npc04	= new dude_basicNPC('Fondray',	[$dude_npc04_sprite], 6, 2, null, GND_FEMALE);
+//$dude_npc05	= new dude_basicNPC('Tendra',	[$dude_npc05_sprite], 6, 3);
+//$dude_npc06	= new dude_basicNPC('Monty',	[$dude_npc06_sprite], 6, 7);
+//$dude_npc07	= new dude_basicNPC('Walvar',	[$dude_npc07_sprite], 7, 5);
+//$dude_npc08	= new dude_basicNPC('Preyon',	[$dude_npc08_sprite], 7, 7);
+//$dude_npc09	= new dude_basicNPC('Driata',	[$dude_npc09_sprite], 7, 9, null, GND_FEMALE);
+//$dude_npc10	= new dude_basicNPC('Crossta',	[$dude_npc10_sprite], 8, 4);
+//$dude_npc11	= new dude_basicNPC('Flinos',	[$dude_npc11_sprite], 13, 15, null, GND_FEMALE);
+//$dude_npc12	= new dude_basicNPC('Reesha',	[$dude_npc12_sprite], 8, 9);
+//$dude_npc13	= new dude_basicNPC('Tornara',	[$dude_npc13_sprite], 9, 2, null, GND_FEMALE);
+//$dude_npc14	= new dude_basicNPC('Yinosh',	[$dude_npc14_sprite], 9, 3);
+//$dude_npc15	= new dude_basicNPC('Charka',	[$dude_npc15_sprite], 11, 7);
+//$dude_npc16	= new dude_basicNPC('Krant',	[$dude_npc16_sprite], 10, 5);
+//$dude_npc17	= new dude_basicNPC('Gornorg',	[$dude_npc17_sprite], 13, 17);
+//$dude_npc18	= new dude_basicNPC('Morollo',	[$dude_npc18_sprite], 10, 9, null, GND_FEMALE);
+
+$this->objects = [
+
+	//=====================
+	// PORTALS
+	//=====================
+
+	// INTERNAL
+	new obj_keyPortal('Home -> Peninsula portal',
+		[$spr_bluePortal,
+		SPRI_ACTIVE => $spr_redPortal],
+		15, 15,
+		24, 127, 'testIsland',
+		13, 121, 'testIsland',
+		$itm_gumKey),
+	//new keyPortal($name, $sprite, $n_offset, $w_offset, $teleport_dest_n_offset, $teleport_dest_w_offset, $teleport_dest_map, $key_teleport_dest_n_offset, $key_teleport_dest_w_offset, $key_teleport_dest_map, $key),
+	new obj_portal('Party Island -> Home portal', [$spr_redPortal], 13, 121, 15, 15),
+//
+	new obj_portal('Peninsula -> Home portal', [$spr_bluePortal], 24, 127, 15, 15),
+	new obj_portal('Home -> Bluffs portal', [$spr_bluePortal], 15, 12, 60, 88),
+	new obj_portal('Bluffs -> Home portal', [$spr_bluePortal], 60, 88, 15, 12),
+
+
+	// EXTERNAL
+	new obj_portal('Dreamscape entrance', [$spr_bluePortal], 48, 69, 56, 41, 'dreamscape'),
+	new obj_portal('Bluff cave bottom entrance', [$spr_door_hole], 56, 87, 19, 8, 'bluffCave'),
+	new obj_portal('Bluff cave top entrance', [$spr_hole], 47, 98, 5, 14, 'bluffCave'),
+
+	//=====================
+	// SIGNS
+	//=====================
+	new obj_sign('Wall notice', [$spr_paper], 52, 89, 'You\'re not suposed to be here >:(', '#ffd', '#000'),
+	new obj_sign('North sign', [$spr_sign], 11, 13, 'Welcome to testIsland.map!<br>Go fix the wall!', '#940', '#e95'),
+	new obj_sign('Teleporter sign', [$spr_sign], 47, 67, 'Where does this portal lead?', '#940', '#e95'),
+	new obj_sign('Wall sign', [$spr_sign], 29, 22, 'Lol jks; you can\'t fix the wall!<br>Maybe in an upcoming patch.', '#940', '#e95'),
+	new obj_sign('Wall notice', [$spr_paper], 12, 19, ['NOTICE:<br/>Climbing strictly forbidden!', 'Seriously', 'Don\'t climb it, I mean it.', 'Multipage text successfully demonstrated!'], '#ffd', '#000', 4),
+	new obj_sign('Party Island sign', [$spr_sign], 10, 121, 'Well done on finding your way to Party Island!', '#940', '#e95'),
+
+	//=====================
+	// PUSH OBJECTS
+	//=====================
+	new obj_pushBlock('Banj\'s b\'day box', [$spr_redPresent], 24, 65),
+	new obj_pushBlock('Banj\'s b\'day box', [$spr_redPresent], 16, 15),
+
+    new obj_pushBlock('Wall brick (rolling)', [$spr_wall_brick], 13, 11, true),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 31, 19),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 32, 21),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 34, 31),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 34, 49),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 34, 50),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 35, 51),
+	//new pushBlock('Wall brick', $spr_wall_brick, 33, 54),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 34, 56),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 33, 58),
+	new obj_pushBlock('Wall brick', [$spr_wall_brick], 34, 59),
+
+	new obj_pushBlock('Gift', [$spr_redPresent], 11, 124),
+	//new pushBlock('Gift', $spr_bluePresent, 12, 12),
+	new obj_pushBlock('Gift', [$spr_redPresent], 13, 130),
+	new obj_pushBlock('Gift', [$spr_bluePresent], 11, 117),
+	new obj_pushBlock('Gift', [$spr_redPresent], 7, 122),
+
+	//=====================
+	// COLLECT OBJECTS
+	//=====================
+
+//	new obj_collectible($itm_wep_silverAxe, 13, 16),
+	new obj_collectible($itm_wep_sabre, 15, 20),
+	new obj_collectible($itm_gumKey, 24, 130),
+	new obj_collectible($itm_credBook, 6, 40),
+	new obj_collectible($itm_tottm, 65, 91),
+
+	// Test strip along wall
+	//new collectible($itm_helm, 33, 24),
+//	new obj_collectible($itm_wep_psnBlade, 33, 24),
+//	new obj_collectible($itm_wep_coldBlade, 33, 26),
+//	new obj_collectible($itm_wep_ltnBlade, 33, 28),
+//	new obj_collectible($itm_wep_fireBlade, 33, 30),
+//	new obj_collectible($itm_wep_waterBlade, 33, 32),
+//	new obj_collectible($itm_wep_sharpBlade, 33, 34),
+	//new obj_collectible($itm_bann_oban, 33, 34),
+//	new obj_collectible($itm_bann_tm, 33, 36),
+//	new obj_collectible($itm_bann_sol, 33, 38),
+
+	//new dude_assHole('Billy the douche', spr_person_rand(), 33, 55),
+
+//	new obj_collectible(itm_sword_rand(), 33, 40),
+//	new obj_collectible(itm_sword_rand(), 33, 42),
+//	new obj_collectible(itm_sword_rand(), 33, 44),
+//	new obj_collectible(itm_sword_rand(), 33, 46),
+//	new obj_collectible(itm_wep_rand(), 33, 48),
+//	new obj_collectible(itm_wep_rand(), 33, 50),
+//	new obj_collectible(itm_wep_rand(), 33, 52),
+//	new obj_collectible(itm_wep_rand(), 33, 54),
+
+	new obj_collectible(new itm_money(CUR_GRODOS, 1), 15, 10),
+	new obj_collectible(new itm_money(CUR_FENT, 1), 15, 11),
+	new obj_collectible(new itm_money(CUR_SHARPS, 1), 16, 17),
+	new obj_collectible(new itm_money(CUR_SHARPS, 1), 17, 19),
+
+	new obj_collectible(new itm_money(CUR_VITTIS, 1), 13, 10),
+	new obj_collectible(new itm_money(CUR_VITTIS, 1), 25, 129),
+	new obj_collectible(new itm_money(CUR_GOLD, 1), 24, 131),
+	new obj_collectible(new itm_money(CUR_GOLD, 1), 25, 132),
+
+	new obj_collectible(new itm_money(CUR_FENT, 1), 9, 122),
+	new obj_collectible(new itm_money(CUR_FENT, 1), 10, 123),
+	new obj_collectible(new itm_money(CUR_FENT, 1), 11, 118),
+	new obj_collectible(new itm_money(CUR_FENT, 1), 15, 121),
+	new obj_collectible(new itm_money(CUR_FENT, 1), 15, 122),
+	new obj_collectible(new itm_money(CUR_FENT, 1), 13, 124),
+
+//	$dude_npc01,
+//	$dude_npc02,
+//	$dude_npc03,
+//	$dude_npc04,
+//	$dude_npc05,
+//	$dude_npc06,
+//	$dude_npc07,
+//	$dude_npc08,
+//	$dude_npc09,
+//	$dude_npc10,
+//	$dude_npc11,
+//	$dude_npc12,
+//	$dude_npc13,
+//	$dude_npc14,
+//	$dude_npc15,
+//	$dude_npc16,
+//	$dude_npc17,
+//	$dude_npc18,
+
+	new dude_NPC_basic('Strow',		$frogStriteSet, 5, 4),
+	new dude_NPC_basic('Jeddard',	[], 5, 7, null, GND_FEMALE),
+	new dude_NPC_basic('Gorlos',		[], 5, 9),
+	new dude_NPC_basic('Fondray',	[], 6, 2, null, GND_FEMALE),
+	new dude_NPC_basic('Tendra',		[], 6, 3),
+	new dude_NPC_basic('Monty',		[], 6, 7),
+	new dude_NPC_basic('Walvar',		[], 7, 5),
+	new dude_NPC_basic('Preyon',		[], 7, 7),
+	new dude_NPC_basic('Driata',		[], 7, 9, null, GND_FEMALE),
+	new dude_NPC_basic('Crossta',	[], 8, 4),
+	new dude_NPC_basic('Flinos',		[], 13, 15, null, GND_FEMALE),
+	new dude_NPC_basic('Reesha',		[], 8, 9),
+	new dude_NPC_basic('Tornara',	[], 9, 2, null, GND_FEMALE),
+	new dude_NPC_basic('Yinosh',		[], 9, 3),
+	new dude_NPC_basic('Charka',		[], 11, 7),
+	new dude_NPC_basic('Krant',		[], 10, 5),
+	new dude_NPC_basic('Gornorg',	[], 13, 17),
+	new dude_NPC_basic('Morollo',	[], 10, 9, null, GND_FEMALE),
+
+	new dude_zombie('Zombie',
+		$zombieSpriteSet,
+		22, 13, GND_FEMALE),
+
+	new dude_zombie('Zombie',
+		$zombieSpriteSet,
+		23, 14, GND_MALE),
+
+	new dude_punchBag([$spr_punchBag], 25, 24),
+
+	new dude_NPC_follower('Barney',	[spr_person_rand()] , 24, 9, GND_MALE, 'follower_barney'),
+	new dude_NPC_follower('Sally',	[spr_person_rand(GND_FEMALE)], 25, 9, GND_FEMALE),
+
+	new obj_door('Test door', [SPRI_CLOSED => $spr_doubleDoorClosed, SPRI_OPEN => $spr_doubleDoorOpen], 21, 15),
+
+	new obj_door('Test door', [SPRI_CLOSED => $spr_doubleDoorClosed, SPRI_OPEN => $spr_doubleDoorOpen], 12, 20, $itm_gumKey),
+
+	new obj_collectible(new itm_money(CUR_SHARPS, 1), 12, 20),
+
+//	new obj_chest('Test unlocked chest', [SPRI_CLOSED => $spr_chest, SPRI_OPEN => $spr_chest_open], 25, 126, [$eqp_helm, $itm_tottm]),
+//	new obj_chest('Test locked chest', [SPRI_CLOSED => $spr_chest, SPRI_OPEN => $spr_chest_open], 37, 36, [clone $itm_bann_oban, clone $itm_wep_ltnBlade], $itm_bann_tm),
+
+//	new obj_chest('Barrel', [$spr_barrel], 37, 38, [clone $itm_bann_oban, clone $itm_wep_ltnBlade]),
+
+
+	new obj_collectible(clone $itm_wep_psnBlade,	76, 215),
+	new obj_collectible(clone $itm_wep_coldBlade,	76, 217),
+	new obj_collectible(clone $itm_wep_waterBlade,	76, 219),
+	new obj_collectible(clone $itm_wep_fireBlade,	76, 221),
+	new obj_collectible(clone $itm_wep_ltnBlade,	76, 227),
+	new obj_collectible(clone $itm_wep_sharpBlade,	76, 229),
+
+	new obj_collectible($itm_healthPot,	57, 32),
+
+//	new dude_vendor('Merlin', [spr_person_rand(GND_FEMALE)], 59, 32, GND_FEMALE, 'default',
+//	[
+//		clone $itm_bann_sol, clone $itm_wep_fireBlade, clone $itm_credBook, clone $itm_wep_psnBlade, clone $itm_healthPot
+//	], CUR_FENT),
+
+	new obj_collectible(new itm_money(CUR_FENT, 1), 59, 35),
+	new obj_collectible(new itm_money(CUR_FENT, 2), 59, 37),
+	new obj_collectible(new itm_money(CUR_FENT, 5), 60, 38),
+
+	new obj_portal('Log cabin entrance', [$spr_door_hole], 13, 74, 11, 9, 'logCabin'),
+
+	new dude_basicEnemy('Skeleton', $skeletonSpriteSet, 7, 7),
+
+];
+
+//$GLOBALS['player']->inventory->add($itm_wep_sharpBlade);
+//$GLOBALS['player']->inventory->add($itm_wep_coldBlade);
+//$GLOBALS['player']->inventory->add($itm_wep_fireBlade);

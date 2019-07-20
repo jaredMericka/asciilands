@@ -1,0 +1,51 @@
+<?php
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+	case SPSI_GREETING:
+		$speech[] =
+		[
+			[
+				'Ahh! ',
+				'WHAT? ',
+				'Ah SHIT WHAT? ',
+				'What the FUCK? '
+			],
+			[
+				'Get the FUCK OUT!',
+				'Get your sorry ass out of here!',
+				'Get away from me!'
+			]
+		];
+		break;
+	
+	case SPSI_SAYING_BYE:
+		$speech[] =
+		[
+			[
+				'Great, now FUCK OFF!',
+				'Go! GO!',
+				'Fuck off, asshole!'
+			]
+		];
+		break;
+
+	case SPSI_CONVERSING:
+		$speech[] =
+		[
+			[
+				'Why are you still here? ',
+				'Did you not hear me? ',
+				'Are you retarded? ',
+				'Am I not being clear enough? '
+			],
+			[
+				'I told you to FUCK OFF!',
+				'Get the fuck out of here!'
+			]
+		];
+		break;
+}

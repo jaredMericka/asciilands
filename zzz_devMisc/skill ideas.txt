@@ -1,0 +1,5 @@
+Slash:
+Convert all DMGDL_POINT to 90% as DMGDL_CUT
+
+Lunge:
+Convert all DMGDL_CUT to 90% as DMGDL_POINT

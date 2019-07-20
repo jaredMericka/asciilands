@@ -1,0 +1,63 @@
+<?php
+
+	update_thoughts('The air is cold.');
+
+    //======================
+    // LOAD TILES
+    //======================
+    require "{$rootPath}content/tiles/caves.til";
+
+    $this->viewHeight = 7;
+    $this->viewWidth = 7;
+
+    $this->tileKey = array(
+		$t_rockDarkness,
+
+        $t_rockWall,
+		$t_rockFloor,
+	);
+
+    //=========================
+    // LOAD OBJECTS
+    //=========================
+//	require "{$rootPath}content/sprites/people.fac";
+
+    require "{$rootPath}content/sprites/field.spr";
+    require "{$rootPath}content/sprites/treasure.spr";
+    require "{$rootPath}content/sprites/weapons.spr";
+	require "{$rootPath}content/sprites/tools.spr";
+	require "{$rootPath}content/sprites/monsters.spr";
+
+    // This only tells the map how to interpret the spr_map file. It simply lays
+    // out sprites and sets the canEnter boolean.
+    $this->sceneryKey = [
+		new Scenery($spr_ladder),
+    ];
+
+	require "{$rootPath}content/items/stuff.php";
+
+	$this->objects = array(
+		new obj_portal('Bluff cave ladder', [$spr_ladder], 4, 14, 47, 98, 'testIsland'),
+		new obj_portal('Bluff cave entrace', [$spr_light], 19, 8, 56, 87, 'testIsland'),
+
+		new obj_portal('Bluff cave level 2', [$spr_hole], 7, 5, 18, 51, 'bluffCave_lvl2'),
+
+		new obj_sign('Cave note', [$spr_paper], 12, 8,'Cool, a cave. What do you think of the exit light sprite? I\'m not sure if I like it or not.<br/> -Jared', '#ffd', '#000'),
+
+        //new collectible($obj_lightWand, 10, 14),
+//		new obj_collectible($eqp_torch, 8, 14),
+
+		new dude_zombie('Zombie',
+		[$spr_zombie_m],
+		12, 10, GND_MALE),
+	);
+
+	$this->overlayColour	= '#000';
+	$this->overlayOpacity	= 0.7;
+
+	$this->isDark = true;
+	$this->isUnderground = true;
+
+
+
+

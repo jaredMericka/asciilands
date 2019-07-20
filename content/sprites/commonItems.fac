@@ -1,0 +1,33 @@
+<?php
+
+function spr_key($colour = '#ddd', $headChar = 'o')
+{
+	return new Sprite(
+		array(
+			3 => new SpriteElement(null, $colour, $headChar),
+			new SpriteElement(null, $colour, '&#x000ac;')
+		)
+	);
+}
+
+function spr_bottle($colour = '#6ff', $labelChar = null, $labelColor = '#fff', $topColor = '#952')
+{
+	return new Sprite([
+	1 => new SpriteElement(null, $topColor, '&#x2584;'),
+	3 => new SpriteElement(null, tint($colour, 4), '&#x2590;'),
+	4 => new SpriteElement($colour, $labelColor, $labelChar),
+	5 => new SpriteElement(null, tint($colour, -4), '&#x258c;'),
+	]);
+}
+
+function spr_bucket($bucketColour = '#a62', $contentsColour = '#2af')
+{	
+	return new Sprite([
+	0 => new SpriteElement(null, $bucketColour, '&#x2590;'),
+	1 => new SpriteElement($bucketColour, $contentsColour, '&#x25a0;'),
+	2 => new SpriteElement(null, $bucketColour, '&#x258c;'),
+	3 => new SpriteElement(null, tint($bucketColour, -2), '&#x2590;'),
+	4 => new SpriteElement(tint($bucketColour, -4), null, '&nbsp;'),
+	5 => new SpriteElement(null, tint($bucketColour, -6), '&#x258c;'),
+	]);
+}

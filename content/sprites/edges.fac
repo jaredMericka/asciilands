@@ -1,0 +1,155 @@
+<?php
+
+function createEdges($name, Tile $tile)
+{
+	$edges = [];
+
+	$spe_eastEdge = new SpriteElement(tint($tile->bg, 2, true), tint($tile->bg, 1, true), '&#x2590;');
+	$spe_westEdge = new SpriteElement(tint($tile->bg, 2, true), tint($tile->bg, 1, true), '&#x258c;');
+
+	// If these tinting values stay 0, just get rid of the tinting function.
+	$spe_northEdge = new SpriteElement(null, tint($tile->bg, 2, true), '&#x2580;');
+	$spe_southEdge = new SpriteElement(null, tint($tile->bg, 2, true), '&#x2584;');
+
+
+
+	$edges["scn_{$name}_n"] = new Scenery( new Sprite([
+		0 => $spe_northEdge,
+		1 => $spe_northEdge,
+		2 => $spe_northEdge,
+		]), [DIR_NORTH => TPL_VERTICAL]);
+//		]), [DIR_SOUTH, DIR_EAST, DIR_WEST]);
+
+	$edges["scn_{$name}_s"] = new Scenery( new Sprite([
+		3 => $spe_southEdge,
+		4 => $spe_southEdge,
+		5 => $spe_southEdge,
+		]), [DIR_SOUTH => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_w"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+
+		3 => $spe_westEdge,
+		]), [DIR_WEST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_e"] = new Scenery( new Sprite([
+		2 => $spe_eastEdge,
+
+		5 => $spe_eastEdge,
+		]), [DIR_EAST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_nw"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+		1 => $spe_northEdge,
+		2 => $spe_northEdge,
+
+		3 => $spe_westEdge,
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_ne"] = new Scenery( new Sprite([
+		0 => $spe_northEdge,
+		1 => $spe_northEdge,
+		2 => $spe_eastEdge,
+
+		5 => $spe_eastEdge,
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_EAST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_sw"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+
+		3 => $spe_westEdge,
+		4 => $spe_southEdge,
+		5 => $spe_southEdge,
+		]), [DIR_SOUTH => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_se"] = new Scenery( new Sprite([
+		2 => $spe_eastEdge,
+
+		3 => $spe_southEdge,
+		4 => $spe_southEdge,
+		5 => $spe_eastEdge,
+		]), [DIR_SOUTH => TPL_VERTICAL, DIR_EAST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_ns"] = new Scenery( new Sprite([
+		0 => $spe_northEdge,
+		1 => $spe_northEdge,
+		2 => $spe_northEdge,
+
+		3 => $spe_southEdge,
+		4 => $spe_southEdge,
+		5 => $spe_southEdge,
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_ew"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+		2 => $spe_eastEdge,
+
+		3 => $spe_westEdge,
+		5 => $spe_eastEdge,
+		]), [DIR_EAST => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_nsw"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+		1 => $spe_northEdge,
+		2 => $spe_northEdge,
+
+		3 => $spe_westEdge,
+		4 => $spe_southEdge,
+		5 => $spe_southEdge,
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_nse"] = new Scenery( new Sprite([
+		0 => $spe_northEdge,
+		1 => $spe_northEdge,
+		2 => $spe_eastEdge,
+
+		3 => $spe_southEdge,
+		4 => $spe_southEdge,
+		5 => $spe_eastEdge,
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL, DIR_EAST => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_ewn"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+		1 => $spe_northEdge,
+		2 => $spe_eastEdge,
+
+		3 => $spe_westEdge,
+		5 => $spe_eastEdge,
+		]), [DIR_EAST => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL, DIR_NORTH => TPL_VERTICAL]);
+
+	$edges["scn_{$name}_ews"] = new Scenery( new Sprite([
+		0 => $spe_westEdge,
+		2 => $spe_eastEdge,
+
+		3 => $spe_westEdge,
+		4 => $spe_southEdge,
+		5 => $spe_eastEdge,
+		]), [DIR_EAST => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL]);
+
+	return $edges;
+}
+
+function getSpriteElementFromTile(Tile $tile, $elementNumber, $tint = null)
+{
+	$bg = $tint ? tint($tile->bg, $tint, true) : $tile->bg;
+	$fg = $tint ? tint($tile->fg, $tint, true) : $tile->fg;
+
+	// Static tile - easy
+	if ($tile->static)
+	{
+		return new SpriteElement($bg, $fg,
+			$tile->chars[$elementNumber]);
+	}
+	elseif (isset($tile->scatterDilution))
+	{
+		// Scattered tile - don't even bother trying
+		return new SpriteElement($bg, $fg,
+			$tile->chars[0]);
+	}
+	else
+	{
+		// Random - whatever
+		return new SpriteElement($bg, $fg,
+			$tile->chars[array_rand($tile->chars)]);
+	}
+}

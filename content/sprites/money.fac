@@ -1,0 +1,25 @@
+<?php
+
+function spr_money($colour)
+{
+	$coins = array(
+		new SpriteElement(null, $colour, '.'),
+		new SpriteElement(null, $colour, ':'),
+		new SpriteElement(null, $colour, '&bull;'),
+	);
+
+	$spriteElements = array();
+
+	for ($i = 0; $i <= 5; $i++)
+	{
+		$coinKey = mt_rand(0, 3);
+		if ($coinKey <= 2)
+		{
+			$spriteElements[$i] = $coins[$coinKey];
+		}
+	}
+
+	return new Sprite($spriteElements);
+}
+
+

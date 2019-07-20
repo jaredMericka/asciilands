@@ -1,0 +1,67 @@
+<?php
+
+//======================
+// LOAD TILES
+//======================
+require "{$rootPath}content/tiles/dreamscape.til";
+require "{$rootPath}content/tiles/basicTerrain.til";
+
+$this->tileKey = [
+	$t_void,
+
+	$t_edge,
+	$t_floor,
+    $t_moai_1,
+    $t_moai_2,
+    $t_moai_3,
+    $t_moai_4,
+    $t_moai_5,
+    $t_moai_6,
+    $t_moai_7,
+    $t_moai_8,
+	$t_stairs,
+	$t_water,
+
+	$t_carpet_h,
+	$t_carpet_v,
+];
+
+//=========================
+// LOAD OBJECTS
+//=========================
+require "{$rootPath}content/sprites/field.spr";
+require "{$rootPath}content/sprites/treasure.spr";
+
+require "{$rootPath}content/sprites/portal.fac";
+require "{$rootPath}content/sprites/book.fac";
+
+$spr_bluePortal = spr_portal('#0ff');
+$spr_bookOfSol	= spr_book('&#x263c;', '#037', '#ff4');
+
+// This only tells the map how to interpret the spr_map file. It simply lays
+// out sprites and sets the canEnter boolean.
+$this->sceneryKey = array(
+	new Scenery($spr_fire),
+	new Scenery($spr_torchStand),
+//	new Scenery($spr_diamondStar),
+//	new Scenery($spr_midStar),
+);
+
+$itm_bookOfSol = new Item('Book of Sol', 'This book has all kinds of weird stuffs in it.', $spr_bookOfSol);
+
+$this->objects = array(
+	new obj_portal('Dreamscape south exit', [$spr_bluePortal], 56, 41, 48, 69, 'testIsland'),
+
+	new obj_collectible(new itm_money(CUR_GOLD, 1), 38, 77),
+	new obj_collectible(new itm_money(CUR_GOLD, 1), 37, 77),
+	new obj_collectible(new itm_money(CUR_GOLD, 1), 35, 73),
+	new obj_collectible(new itm_money(CUR_GOLD, 1), 41, 78),
+
+	new obj_collectible($itm_bookOfSol, 10, 27),
+
+	new obj_sign('Dreamscape sign', [$spr_sign], 53, 38, 'WOAH! What is this place?<br>Kul.', '#940', '#e95'),
+
+);
+
+
+

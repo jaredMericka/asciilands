@@ -1,0 +1,69 @@
+<?php
+
+update_thoughts('This place feels familiar.');
+
+    //=========================================
+    // REQUIRE TILE AND SPRITE ASSETS HERE
+    //=========================================
+    require "{$rootPath}content/tiles/basicTerrain.til";
+    require "{$rootPath}content/tiles/indoors.til";
+    require "{$rootPath}content/tiles/swamp.til";
+    require "{$rootPath}content/sprites/field.spr";
+    require "{$rootPath}content/sprites/denseForest.spr";
+    require "{$rootPath}content/tiles/dreamscape.til";
+	
+    $this->tileKey = [
+                $t_darkness,
+                $t_water,
+                $t_waterFall,
+		$t_swamp,
+                $t_wallSide,
+                $t_wallMoss,
+                $t_wallTop,
+                $t_wallFloor,
+                $t_bridge,
+                $t_wallFloorMoss,
+                $t_grass,
+                $t_wallTopMoss
+	];
+
+    // Add scenery objects into this array
+	// to make them available as scenery.
+    $this->sceneryKey = [
+		new Scenery($spr_door_hole),
+                new Scenery($spr_bridgeSide, true),
+                new Scenery($spr_vines1),
+                new Scenery($spr_vines2),
+                new Scenery($spr_vinesShort1),
+                new Scenery($spr_vinesShort2),
+                new Scenery($spr_vinesMixed1),
+                new Scenery($spr_vinesMixed2),
+        
+                new Scenery($spr_fire),
+                new Scenery($spr_torchStand),
+                ];
+
+	$this->objects = [
+		new obj_portal('Top Left Door', [$spr_door_hole], 2, 3, 12, 52, 'denseForest'),
+                new obj_portal('Top Right Door', [$spr_door_hole], 2, 7, 55, 88, 'denseForest'),
+                new obj_portal('Bottom Left Door', [new Sprite([])], 13, 3, 49, 8, 'denseForest'),
+                new obj_portal('Bottom Right Door', [new Sprite([])], 13, 7, 50, 49, 'denseForest'),
+                new obj_portal('Secret Waterfall Passageway', [new Sprite([])], 2, 5, 7, 93, 'denseForest')
+
+	];
+	
+//	update_thoughts('Haven\'t been here before.');
+	
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+	
+        $this->overlayColour	= '#000';
+	$this->overlayOpacity	= 0.4;
+
+//	$this->isDark			= true;
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+
+
+

@@ -1,0 +1,295 @@
+<?php
+
+
+//=========================================<editor-fold desc="Assets Workbench">
+// ASSETS WORKBENCH
+//=========================================
+// Make your assets here. Run factory methods or build
+// esoteric assets up from scratch.
+//=========================================
+
+$common		= new set_common();
+
+$floor		= new set_wood();
+$furniture	= new set_furniture('#310', '#369');
+$walls		= new set_masonry(set_masonry::COL_REDBRICK);
+$faders		= new set_faders('#000');
+$rug		= new set_rug('#383');
+$candles	= new set_candles();
+$stove		= new set_stove();
+
+
+$spr_anvil = new Sprite([
+	[
+		0 => new SpriteElement(null,'#111', '&#x25c4;'),
+		1 => new SpriteElement('#111',  null, '&nbsp;'),
+		2 => new SpriteElement('#111',  null, '&nbsp;'),
+		4 => new SpriteElement(null,'#333', '&#x2580;'),
+		5 => new SpriteElement(null,'#333', '&#x2580;'),
+	],
+]);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Tile Key">
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$faders->t_solid(),
+	$floor->t_planks(),
+
+	$walls->t_smallWall(),
+	$walls->t_smallWall(-1),
+	$walls->t_smallWall_void(),
+	$furniture->t_tableTop(),
+	$rug->t_triangles_b(),
+	$rug->t_triangles_t(),
+	$stove->t_stove_top(),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Scenery Key">
+// SCENERY KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	$furniture->scn_chair_l(),
+	$furniture->scn_chair_r(),
+	$furniture->scn_tableFront_l(),
+	$furniture->scn_tableFront_m(),
+	$furniture->scn_tableFront_r(),
+	$furniture->scn_bed_tl(),
+	$furniture->scn_bed_tr(),
+	$furniture->scn_bed_bl(),
+	$furniture->scn_bed_br(),
+	$furniture->scn_shelf_tl(),
+	$furniture->scn_shelf_ml(),
+	$furniture->scn_shelf_bl(),
+	$furniture->scn_shelf_tr(),
+	$furniture->scn_shelf_mr(),
+	$furniture->scn_shelf_br(),
+
+	$stove->scn_stove_l(),
+	$stove->scn_stove_r(),
+	$stove->scn_saucepan(),
+	$stove->scn_steam(1),
+
+	$rug->scn_trim_l(),
+	$rug->scn_trim_r(),
+
+	null,
+	$furniture->scn_tableHalf_t(),
+
+	$furniture->scn_smallTable(),
+	$furniture->scn_tableHalf_b(),
+
+	$common->scn_archDoor_half('#000'),
+	$common->scn_archDoor_half_l('#000'),
+	$common->scn_archDoor_half_r('#000'),
+//	$candles->scn_candle(set_candles::POS_MIDDLE),
+	$faders->scn_up_2(),
+	new Scenery($spr_anvil),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Assets">
+// MATERIAL ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/materials/uncommon_metals.mat";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Array">
+// MATERIAL ARRAY
+//=========================================
+// Add materials that are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+
+];
+
+$this->materials = array_merge($this->materials, $commonMaterials);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Item Assets">
+// ITEM ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+//require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Workbench">
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+$yirrin_itemMask = new Mask();
+$yirrin_itemMask->materials = [$mat_iron];
+
+$yirrin_saleMask = new Mask();
+$yirrin_saleMask->materials = [$mat_iron];
+$yirrin_saleMask->class = ['eqp_jacket', 'eqp_sword', 'eqp_axe', 'eqp_bar', 'eqp_belt'];
+
+$yirrin = new NPC_vendor('Yirrin',
+	Dude::getDudeSprite(GND_MALE, 'Q', '&Pi;', '#ddd', '#006'),
+	GND_MALE,
+	null,
+	CUR_FENT,
+	[
+		new npci_repair(70, $yirrin_itemMask),
+		new npci_sell($yirrin_itemMask, '5%'),
+		new npci_buy(),
+	],
+	[
+		new eqp_belt(),
+		new eqp_belt(),
+		new eqp_boots(),
+		new eqp_boots(),
+		new eqp_gloves(),
+		new eqp_gloves(),
+		new eqp_gloves(),
+	]
+);
+
+$yirrin->addBehaviour(new obhv_replenishItems($yirrin_saleMask));
+
+$yirrinLocations = ['9:4', '5:6', '6:14', '7:11'];
+$yirrinLocation = $yirrinLocations[array_rand($yirrinLocations)];
+
+$frontDoor = new obj_portal('Yirrin\'s front door', null, 73, 60, MAP_GRUBTOWN);
+$backDoor = new obj_portal('Yirrin\'s back door', null, 67, 60, MAP_GRUBTOWN);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Quest Workbench">
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+$peltMask = new Mask();
+$peltMask->name = 'fox pelt';
+$peltMask->class = ['itm_material'];
+$reward = new qres_giveItem(new itm_money(CUR_FENT, 1));
+
+$tsk_getPelts	= new tsk_itemCount($peltMask, 20, true);
+$tsk_return		= new tsk_talkToNPC($yirrin, 'Ahhh, perfect! These should see us through the frost ahead. The people of Grubtown thank you.');
+
+$helpWithPelts = new Quest('Help with Pelts', 'Yirrin needs 20 fox pelts for emergency blankets to make sure everyone in Grubtown will make it through the winter.',
+	[$tsk_getPelts, $tsk_return],
+	$reward);
+
+$yirrin->speAnnex['peltQuest'] = $helpWithPelts;
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Array">
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+	$yirrinLocation => $yirrin,
+
+	'2:9'	=> clone $backDoor,
+	'2:10'	=> clone $backDoor,
+
+	'15:9'	=> clone $frontDoor,
+	'15:10'	=> clone $frontDoor,
+	'15:11'	=> clone $frontDoor,
+	'15:12'	=> clone $frontDoor,
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Extra Stuff">
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->minimapTop = 0;
+//	$this->minimapLeft = 0;
+//	$this->minimapRight = 100;
+//	$this->minimapBottom = 100;
+
+//	$this->isDark			= true;		// Light objects only affect dark maps
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+//</editor-fold>
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+
+
+$mask = clone $yirrin_itemMask;
+$mask->class = 'eqp_sword';
+
+$player->inventory->add(Equipment::constructFromMask($mask));
+$player->inventory->add(Equipment::constructFromMask($mask));
+$player->inventory->add(Equipment::constructFromMask($mask));
+$player->inventory->add(Equipment::constructFromMask($mask));
+$player->inventory->add(Equipment::constructFromMask($mask));
+$player->inventory->add(Equipment::constructFromMask($mask));
+
+$player->inventory->add(new itm_money(CUR_FENT, 100));

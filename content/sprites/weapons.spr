@@ -1,0 +1,176 @@
+<?php
+
+/*
+
+(x)
+ |
+
+(=)
+ |
+
+())
+ |
+
+[]]
+ |
+
+(=>
+ |
+
+ |
+ T
+
+ |
+*T*
+
+ |
+(T
+
+>|<
+ T
+
+o¬
+
+ ^
+ |
+
+-->
+
++-
+
+(U)
+ |
+
+ */
+
+$slm_silverAxeLeft = new SpriteElement(null, '#ddd', '(');
+$slm_silverAxeRight = new SpriteElement(null, '#ddd', ')');
+$slm_silverX = new SpriteElement(null, '#bbb', 'X');
+$slm_silverHandle = new SpriteElement(null, '#bbb', '&#x02551;');
+
+$spr_silverAxe = new Sprite(
+        array(
+            $slm_silverAxeLeft, $slm_silverX, $slm_silverAxeRight,
+            4 => $slm_silverHandle
+            )
+        );
+
+$slm_sword_3 = new SpriteElement(null, '#ddd', '+');
+$slm_sword_4 = new SpriteElement(null, '#ddd', '&mdash;');
+
+$spr_sword = new Sprite(
+        array(
+            3 => $slm_sword_3,$slm_sword_4
+            )
+        );
+
+$gold = '#efa';
+$silver = '#ddd';
+
+$slm_swordBlade		= new SpriteElement(null, $silver, '&#x02502;');
+$slm_goldSabreGuard = new SpriteElement(null, $gold, '(');
+$slm_goldHilt		= new SpriteElement(null, $gold, 'T');
+
+$spr_sabre =	new Sprite(array(1 => $slm_swordBlade, 3 => $slm_goldSabreGuard, $slm_goldHilt));
+
+
+//$slm_ltn_1			= new SpriteElement(null, '#0df', '&mdash;');
+//$slm_ltn_2			= new SpriteElement(null, '#0df', '>');
+//$slm_ltn_3			= new SpriteElement(null, '#0df', '<');
+//$slm_ltn_hilt		= new SpriteElement(null, '#aaf', '&#x0166;');
+//
+//$spr_ltnBlade	= new Sprite([
+//	[$slm_ltn_2, $slm_swordBlade, $slm_ltn_3, 4 => $slm_ltn_hilt],
+//	[$slm_ltn_1, $slm_swordBlade, $slm_ltn_1, 4 => $slm_ltn_hilt],
+//]);
+//
+//$slm_fire_1			= new SpriteElement(null, '#fc0', ')');
+//$slm_fire_2			= new SpriteElement(null, '#fc0', '(');
+//$slm_fire_hilt		= new SpriteElement(null, '#faa', '&#x0166;');
+//
+//$spr_fireBlade	= new Sprite([
+//	[$slm_fire_2, $slm_swordBlade, $slm_fire_2, 4 => $slm_fire_hilt],
+//	[$slm_fire_1, $slm_swordBlade, $slm_fire_1, 4 => $slm_fire_hilt],
+//]);
+//
+//$slm_psn_1			= new SpriteElement(null, '#0d0', '&deg;');
+//$slm_psn_2			= new SpriteElement(null, '#0d0', '&bull;');
+//$slm_psn_3			= new SpriteElement(null, '#0d0', 'o');
+//$slm_psn_hilt		= new SpriteElement(null, '#afa', '&#x0166;');
+//
+//$spr_psnBlade	= new Sprite([
+//	[$slm_psn_1, $slm_swordBlade, $slm_psn_2, 4 => $slm_psn_hilt],
+//	[$slm_psn_2, $slm_swordBlade, $slm_psn_3, 4 => $slm_psn_hilt],
+//	[$slm_psn_3, $slm_swordBlade, $slm_psn_2, 4 => $slm_psn_hilt],
+//	[$slm_psn_2, $slm_swordBlade, $slm_psn_1, 4 => $slm_psn_hilt],
+//]);
+//
+//$slm_cold_1			= new SpriteElement(null, '#ddf', '*');
+//$slm_cold_2			= new SpriteElement(null, '#ddf', '+');
+//$slm_cold_3			= new SpriteElement(null, '#ddf', '.');
+//$slm_cold_hilt		= new SpriteElement(null, '#aaf', '&#x0166;');
+//
+//$spr_coldBlade	= new Sprite([
+//	[$slm_cold_1, $slm_swordBlade, $slm_cold_3, 4 => $slm_cold_hilt],
+//	[$slm_cold_2, $slm_swordBlade, 4 => $slm_cold_hilt],
+//	[$slm_cold_3, $slm_swordBlade, $slm_cold_1, 4 => $slm_cold_hilt],
+//	[1=> $slm_swordBlade, $slm_cold_2, 4 => $slm_cold_hilt],
+//]);
+//
+//$slm_wtr_1			= new SpriteElement(null, '#8af', '&deg;');
+//$slm_wtr_2			= new SpriteElement(null, '#8af', '&bull;');
+//$slm_wtr_3			= new SpriteElement(null, '#8af', '.');
+//$slm_wtr_hilt		= new SpriteElement(null, '#aaf', '&#x0166;');
+//
+//$spr_wtrBlade	= new Sprite([
+//	[$slm_wtr_3, $slm_swordBlade, $slm_wtr_1, 4 => $slm_wtr_hilt],
+//	[$slm_wtr_2, $slm_swordBlade, 4 => $slm_wtr_hilt],
+//	[$slm_wtr_1, $slm_swordBlade, $slm_wtr_3, 4 => $slm_wtr_hilt],
+//	[1=> $slm_swordBlade, $slm_wtr_2, 4 => $slm_wtr_hilt],
+//]);
+
+
+
+
+function spr_wepon()
+{
+	$wep_left_chars		= ['<', '(', '[', '-', '=', '&#x03a3;'];
+	$wep_right_chars	= ['>', ')', ']', '-', '=', 'D'];
+	$wep_mid_chars		= ['V', 'X', 'U', 'x', 'v', 'u'];
+	$wep_mid_colours	= ['#bbb', '#a72', '#ddd'];
+	$wep_metal_colours	= ['#fff', '#ccc', '#aaa', '#ffd', '#fd8'];
+
+	$metalColour = $wep_metal_colours[array_rand($wep_metal_colours)];
+
+	return new Sprite([
+		new SpriteElement(null, $metalColour, $wep_left_chars[array_rand($wep_left_chars)]),
+		new SpriteElement(null, $wep_mid_colours[array_rand($wep_mid_colours)], $wep_mid_chars[array_rand($wep_mid_chars)]),
+		new SpriteElement(null, $metalColour, $wep_right_chars[array_rand($wep_right_chars)]),
+		4 => new SpriteElement(null, $wep_mid_colours[array_rand($wep_mid_colours)], '|')
+	]);
+}
+
+function spr_sword()
+{
+	$bladeChars = ['&#x007c;', '&#x2502;', '&#x2320;', '&#x2193;', ')'];
+	$hiltChars	= ['T', 'I', '&#x0166;', '&#x2020;'];
+	$guardChars = [null, null, '('];
+
+	$bladeColours	= ['#fff', '#ffd', '#ddf', '#ddd'];
+	$hiltColours	= ['#fff', '#fa2', '#aaa'];
+
+	$bladeChar	= $bladeChars[array_rand($bladeChars)];
+	$hiltChar	= $hiltChars[array_rand($hiltChars)];
+	$guardChar	= $guardChars[array_rand($guardChars)];
+
+	$bladeColour	= $bladeColours[array_rand($bladeColours)];
+	$hiltColour		= $hiltColours[array_rand($hiltColours)];
+
+	if ($guardChar) $guardColour = (mt_rand(0, 1) ? $bladeColour : $hiltColour);
+
+	return new Sprite([
+		1 => new SpriteElement(null, $bladeColour, $bladeChar),
+		3 => ($guardChar ? new SpriteElement(null, $guardColour, $guardChar) : null),
+		4 => new SpriteElement(null, $hiltColour, $hiltChar)
+	]);
+}

@@ -1,0 +1,538 @@
+<?php
+
+//=========================================
+// TILES
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/tiles/basicTerrain.til";
+require "{$rootPath}content/tiles/brickBuilder.fac";
+//require "{$rootPath}content/tiles/caves.til";
+//require "{$rootPath}content/tiles/dreamscape.til";
+//require "{$rootPath}content/tiles/indoors.til";
+//require "{$rootPath}content/tiles/moai.til";
+//require "{$rootPath}content/tiles/swamp.til";
+
+foreach (createStoneAssets('menagerie', '#553') as $varNAme => $asset) { $$varNAme = $asset; }
+foreach (createStoneAssets('ice', '#5df') as $varNAme => $asset) { $$varNAme = $asset; }
+foreach (createStoneAssets('stone', '#888') as $varNAme => $asset) { $$varNAme = $asset; }
+
+//=========================================
+// SPRITES
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/sprites/animals.spr";
+//require "{$rootPath}content/sprites/book.fac";
+require "{$rootPath}content/sprites/commonItems.fac";
+//require "{$rootPath}content/sprites/cow.spr";
+//require "{$rootPath}content/sprites/denseForest.spr";
+//require "{$rootPath}content/sprites/doors.spr";
+require "{$rootPath}content/sprites/fencing.spr";
+require "{$rootPath}content/sprites/field.spr";
+require "{$rootPath}content/sprites/furniture.spr";
+//require "{$rootPath}content/sprites/money.fac";
+//require "{$rootPath}content/sprites/monsters.spr";
+//require "{$rootPath}content/sprites/people.fac";
+require "{$rootPath}content/sprites/portal.fac";
+//require "{$rootPath}content/sprites/sword.fac";
+//require "{$rootPath}content/sprites/tools.spr";
+require "{$rootPath}content/sprites/treasure.spr";
+require "{$rootPath}content/sprites/trees.spr";
+require "{$rootPath}content/sprites/weapons.spr";
+require "{$rootPath}content/sprites/materials.spr";
+require "{$rootPath}content/sprites/edges.fac";
+require "{$rootPath}content/sprites/spiderWebs.php";
+
+$portal = spr_portal('#0ff');
+
+foreach (createEdges('cliff', $t_cliff) as $varNAme => $asset) { $$varNAme = $asset; }
+foreach (createEdges('managerie', $t_menagerie_wallSide) as $varNAme => $asset) { $$varNAme = $asset; }
+
+//=========================================
+// MATERIALS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/materials/basicFabrics.mat";
+require "{$rootPath}content/materials/basicMetals.mat";
+require "{$rootPath}content/materials/basicWoods.mat";
+
+
+//=========================================
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$t_water,
+	$t_water->tint(),
+	$t_shallows,
+	$t_shallows->tint(),
+	$t_sand,
+	$t_sand->tint(),
+	$t_grass,
+	$t_grass->tint(),
+	$t_bridge,
+	$t_bridge->tint(),
+
+	$t_menagerie_pavers,
+	$t_menagerie_pavers->tint(),
+	$t_menagerie_wallSide,
+	$t_menagerie_wallSide->tint(),
+	$t_menagerie_wallTop,
+	$t_menagerie_wallTop->tint(),
+	$t_menagerie_stairs,
+	$t_menagerie_stairs->tint(),
+
+	$t_tableTop,
+	$t_tableTop->tint(),
+
+	$t_menagerie_wallSide_o,
+	$t_menagerie_wallSide_o->tint(),
+	$t_menagerie_wallTop_o,
+	$t_menagerie_wallTop_o->tint(),
+
+	$t_cliff,
+	$t_cliff->tint(),
+];
+
+
+//=========================================
+// SPRITE KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	new Scenery($spr_spikeFenceBase, TPL_HIGHOBSTACLE),
+	new Scenery($spr_spikeFenceBase_half, TPL_HIGHOBSTACLE),
+	new Scenery($spr_spikeFenceTop_horiz, TPL_HIGHOBSTACLE),
+	new Scenery($spr_spikeFenceTop_vert, TPL_HIGHOBSTACLE),
+	new Scenery($spr_bridgeSide),
+	new Scenery($spr_bridgeSidePost, TPL_HIGHOBSTACLE),
+	new Scenery($spr_post, TPL_HIGHOBSTACLE),
+//	new Scenery($spr_menagerie_paverSide, true),
+	$scn_menagerie_paverSide,
+	new Scenery($spr_tableFront_l, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tableFront_m, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tableFront_r, TPL_HIGHOBSTACLE),
+	$scn_managerie_nw,
+	$scn_managerie_n,
+	$scn_managerie_ne,
+	$scn_managerie_w,
+	$scn_managerie_e,
+	$scn_managerie_sw,
+	$scn_managerie_s,
+	$scn_managerie_se,
+	$scn_cliff_nw,
+	$scn_cliff_n,
+	$scn_cliff_ne,
+	$scn_cliff_w,
+	$scn_cliff_e,
+	$scn_cliff_sw,
+	$scn_cliff_s,
+	$scn_cliff_se,
+	new Scenery($spr_treeStump, TPL_HIGHOBSTACLE),
+	new Scenery($spr_treeTrunk, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tree_tl, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tree_tm, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tree_tr, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tree_bl, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tree_bm, TPL_HIGHOBSTACLE),
+	new Scenery($spr_tree_br, TPL_HIGHOBSTACLE),
+	$scn_cliff_ns,
+	$scn_cliff_ew,
+	$scn_cliff_ewn,
+	$scn_cliff_ews,
+	$scn_cliff_nse,
+	$scn_cliff_nsw,
+	new Scenery($spr_web_nw),
+	new Scenery($spr_web_ne),
+	new Scenery($spr_web_sw),
+	new Scenery($spr_web_se),
+];
+
+
+//=========================================
+// MATERIAL ARRAY
+//=========================================
+// Add materials are are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+	$mat_iron,
+	$mat_gold,
+	$mat_silver,
+	$mat_steel,
+	$mat_canvas,
+	$mat_leather,
+	$mat_hide,
+	$mat_fineSilk,
+	$mat_redWood,
+	$mat_oak,
+	$mat_cypress,
+	$mat_cedar,
+];
+
+//=========================================
+// WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+require "{$rootPath}content/items/weapons.php";
+require "{$rootPath}content/items/stuff.php";
+require "{$rootPath}content/dudes/enemies.php";
+
+$spr_classicPot	= spr_bottle('#f00', '&#x2665;', '#fdd');
+$spr_yummyTonic	= spr_bottle('#55f', 'Y', '#fff');
+$spr_poison	= spr_bottle('#909', 'P', '#0f0');
+
+$itm_classicHealthPot	= new itm_healthPotion('Classic health potion', $spr_classicPot, 20, 5);
+$itm_yummyTonic			= new itm_healthPotion('Yummy tonic', $spr_yummyTonic, 10, 8);
+$itm_poison				= new itm_healthPotion('Noxious poison', $spr_poison, -50, 5, 'Why would I have so much of this?');
+
+$itm_classicHealthPot->quantity = 20;
+$itm_yummyTonic->quantity = 20;
+$itm_poison->quantity = 20;
+
+//$GLOBALS['player']->inventory->add($itm_classicHealthPot);
+//$GLOBALS['player']->inventory->add($itm_yummyTonic);
+//$GLOBALS['player']->inventory->add($itm_poison);
+
+$bigGolem =	new dude_golem($mat_hide, true);
+$littleGolem =	new dude_golem($mat_hide);
+//$golemConst = new ObjectConstituent($golem->getSpriteSet());
+
+//console_var_dump($golemConst);
+
+//$golemConst->owner = $golem;
+//$golem->constituents[0][1] = $golemConst;
+
+$giantSpider = new dude_giantSpider();
+
+$pathDude = new dude_NPC_basic('Path Dude', [], GND_MALE, 'pathDude');
+
+$pathDudePath = [
+	[DIR_SOUTH, 6],
+	[DIR_WEST, 2],
+	[DIR_NORTH, 6],
+	[DIR_EAST, 2],
+];
+
+$pathDude->addBehaviourExclusive(new obhv_moveAlongPath(0.4, $pathDudePath));
+
+$iceBrick	= new obj_pushBlock('Ice Brick', [$spr_ice_brick], null, 1);
+$pushBrick	= new obj_pushBlock('Leftover Brick', [$spr_menagerie_brick]);
+
+//$skeleton	= new dude_basicEnemy('Skeleton', $skeletonSpriteSet, $DSs_skeleton);
+$skeleton	= new dude_skeleton();
+
+$skeleton->level = 2;
+
+$zombie		= new dude_zombie('Zombie', $zombieSpriteSet, null, $DSs_zombie);
+
+$dennardWares = [
+	clone $itm_classicHealthPot,
+	new eqp_sword($this->level),
+	new eqp_sword($this->level),
+	new eqp_shield($this->level),
+	new eqp_shield($this->level),
+	new eqp_gloves($this->level),
+	new eqp_bar($this->level),
+	new eqp_boots($this->level),
+];
+
+$dennardCole = new dude_NPC_vendor('Dennard Cole', [], GND_MALE, null, $dennardWares, CUR_FENT);
+
+$steaks = new nvitm_rawSteak();
+$steaks->quantity = 8;
+$meatChest = new obj_chest('Meat Chest', $chestSpriteSet,
+		[
+			$steaks
+		]);
+
+//$grubTownPortal = new obj_portal('Grub Town Portal', [spr_portal('#0ff')], 172, 206, 'grubTown');
+//$grubTownPortal = new obj_portal('Grub Town Portal', [spr_portal('#0ff')], 172, 206, MAP_OLDGRUBTOWN);
+
+//$cookingFire = new obj_chest('Fire', [$spr_fire]);
+//$cookingFire->inventory->TFI = TFI_FIRE;
+
+//=========================================
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Kill the golem family
+$golemKillCompleteSpeech = 'Brilliant work! So tired of those fucking golems. They smell like shit and their grunting gets so annoying after a while. Piles of rocks are much less offensive. I had some cash put away for whoever got rid of them so looks like it\'s yours! Enjoy!';
+
+$golemKillReward = new qres_giveItem(new itm_money(CUR_FENT, 5));
+
+$golemKillTasks = [
+	new tsk_itemCount(new Mask($itm_wep_coldBlade, ['class']), 1),
+	[
+		new tsk_killDude(new Mask($littleGolem, ['name']), 3),
+		new tsk_killDude(new Mask($bigGolem, ['name']), 1),
+	],
+	new tsk_talkToNPC($dennardCole, $golemKillCompleteSpeech),
+];
+
+$golemKillQuest = new Quest(
+	'Golem scourge',
+	'These golems are getting out of hand. Help Dennard out by killing them.',
+	$golemKillTasks,
+	$golemKillReward
+	);
+
+//$GLOBALS['player']->addQuest($golemKillQuest);
+$dennardCole->speAnnex['qst_golem'] = $golemKillQuest;
+
+//=========================================
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// Sometimes it will make sense to instatiate the object outside the array
+// then refer to it inside the array; that's cool.
+//=========================================
+
+
+$this->objects = [
+
+	'72:61'		=>	new dude_punchBag(72, 61),
+
+	'55:66'		=>	new obj_sign('Menagerie Note', $spr_paper, ['Welcome to the Debug Menagerie!', 'Things are different here.', 'Time is ilinear.'], '#ffd', '#000', 4),
+	'60:80'		=>	new obj_sign('Shop Sign', $spr_paper, ['This premesis is under constant visual surveillance<br><br> - Denard Cole'], '#ffd', '#000'),
+	'92:42'		=>	new obj_sign('Sign', $spr_sign, ['Debug bluffs'], '#b50', '#e95'),
+
+	'55:56'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'47:64'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'60:45'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'47:93'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'55:72'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'60:72'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'77:72'		=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'52:132'	=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+
+	'40:28'	=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'40:32'	=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'40:36'	=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'40:40'	=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+	'40:44'	=>	new obj_door('Menagerie gate', $spikeGateSpriteSet),
+
+	'35:28'	=>	clone $skeleton,
+	'35:32'	=>	clone $littleGolem,
+	'35:36'	=>	clone $bigGolem,
+	'35:40'	=>	clone $giantSpider,
+	'35:44'	=>	new dude_ghost(DMG_COLD),
+//	'35:44'	=>	clone $zombie,
+
+	'50:49'	=>	clone $skeleton,
+	'51:46'	=>	clone $skeleton,
+	'48:45'	=>	clone $skeleton,
+	'50:41'	=>	clone $skeleton,
+	'51:59'	=>	clone $skeleton,
+
+//	'49:55'	=>	new dude_basicNPC('Lennard', [], GND_MALE),
+
+//	new dude_basicEnemy('Golem', $golemSpriteSet, 52, 75, $DSs_golem),
+	'49:83'		=>	$bigGolem,
+	'51:79'		=>	clone $littleGolem,
+	'51:75'		=>	clone $littleGolem,
+	'52:68'		=>	clone $littleGolem,
+
+	'47:133'	=>	$giantSpider,
+	'50:65'		=>	$pathDude,
+
+	'49:56'	=>	clone $pushBrick,
+	'51:54'	=>	clone $pushBrick,
+	'49:45'	=>	clone $pushBrick,
+	'51:43'	=>	clone $pushBrick,
+
+	'61:54'	=>	clone $zombie,
+	'62:55'	=>	clone $zombie,
+	'61:57'	=>	clone $zombie,
+	'62:59'	=>	clone $zombie,
+	'61:60'	=>	clone $zombie,
+	'62:61'	=>	clone $zombie,
+
+	'62:41'	=>	new dude_NPC_basic('Aaron',		[], GND_MALE	),
+	'63:42'	=>	new dude_NPC_basic('Jared',		[], GND_MALE	),
+	'63:44'	=>	new dude_NPC_basic('Nathan',		[], GND_MALE	),
+	'62:46'	=>	new dude_NPC_basic('Jeanette',	[], GND_FEMALE	),
+	'62:47'	=>	new dude_NPC_basic('Peter',		[], GND_MALE	),
+	'65:46'	=>	new dude_NPC_basic('Casey',		[], GND_FEMALE	),
+	'62:51'	=>	new dude_NPC_basic('Uli',		[], GND_MALE	),
+	'61:52'	=>	new dude_NPC_basic('Maddy',		[], GND_FEMALE	),
+
+	'62:43'	=>	new obj_pushBlock('Leftover Brick', [$spr_menagerie_brick]),
+	'64:51'	=>	new obj_pushBlock('Leftover Brick', [$spr_menagerie_brick]),
+
+	////////////////////////////////////
+	// Store room tables
+	////////////////////////////////////
+
+	'63:69'	=>	new obj_collectible($itm_wep_coldBlade),
+	'63:71'	=>	new obj_collectible($itm_wep_fireBlade),
+	'63:73'	=>	new obj_collectible($itm_wep_ltnBlade),
+	'63:75'	=>	new obj_collectible($itm_wep_psnBlade),
+	'63:77'	=>	new obj_collectible($itm_wep_sharpBlade),
+	'63:79'	=>	new obj_collectible($itm_wep_waterBlade),
+
+	'63:83'	=>	new obj_collectible(new eqp_gloves(10)),
+	'63:85'	=>	new obj_collectible(new eqp_belt(10)),
+	'63:87'	=>	new obj_collectible(new eqp_jacket(10)),
+	'63:89'	=>	new obj_collectible(new eqp_boots(10)),
+
+	'61:78'	=>	new obj_chest('Supplies Chest', $chestSpriteSet,
+		[
+			new itm_money(CUR_FENT, mt_rand(1, 5)),
+			new itm_money(CUR_GOLD, mt_rand(1, 5)),
+			new itm_money(CUR_GRODOS, mt_rand(1, 5)),
+			clone $itm_yummyTonic,
+			clone $itm_classicHealthPot,
+		]),
+
+//	'66:68' => $itm_b
+
+	////////////////////////////////////
+	// Grassy area
+	////////////////////////////////////
+
+	'72:54' => $meatChest,
+//	'72:56' => $cookingFire,
+	'72:56' => new obj_fire(),
+
+	'92:27'	=>	new obj_chest('Island Chest', $chestSpriteSet,
+		[
+			new itm_money(CUR_FENT, mt_rand(10, 20)),
+			new itm_money(CUR_GOLD, mt_rand(10, 20)),
+			new itm_money(CUR_GRODOS, mt_rand(10, 20)),
+			new itm_money(CUR_SHARPS, mt_rand(10, 20)),
+			clone $itm_classicHealthPot,
+		]),
+
+	'61:82'	=>	$dennardCole,
+	'61:85'	=>	new dude_NPC_vendor('Hectre Cole', [], GND_MALE, null, [], CUR_GRODOS),
+
+	'76:25'	=>	new obj_portal('Bluff Portal', $portal, 90, 28),
+	'90:28'	=>	new obj_portal('Island Portal', $portal, 76, 25),
+
+	'69:62'	=>	new dude_NPC_follower('Barney', [], GND_MALE, 'follower_barney'),
+
+	'86:57'	=>	clone $iceBrick,
+	'70:52'	=>	clone $iceBrick,
+	'86:51'	=>	clone $pushBrick,
+	'92:61'	=>	clone $pushBrick,
+	'75:59'	=>	clone $pushBrick,
+	'70:51'	=>	clone $pushBrick,
+	'88:60'	=>	clone $pushBrick,
+
+//	'68:55' => $grubTownPortal,
+
+];
+
+//
+
+$fetchQuestTasks = [
+	new tsk_itemCount(new Mask($itm_classicHealthPot, ['class']), 3, false),
+	new tsk_itemCount(new Mask($itm_wep_fireBlade, ['class', 'name']), 2, false),
+	new tsk_talkToNPC($dennardCole, 'Good job on doing that crap!'),
+];
+
+$fetchQuest = new Quest('Fetch Quest', 'Time to go and get some stuff!', $fetchQuestTasks);
+
+//$failTask = new tsk_killDude($bigGolem, ['class', 'name'], 1);
+//$failTask->failureCondition = true;
+
+$getQuestTasks = [
+	[
+//		$failTask,
+		new tsk_itemCount(new Mask($itm_wep_coldBlade, ['class', 'name']), 2, false),
+		new tsk_itemCount(new Mask($itm_wep_fireBlade, ['class']), 6, false)
+	],
+	[
+		new tsk_itemCount(new Mask($itm_yummyTonic, ['class']), 3, false),
+		new tsk_itemCount(new Mask($itm_wep_ltnBlade, ['name']), 2, false),
+		new tsk_itemCount(new Mask($itm_wep_waterBlade, ['class']), 5, false)
+	],
+];
+
+$cashPrize = new itm_money(CUR_SHARPS, mt_rand(8, 12));
+$reward = new qres_giveItem($cashPrize);
+$reward2 = new qres_heal();
+$penalty = new qres_giveItem($itm_wep_waterBlade);
+
+$getQuest = new Quest('Get Quest', 'Time to go and get some other stuff concurrently!', $getQuestTasks, [$reward, $reward2], $penalty);
+
+//$skel = new dude_basicEnemy('Skeleton', $skeletonSpriteSet, 0, 0, $DSs_skeleton);
+//$zomb = new dude_zombie('Zombie', $zombieSpriteSet, 0, 0, GND_MALE, $DSs_zombie);
+//
+//$killQuestTasks = [
+//	new tsk_killDude($zomb, ['class', 'DMGs'], 5),
+//	new tsk_killDude($skel, ['class', 'name'], 3),
+//	new tsk_killDude($golem, ['class', 'name'], 1),
+//];
+//
+//$killQuest = new Quest('Debug quest', 'Better kill that golemn etc', $killQuestTasks);
+
+$GLOBALS['player']->addQuest($fetchQuest);
+$GLOBALS['player']->addQuest($getQuest);
+//$GLOBALS['player']->addQuest($killQuest);
+
+$player->addSkill(new skl_teleport());
+$player->addSkill(new skl_heal());
+
+
+
+//=========================================
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->isDark			= true;
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

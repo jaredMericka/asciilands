@@ -1,0 +1,26 @@
+<?php
+//
+$t_mud			= new Tile('#963', array('&nbsp;','&nbsp;', '.','~'));
+$t_muddyWater	= new Tile('#c95', array('&nbsp;','&nbsp;', '~'), false);
+//$t_waterFall	= new Tile('#44e', array('&nbsp;','|'), false);
+//
+//
+//$t_shallows		= new Tile('#88b', array('.',':','&nbsp;','&nbsp;'), true, -1);
+//$t_sand			= new Tile('#ec8', array(':', '.'), true, -2);
+//$t_longGrass	= new Tile('#262', array('\\', '/', '('), true, 1);
+$t_longGrass	= new Tile('#262', array('|', '&#x2320;', '&nbsp;'), true, 1);
+//$t_longGrassMud	= new Tile('#963', array('\\', '/', '('), true, '#262');
+$t_longGrassMud	= new Tile('#963', array('|', '&#x2320;', '&nbsp;'), true, '#262');
+$t_otherGrass	= new Tile('#672', ['v', 'V', 'w', 'W'], true, 1);
+//$t_bridge		= new Tile('#962', array('&#x0251C;', '&#x02524;', '&#x02502;', '&#x02502;', '&#x0251C;', '&#x02524;'), true, -2);
+//$t_pavers		= new Tile('#986', array('L', '_', 'L', 'L', 'L', '_'), true, -2);
+//
+//$t_wallFloor	= new Tile('#99a', array('L', '_', 'L', 'L', 'L', '_'), true, -2);
+//
+//$t_wallTop		= new Tile('#789', array('L', '_','_','_', 'I', '_', ), false);
+//
+//$t_wallSide		= new Tile('#456', array('_', 'I', '_', 'L', '_','_'), false);
+//$t_cliff		= new Tile('#863', array('&nbsp;','_','/','/','&#x005c;','&nbsp;'), false);
+//$t_cliffLadder		= new Tile('#863', array('&#x0251C;','&#x02500','&#x02524','&#x0251C;','&#x02500','&#x02524'), true, '#aaa');
+//
+//$t_wallStairs		= new Tile('#789', array('&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'), true, -2);

@@ -1,0 +1,37 @@
+<?php
+
+$slm_lightWandTop1 = new SpriteElement(null, '#ff9', '&#x263C;');
+$slm_lightWandTop2 = new SpriteElement(null, '#ff9', '&#x25CB;');
+$slm_lightWandHandle = new SpriteElement(null, '#fff', '&#x2502;');
+
+$spr_lightWand =  new Sprite([
+    [1 => $slm_lightWandTop1, 4 => $slm_lightWandHandle],
+    [1 => $slm_lightWandTop2, 4 => $slm_lightWandHandle]
+    ]);
+
+$spr_torch = new Sprite([
+	[
+		1 => new SpriteElement(null, '#f91', '&#x25bc;'),
+		4 => new SpriteElement(null, '#ffa', '|')
+	],
+	[
+		1 => new SpriteElement(null, '#f91', '&#x2666;'),
+		4 => new SpriteElement(null, '#ffa', '|')
+	],
+]);
+
+$spr_punchBag = new Sprite([
+	new SpriteElement(null, "#ccc", '&#x250c;'),
+	new SpriteElement(null, "#ccc", '&#x252c;'),
+	new SpriteElement(null, "#ccc", '&#x2510;'),
+
+	new SpriteElement(null, "#ccc", '&#x2502;'),
+	new SpriteElement('#f22', "#800", '&#x2590;'),
+	new SpriteElement(null, "#ccc", '&#x2502;'),
+]);
+
+$spr_broom = new Sprite([
+	1 => new SpriteElement(null, '#753', '&#x2502;'),
+	4 => new SpriteElement('#753', '#a94', '&#x2584;'),
+	]);
+

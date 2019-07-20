@@ -1,0 +1,1215 @@
+<?php
+
+// CAUTION!
+// NEVER EDIT A REQ FILE!
+
+
+class set_common extends AssetSet
+{
+	public function t_solid ($colour, $TPL = null)
+	{
+		$TPL = $TPL ? $TPL : TPL_LOWOBSTACLE;
+
+		return new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], $TPL, $colour);
+	}
+
+	public function t_stairs ($col_top, $col_front = null)
+	{
+		$col_front = $col_front ? $col_front : tint($col_top, -3);
+
+		return new Tile($col_top, ['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_STAIRS, $col_front);
+	}
+
+	public function scn_archDoor ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_half,
+			1 => $slm_full,
+			2 => $slm_half,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_l ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_half,
+			1 => $slm_full,
+			2 => $slm_full,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_r ($colour)
+	{
+		$slm_half = new SpriteElement(null, $colour, '&#x2584;');
+		$slm_full = new SpriteElement($colour, null, '&nbsp;');
+
+		return new Scenery(new Sprite([
+			0 => $slm_full,
+			1 => $slm_full,
+			2 => $slm_half,
+			3 => $slm_full,
+			4 => $slm_full,
+			5 => $slm_full,
+		]));
+	}
+
+	public function scn_archDoor_half ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2584;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2584;'),
+		]));
+	}
+
+	public function scn_archDoor_half_l ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement(null, $colour, '&#x2584;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]));
+	}
+
+	public function scn_archDoor_half_r ($colour)
+	{
+		return new Scenery(new Sprite([
+			3 => new SpriteElement($colour, null, '&nbsp;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x2584;'),
+		]));
+	}
+
+	public function scn_fade_up_t ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2591;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2592;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2592;'),
+		]), null, true);
+	}
+
+	public function scn_fade_up_b ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2593;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement($colour,  null, '&nbsp;'),
+			4 => new SpriteElement($colour,  null, '&nbsp;'),
+			5 => new SpriteElement($colour,  null, '&nbsp;'),
+		]), null, true);
+	}
+
+	public function scn_fade_down_t ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour,  null, '&nbsp;'),
+			1 => new SpriteElement($colour,  null, '&nbsp;'),
+			2 => new SpriteElement($colour,  null, '&nbsp;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2593;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_fade_down_b ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2592;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2592;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2591;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+
+	public function scn_fade_right ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_fade_left ($colour)
+	{
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+}
+
+
+
+class set_masonry extends AssetSet
+{
+	public $colour;
+
+	const TINT_TOP				= 3;
+	const TINT_PAVERS			= 3;
+	const TINT_PAVERS_SIDE		= 0;
+//	const TINT_PAVERS			= 5;
+//	const TINT_PAVERS_SIDE		= 2;
+	const TINT_DARK				= -2;
+	const TINT_VOID				= -5;
+
+	const COL_DREAMSCAPE		= '#737';
+	const COL_REDBRICK			= '#832';
+	const COL_DIRT				= '#972';
+
+	public function __construct($colour = null)
+	{
+		$this->colour = $this->getColour('#654', $colour);
+	}
+
+	function t_bigWall ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		return new Tile($colour, ['_', 'I', '_', 'L', '_', '_'], TPL_VERTICAL);
+	}
+
+	function t_bigWall_top ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['L', '_', '_', '_', 'I', '_'], TPL_HIGHOBSTACLE);
+	}
+
+	function t_bigWall_void ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+		return new Tile($colour, ['L', '_', '_', '_', 'I', '_'], TPL_HIGHOBSTACLE);
+	}
+
+	function t_smallWall ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		return new Tile($colour, ['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1);
+	}
+
+	function t_smallWall_top ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1);
+	}
+
+	function t_smallWall_void ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+		return new Tile($colour, ['&#x2584;', '&#x2584;', '&nbsp;', '&nbsp;', '&#x2584;', '&#x2584;'], TPL_VERTICAL, -1);
+	}
+
+	function t_pavers ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_PAVERS);
+		return new Tile($colour, ['L', '_', 'L', 'L', 'L', '_'], TPL_OPENGROUND, -1);
+	}
+
+	function t_stairs ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour_top = tint($colour, self::TINT_PAVERS);
+		return new Tile($colour_top, ['&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'], TPL_OPENGROUND, $colour);
+	}
+
+	function t_stonyFloor ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['O','(',')','(',')','O'], TPL_OPENGROUND, -1);
+	}
+
+	function t_cliff ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		return new Tile($colour, ['&nbsp;','_','/','/','&#x005c;','&nbsp;'], TPL_VERTICAL);
+	}
+
+	function t_cliff_top ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+		return new Tile($colour, ['/','&nbsp;','&nbsp;','&nbsp;', '_', '/'], TPL_OPENGROUND);
+	}
+
+	function t_cliff_void ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+		return new Tile($colour, ['/','&#x005c;','&nbsp;','&#x005c;','&nbsp;','&nbsp;'], TPL_WALL);
+	}
+
+	function t_cairn_w ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2588;','&nbsp;','&nbsp;','&#x258c;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE, $col_dark);
+	}
+
+	function t_cairn ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&nbsp;','&nbsp;','&nbsp;','&nbsp;', '&nbsp;', '&nbsp;'], TPL_HIGHOBSTACLE, $col_dark);
+	}
+
+	function t_cairn_s ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&nbsp;','&nbsp;','&nbsp;','&#x2584;', '&#x2588;', '&#x2588;'], TPL_HIGHOBSTACLE, $col_dark);
+	}
+
+	function t_tiles ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_TOP);
+
+
+		return new Tile($colour, ['&#x2588;','&#x258c;','&nbsp;','&nbsp;', '&#x2590;', '&#x2588;'], TPL_OPENGROUND, -1);
+	}
+
+	function spr_brick ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+		$col_top = tint($colour, self::TINT_TOP);
+
+		return new Sprite([
+			new SpriteElement($col_top, $col_dark, 'L'),
+			new SpriteElement($col_top, $col_dark, '_'),
+			new SpriteElement($col_top, $col_dark, '_'),
+			new SpriteElement($colour, $col_top, 'L'),
+			new SpriteElement($colour, $col_top, '_'),
+			new SpriteElement($colour, $col_top, '_')
+		]);
+	}
+
+	function scn_paverSide ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_PAVERS_SIDE);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $colour, '&#x2580;'),
+			1 => new SpriteElement(null, $colour, '&#x2580;'),
+			2 => new SpriteElement(null, $colour, '&#x2580;'),
+		]));
+	}
+
+	function scn_rock ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_dark, '&#x2590;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($col_dark, null, '&nbsp;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_rock_sign ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_dark, '&#x2590;'),
+			1 => new SpriteElement($colour, $col_dark, '&#x2261;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($col_dark, null, '&nbsp;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_tl ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			1 => new SpriteElement(null, $col_dark, '&#x2590;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $col_dark, '&#x2584;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x258c;'),
+			5 => new SpriteElement($colour, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_bl ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($col_dark, null, '&nbsp;'),
+			1 => new SpriteElement($col_dark, $col_dark, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $col_dark, '&#x2580;'),
+			4 => new SpriteElement($col_dark, null, '&nbsp;'),
+			5 => new SpriteElement($col_dark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_tr ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($colour, null, '&nbsp;'),
+			4 => new SpriteElement($colour, null, '&nbsp;'),
+			5 => new SpriteElement(null, $colour, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_bigRock_br ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			4 => new SpriteElement($colour, $col_dark, '&#x2584;'),
+			5 => new SpriteElement(null, $col_dark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_cairn_l ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null, $col_dark, '&#x2584;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement($colour, null, '&nbsp;'),
+			3 => new SpriteElement(null, $col_dark, '&#x2580;'),
+			4 => new SpriteElement($col_dark, null, '&nbsp;'),
+			5 => new SpriteElement($col_dark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_cairn_r ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour, null, '&nbsp;'),
+			1 => new SpriteElement($colour, null, '&nbsp;'),
+			2 => new SpriteElement(null, $colour, '&#x2584;'),
+			3 => new SpriteElement($col_dark, $colour, '&nbsp;'),
+			4 => new SpriteElement($col_dark, null, '&nbsp;'),
+			5 => new SpriteElement(null, $col_dark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE);
+	}
+
+	function scn_crack_t ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+
+		return new Scenery(new Sprite([
+			[
+				1 => new SpriteElement(null, $colour, '&#x258c;'),
+				4 => new SpriteElement($colour, null, '&nbsp;'),
+			],
+		]));
+	}
+
+	function scn_crack_b ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$colour = tint($colour, self::TINT_VOID);
+
+		return new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null, $colour, '&#x2590;'),
+				1 => new SpriteElement($colour, null, '&nbsp;'),
+				2 => new SpriteElement(null, $colour, '&#x258c;'),
+				3 => new SpriteElement($colour, null, '&nbsp;'),
+				4 => new SpriteElement($colour, null, '&nbsp;'),
+				5 => new SpriteElement(null, $colour, '&#x258c;'),
+			],
+		]));
+	}
+}
+
+
+class set_edges extends AssetSet
+{
+	public $colour;
+
+	public function __construct($colour)
+	{
+		$this->colour = $colour;
+	}
+
+	function scn_n ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		]), [DIR_NORTH => TPL_VERTICAL]);
+	}
+
+	function scn_s ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		3 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		]), [DIR_SOUTH => TPL_VERTICAL]);
+	}
+
+	function scn_w ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		]), [DIR_WEST => TPL_VERTICAL]);
+	}
+
+	function scn_e ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_EAST => TPL_VERTICAL]);
+	}
+
+	function scn_nw ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+	}
+
+	function scn_ne ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_EAST => TPL_VERTICAL]);
+	}
+
+	function scn_sw ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		]), [DIR_SOUTH => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+	}
+
+	function scn_se ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		3 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_SOUTH => TPL_VERTICAL, DIR_EAST => TPL_VERTICAL]);
+	}
+
+	function scn_ns ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+
+		3 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL]);
+	}
+
+	function scn_ew ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_EAST => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+	}
+
+	function scn_nsw ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL]);
+	}
+
+	function scn_nse ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		3 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_NORTH => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL, DIR_EAST => TPL_VERTICAL]);
+	}
+
+	function scn_ewn ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_EAST => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL, DIR_NORTH => TPL_VERTICAL]);
+	}
+
+	function scn_ews ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]), [DIR_EAST => TPL_VERTICAL, DIR_WEST => TPL_VERTICAL, DIR_SOUTH => TPL_VERTICAL]);
+	}
+
+	function scn_nswe ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery( new Sprite([
+		0 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		1 => new SpriteElement(null, tint($colour, 2, true), '&#x2580;'),
+		2 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+
+		3 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x258c;'),
+		4 => new SpriteElement(null, tint($colour, 2, true), '&#x2584;'),
+		5 => new SpriteElement(tint($colour, 2, true), tint($colour, 1, true), '&#x2590;'),
+		]),	TPL_VERTICAL);
+	}
+}
+
+class set_faders extends AssetSet
+{
+	public $colour;
+
+	public function __construct($colour)
+	{
+		$this->colour = $colour;
+	}
+
+	public function t_solid ($colour = null, $TPL = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+		$TPL = $TPL ? $TPL : TPL_LOWOBSTACLE;
+
+		return new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], $TPL, $colour);
+	}
+
+	public function scn_down_1 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2591;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2592;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2592;'),
+		]), null, true);
+	}
+
+	public function scn_down_2 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2593;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement($colour,  null, '&nbsp;'),
+			4 => new SpriteElement($colour,  null, '&nbsp;'),
+			5 => new SpriteElement($colour,  null, '&nbsp;'),
+		]), null, true);
+	}
+
+	public function scn_up_1 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement($colour,  null, '&nbsp;'),
+			1 => new SpriteElement($colour,  null, '&nbsp;'),
+			2 => new SpriteElement($colour,  null, '&nbsp;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2593;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_up_2 ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2592;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2592;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2591;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+
+	public function scn_right ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2591;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2593;'),
+			3 => new SpriteElement(null,$colour, '&#x2591;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2593;'),
+		]), null, true);
+	}
+
+	public function scn_left ($colour = null)
+	{
+		$colour = $this->getColour($this->colour, $colour);
+
+		return new Scenery(new Sprite([
+			0 => new SpriteElement(null,$colour, '&#x2593;'),
+			1 => new SpriteElement(null,$colour, '&#x2592;'),
+			2 => new SpriteElement(null,$colour, '&#x2591;'),
+			3 => new SpriteElement(null,$colour, '&#x2593;'),
+			4 => new SpriteElement(null,$colour, '&#x2592;'),
+			5 => new SpriteElement(null,$colour, '&#x2591;'),
+		]), null, true);
+	}
+}
+
+
+class set_waypoint extends AssetSet
+{
+	public $col_tiles;
+	public $col_portal;
+
+	const TINT_DARK = -1;
+	const TINT_FRONT = -2;
+
+	public function __construct($col_tiles = null, $col_portal = null)
+	{
+		$this->col_tiles = $col_tiles ? $col_tiles : '#874';
+		$this->col_portal = $col_portal ? $col_portal : '#0ff';
+	}
+
+	////////////////////////////////////////////
+	//
+	//		WAYPOINT
+	//
+	////////////////////////////////////////////
+
+	public function t_wp_tl ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2554;', '&#x2550;', '&#x2550;', '&#x2551;', '&nbsp;', '&#x2554;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	public function t_wp_t ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2550;', '&#x2550;', '&#x2550;', '&#x2550;', '&#x2550;', '&#x2550;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	public function t_wp_tr ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2550;', '&#x2550;', '&#x2557;', '&#x2557;', '&nbsp;', '&#x2551;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	public function t_wp_l ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2551;', '&nbsp;', '&#x2551;', '&#x2551;', '&nbsp;', '&#x2551;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	public function t_wp_bl ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x2551;', '&nbsp;', '&#x255a;', '&#x255a;', '&#x2550;', '&#x2550;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	public function t_wp_br ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['&#x255d;', '&nbsp;', '&#x2551;', '&#x2550;', '&#x2550;', '&#x255d;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	public function t_wp_mid ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+		return new Tile($colour, ['/', '&#x203e;', '&#x005c;', '&#x005c;', '_', '/'], TPL_OPENGROUND, $col_dark);
+	}
+
+	////////////////////////////////////////////
+	//
+	//		CHECKPOINT
+	//
+	////////////////////////////////////////////
+
+	public function t_cp ($colour = null)
+	{
+		$colour = $this->getColour($this->col_tiles, $colour);
+		$col_dark = tint($colour, self::TINT_DARK);
+
+//		return new Tile($colour, ['&#x2554;', '&#x2550;', '&#x2557;', '&#x255a;', '&#x2550;', '&#x255d;'], TPL_OPENGROUND, $col_dark);
+		return new Tile($colour, ['&#x25b2;', '&#x25bc;', '&#x25b2;', '&#x25bc;', '&#x25b2;', '&#x25bc;'], TPL_OPENGROUND, $col_dark);
+	}
+
+	function scn_tile_side ($colour = null)
+	{
+		$colour	= $this->getColour($this->col_tiles, $colour);
+		$colour	= tint($colour, self::TINT_FRONT);
+
+		$slm = new SpriteElement(null, $colour, '&#x2580;');
+
+		return new Scenery(new Sprite([
+			0 => $slm,
+			1 => $slm,
+			2 => $slm,
+		]));
+	}
+
+	public function spr_portal ($colour = null)
+	{
+		$colour = $this->getColour($this->col_portal, $colour);
+
+		$slm_fs = new SpriteElement(null, $colour, '/');
+		$slm_bs = new SpriteElement(null, $colour, '&#x005c;');
+		$slm_rp = new SpriteElement(null, $colour, ')');
+		$slm_lp = new SpriteElement(null, $colour, '(');
+		$slm_b = new SpriteElement(null, $colour, '|');
+
+		return new Sprite([
+			[
+				$slm_fs, $slm_rp, $slm_bs,
+				$slm_bs, $slm_lp, $slm_fs
+			],
+			[
+				$slm_fs, $slm_b, $slm_bs,
+				$slm_bs, $slm_b, $slm_fs
+			],
+			[
+				$slm_fs, $slm_lp, $slm_bs,
+				$slm_bs, $slm_rp, $slm_fs
+			],
+			[
+				$slm_fs, $slm_b, $slm_bs,
+				$slm_bs, $slm_b, $slm_fs
+			]
+		]);
+	}
+}
+
+
+class obj_fire extends obj_chest
+{
+	const SPR_LEFT	= 1;
+	const SPR_MID	= 2;
+	const SPR_RIGHT	= 3;
+
+	public function __construct()
+	{
+		parent::__construct('Fire', [self::getSprite()]);
+
+		$this->inventory->TFI = TFI_FIRE;
+	}
+
+	static function getSprite ($SPR = null)
+	{
+		$slm_fire_lp = new SpriteElement(null, '#f40', '(');
+		$slm_fire_rp = new SpriteElement(null, '#f40', ')');
+//		$slm_fire_us = new SpriteElement(null, '#f40', '_');
+		$slm_fire_us = new SpriteElement(null, '#f40', '&#x039b;');
+
+		switch ($SPR)
+		{
+
+			case null: return new Sprite(
+				[
+					[
+						0 => $slm_fire_lp,
+						1 => $slm_fire_lp,
+						3 => $slm_fire_lp,
+						4 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+						5 => $slm_fire_rp
+					],
+					[
+						1=>$slm_fire_rp,
+						2 => $slm_fire_rp,
+						3 => $slm_fire_lp,
+						4 => new SpriteElement(null, '#fa0', '&#x2666;'),
+						5 => $slm_fire_rp
+					],
+				]);
+
+			case self::SPR_LEFT: return new Sprite(
+				[
+					[
+						0 => $slm_fire_lp,
+						1 => $slm_fire_lp,
+						2 => $slm_fire_us,
+						3 => $slm_fire_lp,
+						4 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+					],
+					[
+						1=>$slm_fire_rp,
+						2 => $slm_fire_rp,
+						3 => $slm_fire_lp,
+						4 => new SpriteElement(null, '#fa0', '&#x2666;'),
+					],
+				]);
+
+			case self::SPR_MID: return new Sprite(
+				[
+					[
+						0 => $slm_fire_lp,
+						1 => $slm_fire_lp,
+						2 => $slm_fire_us,
+						4 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+					],
+					[
+						0 => $slm_fire_us,
+						1 => $slm_fire_rp,
+						2 => $slm_fire_rp,
+						4 => new SpriteElement(null, '#fa0', '&#x2666;'),
+					],
+				]);
+
+			case self::SPR_RIGHT: return new Sprite(
+				[
+					[
+						0 => $slm_fire_lp,
+						1 => $slm_fire_lp,
+						4 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+						5 => $slm_fire_rp,
+					],
+					[
+						0 => $slm_fire_us,
+						1 => $slm_fire_rp,
+						2 => $slm_fire_rp,
+						4 => new SpriteElement(null, '#fa0', '&#x2666;'),
+						5 => $slm_fire_rp,
+					],
+				]);
+		}
+	}
+}
+
+class obj_chest extends AsObject
+{
+	public $inventory;
+
+	public function __construct($name, $spriteSet, $items = [], $keyItem = null)
+	{
+		$this->inventory = new Inventory($this);
+
+		if ($items) foreach ($items as $item) { $this->inventory->add($item); }	// TERRIBLE
+		$this->inventory->locked = true; // Chest has to be locked AFTER items are added.
+
+		$this->addBehaviour(
+			new obhv_lootable($keyItem, $spriteSet)
+		);
+
+		parent::__construct($name, $spriteSet, LAYER_CHEST);
+	}
+}
+
+class obj_checkpointWaypoint extends AsObject
+
+{
+	public $permitEntryDefault = false;
+
+	public function __construct()
+	{
+		$this->addBehaviour(new obhv_checkpointWaypoint);
+
+		parent::__construct('Checkpoint Waypoint', self::getSprite(), LAYER_PORTAL);
+	}
+
+	static function getSprite ($colour = '#0ff')
+	{
+		$slm_u = new SpriteElement(null, $colour, '&#x25b2;');
+		$slm_d = new SpriteElement(null, $colour, '&#x25bc;');
+
+		return new Sprite([
+			[
+				0 => $slm_u,
+				5 => $slm_d,
+			],
+			[
+				1 => $slm_d,
+				4 => $slm_u,
+			],
+			[
+				2 => $slm_u,
+				3 => $slm_d,
+			],
+		]);
+	}
+}
+
+
+class obhv_checkpointWaypoint extends ObjectBehaviour
+{
+	public function __construct()
+	{
+		$this->onReaction = true;
+
+		parent::__construct('Checkpoint Waypoint', BHVK_TELEPORT);
+	}
+
+	public function onReaction(AsObject $instigator, $DIR)
+	{
+		global $player;
+
+		if ($instigator !== $player) return;
+
+		$this->owner->permitEntry = false;
+		update_sound(SND_TELEPORT);
+		$player->move($player->checkpoint_n_offset, $player->checkpoint_w_offset, $player->checkpoint_MAP);
+	}
+}
+
+
+class obj_waypoint extends AsObject
+
+{
+	public $WP;
+
+	public $dest_n_offset;
+	public $dest_w_offset;
+	public $MAP;
+
+	public $attainable;
+
+	public $permitEntryDefault = true;
+
+	public function __construct($WP, $dest_n_offset, $dest_w_offset, $MAP, $attainable = false)
+	{
+		$this->WP = $WP;
+		$this->dest_n_offset = $dest_n_offset;
+		$this->dest_w_offset = $dest_w_offset;
+		$this->MAP = $MAP;
+		$this->attainable = $attainable;
+
+		parent::__construct('Waypoint', [$this->getSprite()], LAYER_PORTAL);
+
+		$this->addBehaviour(new obhv_waypoint($WP, $dest_n_offset, $dest_w_offset, $MAP, $attainable));
+	}
+
+	public function getSprite($colour = '#0ff')
+	{
+		$slm_fs = new SpriteElement(null, $colour, '/');
+		$slm_bs = new SpriteElement(null, $colour, '&#x005c;');
+		$slm_rp = new SpriteElement(null, $colour, ')');
+		$slm_lp = new SpriteElement(null, $colour, '(');
+		$slm_b = new SpriteElement(null, $colour, '|');
+
+		return new Sprite([
+			[
+				$slm_fs, $slm_rp, $slm_bs,
+				$slm_bs, $slm_lp, $slm_fs
+			],
+			[
+				$slm_fs, $slm_b, $slm_bs,
+				$slm_bs, $slm_b, $slm_fs
+			],
+			[
+				$slm_fs, $slm_lp, $slm_bs,
+				$slm_bs, $slm_rp, $slm_fs
+			],
+			[
+				$slm_fs, $slm_b, $slm_bs,
+				$slm_bs, $slm_b, $slm_fs
+			]
+		]);
+	}
+}
+
+
+class obhv_waypoint extends ObjectBehaviour
+{
+	public $WP;
+
+	public $n_offset;
+	public $w_offset;
+	public $MAP;
+
+	public $attainable;
+
+	public function __construct($WP, $n_offset, $w_offset, $MAP, $attainable = false)
+	{
+		$this->onReaction = true;
+		$this->onIdle = true;
+
+		$this->WP = $WP;
+		$this->n_offset = $n_offset;
+		$this->w_offset = $w_offset;
+		$this->MAP = $MAP;
+		$this->attainable = $attainable;
+
+		parent::__construct('Waypoint', BHVK_TELEPORT);
+	}
+
+	public function onIdle () { global $player; $this->owner->invisible = !isset($player->WPs[$this->WP]); }
+
+	public function onReaction(AsObject $instigator, $DIR)
+	{
+		global $player;
+		global $view;
+
+		if ($instigator !== $player) return true;
+
+		console_echo("Hitting a waypoint with destination {$this->n_offset}:{$this->w_offset}:{$this->MAP}", '#fff');
+
+		if (isset($instigator->WPs[$this->WP]))
+		{
+			console_echo('Player has waypoint! Let\'s go!', '#afa');
+
+			$this->owner->permitEntry = false;
+			$player->move($this->n_offset, $this->w_offset, $this->MAP);
+			$view->forceUpdate = true;
+			update_sound(SND_TELEPORT);
+			return false;
+		}
+		elseif ($this->attainable)
+		{
+			console_echo('Player has just gotten waypoint! Let\'s go!', '#ffa');
+			$player->WPs[$this->WP] = time();
+
+			$this->owner->permitEntry = false;
+			$player->move($this->n_offset, $this->w_offset, $this->MAP);
+			$view->forceUpdate = true;
+			update_sound(SND_TELEPORT);
+			update_sound(SND_NEWWAYPOINT);
+			return false;
+		}
+		else { console_echo('Player hasn\'t got this waypoint!', '#faa'); }
+		return true;
+	}
+}

@@ -1,0 +1,61 @@
+<?php
+
+    //=========================================
+    // REQUIRE TILE AND SPRITE ASSETS HERE
+    //=========================================
+    require "{$rootPath}content/tiles/basicTerrain.til";
+    require "{$rootPath}content/tiles/caves.til";
+    require "{$rootPath}content/sprites/denseForest.spr";
+    require "{$rootPath}content/sprites/field.spr";
+
+    $this->tileKey = [
+		$t_rockDarkness,
+                $t_rockWall,
+		$t_rockFloor,
+                $t_grass,
+                $t_water,
+                $t_waterFall,
+                $t_bridge,
+                $t_rockLadder,
+                $t_rockStairs
+	];
+
+
+    // Add scenery objects into this array
+	// to make them available as scenery.
+    $this->sceneryKey = [
+		new Scenery($spr_bridgeSide, true),
+        
+                new Scenery($spr_toadstool),
+                new Scenery($spr_toadleft),
+                new Scenery($spr_toadmid),
+                new Scenery($spr_toadright),
+                new Scenery($spr_toadstalk),
+                
+                new Scenery($spr_vines1),
+                new Scenery($spr_vines2),
+                new Scenery($spr_vinesShort1),
+                new Scenery($spr_vinesShort2),
+                new Scenery($spr_vinesMixed1),
+                new Scenery($spr_vinesMixed2),
+    ];
+
+	$this->objects = [
+	new obj_portal('Secret Outpost', [new Sprite([])], -1, 2, 70, 54, 'denseForest'),  
+        new obj_portal('BottomLeftTemple', [new Sprite([])], 6, 46, 81, 73, 'denseForest'), 
+	];
+	
+//	update_thoughts('Haven\'t been here before.');
+	
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+	$this->viewHeight = 10;
+        $this->viewWidth = 10;
+
+	$this->overlayColour	= '#000';
+	$this->overlayOpacity	= 0.7;
+
+	$this->isDark = true;
+	$this->isUnderground = true;
+
+

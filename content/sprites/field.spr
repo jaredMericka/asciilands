@@ -1,0 +1,177 @@
+<?php
+
+/*
+    ===
+    ===
+
+    =|=
+    =|=
+
+     |
+     |
+*/
+$slm_fence_0 = new SpriteElement(null, '#630', '&#x02550;');
+$slm_fence_1 = new SpriteElement('#950', '#630', '&#x02590;');
+
+$spr_fence = new Sprite([
+	$slm_fence_0,$slm_fence_0,$slm_fence_0,
+	$slm_fence_0,$slm_fence_0,$slm_fence_0
+]);
+
+$spr_fencePost = new Sprite([
+	$slm_fence_0,$slm_fence_1,$slm_fence_0,
+	$slm_fence_0,$slm_fence_1,$slm_fence_0
+]);
+
+$spr_post = new Sprite([
+	1 => $slm_fence_1,
+	4 => $slm_fence_1
+]);
+
+$slm_bridgeSide = new SpriteElement(null, '#630', '&#x2580;');
+
+$spr_bridgeSide = new Sprite([
+	$slm_bridgeSide, $slm_bridgeSide, $slm_bridgeSide
+]);
+
+$spr_bridgeSidePost = new Sprite([
+	$slm_bridgeSide, new SpriteElement('#630', null, '&nbsp;'), $slm_bridgeSide,
+	4 => $slm_fence_1
+]);
+
+/*
+    L__
+    L__
+ */
+
+
+$slm_wallBrick_0 = new SpriteElement('#789', '#abc', 'L');
+$slm_wallBrick_1 = new SpriteElement('#789', '#abc', '_');
+$slm_wallBrick_3 = new SpriteElement('#456', '#789', 'L');
+$slm_wallBrick_4 = new SpriteElement('#456', '#789', '_');
+
+$spr_wallBrick = new Sprite([
+	$slm_wallBrick_0, $slm_wallBrick_1, $slm_wallBrick_1,
+	$slm_wallBrick_3, $slm_wallBrick_4, $slm_wallBrick_4
+]);
+
+$spr_lightBrick = new Sprite([
+	new SpriteElement('#5ff', '#fff', 'L'),
+	new SpriteElement('#5ff', '#fff', '_'),
+	new SpriteElement('#5ff', '#fff', '_'),
+
+	new SpriteElement('#2aa', '#5ff', 'L'),
+	new SpriteElement('#2aa', '#5ff', '_'),
+	new SpriteElement('#2aa', '#5ff', '_'),
+]);
+
+/*
+    \/
+     \/
+ */
+
+$slm_wallCrack_b = new SpriteElement(null, '#789', '/');
+$slm_wallCrack_f = new SpriteElement(null, '#789', '&#x005c;');
+
+$spr_wallCrack = new Sprite([
+	$slm_wallCrack_f, $slm_wallCrack_b,
+	3 => $slm_wallCrack_b
+]);
+
+/*
+     W
+    (!)
+ */
+
+$slm_sack_1 = new SpriteElement(null, '#b50', 'W');
+$slm_sack_3 = new SpriteElement(null, '#b50', '(');
+$slm_sack_4 = new SpriteElement('#b50', '#ff8', '!');
+$slm_sack_5 = new SpriteElement(null, '#b50', ')');
+
+$spr_sack = new Sprite([
+	1 => $slm_sack_1,
+	3 => $slm_sack_3, $slm_sack_4, $slm_sack_5
+]);
+
+$slm_sign_0 = new SpriteElement('#b50', null, '&nbsp;');
+$slm_sign_1 = new SpriteElement('#b50', '#e95', '&equiv;');
+$slm_sign_post = new SpriteElement('#b50', '#940', '&#x02590;');
+
+$spr_sign = new Sprite([
+	$slm_sign_0,$slm_sign_1,$slm_sign_0,
+	4 => $slm_sign_post
+]);
+
+$slm_paper = new SpriteElement('#ffd','#000', '&equiv;');
+
+$spr_paper = new Sprite([1 => $slm_paper]);
+
+$slm_half_b = new SpriteElement(null, '#000', '&#x02584;');
+$slm_half_t = new SpriteElement(null, '#000', '&#x02580;');
+$slm_full = new SpriteElement('#000', '#000', '&nbsp;');
+
+$spr_door_hole = new Sprite([
+	$slm_half_b, $slm_full, $slm_half_b,
+	$slm_full, $slm_full, $slm_full
+]);
+
+$spr_hole = new Sprite([
+	$slm_half_b, $slm_full, $slm_half_b,
+	$slm_half_t, $slm_full, $slm_half_t
+]);
+
+$spr_waterGap = new Sprite([
+	3 => $slm_half_b,
+	4 => $slm_half_b,
+	5 => $slm_half_b,
+]);
+
+$slm_ladder_0 = new SpriteElement(null, '#aaa', '&#x0251C;');
+$slm_ladder_1 = new SpriteElement(null, '#aaa', '&#x02500;');
+$slm_ladder_2 = new SpriteElement(null, '#aaa', '&#x02524;');
+
+$spr_ladder = new Sprite([
+	$slm_ladder_0, $slm_ladder_1, $slm_ladder_2,
+	$slm_ladder_0, $slm_ladder_1, $slm_ladder_2,
+]);
+
+$slm_light_25 = new SpriteElement(null, '#ffa', '&#x02591;');
+$slm_light_50 = new SpriteElement(null, '#ffa', '&#x02592;');
+
+$spr_light = new Sprite(
+		array(
+			$slm_light_25, $slm_light_25, $slm_light_25,
+			$slm_light_50, $slm_light_50, $slm_light_50,
+		));
+
+$slm_fire_lp = new SpriteElement(null, '#f40', '(');
+$slm_fire_rp = new SpriteElement(null, '#f40', ')');
+$slm_fire_trig = new SpriteElement(null, '#fa0', '&#x25b2;');
+$slm_fire_diam = new SpriteElement(null, '#fa0', '&#x2666;');
+
+$spr_fire = new Sprite(
+		array(
+			array(
+				$slm_fire_lp, $slm_fire_lp,
+				3 => $slm_fire_lp, $slm_fire_trig, $slm_fire_rp
+			),
+			array(
+				1=>$slm_fire_rp, $slm_fire_rp,
+				3 => $slm_fire_lp, $slm_fire_diam, $slm_fire_rp
+			),
+		));
+
+$spr_torchStand = new Sprite([
+	1 => new SpriteElement(null, '#eee', '&#x2551;'),
+	4 => new SpriteElement(null, '#eee', '&#x2568;'),
+]);
+
+
+$spr_cactus = new Sprite([
+	0 => new SpriteElement(null, '#090', '&#x258c;'),
+	1 => new SpriteElement('#090', '#5c5', ':'),
+	2 => new SpriteElement(null, '#090', '&#x2590;'),
+	3 => new SpriteElement(null, '#090', '&#x2580;'),
+	4 => new SpriteElement('#090', '#5c5', ':'),
+	5 => new SpriteElement(null, '#090', '&#x2580;'),
+	]);

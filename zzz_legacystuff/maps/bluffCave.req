@@ -1,0 +1,684 @@
+<?php
+
+// CAUTION!
+// NEVER EDIT A REQ FILE!
+
+
+class obj_portal extends AsObject
+{
+	public function __construct($name, $spriteSet, $teleport_n_offset, $teleport_w_offset, $teleport_map = null)
+	{
+		$this->addBehaviour(
+			new obhv_teleporter($teleport_n_offset, $teleport_w_offset, $teleport_map)
+		);
+
+		parent::__construct($name, $spriteSet, LAYER_PORTAL);
+	}
+}
+
+
+
+class obhv_teleporter extends ObjectBehaviour
+{
+	public $n_offset;
+	public $w_offset;
+	public $map;
+
+	public function __construct($n_offset, $w_offset, $MAP = null)
+	{
+		$this->onReaction = true;
+
+		$description = "Teleports to {$n_offset}:{$w_offset}"
+		. ($MAP ? " - {$MAP}." : '.');
+
+		$this->n_offset	= $n_offset;
+		$this->w_offset	= $w_offset;
+		$this->map		= $MAP;
+
+		parent::__construct($description, BHVK_TELEPORT, 0);
+	}
+
+	public function onReaction(AsObject $instigator)
+	{
+		parent::onReaction($instigator);
+		global $view;
+		global $player;
+
+		if ($instigator instanceof Player)
+        {
+            console_echo("Entering the {$this->owner->name} portal!");		//XXX
+
+			$player->move($this->n_offset, $this->w_offset, $this->map);
+
+            $view->forceUpdate = true;
+            return false;
+        }
+	}
+}
+
+class obj_sign extends AsObject
+{
+	public function __construct($name, $spriteSet, $text, $bg = null, $fg = null, $forcedHeight = null)
+	{
+		$this->addBehaviour(
+			new obhv_showText($name, $text, $bg, $fg, $forcedHeight)
+		);
+
+		parent::__construct($name, $spriteSet, LAYER_SIGN);
+	}
+}
+
+
+
+class obhv_showText extends ObjectBehaviour
+{
+	public $title;
+	public $text;
+
+	public $bg;
+	public $fg;
+
+	public $forcedHeight;
+
+	public function __construct($title, $text, $bg = null, $fg = null, $forcedHeight = null)
+	{
+		$this->onEngage = true;
+		$this->onDisengage = true;
+
+		$this->title = $title;
+		$this->text = $text;
+
+		$this->bg = ($bg ? $bg : '#ffd');
+		$this->fg = ($fg ? $fg : '#000');
+
+		$this->forcedHeight = $forcedHeight;
+
+		$description = "Show {$title} text.";
+
+		parent::__construct($description, BHVK_SHOWTEXT);
+	}
+
+	public function onEngage(Player $player)
+	{
+		update_text($this->title, $this->text, $this->bg, $this->fg, $this->forcedHeight);
+	}
+
+	public function onDisengage(Player $player)
+	{
+		console_echo('Clearing sign on disengage.', '#aff');		//XXX
+		clearPanel(UPD_TEXT);
+	}
+}
+
+//class dude_zombie extends Dude
+class dude_zombie extends a_dude_enemy
+{
+
+	public function __construct($name = null, $spriteSet = null, $gender = null, $DSs = [])
+	{
+		if (!isset($gender)) $gender = percentageToBool(52) ? GND_MALE : GND_FEMALE;
+
+		$spriteSet = $this->getSpriteSet();
+
+		if ($gender === GND_FEMALE)
+		{
+			$spriteSet[SPRI_DEFAULT] = $spriteSet[SPRI_FEMALE];
+			if (isset($spriteSet[SPRI_FEMALE_CORPSE])) $spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_FEMALE_CORPSE];
+		}
+		else
+		{
+			$spriteSet[SPRI_DEFAULT] = $spriteSet[SPRI_MALE];
+			if (isset($spriteSet[SPRI_MALE_CORPSE])) $spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_MALE_CORPSE];
+		}
+
+		$this->FAC			= FAC_MONSTER;
+
+		$this->DMGs			= [DMG_TRAUMA => 6, DMG_POISON	=> 15];
+		$this->DMGDL		= DMGDL_POINT;
+
+		$this->addBehaviour(
+			new dbhv_zombify($spriteSet)
+		);
+
+		$this->DMGs_def	= [DMG_POISON => 100, DMG_FIRE => -15, DMGDL_BLUNT => 30];
+
+//		parent::__construct($name, $spriteSet, $gender, null, $DSs);
+		parent::__construct($name, $spriteSet);
+	}
+
+	/*
+	 * The whole $newSpriteSet thing in this function is a fucking mess but
+	 * there's all kinds of weird stuff going on with the sprite key holding
+	 * references and stuff like that. This is a good guide for future objects
+	 * that might have comples sprite clonging problems.
+	 */
+	function __clone()
+	{
+		parent::__clone();
+
+		$this->gender = percentageToBool(52) ? GND_MALE : GND_FEMALE;
+
+		$newSpriteSet = [];
+
+		if ($this->gender === GND_FEMALE)
+		{
+			$newSpriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_FEMALE];
+			if (isset($this->spriteSet[SPRI_FEMALE_CORPSE])) $newSpriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_FEMALE_CORPSE];
+		}
+		else
+		{
+			$newSpriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_MALE];
+			if (isset($this->spriteSet[SPRI_MALE_CORPSE])) $newSpriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_MALE_CORPSE];
+		}
+
+		$this->spriteSet = $newSpriteSet + $this->spriteSet;
+
+//		$this->defaultSprite = $this->spriteSet[SPRI_DEFAULT];
+		$this->sprite = $this->spriteSet[SPRI_DEFAULT];
+	}
+
+	function getSpriteSet($colour = null)
+	{
+		if (!isset($colour) )$colour = '#0f0';
+
+		$spr_zombie_m = new Sprite([
+			[ // Both hands up
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&lambda;'),
+			],
+			[ // Left hand down, right hand up
+				1 => new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&lambda;'),
+			],
+			[ // Both hands down
+				1 => new SpriteElement(null, $colour, 'o'),
+				3 => new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, '#400', '&lambda;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+			[ // Left hand up, right hand down
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				4 => new SpriteElement(null, '#400', '&lambda;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+		]);
+
+		$spr_zombie_f = new Sprite([
+			[ // Both hands up
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&Delta;'),
+			],
+			[ // Left hand up, right hand down
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, 'o'),
+				4 => new SpriteElement(null, '#400', '&Delta;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+			[ // Both hands down
+				1 => new SpriteElement(null, $colour, 'o'),
+				3 => new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, '#400', '&Delta;'),
+				new SpriteElement(null, $colour, '&deg;'),
+			],
+			[ // Left hand down, right hand up
+				1 => new SpriteElement(null, $colour, 'o'),
+				new SpriteElement(null, $colour, '&deg;'),
+				new SpriteElement(null, $colour, '&deg;'),
+				4 => new SpriteElement(null, '#400', '&Delta;'),
+			],
+		]);
+
+		$spr_zombieCorpse_m = spr_personCorpse($spr_zombie_m, '#f50');
+		$spr_zombieCorpse_f = spr_personCorpse($spr_zombie_f, '#f50');
+
+
+		return [
+			SPRI_MALE			=> $spr_zombie_m,
+			SPRI_MALE_CORPSE	=> $spr_zombieCorpse_m,
+			SPRI_FEMALE			=> $spr_zombie_f,
+			SPRI_FEMALE_CORPSE	=> $spr_zombieCorpse_f
+		];
+	}
+}
+
+
+
+
+class a_dude_enemy extends Dude
+{
+	public $obhv_awarenessRange;
+	public $obhv_chaseRange;
+
+	public function __construct($name, $spriteSet, $gender = null, $speechFile = null, $dudeStats = null)
+	{
+		global $player;
+
+		$this->FAC		= FAC_MONSTER;
+		$this->canPush	= false;
+
+		parent::__construct($name, $spriteSet, $gender, $speechFile, $dudeStats);
+
+		$obhv_chase = new obhv_chase($player, 1);
+
+		$this->addBehaviour(
+			new obhv_wander(),
+			new obhv_addBehaviourOnProximity(null, $obhv_chase, $this->obhv_awarenessRange, $this->obhv_chaseRange),
+			new dbhv_leaveLootableCorpse($this->spriteSet)
+		);
+
+		unset($this->obhv_awarenessRange);
+		unset($this->obhv_chaseRange);
+	}
+}
+
+class dbhv_zombify extends DudeBehaviour
+{
+
+	public function __construct($spriteSet, $cooldown = 1)
+	{
+		$this->onCollision = true;
+
+		$description = "Contact with a dude will turn the dude into a clone.";
+
+		if (isset($spriteSet[SPRI_MALE]))
+		{
+			$this->spriteSet[SPRI_MALE] = $spriteSet[SPRI_MALE];
+			if (isset($spriteSet[SPRI_MALE_CORPSE]))
+			{
+				$this->spriteSet[SPRI_MALE_CORPSE] = $spriteSet[SPRI_MALE_CORPSE];
+			}
+			else
+			{
+				$this->spriteSet[SPRI_MALE_CORPSE] = spr_personCorpse($spriteSet[SPRI_MALE]);
+			}
+
+		}
+
+		if (isset($spriteSet[SPRI_FEMALE]))
+		{
+			$this->spriteSet[SPRI_FEMALE] = $spriteSet[SPRI_FEMALE];
+			if (isset($spriteSet[SPRI_FEMALE_CORPSE]))
+			{
+				$this->spriteSet[SPRI_FEMALE_CORPSE] = $spriteSet[SPRI_FEMALE_CORPSE];
+			}
+			else
+			{
+				$this->spriteSet[SPRI_FEMALE_CORPSE] = spr_personCorpse($spriteSet[SPRI_FEMALE]);
+			}
+		}
+
+		parent::__construct($description, BHVK_PRIMARY, $cooldown);
+	}
+
+	public function onCollision(AsObject $receiver)
+	{
+		if ($receiver instanceof Dude && !($receiver instanceof Player) && !($receiver instanceof dude_zombie))
+		{
+			$zombie = clone $this->owner;
+
+			$zombie->name = "Zombified {$receiver->name}";
+
+			if ($receiver->gender === GND_MALE && isset($this->spriteSet[SPRI_MALE]))
+			{
+				$zombie->spriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_MALE];
+				$zombie->spriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_MALE_CORPSE];
+			}
+
+			if ($receiver->gender === GND_FEMALE && isset($this->spriteSet[SPRI_FEMALE]))
+			{
+				$zombie->spriteSet[SPRI_DEFAULT] = $this->spriteSet[SPRI_FEMALE];
+				$zombie->spriteSet[SPRI_CORPSE] = $this->spriteSet[SPRI_FEMALE_CORPSE];
+			}
+			
+			$zombie->sprite = $zombie->spriteSet[SPRI_DEFAULT];
+
+			// AHH SHIT WHAT IS ALL THIS CODE DOING? WHY?
+			
+			$receiver->changeTo($zombie);
+		}
+	}
+}
+
+class obhv_chase extends ObjectBehaviour
+{
+	public $direction;
+//	public $repeats = 0;
+	public $chase;
+	public $target;
+	public static $directions = [DIR_NORTH, DIR_SOUTH, DIR_EAST, DIR_WEST];
+	public $failedDirections = [];
+	public $pauseOnTouch;
+	public $personalSpace;
+
+	public function __construct(AsObject $target, $cooldown = null, $pauseOnTouch = 1, $personalSpace = null)
+	{
+		$this->onIdle		= true;
+		$this->onCollision	= true;
+		$this->onRegister	= true;
+
+		$this->target		= $target;
+		if (!$cooldown)	$cooldown = 1;
+		$cooldown			= ($cooldown >= 0.2 ? $cooldown : 0.2);
+		$this->pauseOnTouch	= $pauseOnTouch;
+		// If this is extended, it must be obhv_flee.
+		$this->chase = get_class($this) === get_class();
+
+		$description = ($this->chase ? 'Chases' : 'Flees') . " {$target->name} at ". 1 / $cooldown .' RPS.'; // This will always say "chase"
+
+		$this->personalSpace = $personalSpace;
+
+		parent::__construct($description, BHVK_MOVEMENT, $cooldown);
+	}
+
+	public function onRegister()
+	{
+		if (!($this->owner instanceof Dude)) return;
+
+		if ($this->owner->speed_fast)
+		{
+			console_echo("{$this->owner->name} has had the speed of its chase behaviour over-ridden.", '#f00');
+			$this->cooldown = $this->owner->speed_fast;
+		}
+		else if ($this->owner->speed)
+		{
+			console_echo("{$this->owner->name} has had the speed of its chase behaviour over-ridden.", '#f00');
+			$this->cooldown = $this->owner->speed;
+		}
+		else {console_echo("{$this->owner->name} hasn't had its speed over-ridden.", '#f00');}
+	}
+
+	public function onCollision(AsObject $receiver)
+	{
+		if ($receiver === $this->target)
+		{
+			$this->extendcooldown($this->pauseOnTouch);
+		}
+	}
+
+	public function onIdle()
+	{
+		if ($this->chase && $this->personalSpace)
+		{
+			console_echo("{$this->owner->name} is considering {$this->target->name}'s personal space. ({$this->personalSpace})", '#ccc');
+			if ($this->owner->distanceFrom($this->target) <= $this->personalSpace)
+			{
+				console_echo("{$this->owner->name} is respecting {$this->target->name}'s personal space.", '#fff');
+				return;
+			}
+			console_echo("{$this->owner->name} is disregarding {$this->target->name}'s personal space.", '#ccc');
+		}
+
+		if ($this->owner->n_offset > $this->target->n_offset)
+		{
+			$this->direction = ($this->chase ? DIR_NORTH : DIR_SOUTH);
+		}
+		elseif ($this->owner->n_offset < $this->target->n_offset)
+		{
+			$this->direction = ($this->chase ? DIR_SOUTH : DIR_NORTH);
+		}
+		else
+		{
+			$this->direction = null;
+		}
+
+		if (!isset($this->direction)
+			|| in_array($this->direction, $this->failedDirections)
+			|| mt_rand(0,1))
+		{
+
+			if ($this->owner->w_offset > $this->target->w_offset)
+			{
+				$this->direction = ($this->chase ? DIR_WEST : DIR_EAST);
+			}
+			elseif ($this->owner->w_offset < $this->target->w_offset)
+			{
+				$this->direction = ($this->chase ? DIR_EAST : DIR_WEST);
+			}
+		}
+
+		if (in_array($this->direction, $this->failedDirections))
+		{
+			$otherDirections = array_diff(self::$directions, $this->failedDirections);
+			if (count($otherDirections) === 0)
+			{
+				global $DIR_opposites;
+
+				$this->failedDirections = [];
+				$this->direction = array_rand($DIR_opposites);
+			}
+			else
+			{
+				$this->direction = $otherDirections[array_rand($otherDirections)];
+			}
+		}
+
+		if (isset($this->direction))
+		{
+			// We have our direction? Good. Try to move in that direction.
+			if ($this->owner->moveInDirection($this->direction))
+			{
+				// Alright, we're here now. Decrement the repeates and hit the
+				// cool-down timer thing.
+				// $this->triggercooldown();
+				$this->failedDirections = [];
+			}
+			else
+			{
+				// Ok, that didn't work and we don't want to try again. Add
+				// the direction we just moved to the list of unmovable
+				// directions.
+				// We still have to trigger the cooldown in case they activated
+				// something with the collision EVEN THOUGH they didn't move.
+				// $this->triggercooldown();
+				$this->failedDirections[] = $this->direction;
+			}
+		}
+	}
+}
+
+class obhv_wander extends ObjectBehaviour
+{
+	public $direction;
+	public $repeats = 0;
+
+	public static $DIRs = [DIR_NORTH, DIR_SOUTH, DIR_WEST, DIR_EAST];
+
+	public function __construct($cooldown = 1)
+	{
+		$this->onIdle		= true;
+		$this->onRegister	= true;
+
+		$description = 'Wanders around randomly.';
+		$cooldown		= ($cooldown >= 0.2 ? $cooldown : 0.2);
+
+		parent::__construct($description, BHVK_MOVEMENT, $cooldown);
+	}
+
+	public function onRegister()
+	{
+		if (isset($this->owner->speed))
+		{
+			console_echo("{$this->owner->name} has had the speed of its wander behaviour over-ridden.", '#f00');
+			$this->cooldown = $this->owner->speed;
+		}
+		else {console_echo("{$this->owner->name} hasn't had its speed over-ridden.", '#f00');}
+	}
+
+	public function onIdle()
+	{
+		if ($this->owner->engagement !== null) return;
+
+		// Do we know where we're going? If we have nothing to repeat, better
+		// find out where to go.
+		if ($this->repeats <= 0)
+		{
+			// We're wandering so it's random. Thank shit we're not chasing
+			// anyone.
+			$this->direction = self::$DIRs[array_rand(self::$DIRs)];
+			$this->repeats = mt_rand(0,6);
+		}
+
+		if (isset($this->direction))
+		{
+			// We have our direction? Good. Try to move in that direction.
+			if ($this->owner->moveInDirection($this->direction))
+			{
+				// Alright, we're here now. Decrement the repeates and hit the
+				// cool-down timer thing.
+				$this->repeats--;
+				// $this->triggercooldown();
+			}
+			else
+			{
+				// Ok, that didn't work and we don't want to try again. Clear
+				// remaining repeats to we can get some fresh instructions
+				// in here.
+				$this->repeats = 0;
+			}
+		}
+	}
+}
+
+class obhv_addBehaviourOnProximity extends ObjectBehaviour
+{
+	public $target;
+	public $proximity;
+	public $range;
+
+	public $behaviours;
+
+	public $isActive = false;
+
+	public function __construct($target, $behaviours, $proximity = null, $range = null)
+	{
+		$this->onIdle = true;
+
+		$this->behaviours = is_array($behaviours) ? $behaviours : [$behaviours];
+
+		$this->proximity = isset($proximity) ? $proximity : 5;
+		$this->range = isset($range) ? $range : 10;
+
+		if ($target instanceof Player) $target = null;
+
+		$this->target = $target;
+
+		parent::__construct('Adds behaviours on proximity', id(), 1);
+	}
+
+	public function onIdle()
+	{
+		$target = isset($this->target) ? $this->target : $GLOBALS['player'];
+
+		if ($this->isActive)
+		{
+			if ($this->owner->distanceFrom($target) > $this->range)
+			{
+				foreach ($this->behaviours as $behaviour)
+				{
+					$this->owner->removeBehaviour($behaviour);
+				}
+				$this->isActive = false;
+			}
+		}
+		else
+		{
+			if ($this->owner->distanceFrom($target) < $this->proximity)
+			{
+				foreach ($this->behaviours as $behaviour)
+				{
+					$this->owner->addBehaviour($behaviour);
+				}
+				$this->isActive = true;
+			}
+		}
+	}
+
+	public function __clone()
+	{
+		$newBehaviours = [];
+
+		foreach ($this->behaviours as $behaviour)
+		{
+			$newBehaviours[] = clone $behaviour;
+		}
+
+		$this->behaviours = $newBehaviours;
+	}
+}
+
+class dbhv_leaveLootableCorpse extends DudeBehaviour
+{
+	function __construct($spriteSet)
+	{
+		$this->onDeath = true;
+
+		if (isset($spriteSet[SPRI_CORPSE]))
+		{
+			$this->spriteSet[SPRI_CORPSE] = $spriteSet[SPRI_CORPSE];
+		}
+		else
+		{
+			$this->spriteSet[SPRI_CORPSE] = spr_personCorpse($spriteSet[SPRI_DEFAULT]);
+		}
+
+		$description  = 'Leaves a lootable corpse.';
+		parent::__construct($description, BHVK_CORPSE, 1);
+	}
+
+	function onDeath(Attack $attack)
+	{
+		global $map;
+
+		console_echo("Leaving corpse of {$this->owner->name}", '#faf');
+
+		if (isset($this->owner->spriteSet[SPRI_CORPSE]))
+		{
+			$this->spriteSet[SPRI_CORPSE] = $this->owner->spriteSet[SPRI_CORPSE];
+			$this->owner->changeLayer(LAYER_CHEST);
+			$this->owner->setSPRI(SPRI_CORPSE);
+		}
+
+		$obj_corpse = new obj_corpse(
+			"Corpse of {$this->owner->name}",
+			[$this->spriteSet[SPRI_CORPSE]],
+			$this->owner->inventory->contents);
+
+		$obj_corpse->n_offset = $this->owner->n_offset;
+		$obj_corpse->w_offset = $this->owner->w_offset;
+
+		if (isset($map->objects[$this->owner->n_offset][$this->owner->w_offset][LAYER_COLLECTIBLE]))
+		{
+			$existingObject = $map->objects[$this->owner->n_offset][$this->owner->w_offset][LAYER_COLLECTIBLE];
+
+			$obj_corpse->inventory->locked = false;
+			if (isset($existingObject->item))
+			{
+				$obj_corpse->inventory->add($existingObject->item);
+			}
+			elseif (isset($existingObject->inventory))
+			{
+				$existingObject->inventory->locked = false;
+
+				foreach ($existingObject->inventory->contents as $item)
+				{
+					$obj_corpse->inventory->add($existingObject->inventory->pullItem($item));
+				}
+
+				$existingObject->inventory->locked = true;
+			}
+			$obj_corpse->inventory->locked = true;
+		}
+		console_echo("<<#fff>>\"{$this->owner->name}\"<> is about to be a corpse.");
+		$this->owner->changeTo($obj_corpse);
+		console_echo("<<#fff>>\"{$this->owner->name}\"<> should now be a corpse.");
+	}
+
+
+}

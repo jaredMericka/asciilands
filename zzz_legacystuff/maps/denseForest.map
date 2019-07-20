@@ -1,0 +1,122 @@
+<?php
+
+	update_thoughts('Trees are stupid.');
+
+    //======================
+    // LOAD TILES
+    //======================
+    require "{$rootPath}content/tiles/basicTerrain.til";
+    require "{$rootPath}content/tiles/swamp.til";
+    require "{$rootPath}content/sprites/trees.spr";
+    require "{$rootPath}content/sprites/field.spr";
+    require "{$rootPath}content/sprites/denseForest.spr";
+    require "{$rootPath}content/tiles/dreamscape.til";
+	require "{$rootPath}content/sprites/portal.fac";
+    
+    $this->tileKey = [
+		$t_forest,
+
+		$t_grass,
+		$t_cliff,
+                
+                $t_water,
+                $t_waterFall,
+        
+                $t_wallSide,
+                $t_wallTop,
+        
+                $t_bridge,
+                $t_pavers,
+                
+                $t_swamp,   
+                $t_wallMoss,
+                $t_wallTopMoss,
+        
+                $t_cliffLadder,
+		
+				$t_wallStairs
+        ];
+//    $this->emptyTile = ($this->tileKey['c']); // Be sure to set the empy tile!
+
+    //=========================
+    // LOAD OBJECTS
+    //=========================
+
+    // This only tells the map how to interpret the spr_map file. It simply lays
+    // out sprites and sets the canEnter boolean.
+    $this->sceneryKey = array(
+		new Scenery($spr_tree_tl),
+		new Scenery($spr_tree_tm),
+		new Scenery($spr_tree_tr),
+
+		new Scenery($spr_tree_bl),
+		new Scenery($spr_tree_bm),
+		new Scenery($spr_tree_br),
+
+		new Scenery($spr_treeTrunk),
+		new Scenery($spr_treeStump),
+                new Scenery($spr_post),
+
+		new Scenery($spr_fence),
+		new Scenery($spr_fencePost),
+
+		new Scenery($spr_tree),
+
+		new Scenery($spr_pine1),
+		new Scenery($spr_pine2),
+        
+                new Scenery($spr_toadstool),
+                new Scenery($spr_toadleft),
+                new Scenery($spr_toadmid),
+                new Scenery($spr_toadright),
+                new Scenery($spr_toadstalk),
+        
+                new Scenery($spr_fire),
+                new Scenery($spr_torchStand),
+        
+                new Scenery($spr_ladder),
+                new Scenery($spr_bridgeSide, true),
+        
+                new Scenery($spr_vines1),
+                new Scenery($spr_vines2),
+                new Scenery($spr_vinesShort1),
+                new Scenery($spr_vinesShort2),
+                new Scenery($spr_vinesMixed1),
+                new Scenery($spr_vinesMixed2),
+        
+                new Scenery($spr_forest_tl),
+                new Scenery($spr_forest_tr),
+                new Scenery($spr_forest_bl),
+                new Scenery($spr_forest_br)
+    );
+
+
+	$this->objects = array(
+
+	);
+
+
+$this->objects = [
+        //=====================
+	// PORTALS
+	//=====================
+
+	// INTERNAL
+	//new keyPortal($name, $sprite, $n_offset, $w_offset, $teleport_dest_n_offset, $teleport_dest_w_offset, $teleport_dest_map, $key_teleport_dest_n_offset, $key_teleport_dest_w_offset, $key_teleport_dest_map, $key),
+        new obj_portal('BluffTemple', [$spr_door_hole], 12, 52, 2, 3, 'denseTemple'),
+        new obj_portal('SecretTemple', [$spr_door_hole], 7, 93, 2, 5, 'denseTemple'),
+        new obj_portal('OvergrownTemple', [$spr_door_hole], 50, 49, 13, 7, 'denseTemple'),
+        new obj_portal('RiversideTemple', [$spr_door_hole], 55, 88, 2, 7, 'denseTemple'),
+        new obj_portal('BottomLeftTemple', [$spr_door_hole], 49, 8, 13, 3, 'denseTemple'),   
+        new obj_portal('Secret Outpost', [$spr_door_hole], 70, 54, 0, 2, 'denseCave'),  
+        new obj_portal('BottomLeftTemple', [$spr_door_hole], 81, 73, 7, 46, 'denseCave'),  
+	
+		new obj_erraticPortal('Erratacular', [spr_portal('#fa0')], 89, 11, [[10,10], [72,56], [27,74]]),
+//
+];
+
+        $this->overlayColour	= '#314';
+	$this->overlayOpacity	= 0.5;
+
+
+

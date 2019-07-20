@@ -1,0 +1,13 @@
+<?php
+
+$speech =
+	[
+		[
+			'Hello there.',
+			'Hi!',
+			'Pleased to meet you.',
+			"Hello, my name is {$this->name}. What's yours?",
+			'Hello.'
+		]
+	];
+

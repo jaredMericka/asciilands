@@ -1,0 +1,53 @@
+<?php
+
+$spr_spikeFenceTop_horiz = new Sprite([
+	0 => new SpriteElement(null, '#000', '&#x2191;'),
+	1 => new SpriteElement(null, '#000', '&#x2191;'),
+	2 => new SpriteElement(null, '#000', '&#x2191;'),
+	3 => new SpriteElement(null, '#000', '&#x253c;'),
+	4 => new SpriteElement(null, '#000', '&#x253c;'),
+	5 => new SpriteElement(null, '#000', '&#x253c;'),
+	]);
+
+$spr_spikeFenceTop_vert = new Sprite([
+	1 => new SpriteElement(null, '#000', '&#x2191;'),
+	4 => new SpriteElement(null, '#000', '&#x2191;'),
+	]);
+
+$spr_spikeFenceBase = new Sprite([
+	0 => new SpriteElement(null, '#000', '&#x253c;'),
+	1 => new SpriteElement(null, '#000', '&#x253c;'),
+	2 => new SpriteElement(null, '#000', '&#x253c;'),
+	3 => new SpriteElement(null, '#000', '&#x253c;'),
+	4 => new SpriteElement(null, '#000', '&#x253c;'),
+	5 => new SpriteElement(null, '#000', '&#x253c;'),
+	]);
+
+$spr_spikeFenceBase_half = new Sprite([
+	0 => new SpriteElement(null, '#000', '&#x253c;'),
+	1 => new SpriteElement(null, '#000', '&#x253c;'),
+	2 => new SpriteElement(null, '#000', '&#x253c;'),
+	]);
+
+
+$spr_spikeFenceGate_closed = new Sprite([
+	0 => new SpriteElement(null, '#000', '&#x256b;'),
+	1 => new SpriteElement(null, '#000', '&#x253c;'),
+	2 => new SpriteElement(null, '#000', '&#x256b;'),
+	3 => new SpriteElement(null, '#000', '&#x256b;'),
+	4 => new SpriteElement(null, '#000', '&#x253c;'),
+	5 => new SpriteElement(null, '#000', '&#x256b;'),
+	]);
+
+$spr_spikeFenceGate_open = new Sprite([
+	0 => new SpriteElement(null, '#000', '&#x2562;'),
+	2 => new SpriteElement(null, '#000', '&#x251c;'),
+	3 => new SpriteElement(null, '#000', '&#x2562;'),
+	5 => new SpriteElement(null, '#000', '&#x251c;'),
+	]);
+
+$spikeGateSpriteSet = [
+	SPRI_DEFAULT	=> $spr_spikeFenceGate_closed,
+	SPRI_CLOSED		=> $spr_spikeFenceGate_closed,
+	SPRI_OPEN		=> $spr_spikeFenceGate_open,
+];

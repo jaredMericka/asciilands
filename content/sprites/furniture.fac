@@ -1,0 +1,161 @@
+<?php
+
+function createBasicFurniture($name, $colour)
+{
+	$colour_dark = tint($colour, -1);
+
+	$spr_tableFront_l = new Sprite([
+		0 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		1 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		2 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		3 => new SpriteElement(null, $colour, '&#x2590;'),
+		4 => new SpriteElement(null, $colour, '&#x2580;'),
+		5 => new SpriteElement(null, $colour, '&#x2580;'),
+	]);
+
+	$spr_tableFront_r = new Sprite([
+		0 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		1 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		2 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		3 => new SpriteElement(null, $colour, '&#x2580;'),
+		4 => new SpriteElement(null, $colour, '&#x2580;'),
+		5 => new SpriteElement(null, $colour, '&#x258c;'),
+	]);
+
+	$spr_tableFront_m = new Sprite([
+		0 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		1 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		2 => new SpriteElement($colour_dark, null, '&nbsp;'),
+		3 => new SpriteElement(null, $colour, '&#x2580;'),
+		4 => new SpriteElement(null, $colour, '&#x2580;'),
+		5 => new SpriteElement(null, $colour, '&#x2580;'),
+	]);
+
+	$spr_chair_r = new Sprite([
+		0 => new SpriteElement(null, $colour_dark, '&#x2590;'),
+		3 => new SpriteElement(null, $colour_dark, '&#x2590;'),
+		4 => new SpriteElement(null, $colour_dark, '&#x2580;'),
+		5 => new SpriteElement(null, $colour_dark, '&#x258c;'),
+	]);
+
+	$spr_chair_l = new Sprite([
+		2 => new SpriteElement(null, $colour_dark, '&#x258c;'),
+		3 => new SpriteElement(null, $colour_dark, '&#x2590;'),
+		4 => new SpriteElement(null, $colour_dark, '&#x2580;'),
+		5 => new SpriteElement(null, $colour_dark, '&#x258c;'),
+	]);
+
+	return [
+		"t_{$name}_tableTop"		=> new Tile($colour_dark, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], false),
+		"scn_{$name}_tableSide_l"	=> new Scenery($spr_tableFront_l, TPL_HIGHOBSTACLE),
+		"scn_{$name}_tableSide_m"	=> new Scenery($spr_tableFront_m, TPL_HIGHOBSTACLE),
+		"scn_{$name}_tableSide_r"	=> new Scenery($spr_tableFront_r, TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_chair_r"	=> new Scenery($spr_chair_r),
+		"scn_{$name}_chair_l"	=> new Scenery($spr_chair_l),
+	];
+}
+
+function createBed($name, $coversColour, $baseColour)
+{
+	$coversColour_dark = tint($coversColour, -2);
+	$coversColour_light = tint($coversColour, 2);
+
+	$baseColour_dark = tint($baseColour, -3);
+
+	$spr_bed_bl = new Sprite([
+		0 => new SpriteElement($baseColour_dark, null, ' '),
+		1 => new SpriteElement($coversColour, $coversColour_light, '&#x2580;'),
+		2 => new SpriteElement($coversColour_dark, $coversColour, '&#x2580;'),
+		3 => new SpriteElement($baseColour_dark, null, ' '),
+		4 => new SpriteElement(null, $baseColour_dark, '&#x2580;'),
+		5 => new SpriteElement(null, $baseColour_dark, '&#x2580;'),
+		]);
+
+	$spr_bed_br = new Sprite([
+		0 => new SpriteElement($coversColour_dark, $coversColour, '&#x2580;'),
+		1 => new SpriteElement($coversColour_dark, $coversColour, '&#x2580;'),
+		2 => new SpriteElement($baseColour_dark, null, ' '),
+		3 => new SpriteElement(null, $baseColour_dark, '&#x2580;'),
+		4 => new SpriteElement(null, $baseColour_dark, '&#x2580;'),
+		5 => new SpriteElement($baseColour_dark, null, ' '),
+		]);
+
+	$spr_bed_tl = new Sprite([
+		0 => new SpriteElement(null, $baseColour, '&#x2584;'),
+		3 => new SpriteElement($baseColour, null, ' '),
+		4 => new SpriteElement($coversColour_light, '#fff', '&#x2584;'),
+		5 => new SpriteElement($coversColour, null, ' '),
+		]);
+
+	$spr_bed_tr = new Sprite([
+		2 => new SpriteElement(null, $baseColour, '&#x2584;'),
+		3 => new SpriteElement($coversColour, null, ' '),
+		4 => new SpriteElement($coversColour, null, ' '),
+		5 => new SpriteElement($baseColour, null, ' '),
+		]);
+
+	return [
+		"scn_{$name}_tl" => new Scenery($spr_bed_tl, TPL_HIGHOBSTACLE),
+		"scn_{$name}_tr" => new Scenery($spr_bed_tr, TPL_HIGHOBSTACLE),
+		"scn_{$name}_bl" => new Scenery($spr_bed_bl, TPL_HIGHOBSTACLE),
+		"scn_{$name}_br" => new Scenery($spr_bed_br, TPL_HIGHOBSTACLE),
+	];
+}
+
+function spr_candle($waxColour = null, $flameColour = null)
+{
+	if (!$waxColour) $waxColour = '#ffa';
+	if (!$flameColour) $flameColour = '#fa0';
+
+	$waxColour_dark = tint($waxColour, -5);
+
+	$slm_candle = new SpriteElement($waxColour_dark, $waxColour, '&#x258c;');
+	$slm_flame_1 = new SpriteElement(null, $flameColour, '&#x25b2;');
+	$slm_flame_2 = new SpriteElement(null, $flameColour, '&#x2666;');
+	$slm_flame_3 = new SpriteElement(null, $flameColour, '&#x25bc;');
+
+	return new Sprite([
+		[
+			1 => $slm_flame_1,
+			4 => $slm_candle
+		],
+		[
+			1 => $slm_flame_2,
+			4 => $slm_candle
+		],
+		[
+			1 => $slm_flame_3,
+			4 => $slm_candle
+		],
+		[
+			1 => $slm_flame_2,
+			4 => $slm_candle
+		],
+	]);
+}
+
+$spr_candleArbra = new Sprite([
+	0 => new SpriteElement(null, '#aaa', '&#x2559;'),
+	1 => new SpriteElement(null, '#aaa', '&#x256b;'),
+	2 => new SpriteElement(null, '#aaa', '&#x255c;'),
+	4 => new SpriteElement(null, '#aaa', '&#x2568;'),
+]);
+
+$spr_candleFlames = new Sprite([
+	[
+		3 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+		4 => new SpriteElement(null, '#fa0', '&#x2666;'),
+		5 => new SpriteElement(null, '#fa0', '&#x25bc;'),
+	],
+	[
+		3 => new SpriteElement(null, '#fa0', '&#x2666;'),
+		4 => new SpriteElement(null, '#fa0', '&#x25bc;'),
+		5 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+	],
+	[
+		3 => new SpriteElement(null, '#fa0', '&#x25bc;'),
+		4 => new SpriteElement(null, '#fa0', '&#x25b2;'),
+		5 => new SpriteElement(null, '#fa0', '&#x2666;'),
+	],
+]);

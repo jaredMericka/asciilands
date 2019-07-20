@@ -1,0 +1,129 @@
+<?php
+
+//=========================================
+// TILES
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/tiles/basicTerrain.til";
+require "{$rootPath}content/tiles/brickBuilder.fac";
+require "{$rootPath}content/tiles/caves.til";
+//require "{$rootPath}content/tiles/dreamscape.til";
+//require "{$rootPath}content/tiles/indoors.til";
+//require "{$rootPath}content/tiles/moai.til";
+//require "{$rootPath}content/tiles/swamp.til";
+
+//=========================================
+// SPRITES
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/sprites/animals.spr";
+//require "{$rootPath}content/sprites/book.fac";
+//require "{$rootPath}content/sprites/commonItems.fac";
+//require "{$rootPath}content/sprites/cow.spr";
+//require "{$rootPath}content/sprites/denseForest.spr";
+//require "{$rootPath}content/sprites/doors.spr";
+//require "{$rootPath}content/sprites/fencing.spr";
+require "{$rootPath}content/sprites/field.spr";
+//require "{$rootPath}content/sprites/furniture.spr";
+//require "{$rootPath}content/sprites/money.fac";
+//require "{$rootPath}content/sprites/monsters.spr";
+//require "{$rootPath}content/sprites/people.fac";
+//require "{$rootPath}content/sprites/portal.fac";
+//require "{$rootPath}content/sprites/sword.fac";
+//require "{$rootPath}content/sprites/tools.spr";
+//require "{$rootPath}content/sprites/treasure.spr";
+//require "{$rootPath}content/sprites/trees.spr";
+//require "{$rootPath}content/sprites/weapons.spr";
+require "{$rootPath}content/sprites/grubParts.spr";
+
+
+//=========================================
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+foreach (createStoneAssets('grub', '#420') as $varNAme => $asset) { $$varNAme = $asset; }
+
+$this->tileKey = [
+	$t_rockDarkness,
+	$t_rockWall,
+	$t_rockFloor,
+	$t_grub_wallSide,
+	$t_grub_wallTop,
+	$t_grub_pavers,
+	$t_grub_stairs,
+	$t_rockStairs,
+	$t_water,
+	$t_waterFall,
+];
+
+
+//=========================================
+// SPRITE KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	new Scenery($spr_grub_paverSide),
+	new Scenery($spr_grub_face),
+	new Scenery($spr_waterGap),
+];
+
+
+//=========================================
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// Sometimes it will make sense to instatiate the object outside the array
+// then refer to it inside the array; that's cool.
+//=========================================
+
+
+
+$this->objects = [
+	new dude_basicEnemy('Grub\'s left hand', $grub_lh_spriteSet, 9, 4, 0.4),
+	new dude_basicEnemy('Grub\'s right hand', $grub_rh_spriteSet, 9, 8, 0.4),
+];
+
+//=========================================
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->isDark			= true;
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

@@ -1,0 +1,27 @@
+<?php
+
+$mat_foxPelt = new mat_skin('fox pelt', 'Prized for its colour and scarcity.', '#f90',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+);
+
+$mat_elkPelt = new mat_skin('elk pelt', 'Tough with short, coarse fur.', '#a84',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+);

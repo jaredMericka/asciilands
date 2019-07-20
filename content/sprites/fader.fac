@@ -1,0 +1,77 @@
+<?php
+
+function createFaders ($name, $colour = '#000')
+{
+	$tile = new Tile($colour, ['&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;', '&nbsp;'], TPL_LOWOBSTACLE, $colour);
+	$tile->singular = true;
+
+	return [
+		"t_{$name}_fill" => $tile,
+
+		"scn_{$name}_down_1" => new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null,$colour, '&#x2591;'),
+				1 => new SpriteElement(null,$colour, '&#x2591;'),
+				2 => new SpriteElement(null,$colour, '&#x2591;'),
+				3 => new SpriteElement(null,$colour, '&#x2592;'),
+				4 => new SpriteElement(null,$colour, '&#x2592;'),
+				5 => new SpriteElement(null,$colour, '&#x2592;'),
+			],
+		])),
+
+		"scn_{$name}_down_2" => new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null,$colour, '&#x2593;'),
+				1 => new SpriteElement(null,$colour, '&#x2593;'),
+				2 => new SpriteElement(null,$colour, '&#x2593;'),
+				3 => new SpriteElement($colour,  null, '&nbsp;'),
+				4 => new SpriteElement($colour,  null, '&nbsp;'),
+				5 => new SpriteElement($colour,  null, '&nbsp;'),
+			],
+		])),
+
+		"scn_{$name}_up_2" => new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null,$colour, '&#x2592;'),
+				1 => new SpriteElement(null,$colour, '&#x2592;'),
+				2 => new SpriteElement(null,$colour, '&#x2592;'),
+				3 => new SpriteElement(null,$colour, '&#x2591;'),
+				4 => new SpriteElement(null,$colour, '&#x2591;'),
+				5 => new SpriteElement(null,$colour, '&#x2591;'),
+			],
+		])),
+
+		"scn_{$name}_up_1" => new Scenery(new Sprite([
+			[
+				0 => new SpriteElement($colour,  null, '&nbsp;'),
+				1 => new SpriteElement($colour,  null, '&nbsp;'),
+				2 => new SpriteElement($colour,  null, '&nbsp;'),
+				3 => new SpriteElement(null,$colour, '&#x2593;'),
+				4 => new SpriteElement(null,$colour, '&#x2593;'),
+				5 => new SpriteElement(null,$colour, '&#x2593;'),
+			],
+		])),
+
+		"scn_{$name}_right" => new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null,$colour, '&#x2591;'),
+				1 => new SpriteElement(null,$colour, '&#x2592;'),
+				2 => new SpriteElement(null,$colour, '&#x2593;'),
+				3 => new SpriteElement(null,$colour, '&#x2591;'),
+				4 => new SpriteElement(null,$colour, '&#x2592;'),
+				5 => new SpriteElement(null,$colour, '&#x2593;'),
+			],
+		])),
+
+		"scn_{$name}_left" => new Scenery(new Sprite([
+			[
+				0 => new SpriteElement(null,$colour, '&#x2593;'),
+				1 => new SpriteElement(null,$colour, '&#x2592;'),
+				2 => new SpriteElement(null,$colour, '&#x2591;'),
+				3 => new SpriteElement(null,$colour, '&#x2593;'),
+				4 => new SpriteElement(null,$colour, '&#x2592;'),
+				5 => new SpriteElement(null,$colour, '&#x2591;'),
+			],
+		])),
+	];
+}

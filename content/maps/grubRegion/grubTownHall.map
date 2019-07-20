@@ -1,0 +1,224 @@
+<?php
+
+//=========================================<editor-fold desc="Assets Workbench">
+// ASSETS WORKBENCH
+//=========================================
+// Make your assets here. Run factory methods or build
+// esoteric assets up from scratch.
+//=========================================
+
+$common		= new set_common();
+
+$bricks = new set_masonry('#832');
+$timber = new set_wood('#960');
+$edges = new set_edges('#960');
+$furniture = new set_furniture('#210');
+$rug = new set_rug('#474');
+$light = new set_faders('#db3');
+$misc = new set_miscDecor();
+
+
+//foreach (createStoneAssets('brick', '#832') as $name => $val) { $$name = $val; }
+//foreach (createEdges('steps', $t_brick_smallWall) as $name => $val) { $$name = $val; }
+//foreach (createWoodAssets('timber', '#960') as $name => $val) { $$name = $val; }
+//foreach (createBasicFurniture('furniture', '#521') as $name => $val) { $$name = $val; }
+//foreach (createRugAssets('rug', '#474', null, '#aaa') as $name => $val) { $$name = $val; }
+//foreach (createFaders('light', '#db3') as $name => $val) { $$name = $val; }
+
+//$set_bed = new set_furniture('#444', '#22c');
+
+//$t_stagePlanks = $t_timber_planks->tint();
+
+//$t_brick_stairs->bg = $t_stagePlanks->bg;
+//$t_brick_stairs->fg = $t_stagePlanks->fg;
+
+//foreach (createEdges('top', $t_stagePlanks) as $name => $val) { $$name = $val; }
+//</editor-fold>
+
+//=========================================<editor-fold desc="Tile Key">
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$light->t_solid('#000'),
+	$bricks->t_smallWall(),
+	$bricks->t_smallWall(-1),
+	$bricks->t_smallWall(-4),
+	$timber->t_planks(),
+	$timber->t_planks(-1),
+	$furniture->t_tableTop(),
+	$timber->t_stairs(-1),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Scenery Key">
+// SCENERY KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	$furniture->scn_chair_l(),
+	$furniture->scn_chair_r(),
+	$furniture->scn_tableFront_l(),
+	$furniture->scn_tableFront_m(),
+	$furniture->scn_tableFront_r(),
+	$misc->scn_candleArbra(),
+	$misc->scn_candleArbraFlames(),
+	$edges->scn_n(),
+	$edges->scn_s(),
+	$edges->scn_e(),
+	$edges->scn_w(),
+	$edges->scn_sw(),
+	$edges->scn_se(),
+	$edges->scn_e('#832'),
+	$edges->scn_w('#832'),
+	$light->scn_down_1(),
+	$light->scn_down_2(),
+	new Scenery(obj_fire::getSprite(obj_fire::SPR_LEFT)),
+	new Scenery(obj_fire::getSprite(obj_fire::SPR_MID)),
+	new Scenery(obj_fire::getSprite(obj_fire::SPR_RIGHT)),
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Assets">
+// MATERIAL ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/materials/uncommon_metals.mat";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Array">
+// MATERIAL ARRAY
+//=========================================
+// Add materials that are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+
+];
+
+$this->materials = array_merge($this->materials, $commonMaterials);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Item Assets">
+// ITEM ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+//require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Workbench">
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+$obj_grubTown_1 = new obj_portal('Grub Town', null, 75, 87, MAP_GRUBTOWN);
+$obj_grubTown_2 = new obj_portal('Grub Town', null, 75, 88, MAP_GRUBTOWN);
+$obj_grubTown_3 = new obj_portal('Grub Town', null, 75, 90, MAP_GRUBTOWN);
+$obj_grubTown_4 = new obj_portal('Grub Town', null, 75, 91, MAP_GRUBTOWN);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Quest Workbench">
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Set up some quests
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Array">
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+	'16:7'	=> clone $obj_grubTown_1,
+	'16:8'	=> clone $obj_grubTown_2,
+	'16:9'	=> clone $obj_grubTown_2,
+	'16:13'	=> clone $obj_grubTown_3,
+	'16:14'	=> clone $obj_grubTown_3,
+	'16:15'	=> clone $obj_grubTown_4,
+
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Extra Stuff">
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->minimapTop = 0;
+//	$this->minimapLeft = 0;
+//	$this->minimapRight = 100;
+//	$this->minimapBottom = 100;
+
+//	$this->isDark			= true;		// Light objects only affect dark maps
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+//</editor-fold>
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+

@@ -1,0 +1,10 @@
+<?php
+
+$t_darkness = new Tile('#000', ['&nbsp', '&nbsp', '&nbsp', '&nbsp', '&nbsp', '&nbsp'], false);
+
+$t_logWall	= new Tile('#630', ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;'], false, 1);
+$t_logFloor	= new Tile('#a74', ['&#x251c;', '&#x2524;', '&#x2502;', '&#x2524;', '&#x251c;', '&#x253c;'], true, -1);
+
+$t_logWallTop_h	= new Tile('#420', ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2584;', '&#x2584;', '&#x2584;'], false, 1);
+$t_logWallTop_v	= new Tile('#420', ['&#x258c;', '&nbsp;', '&#x2590;', '&#x258c;', '&nbsp;', '&#x2590;'], false, 1);
+$t_logWallTop_x	= new Tile('#420', ['/', '&OverBar;', '&#x005c;', '&#x005c;', '_', '/'], false, 1);

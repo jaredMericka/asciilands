@@ -1,0 +1,63 @@
+<?php
+
+// Double doors
+
+$doorColour = '#840';
+
+$slm_doubleDoorPanel	= new SpriteElement($doorColour, null, '&nbsp;');
+$slm_doubleDoorGap		= new SpriteElement($doorColour, '#000', '&#x2502;');
+$slm_doubleDoorHandle	= new SpriteElement($doorColour, '#ddd', '&bull;');
+
+$slm_doubleDoorOpenLeft	= new SpriteElement(null, $doorColour, '&#x258C');
+$slm_doubleDoorOpenRight	= new SpriteElement(null, $doorColour, '&#x2590');
+
+$spr_doubleDoorClosed = new Sprite([
+	$slm_doubleDoorPanel, $slm_doubleDoorGap, $slm_doubleDoorPanel,
+	$slm_doubleDoorHandle, $slm_doubleDoorGap, $slm_doubleDoorHandle
+]);
+
+$spr_doubleDoorOpen = new Sprite([
+	$slm_doubleDoorOpenLeft, 2 => $slm_doubleDoorOpenRight,
+	$slm_doubleDoorOpenLeft, 5 => $slm_doubleDoorOpenRight
+]);
+
+// Hole door
+
+$slm_half_b = new SpriteElement(null, '#000', '&#x02584;');
+$slm_half_t = new SpriteElement(null, '#000', '&#x02580;');
+$slm_full = new SpriteElement('#000', '#000', '&nbsp;');
+
+$spr_door_hole = new Sprite([
+	$slm_half_b, $slm_full, $slm_half_b,
+	$slm_full, $slm_full, $slm_full
+]);
+
+
+// Crack door
+
+$col_crack = '#520';
+
+$slm_t = new SpriteElement(null, $col_crack, '&#x2580;');
+$slm_b = new SpriteElement(null, $col_crack, '&#x2584;');
+$slm_l = new SpriteElement(null, $col_crack, '&#x258c;');
+$slm_r = new SpriteElement(null, $col_crack, '&#x2590;');
+$slm_a = new SpriteElement($col_crack, null, '&nbsp;');
+
+$spr_crackDoor_top = new Sprite([
+	[
+		1 => $slm_l,
+		4 => $slm_a,
+	],
+]);
+
+$spr_crackDoor_bottom = new Sprite([
+	[
+		0 => $slm_r,
+		1 => $slm_a,
+		2 => $slm_l,
+		3 => $slm_a,
+		4 => $slm_a,
+		5 => $slm_l,
+//		5 => new SpriteElement(null,'#000', '&#x2588;'),
+	],
+]);

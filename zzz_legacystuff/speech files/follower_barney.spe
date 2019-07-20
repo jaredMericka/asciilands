@@ -1,0 +1,31 @@
+<?php
+
+if (!isset($SPSI)) $SPSI = SPSI_CONVERSING;
+
+$speech = [];
+
+switch ($SPSI)
+{
+	case SPSI_WAITING:
+		$speech[] =
+		[
+			[
+				'I\'ll stay here and guard this area.',
+				'Ok, yeah, I\'ll wait here.',
+				'You go on without me.'
+			]
+		];
+		break;
+
+	case SPSI_FOLLOWING:
+		$speech[] =
+		[
+			[
+				'Roger that, let\'s run like hell!',
+				'Ok, why not? Didn\'t want to die alone anyway.',
+				'Right behind you.',
+				'Ok, we might live longer, if we work together.'
+			]
+		];
+		break;
+}

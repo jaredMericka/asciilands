@@ -1,0 +1,106 @@
+<?php
+
+$mat_iron = new mat_metal('iron', 'Hard and heavy.', '#776',
+	[	// Damage proclivities
+		DMG_TRAUMA	=> 2.0,
+		DMG_FIRE	=> 1.5,
+	],
+	[	// Damage delivery proclivities
+		DMGDL_BLUNT		=> 2.0,
+		DMGDL_CUT		=> 1.6,
+		DMGDL_MISSILE	=> 1.5,
+	],
+	[	// Defence proclivities
+		DMGDL_BLUNT		=> 2.0,
+		DMGDL_CUT		=> 2.0,
+		DMGDL_POINT		=> 2.0,
+		DMGDL_MISSILE	=> 2.0,
+		DMGDL_PLASMA	=> -1.5,
+
+		DMG_FIRE		=> -1.5,
+	],
+	[	// Attribute proclivities
+		DS_FORCE		=> 2.0,
+		DS_STRENGTH		=> 0.5,
+		DS_EVASIVENESS	=> 0.1,
+		DS_DEXTERITY	=> 0.1,
+		DS_AGILITY		=> 0.1,
+		DS_FINESSE		=> 0.1,
+	],
+	[	// Attribute requirements
+		DS_STRENGTH		=> 1.2,
+	]
+	);
+
+$mat_gold = new mat_metal('gold', 'Highly conductive and valuable.', '#da2',
+	[
+		DMG_TRAUMA		=> 0.9,
+		DMG_ELECTRIC	=> 1.7,
+		DMG_FIRE		=> 1.5
+	],
+	[
+		DMGDL_BLUNT		=> 1.8,
+		DMGDL_CUT		=> 1.6,
+		DMGDL_POINT		=> 1.5,
+		DMGDL_MISSILE	=> 1.5,
+		DMGDL_PLASMA	=> 1.7,
+	],
+	[
+		DMGDL_BLUNT		=> 1.1,
+		DMGDL_CUT		=> 1.6,
+		DMGDL_POINT		=> 0.9,
+		DMGDL_PLASMA	=> -0.6,
+
+		DMG_ELECTRIC	=> -0.6,
+		DMG_FIRE		=> -0.3,
+	],
+	[
+		DS_MAGIC		=> 1.5,
+		DS_DISRUPTION	=> 1.5,
+		DS_DISCIPLINE	=> 1.6,
+		DS_FINESSE		=> 1.2,
+		DS_RESILIENCE	=> 1.2,
+	],
+	null
+	);
+
+$mat_silver = new mat_metal('silver', 'Shiny and sharp.', '#ccc',
+	[
+		DMG_TRAUMA		=> 1.2,
+		DMG_COLD		=> 1.8,
+	],
+	[
+		DMGDL_CUT		=> 1.8,
+	],
+	[
+		DMGDL_BLUNT		=> 1.1,
+		DMG_FIRE		=> -0.3,
+	],
+	null,
+	null
+	);
+
+$mat_steel = new mat_metal('steel', 'Common metal with a broad range of applications.', '#999',
+	[
+		DMG_TRAUMA => 1.4,
+	],
+	[
+		DMGDL_CUT => 2.0,
+	],
+	null,
+	null,
+	null
+	);
+
+$mat_bronze = new mat_metal('bronze', 'Common and cheap metal.', '#a51',
+	[	// Damage proclivities
+	],
+	[	// Damage delivery proclivities
+	],
+	[	// Defence proclivities
+	],
+	[	// Attribute proclivities
+	],
+	[	// Attribute requirements
+	]
+	);

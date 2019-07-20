@@ -1,0 +1,565 @@
+<?php
+
+//=========================================<editor-fold desc="Tile Assets">
+// TILE ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/tiles/basicTerrain.til";
+//require "{$rootPath}content/tiles/brickBuilder.fac";
+//require "{$rootPath}content/tiles/buildings.til";
+//require "{$rootPath}content/tiles/caves.til";
+//require "{$rootPath}content/tiles/dreamscape.til";
+//require "{$rootPath}content/tiles/grassMudDirt.til";
+//require "{$rootPath}content/tiles/indoors.til";
+//require "{$rootPath}content/tiles/moai.til";
+//require "{$rootPath}content/tiles/rugs.fac";
+//require "{$rootPath}content/tiles/swamp.til";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Sprite Assets">
+// SPRITE ASSETS (mixed)
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/sprites/animals.spr";
+//require "{$rootPath}content/sprites/book.fac";
+//require "{$rootPath}content/sprites/commonItems.fac";
+//require "{$rootPath}content/sprites/cow.spr";
+//require "{$rootPath}content/sprites/denseForest.spr";
+//require "{$rootPath}content/sprites/doors.spr";
+//require "{$rootPath}content/sprites/edges.fac";
+//require "{$rootPath}content/sprites/fencing.spr";
+//require "{$rootPath}content/sprites/field.spr";
+//require "{$rootPath}content/sprites/food.spr";
+//require "{$rootPath}content/sprites/furniture.fac";
+//require "{$rootPath}content/sprites/furniture.spr";
+//require "{$rootPath}content/sprites/grubParts.spr";
+//require "{$rootPath}content/sprites/materials.spr";
+//require "{$rootPath}content/sprites/money.fac";
+//require "{$rootPath}content/sprites/monsters.spr";
+//require "{$rootPath}content/sprites/people.fac";
+//require "{$rootPath}content/sprites/portal.fac";
+//require "{$rootPath}content/sprites/spiderWebs.php";
+//require "{$rootPath}content/sprites/sword.fac";
+//require "{$rootPath}content/sprites/tools.spr";
+//require "{$rootPath}content/sprites/treasure.spr";
+//require "{$rootPath}content/sprites/trees.spr";
+//require "{$rootPath}content/sprites/weapons.spr";
+
+//</editor-fold>
+
+
+//=========================================<editor-fold desc="Assets Workbench">
+// ASSETS WORKBENCH
+//=========================================
+// Make your assets here. Run factory methods or build
+// esoteric assets up from scratch.
+//=========================================
+
+$common		= new set_common();
+
+$t_void = new Tile('#000', ['/','/','/','/','/','/'], false, '#111');
+$t_floor = new Tile('#030', ['&#x250c;','&#x2500;','&#x2510;','&#x2514;','&#x2500;','&#x2518;'], true, '#050');
+$t_wallSide = new Tile('#484', ['&#x2551;','&#x2502;','&#x2551;','&#x2551;','&#x2502;','&#x2551;'], false, '#5a5');
+$t_wallTop = new Tile('#6d6', ['&#x250c;','&#x2500;','&#x2510;','&#x2514;','&#x2500;','&#x2518;'], false, '#8f8');
+
+$digitColour = '#4a4';
+
+$spr_0_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	3 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2551;'),
+]);
+
+$spr_0_b = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255d;'),
+]);
+
+$spr_1_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2552;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2551;'),
+]);
+
+$spr_1_b = new Sprite([
+	1 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x2558;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2569;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255b;'),
+]);
+
+$spr_2_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	3 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255d;'),
+]);
+
+$spr_2_b = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255b;'),
+]);
+
+$spr_3_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2563;'),
+]);
+
+$spr_3_b = new Sprite([
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255d;'),
+]);
+
+$spr_4_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2553;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2556;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2563;'),
+]);
+
+$spr_4_b = new Sprite([
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2568;'),
+]);
+
+$spr_5_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2555;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2557;'),
+]);
+
+$spr_5_b = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2553;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255d;'),
+]);
+
+$spr_6_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2553;'),
+	3 => new SpriteElement(null, $digitColour, '&#x2560;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2557;'),
+]);
+
+$spr_6_b = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255d;'),
+]);
+
+$spr_7_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2552;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	5 => new SpriteElement(null, $digitColour, '&#x256b;'),
+]);
+
+$spr_7_b = new Sprite([
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2568;'),
+]);
+
+$spr_8_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	3 => new SpriteElement(null, $digitColour, '&#x2560;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2563;'),
+]);
+
+$spr_8_b = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x255d;'),
+]);
+
+$spr_9_t = new Sprite([
+	0 => new SpriteElement(null, $digitColour, '&#x2554;'),
+	1 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	2 => new SpriteElement(null, $digitColour, '&#x2557;'),
+	3 => new SpriteElement(null, $digitColour, '&#x255a;'),
+	4 => new SpriteElement(null, $digitColour, '&#x2550;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2563;'),
+]);
+
+$spr_9_b = new Sprite([
+	2 => new SpriteElement(null, $digitColour, '&#x2551;'),
+	5 => new SpriteElement(null, $digitColour, '&#x2568;'),
+]);
+
+
+$doorColour = '#fff';
+
+$spr_door_t = new Sprite([
+	0 => new SpriteElement(null, $doorColour, '&#x2553;'),
+	1 => new SpriteElement(null, $doorColour, '&#x2500;'),
+	2 => new SpriteElement(null, $doorColour, '&#x2556;'),
+	3 => new SpriteElement(null, $doorColour, '&#x255f;'),
+	4 => new SpriteElement(null, $doorColour, '&#x252c;'),
+	5 => new SpriteElement(null, $doorColour, '&#x2562;'),
+]);
+
+$spr_door_b = new Sprite([
+	0 => new SpriteElement(null, $doorColour, '&#x255f;'),
+	1 => new SpriteElement(null, $doorColour, '&#x253c;'),
+	2 => new SpriteElement(null, $doorColour, '&#x2562;'),
+	3 => new SpriteElement(null, $doorColour, '&#x2559;'),
+	4 => new SpriteElement(null, $doorColour, '&#x2534;'),
+	5 => new SpriteElement(null, $doorColour, '&#x255c;'),
+]);
+
+$spr_door_b_open = new Sprite([
+	0 => new SpriteElement(null, $doorColour, '&#x250c;'),
+	1 => new SpriteElement(null, $doorColour, '&#x2500;'),
+	2 => new SpriteElement(null, $doorColour, '&#x2510;'),
+	3 => new SpriteElement(null, $doorColour, '&#x2514;'),
+	4 => new SpriteElement(null, $doorColour, '&#x2500;'),
+	5 => new SpriteElement(null, $doorColour, '&#x2518;'),
+]);
+
+$sprs_door_t = [
+	SPRI_DEFAULT => $spr_door_t,
+	SPRI_CLOSED => $spr_door_t,
+	SPRI_OPEN => new Sprite([null]),
+];
+
+$sprs_door_b = [
+	SPRI_DEFAULT => $spr_door_b,
+	SPRI_CLOSED => $spr_door_b,
+	SPRI_OPEN => $spr_door_b_open,
+];
+
+$scn_0_t = new Scenery($spr_0_t);
+$scn_0_b = new Scenery($spr_0_b);
+
+$scn_1_t = new Scenery($spr_1_t);
+$scn_1_b = new Scenery($spr_1_b);
+
+$scn_2_t = new Scenery($spr_2_t);
+$scn_2_b = new Scenery($spr_2_b);
+
+$scn_3_t = new Scenery($spr_3_t);
+$scn_3_b = new Scenery($spr_3_b);
+
+$scn_4_t = new Scenery($spr_4_t);
+$scn_4_b = new Scenery($spr_4_b);
+
+$scn_5_t = new Scenery($spr_5_t);
+$scn_5_b = new Scenery($spr_5_b);
+
+$scn_6_t = new Scenery($spr_6_t);
+$scn_6_b = new Scenery($spr_6_b);
+
+$scn_7_t = new Scenery($spr_7_t);
+$scn_7_b = new Scenery($spr_7_b);
+
+$scn_8_t = new Scenery($spr_8_t);
+$scn_8_b = new Scenery($spr_8_b);
+
+$scn_9_t = new Scenery($spr_9_t);
+$scn_9_b = new Scenery($spr_9_b);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Tile Key">
+// TILE KEY
+//=========================================
+// Add tiles by variable name to the tile array.
+// First tile in the array will be the "empty space" tile.
+//=========================================
+
+$this->tileKey = [
+	$t_floor,
+	$t_void,
+	$t_wallSide,
+	$t_wallTop,
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Scenery Key">
+// SCENERY KEY
+//=========================================
+// Add scenery objects into this array to make them available as scenery.
+// Don't forget to import the sprites above.
+//=========================================
+
+$this->sceneryKey = [
+	$scn_0_t,
+	$scn_0_b,
+
+	$scn_1_t,
+	$scn_1_b,
+
+	$scn_2_t,
+	$scn_2_b,
+
+	$scn_3_t,
+	$scn_3_b,
+
+	$scn_4_t,
+	$scn_4_b,
+
+	$scn_5_t,
+	$scn_5_b,
+
+	$scn_6_t,
+	$scn_6_b,
+
+	$scn_7_t,
+	$scn_7_b,
+
+	$scn_8_t,
+	$scn_8_b,
+
+	$scn_9_t,
+	$scn_9_b,
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Assets">
+// MATERIAL ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+require "{$rootPath}content/materials/uncommon_metals.mat";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Material Array">
+// MATERIAL ARRAY
+//=========================================
+// Add materials that are available in this area. Random items in this area
+// will be made of these materials
+//=========================================
+
+$this->materials = [
+	$mat_sunSteel,
+	$mat_crackleIron,
+];
+
+$this->materials = array_merge($this->materials, $commonMaterials);
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Item Assets">
+// ITEM ASSETS
+//=========================================
+// Uncomment paths as required
+//=========================================
+
+//require "{$rootPath}content/items/banners.php";
+//require "{$rootPath}content/items/grubRegionStuff.php";
+//require "{$rootPath}content/items/stuff.php";
+//require "{$rootPath}content/items/weapons.php";
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Workbench">
+// OBJECT WORKBENCH
+//=========================================
+// This is a good place to initiate the map's items / objects and assign
+// them to variables.
+// Under some circumstances it might be appropriate to create objects from
+// inside the array declaration. If you think that's cool, do it.
+// Obviously this isn't feasible for objects with multiple late assignments etc.
+//=========================================
+
+$obj_door = new obj_door('Door', $sprs_door_b);
+$obj_door->constituents[-1][0] = new ObjectConstituent($sprs_door_t);
+
+$cellDudes = [
+	new nme_skeleton(),
+	new nme_ghost(),
+	new nme_giantSpider(),
+	new nme_golem($mat_oak),
+	new nme_golem($mat_cedar, true),
+	new nme_frog(),
+	new nme_frog(DMG_ELECTRIC),
+	new nme_zombie(),
+
+];
+//$door->constituents[-1][0]->owner = $door;
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Quest Workbench">
+// QUEST WORKBENCH
+//=========================================
+// This is a good place to build the quest objects that are initiated in
+// this map.
+// The objects in the map should be already declared above so you have access to
+// those but you might have to refer to them again down here to add quest-giving
+// behaviours to existing objects or something.
+//=========================================
+
+// Set up some quests
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="AsObject Array">
+// OBJECT ARRAY
+//=========================================
+// Add objects to this array.
+// AsObject order does not matter.
+// The key should be a string in the format "{north offset}:{west offset}"
+// (e.g., "23:44").
+// If you need to put a few things on the same tile (but in different layers),
+// add another colon then any combinatino of characters to make the index
+// unique. The layering will sort itself out (e.g., "4:21:asdf" and "4:21:qw").
+// Try to avoid creating objects inside the array. Instead, create them on the
+// workbench and then clone them into the array.
+//=========================================
+
+$this->objects = [
+
+];
+
+//</editor-fold>
+
+//=========================================<editor-fold desc="Extra Stuff">
+// EXTRA STUFF
+//=========================================
+// Sometimes it might be appropriate to send a thought update unpon entering the map.
+// These other variables are used by various objects and events through the game.
+// (e.g., torch objects will only work in maps where $isDark is true.)
+// All these values are optional so uncomment and set only as required.
+//=========================================
+
+//	update_thoughts('Haven\'t been here before.');
+
+//	$this->viewHeight		= 10;
+//  $this->viewWidth		= 10;
+
+//	$this->overlayColour	= '#000';
+//	$this->overlayOpacity	= 0.7;
+
+//	$this->isDark			= true;		// Light objects only affect dark maps
+
+//	$this->isUnderground	= true;
+//	$this->isIndoor			= true;
+
+//	$this->localCurrency	= CUR_GOLD;	// NOT YET SUPPORTED
+//	$this->territory		= null;		// NOT YET SUPPORTED
+//	$this->continent		= null;		// NOT YET SUPPORTED
+//	$this->district			= null;		// NOT YET SUPPORTED
+//	$this->landOwner		= null;		// NOT YET SUPPORTED
+//	$this->landLord			= null;		// NOT YET SUPPORTED
+//	$this->landKing			= null;		// NOT YET SUPPORTED
+//	$this->landEmperor		= null;		// NOT YET SUPPORTED
+
+//</editor-fold>
+
+// NOTE: To edit the template, alter the build script createMapTemplate.php, not the template file.
+
+$cell = [
+	[
+		$t_wallTop,		$t_wallTop,		$t_wallTop,		$t_wallTop,		$t_wallTop
+	],
+	[
+		$t_wallTop,		$t_wallSide,	$t_wallSide,	$t_wallSide,	$t_wallTop
+	],
+	[
+		$t_wallTop,		$t_floor,		$t_floor,		$t_floor,		$t_wallTop
+	],
+	[
+		$t_wallTop,		$t_floor,		$t_floor,		$t_floor,		$t_wallTop
+	],
+	[
+		$t_wallTop,		$t_floor,		$t_floor,		$t_floor,		$t_wallTop
+	],
+	[
+		$t_wallTop,		$t_wallTop,		$t_floor,		$t_wallTop,		$t_wallTop
+	],
+	[
+		$t_wallSide,	$t_wallSide,	$t_floor,		$t_wallSide,	$t_wallSide
+	],
+	[
+		$t_floor,		$t_floor,		$t_floor,		$t_floor,		$t_floor
+	],
+	[
+		$t_floor,		$t_floor,		$t_floor,		$t_floor,		$t_floor
+	]
+];
+
+$cell_w_margin = 0;
+$cell_w_offset;
+$cell_n_offset = 0;
+$w_step = 4;
+$n_step = 9;
+
+foreach ($cellDudes as $dude)
+{
+	$cell_w_offset = $cell_w_margin;
+	for ($lvl = 1; $lvl <= 10; $lvl++)
+	{
+		foreach ($cell as $n => $row)
+		{
+			foreach ($row as $w => $tile)
+			{
+				$this->tiles[$cell_n_offset + $n][$cell_w_offset + $w] = $tile;
+			}
+		}
+
+		// Add the number to the floor
+
+		$floorDigit_1 = floor($lvl / 10);
+		$floorDigit_2 = $lvl % 10;
+
+		$this->scenery[$cell_n_offset + 2][$cell_w_offset + 1] = ${"scn_{$floorDigit_1}_t"};
+		$this->scenery[$cell_n_offset + 3][$cell_w_offset + 1] = ${"scn_{$floorDigit_1}_b"};
+		$this->scenery[$cell_n_offset + 2][$cell_w_offset + 2] = ${"scn_{$floorDigit_2}_t"};
+		$this->scenery[$cell_n_offset + 3][$cell_w_offset + 2] = ${"scn_{$floorDigit_2}_b"};
+
+		// Add the dude and the door
+		$dude_n_offset = $cell_n_offset + 3;
+		$dude_w_offset = $cell_w_offset + 2;
+
+		$cell_dude = clone $dude;
+		$cell_dude->level = $lvl;
+
+		$this->objects["{$dude_n_offset}:{$dude_w_offset}"] = $cell_dude;
+
+		$door_n_offset = $cell_n_offset + 6;
+		$door_w_offset = $cell_w_offset + 2;
+
+		$this->objects["{$door_n_offset}:{$door_w_offset}"] = clone $obj_door;
+
+		$cell_w_offset += $w_step;
+	}
+	$cell_n_offset += $n_step;
+}
+
+$player->addSkill(new skl_EDITOR_teleport());

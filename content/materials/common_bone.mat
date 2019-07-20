@@ -1,0 +1,9 @@
+<?php
+
+$mat_elkAntler = new mat_bone('elk antler', 'Antlers of the mighty elk', '#fda',
+	[], //$DMGs,
+	[], //$DMGDLs,
+	[], //$DMGs_def,
+	[], //$DSs,
+	[] //$DSs_req
+	);

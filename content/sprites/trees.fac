@@ -1,0 +1,212 @@
+<?php
+
+/*
+ * "scn_{name}_trunk"
+ * "scn_{name}_stump"
+ * "scn_{name}_tree_tl"
+ * "scn_{name}_tree_tm"
+ * "scn_{name}_tree_tr"
+ * "scn_{name}_tree_bl"
+ * "scn_{name}_tree_bm"
+ * "scn_{name}_tree_br"
+ * "scn_{name}_bush_e"
+ * "scn_{name}_bush_w"
+ * "scn_{name}_bush_ew"
+ * "scn_{name}_bush_ew_stem"
+ * "scn_{name}_bush_ew_trunk"
+ * "scn_{name}_bush_n"
+ * "scn_{name}_bush_s"
+ * "scn_{name}_bush_ns"
+ * "scn_{name}_bush_nsew"
+ */
+
+function createTreeAssets($name, $leafColour = null, $trunkColour = null, SpriteElement $fruitSpe = null)
+{
+	if (!isset($leafColour)) $leafColour = '#0a0';
+	if (!isset($trunkColour)) $trunkColour = '#840';
+
+	$leafLight = $leafColour;
+	$leafDark = tint($leafColour, -2, true);
+
+	$trunkDark = tint($trunkColour, -2, true);
+	$trunkLight = tint($trunkColour, 2, true);
+
+	if ($fruitSpe instanceof SpriteElement)
+	{
+		$spe_detailLight = clone $fruitSpe;
+		$spe_detailDark = clone $fruitSpe;
+
+		$spe_detailLight->bg = $leafLight;
+		$spe_detailDark->bg = $leafDark;
+	}
+	else
+	{
+		$spe_detailLight = new SpriteElement($leafLight, $leafDark, 'v');
+		$spe_detailDark = new SpriteElement($leafDark, $leafLight, 'v');
+	}
+
+	return [
+		"scn_{$name}_trunk" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+			1 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+			2 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+			3 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+			4 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+			5 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_stump" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, '#a86', '&#x2590;'),
+			1 => new SpriteElement('#a86', $trunkLight, '@'),
+			2 => new SpriteElement(null, '#a86', '&#x258c;'),
+			3 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+			4 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+			5 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_tree_tl" => new Scenery(new Sprite([
+			1 => new SpriteElement(null, $leafDark, '&#x2584;'),
+			2 => new SpriteElement($leafLight, $leafDark, '&#x2580;'),
+			3 => new SpriteElement(null, $leafDark, '&#x2584;'),
+//			4 => new SpriteElement($leafDark, $leafLight, 'v'),
+			4 => $spe_detailDark,
+			5 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_tree_tr" => new Scenery(new Sprite([
+			0 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+			3 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//			4 => new SpriteElement($leafLight, $leafDark, 'v'),
+			4 => $spe_detailLight,
+			5 => new SpriteElement(null, $leafLight, '&#x2584;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_tree_tm" => new Scenery(new Sprite([
+			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+			1 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//			2 => new SpriteElement($leafLight, $leafDark, 'v'),
+			2 => $spe_detailLight,
+			3 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+			4 => new SpriteElement($leafLight, $leafDark, 'v'),
+			5 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_tree_bl" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $leafDark, '&#x2580;'),
+			1 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+			2 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+			4 => new SpriteElement(null, $leafDark, '&#x2580;'),
+			5 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_tree_br" => new Scenery(new Sprite([
+			0 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+			1 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+			2 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//			3 => new SpriteElement($leafDark, $leafLight, 'v'),
+			3 => $spe_detailDark,
+			4 => new SpriteElement(null, $leafDark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_tree_bm" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+			0 => $spe_detailLight,
+			1 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+			2 => new SpriteElement($leafLight, $leafDark, 'v'),
+			3 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+			4 => new SpriteElement($leafDark, $leafLight, 'v'),
+			5 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"t_{$name}_forest"	=> new Tile($leafLight, ['&nbsp;', '&nbsp;', 'v'], TPL_HIGHOBSTACLE, $leafDark),
+
+		"scn_{$name}_bush_w" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $leafDark, '&#x2584;'),
+			1 => new SpriteElement($leafLight, null, '&nbsp;'),
+			2 => new SpriteElement($leafLight, null, '&nbsp;'),
+		//	2 => new SpriteElement(null, $lightGreen, '&#x2584;'),
+			3 => new SpriteElement(null, $leafDark, '&#x2580;'),
+			4 => new SpriteElement($leafDark, null, '&nbsp;'),
+//			5 => new SpriteElement($leafDark, $leafLight, 'v'),
+			5 => $spe_detailDark,
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_ew_stem" => new Scenery(new Sprite([
+			0 => new SpriteElement($leafLight, null, '&nbsp;'),
+			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+			2 => new SpriteElement($leafLight, null, '&nbsp;'),
+			3 => new SpriteElement($leafDark, $trunkDark, '&#x2514;'),
+			4 => new SpriteElement($leafDark, $trunkDark, '&#x252c;'),
+			5 => new SpriteElement($leafDark, $trunkDark, '&#x2518;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_ew" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+			0 => $spe_detailLight,
+			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+			2 => new SpriteElement($leafLight, null, '&nbsp;'),
+			3 => new SpriteElement($leafDark, null, '&nbsp;'),
+			4 => new SpriteElement($leafDark, $leafLight, 'v'),
+			5 => new SpriteElement($leafDark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_ew_trunk" => new Scenery(new Sprite([
+			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+			2 => new SpriteElement($leafLight, null, '&nbsp;'),
+			3 => new SpriteElement($leafDark, null, '&nbsp;'),
+			4 => new SpriteElement($leafDark, $trunkDark, 'Y'),
+			5 => new SpriteElement($leafDark, null, '&nbsp;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_e" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, null, '&nbsp;'),
+			0 => $spe_detailLight,
+			1 => new SpriteElement($leafLight, null, '&nbsp;'),
+			2 => new SpriteElement(null, $leafLight, '&#x2584;'),
+			3 => new SpriteElement($leafDark, $leafLight, 'v'),
+			4 => new SpriteElement($leafDark, null, '&nbsp;'),
+			5 => new SpriteElement(null, $leafDark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_ns" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $leafDark, '&#x2590;'),
+//			1 => new SpriteElement($leafLight, $leafDark, 'v'),
+			1 => $spe_detailLight,
+			2 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+			3 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			3 => $spe_detailDark,
+			4 => new SpriteElement($leafLight, null, '&nbsp;'),
+			5 => new SpriteElement(null, $leafLight, '&#x258c;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_nsew" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+			0 => $spe_detailLight,
+			1 => new SpriteElement($leafLight, null, '&nbsp;'),
+			2 => new SpriteElement($leafLight, $leafDark, 'v'),
+			3 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+			4 => new SpriteElement($leafLight, $leafDark, 'v'),
+			5 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_n" => new Scenery(new Sprite([
+			0 => new SpriteElement(null, $leafDark, '&#x2584;'),
+			1 => new SpriteElement($leafLight, $leafDark, 'v'),
+			2 => new SpriteElement(null, $leafLight, '&#x2584;'),
+			3 => new SpriteElement($leafLight, $leafDark, '&#x258c;'),
+			4 => new SpriteElement($leafLight, null, '&nbsp;'),
+			5 => new SpriteElement($leafLight, $leafDark, 'v'),
+		]), TPL_HIGHOBSTACLE),
+
+		"scn_{$name}_bush_s" => new Scenery(new Sprite([
+			0 => new SpriteElement($leafLight, $leafDark, '&#x258c;'),
+			1 => new SpriteElement($leafLight, $leafDark, 'v'),
+			2 => new SpriteElement($leafLight, null, '&nbsp;'),
+			3 => new SpriteElement(null, $leafDark, '&#x2580;'),
+			4 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+			5 => new SpriteElement(null, $leafDark, '&#x2580;'),
+		]), TPL_HIGHOBSTACLE),
+	];
+}

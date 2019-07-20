@@ -1,0 +1,56 @@
+<?php
+
+
+
+$spr_chest = new Sprite(
+        array(
+            3 => new SpriteElement('#950', '#ff0', '&#x02567;'),
+			new SpriteElement('#950', '#ff0', '&#x0256a;'),
+			new SpriteElement('#950', '#ff0', '&#x02567;')
+            )
+        );
+
+$spr_chest_open = new Sprite(
+        array(
+            new SpriteElement('#730', '#dd0', '&#x02534;'),
+			new SpriteElement('#730', '#dd0', '&#x02534;'),
+			new SpriteElement('#730', '#dd0', '&#x02534;'),
+
+			new SpriteElement('#950', '#ff0', '&#x02500;'),
+			new SpriteElement('#950', '#ff0', '&#x0252c;'),
+			new SpriteElement('#950', '#ff0', '&#x02500;'),
+            )
+        );
+
+$chestSpriteSet = [SPRI_DEFAULT => $spr_chest, SPRI_CLOSED => $spr_chest, SPRI_OPEN => $spr_chest_open];
+
+
+$slm_redPres_0 = new SpriteElement('#f33', '#ff2', '&mdash;');
+$slm_redPres_1 = new SpriteElement('#f33', '#ff2', '%');
+$slm_redPres_3 = new SpriteElement('#822', '#dd2', '&nbsp;');
+$slm_redPres_4 = new SpriteElement('#822', '#dd2', '|');
+
+$spr_redPresent = new Sprite(
+        array(
+            $slm_redPres_0, $slm_redPres_1, $slm_redPres_0,
+            $slm_redPres_3, $slm_redPres_4, $slm_redPres_3
+            )
+        );
+
+$slm_bluePres_0 = new SpriteElement('#33f', '#f22', '&mdash;');
+$slm_bluePres_1 = new SpriteElement('#33f', '#f22', '%');
+$slm_bluePres_3 = new SpriteElement('#228', '#d22', '&nbsp;');
+$slm_bluePres_4 = new SpriteElement('#228', '#d22', '|');
+
+$spr_bluePresent = new Sprite(
+        array(
+            $slm_bluePres_0, $slm_bluePres_1, $slm_bluePres_0,
+            $slm_bluePres_3, $slm_bluePres_4, $slm_bluePres_3
+            )
+        );
+
+
+$spr_barrel = new Sprite([
+	1 => new SpriteElement(null, '#da8', '&#x2584;'),
+	4 => new SpriteElement('#842', '#aaa', '&Xi;'),
+	]);

@@ -1,0 +1,72 @@
+<?php
+
+$col_stem = '#0a0';
+
+$scn_pinkFlowers = new Scenery(new Sprite([
+	[
+		0 => new SpriteElement(null,'#faf', '*'),
+		3 => new SpriteElement(null,$col_stem, '|'),
+		4 => new SpriteElement(null,'#faf', '*'),
+	],
+	[
+		0 => new SpriteElement(null,'#faf', '*'),
+		3 => new SpriteElement(null,$col_stem, '|'),
+		4 => new SpriteElement(null,'#faf', '*'),
+	],
+	[
+		1 => new SpriteElement(null,'#faf', '*'),
+		3 => new SpriteElement(null,$col_stem, '&#x2320;'),
+		5 => new SpriteElement(null,'#faf', '*'),
+	],
+	[
+		1 => new SpriteElement(null,'#faf', '*'),
+		3 => new SpriteElement(null,$col_stem, '&#x2320;'),
+		5 => new SpriteElement(null,'#faf', '*'),
+	],
+]));
+
+$scn_blueFlowers = new Scenery(new Sprite([
+	[
+		0 => new SpriteElement(null,'#aaf', '*'),
+		3 => new SpriteElement(null,$col_stem, '|'),
+		5 => new SpriteElement(null,'#aaf', '*'),
+	],
+	[
+		0 => new SpriteElement(null,'#aaf', '*'),
+		3 => new SpriteElement(null,$col_stem, '|'),
+		5 => new SpriteElement(null,'#aaf', '*'),
+	],
+	[
+		2 => new SpriteElement(null,'#aaf', '*'),
+		3 => new SpriteElement(null,'#aaf', '*'),
+		5 => new SpriteElement(null,$col_stem, '|'),
+	],
+	[
+		2 => new SpriteElement(null,'#aaf', '*'),
+		3 => new SpriteElement(null,'#aaf', '*'),
+		5 => new SpriteElement(null,$col_stem, '|'),
+	],
+]));
+
+$scn_whiteFlowers = new Scenery(new Sprite([
+	[
+		2 => new SpriteElement(null,'#fff', '*'),
+		4 => new SpriteElement(null,'#fff', '*'),
+		5 => new SpriteElement(null,$col_stem, '|'),
+	],
+	[
+		2 => new SpriteElement(null,'#fff', '*'),
+		4 => new SpriteElement(null,'#fff', '*'),
+		5 => new SpriteElement(null,$col_stem, '|'),
+	],
+	[
+		1 => new SpriteElement(null,'#fff', '*'),
+		3 => new SpriteElement(null,'#fff', '*'),
+		5 => new SpriteElement(null,$col_stem, '&#92;'),
+	],
+	[
+		1 => new SpriteElement(null,'#fff', '*'),
+		3 => new SpriteElement(null,'#fff', '*'),
+		5 => new SpriteElement(null,$col_stem, '&#92;'),
+	],
+]));

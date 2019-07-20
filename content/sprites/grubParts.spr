@@ -1,0 +1,43 @@
+<?php
+
+$grubColour = '#0bf';
+
+$spr_grub_lh = new Sprite([
+	0 => new SpriteElement(null, $grubColour, '/'),
+	1 => new SpriteElement(null, $grubColour, '/'),
+	2 => new SpriteElement(null, $grubColour, '/'),
+	3 => new SpriteElement(null, $grubColour, '\\'),
+	4 => new SpriteElement(null, $grubColour, '('),
+	5 => new SpriteElement(null, $grubColour, '/'),
+	]);
+
+$spr_grub_rh = new Sprite([
+	0 => new SpriteElement(null, $grubColour, '\\'),
+	1 => new SpriteElement(null, $grubColour, '\\'),
+	2 => new SpriteElement(null, $grubColour, '\\'),
+	3 => new SpriteElement(null, $grubColour, '\\'),
+	4 => new SpriteElement(null, $grubColour, ')'),
+	5 => new SpriteElement(null, $grubColour, '/'),
+	]);
+
+$spr_grub_face = new Sprite([
+	0 => new SpriteElement(null, $grubColour, 'p'),
+//	1 => new SpriteElement(null, '#000', '&#x201e;'),
+	2 => new SpriteElement(null, $grubColour, 'q'),
+
+	4 => new SpriteElement(null, $grubColour, '&#x2500;'),
+	]);
+
+$spr_grub_handCorpse = new Sprite([
+	4 => new SpriteElement(null, $grubColour, 'o')
+]);
+
+$grub_lh_spriteSet = [
+	SPRI_DEFAULT	=> $spr_grub_lh,
+	SPRI_CORPSE		=> $spr_grub_handCorpse
+];
+
+$grub_rh_spriteSet = [
+	SPRI_DEFAULT	=> $spr_grub_rh,
+	SPRI_CORPSE		=> $spr_grub_handCorpse
+];

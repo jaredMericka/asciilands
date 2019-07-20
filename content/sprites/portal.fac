@@ -1,0 +1,24 @@
+<?php
+function spr_portal($colour)
+{
+	$slm_fs = new SpriteElement(null, $colour, '/');
+	$slm_bs = new SpriteElement(null, $colour, '&#x005c;');
+	$slm_rp = new SpriteElement(null, $colour, ')');
+	$slm_lp = new SpriteElement(null, $colour, '(');
+    $slm_b = new SpriteElement(null, $colour, '|');
+
+	return new Sprite([[
+		$slm_fs, $slm_rp, $slm_bs,
+		$slm_bs, $slm_lp, $slm_fs
+	],[
+		$slm_fs, $slm_b, $slm_bs,
+		$slm_bs, $slm_b, $slm_fs
+    ],[
+		$slm_fs, $slm_lp, $slm_bs,
+		$slm_bs, $slm_rp, $slm_fs
+	],[
+		$slm_fs, $slm_b, $slm_bs,
+		$slm_bs, $slm_b, $slm_fs
+    ]]);
+}
+

@@ -1,0 +1,370 @@
+<?php
+
+$lightGreen = '#0a0';
+$darkGreen = '#090';
+
+$trunkDark = '#630';
+$trunkColour = '#840';
+$trunkLight = '#a60';
+
+$slm_tree_0 = new SpriteElement(null, $lightGreen, '(');
+$slm_tree_1 = new SpriteElement($lightGreen,'#950','Y');//new spriteElement($lightGreen, $darkGreen, '%');
+$slm_tree_2 = new SpriteElement(null, $lightGreen, ')');
+$slm_tree_4 = new SpriteElement('#950', $trunkDark, '&#x02590;');
+
+$spr_tree = new Sprite(
+        array(
+            $slm_tree_0,$slm_tree_1,$slm_tree_2,
+            4 => $slm_tree_4
+            )
+        );
+
+$slm_bushMid = new SpriteElement($lightGreen,'#950','y');
+
+$spr_bush = new Sprite(
+        array(
+            3 => $slm_tree_0,$slm_bushMid,$slm_tree_2,
+            )
+        );
+
+/*
+    tYy
+     Y
+*/
+$slm_deadTree_0 = new SpriteElement(null, '#b60', 't');
+$slm_deadTree_1 = new SpriteElement(null, '#b60', 'Y');
+$slm_deadTree_2 = new SpriteElement(null, '#b60', 'y');
+$slm_deadTree_4 = new SpriteElement(null, '#b60', 'Y');
+
+$spr_deadTree = new Sprite(
+        array(
+            $slm_deadTree_0,$slm_deadTree_1,$slm_deadTree_2,
+            4 => $slm_deadTree_4
+            ),
+        false
+        );
+
+/*
+     A
+    /A\
+*/
+$slm_pine1_1 = new SpriteElement(null, $lightGreen, 'A');
+$slm_pine1_3 = new SpriteElement(null, $lightGreen, '/');
+$slm_pine1_4 = new SpriteElement($lightGreen, $darkGreen, 'A');
+$slm_pine1_5 = new SpriteElement(null, $lightGreen, '&#x005c;');
+
+$spr_pine1 = new Sprite(
+        array(
+            1 => $slm_pine1_1,
+            3 => $slm_pine1_3,$slm_pine1_4,$slm_pine1_5
+            )
+        );
+
+/*
+    /A\
+     H
+*/
+$slm_pine2_0 = new SpriteElement(null, $lightGreen, '/');
+$slm_pine2_1 = new SpriteElement($lightGreen, $darkGreen, 'A');
+$slm_pine2_2 = new SpriteElement(null, $lightGreen, '&#x005c;');
+$slm_pine2_4 = new SpriteElement('#950', $trunkDark, '&#x02590;');
+
+$spr_pine2 = new Sprite(
+        array(
+            $slm_pine2_0,$slm_pine2_1,$slm_pine2_2,
+            4 => $slm_pine2_4
+            )
+        );
+
+
+$spr_treeTrunk = new Sprite([
+	0 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+	1 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+	2 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+	3 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+	4 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+	5 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+	]);
+
+$spr_treeStump = new Sprite([
+	0 => new SpriteElement(null, '#a86', '&#x2590;'),
+	1 => new SpriteElement('#a86', $trunkLight, '@'),
+	2 => new SpriteElement(null, '#a86', '&#x258c;'),
+	3 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+	4 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+	5 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+	]);
+
+$spr_tree_tl = new Sprite([
+	1 => new SpriteElement(null, $darkGreen, '&#x2584;'),
+	2 => new SpriteElement($lightGreen, $darkGreen, '&#x2580;'),
+	3 => new SpriteElement(null, $darkGreen, '&#x2584;'),
+	4 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	5 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	]);
+
+$spr_tree_tr = new Sprite([
+	0 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	1 => new SpriteElement(null, $lightGreen, '&#x2584;'),
+	3 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	4 => new SpriteElement($lightGreen, $darkGreen, 'v'),
+	5 => new SpriteElement(null, $lightGreen, '&#x2584;'),
+	]);
+
+$spr_tree_tm = new Sprite([
+	0 => new SpriteElement($lightGreen, $darkGreen, 'v'),
+	1 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	2 => new SpriteElement($lightGreen, $darkGreen, 'v'),
+	3 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	4 => new SpriteElement($lightGreen, $darkGreen, 'v'),
+	5 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	]);
+
+$spr_tree_bl = new Sprite([
+	0 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	1 => new SpriteElement($darkGreen, $lightGreen, '&nbsp;'),
+	2 => new SpriteElement($lightGreen, $darkGreen, '&#x2584;'),
+	4 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	5 => new SpriteElement($darkGreen, $lightGreen, '&nbsp;'),
+	]);
+
+$spr_tree_br = new Sprite([
+	0 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	1 => new SpriteElement($lightGreen, $darkGreen, '&#x2584;'),
+	2 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	3 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	4 => new SpriteElement(null, $darkGreen, '&#x2580;'),
+	]);
+
+$spr_tree_bm = new Sprite([
+	0 => new SpriteElement($lightGreen, $darkGreen, 'v'),
+	1 => new SpriteElement($lightGreen, $darkGreen, '&nbsp;'),
+	2 => new SpriteElement($lightGreen, $darkGreen, 'v'),
+	3 => new SpriteElement($darkGreen, $lightGreen, '&nbsp;'),
+	4 => new SpriteElement($darkGreen, $lightGreen, 'v'),
+	5 => new SpriteElement($darkGreen, $lightGreen, '&nbsp;'),
+	]);
+
+$t_forest	= new Tile($darkGreen, ['&nbsp;', '&nbsp;', 'v'], false, $lightGreen);
+
+$t_logWall	= new Tile($trunkDark, ['&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;', '&#x2580;'], false, 1);
+$t_logRoof	= new Tile('#420', ['&#x258c;', '&#x258c;', '&#x258c;', '&#x258c;', '&#x258c;', '&#x258c;'], false, 1);
+
+$spr_logCabinJunction = new Sprite([
+	0 => new SpriteElement(null, '#864', '&#x2590;'),
+	1 => new SpriteElement('#864', '#841', '@'),
+	2 => new SpriteElement(null, '#864', '&#x258c;'),
+	3 => new SpriteElement(null, '#975', '&#x2590;'),
+	4 => new SpriteElement('#975', '#951', '@'),
+	5 => new SpriteElement(null, '#975', '&#x258c;'),
+]);
+
+$spr_rock = new Sprite([
+	0 => new SpriteElement(null, '#666', '&#x2590;'),
+	1 => new SpriteElement('#888', null, ' '),
+	2 => new SpriteElement(null, '#888', '&#x2584;'),
+	3 => new SpriteElement('#666', null, ' '),
+	4 => new SpriteElement('#888', '#666', '&#x2584;'),
+	5 => new SpriteElement('#888', null, ' '),
+]);
+
+$spr_rock_sign = new Sprite([
+	0 => new SpriteElement(null, '#666', '&#x2590;'),
+	1 => new SpriteElement('#888', '#666', '&#x2261;'),
+	2 => new SpriteElement(null, '#888', '&#x2584;'),
+	3 => new SpriteElement('#666', null, ' '),
+	4 => new SpriteElement('#888', '#666', '&#x2584;'),
+	5 => new SpriteElement('#888', null, ' '),
+]);
+
+
+//function createTreeAssets($name, $leafColour = null, $trunkColour = null, SpriteElement $fruitSpe = null)
+//{
+//	if (!isset($leafColour)) $leafColour = '#0a0';
+//	if (!isset($trunkColour)) $trunkColour = '#840';
+//
+//	$leafLight = $leafColour;
+//	$leafDark = tint($leafColour, -2, true);
+//
+//	$trunkDark = tint($trunkColour, -2, true);
+//	$trunkLight = tint($trunkColour, 2, true);
+//
+//	if ($fruitSpe instanceof SpriteElement)
+//	{
+//		$spe_detailLight = clone $fruitSpe;
+//		$spe_detailDark = clone $fruitSpe;
+//
+//		$spe_detailLight->bg = $leafLight;
+//		$spe_detailDark->bg = $leafDark;
+//	}
+//	else
+//	{
+//		$spe_detailLight = new SpriteElement($leafLight, $leafDark, 'v');
+//		$spe_detailDark = new SpriteElement($leafDark, $leafLight, 'v');
+//	}
+//
+//	return [
+//		"scn_{$name}_trunk" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+//			1 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+//			2 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+//			3 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+//			4 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+//			5 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+//		]), false),
+//
+//		"scn_{$name}_stump" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, '#a86', '&#x2590;'),
+//			1 => new SpriteElement('#a86', $trunkLight, '@'),
+//			2 => new SpriteElement(null, '#a86', '&#x258c;'),
+//			3 => new SpriteElement(null, $trunkLight, '&#x2590;'),
+//			4 => new SpriteElement($trunkColour, $trunkLight, '&#x2502;'),
+//			5 => new SpriteElement(null, $trunkDark, '&#x258c;'),
+//		]), false),
+//
+//		"scn_{$name}_tree_tl" => new Scenery(new Sprite([
+//			1 => new SpriteElement(null, $leafDark, '&#x2584;'),
+//			2 => new SpriteElement($leafLight, $leafDark, '&#x2580;'),
+//			3 => new SpriteElement(null, $leafDark, '&#x2584;'),
+////			4 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			4 => $spe_detailDark,
+//			5 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//		]), false),
+//
+//		"scn_{$name}_tree_tr" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//			3 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+////			4 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			4 => $spe_detailLight,
+//			5 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//		]), false),
+//
+//		"scn_{$name}_tree_tm" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			1 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+////			2 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			2 => $spe_detailLight,
+//			3 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//			4 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			5 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//		]), false),
+//
+//		"scn_{$name}_tree_bl" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//			1 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+//			2 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+//			4 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//			5 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+//		]), false),
+//
+//		"scn_{$name}_tree_br" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//			1 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+//			2 => new SpriteElement(null, $leafDark, '&#x2580;'),
+////			3 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			3 => $spe_detailDark,
+//			4 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//		]), false),
+//
+//		"scn_{$name}_tree_bm" => new Scenery(new Sprite([
+////			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			0 => $spe_detailLight,
+//			1 => new SpriteElement($leafLight, $leafDark, '&nbsp;'),
+//			2 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			3 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+//			4 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			5 => new SpriteElement($leafDark, $leafLight, '&nbsp;'),
+//		]), false),
+//
+//		"t_{$name}_forest"	=> new Tile($leafDark, ['&nbsp;', '&nbsp;', 'v'], false, $leafLight),
+//
+//		"scn_{$name}_bush_w" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, $leafDark, '&#x2584;'),
+//			1 => new SpriteElement($leafLight, null, ' '),
+//			2 => new SpriteElement($leafLight, null, ' '),
+//		//	2 => new SpriteElement(null, $lightGreen, '&#x2584;'),
+//			3 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//			4 => new SpriteElement($leafDark, null, ' '),
+////			5 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			5 => $spe_detailDark,
+//		]), false),
+//
+//		"scn_{$name}_bush_ew_stem" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, null, ' '),
+//			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//			2 => new SpriteElement($leafLight, null, ' '),
+//			3 => new SpriteElement($leafDark, $trunkDark, '&#x2514;'),
+//			4 => new SpriteElement($leafDark, $trunkDark, '&#x252c;'),
+//			5 => new SpriteElement($leafDark, $trunkDark, '&#x2518;'),
+//		]), false),
+//
+//		"scn_{$name}_bush_ew" => new Scenery(new Sprite([
+////			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			0 => $spe_detailLight,
+//			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//			2 => new SpriteElement($leafLight, null, ' '),
+//			3 => new SpriteElement($leafDark, null, ' '),
+//			4 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			5 => new SpriteElement($leafDark, null, ' '),
+//		]), false),
+//
+//		"scn_{$name}_bush_ew_trunk" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			1 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//			2 => new SpriteElement($leafLight, null, ' '),
+//			3 => new SpriteElement($leafDark, null, ' '),
+//			4 => new SpriteElement($leafDark, $trunkDark, 'Y'),
+//			5 => new SpriteElement($leafDark, null, ' '),
+//		]), false),
+//
+//		"scn_{$name}_bush_e" => new Scenery(new Sprite([
+////			0 => new SpriteElement($leafLight, null, ' '),
+//			0 => $spe_detailLight,
+//			1 => new SpriteElement($leafLight, null, ' '),
+//			2 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//			3 => new SpriteElement($leafDark, $leafLight, 'v'),
+//			4 => new SpriteElement($leafDark, null, ' '),
+//			5 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//		]), false),
+//
+//		"scn_{$name}_bush_ns" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, $leafDark, '&#x2590;'),
+////			1 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			1 => $spe_detailLight,
+//			2 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+//			3 => new SpriteElement($leafDark, $leafLight, 'v'),
+////			3 => $spe_detailDark,
+//			4 => new SpriteElement($leafLight, null, ' '),
+//			5 => new SpriteElement(null, $leafLight, '&#x258c;'),
+//		]), false),
+//
+//		"scn_{$name}_bush_nsew" => new Scenery(new Sprite([
+////			0 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			0 => $spe_detailLight,
+//			1 => new SpriteElement($leafLight, null, ' '),
+//			2 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			3 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+//			4 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			5 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+//		]), false),
+//
+//		"scn_{$name}_bush_n" => new Scenery(new Sprite([
+//			0 => new SpriteElement(null, $leafDark, '&#x2584;'),
+//			1 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			2 => new SpriteElement(null, $leafLight, '&#x2584;'),
+//			3 => new SpriteElement($leafLight, $leafDark, '&#x258c;'),
+//			4 => new SpriteElement($leafLight, null, ' '),
+//			5 => new SpriteElement($leafLight, $leafDark, 'v'),
+//		]), false),
+//
+//		"scn_{$name}_bush_s" => new Scenery(new Sprite([
+//			0 => new SpriteElement($leafLight, $leafDark, '&#x258c;'),
+//			1 => new SpriteElement($leafLight, $leafDark, 'v'),
+//			2 => new SpriteElement($leafLight, null, ' '),
+//			3 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//			4 => new SpriteElement($leafLight, $leafDark, '&#x2584;'),
+//			5 => new SpriteElement(null, $leafDark, '&#x2580;'),
+//		]), false),
+//	];
+//}

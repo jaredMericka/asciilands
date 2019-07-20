@@ -1,0 +1,32 @@
+<?php
+
+function sprs_chest($col_main = null, $col_detail = null)
+{
+	$col_main	= $col_main		? $col_main		: '#930';
+	$col_detail	= $col_detail	? $col_detail	: '#ff0';
+
+	$col_dark		= tint($col_main,	-2, true);
+	$col_detailDark	= tint($col_detail, -2, true);
+
+	$spr_chest = new Sprite(
+        array(
+            3 => new SpriteElement($col_main, $col_detail, '&#x02567;'),
+			new SpriteElement($col_main, $col_detail, '&#x0256a;'),
+			new SpriteElement($col_main, $col_detail, '&#x02567;')
+            )
+        );
+
+	$spr_chest_open = new Sprite(
+        array(
+            new SpriteElement($col_dark, $col_detailDark, '&#x02534;'),
+			new SpriteElement($col_dark, $col_detailDark, '&#x02534;'),
+			new SpriteElement($col_dark, $col_detailDark, '&#x02534;'),
+
+			new SpriteElement($col_main, $col_detail, '&#x02500;'),
+			new SpriteElement($col_main, $col_detail, '&#x0252c;'),
+			new SpriteElement($col_main, $col_detail, '&#x02500;'),
+            )
+        );
+
+	return [SPRI_DEFAULT => $spr_chest, SPRI_CLOSED => $spr_chest, SPRI_OPEN => $spr_chest_open];
+}

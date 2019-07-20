@@ -1,0 +1,63 @@
+<?php
+
+// CAUTION!
+// NEVER EDIT A REQ FILE!
+
+class obj_portal extends AsObject
+{
+	public function __construct($name, $spriteSet, $n_offset, $w_offset, $teleport_n_offset, $teleport_w_offset, $teleport_map = null)
+	{
+		$this->behaviours[] = new obhv_teleporter($teleport_n_offset, $teleport_w_offset, $teleport_map);
+
+		parent::__construct($name, $spriteSet, $n_offset, $w_offset, LAYER_PORTAL);
+	}
+}
+
+
+
+class obhv_teleporter extends ObjectBehaviour
+{
+	public function __construct($n_offset, $w_offset, $map = null)
+	{
+		$this->onReaction = true;
+
+		$description = "Teleports to {$n_offset}:{$w_offset}"
+		. ($map ? " - {$map}." : '.');
+
+		$this->n_offset	= $n_offset;
+		$this->w_offset	= $w_offset;
+		$this->map		= $map;
+
+		parent::__construct($description, BHVK_TELEPORT, 0);
+	}
+
+	public function onReaction(AsObject $instigator)
+	{
+		parent::onReaction($instigator);
+		global $view;
+		global $player;
+
+		if ($instigator instanceof Player)
+        {
+            console_echo("Entering the {$this->owner->name} portal!");		//XXX
+
+            $instigator->n_offset = $this->n_offset;
+            $instigator->w_offset = $this->w_offset;
+
+            if (isset($this->map) && $this->map != $player->map)
+            {
+				$player->changeMap($this->map);
+//                $player->map = $this->map;
+//                EXIT(AJAX_REFRESH);
+            }
+            else
+            {
+                $player->lastMoved = $_SERVER['REQUEST_TIME_FLOAT']; // To prevent a quick double-move since we're not triggering the actual move event but forcing a refresh.
+                console_update_location();
+            }
+
+            $view->forceUpdate = true;
+            return false;
+        }
+	}
+}

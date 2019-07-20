@@ -1,0 +1,8 @@
+<?php
+
+$t_rockWall =      new Tile('#752', array('&nbsp;','_','/','/','&#x005c;','&nbsp;'), false);
+$t_rockFloor =      new Tile('#974', array('O','(',')','(',')','O'),true,-1);
+$t_rockDarkness =      new Tile('#210', array('/','&#x005c;','&nbsp;','&#x005c;','&nbsp;','&nbsp;'), false);
+$t_rockStairs =      new Tile('#974', array('&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;', '&#x02584;'), true, -2);
+
+$t_rockLadder		= new Tile('#752', array('&#x0251C;','&#x02500','&#x02524','&#x0251C;','&#x02500','&#x02524'), true, '#aaa');

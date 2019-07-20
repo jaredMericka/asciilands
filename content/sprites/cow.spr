@@ -1,0 +1,21 @@
+<?php
+
+$spr_cow = new Sprite([
+        [//stationary
+            new SpriteElement('#fff', '#000', 'c'),
+            new SpriteElement('#fff', '#000', 'o'),
+            new SpriteElement('#fff', '#000', 'w'),
+            new SpriteElement(null, '#000', '&#x2551;'),
+        5 => new SpriteElement(null, '#000', '&#x2551;'),
+        ],
+        [//running
+            new SpriteElement('#fff', '#000', 'c'),
+            new SpriteElement('#fff', '#000', 'o'),
+            new SpriteElement('#fff', '#000', 'w'),
+            new SpriteElement(null, '#000', '/'),
+            new SpriteElement(null, '#000', 'X'),
+            new SpriteElement(null, '#000', '&#x005c;'),
+        ],
+        ]);
+
+
