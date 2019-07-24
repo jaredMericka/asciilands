@@ -271,7 +271,7 @@ require "{$rootPath}engine/core/constants.php";
 		with the input.
 
 		<div id="iframeContainer">
-			<iframe src="http://localhost:<?php echo $_SERVER['SERVER_PORT']; ?>/asciilands/tools/charMapTE.php"></iframe>
+			<iframe src="http://localhost:<?php echo $_SERVER['SERVER_PORT']; ?>/tools/charMapTE.php"></iframe>
 		</div>
 	</body>
 </html>
