@@ -9,15 +9,15 @@ class SubSerializerTestClass
 
 $class = new SubSerializerTestClass();
 
-$start1 = microtime();
+$start1 = microtime(true);
 for ($i = 0; $i < 99999; $i ++)
 {
 	$ser = serialize($class);
 	$class = unserialize($ser);
 }
-$end1 = microtime();
+$end1 = microtime(true);
 
-$start2 = microtime();
+$start2 = microtime(true);
 for ($i = 0; $i < 99999; $i ++)
 {
 	$class->integer = serialize($class->integer);
@@ -31,7 +31,7 @@ for ($i = 0; $i < 99999; $i ++)
 	$class->string = unserialize($class->string);
 	$class->array = unserialize($class->array);
 }
-$end2 = microtime();
+$end2 = microtime(true);
 
 $dur1 = ($end1 - $start1) * 10000;
 $dur2 = ($end2 - $start2) * 10000;

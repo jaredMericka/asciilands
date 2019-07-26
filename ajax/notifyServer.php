@@ -574,45 +574,45 @@ switch($key)
 				break;
 
 			case 'sertest':
-				$preSer = microtime();
+				$preSer = microtime(true);
 				$var = serialize($map);
 				$var = unserialize($var);
-				$postSer = microtime();
+				$postSer = microtime(true);
 				$jam = round(($postSer - $preSer) * 1000000);
 				console_echo("<<#afa>>Map:<>\t\t{$jam} &#x03bc;s", '#fff');
 
-				$preSer = microtime();
+				$preSer = microtime(true);
 				$var = serialize($map->objects);
 				$var = unserialize($var);
-				$postSer = microtime();
+				$postSer = microtime(true);
 				$jam = round(($postSer - $preSer) * 1000000);
 				console_echo("<<#afa>>Map objects:<>\t{$jam} &#x03bc;s", '#fff');
 
-				$preSer = microtime();
+				$preSer = microtime(true);
 				$var = serialize($map->tiles);
 				$var = unserialize($var);
-				$postSer = microtime();
+				$postSer = microtime(true);
 				$jam = round(($postSer - $preSer) * 1000000);
 				console_echo("<<#afa>>Map tiles:<>\t{$jam} &#x03bc;s", '#fff');
 
-				$preSer = microtime();
+				$preSer = microtime(true);
 				$var = serialize($map->scenery);
 				$var = unserialize($var);
-				$postSer = microtime();
+				$postSer = microtime(true);
 				$jam = round(($postSer - $preSer) * 1000000);
 				console_echo("<<#afa>>Map scenery:<>\t{$jam} &#x03bc;s", '#fff');
 
-				$preSer = microtime();
+				$preSer = microtime(true);
 				$var = serialize($player);
 				$var = unserialize($var);
-				$postSer = microtime();
+				$postSer = microtime(true);
 				$jam = round(($postSer - $preSer) * 1000000);
 				console_echo("<<#faf>>Player:<>\t\t{$jam} &#x03bc;s", '#fff');
 
-				$preSer = microtime();
+				$preSer = microtime(true);
 				$var = serialize($view);
 				$var = unserialize($var);
-				$postSer = microtime();
+				$postSer = microtime(true);
 				$jam = round(($postSer - $preSer) * 1000000);
 				console_echo("<<#ffa>>View:<>\t\t{$jam} &#x03bc;s", '#fff');
 

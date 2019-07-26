@@ -38,7 +38,7 @@ class Object
 $macro = new macro();
 $micro = new micro();
 
-$macroStart = microtime();
+$macroStart = microtime(true);
 
 for ($i = 0; $i < 10000; $i++)
 {
@@ -46,9 +46,9 @@ for ($i = 0; $i < 10000; $i++)
 	$macro = unserialize($macro);
 }
 
-$macroEnd = microtime();
+$macroEnd = microtime(true);
 
-$microStart = microtime();
+$microStart = microtime(true);
 
 for ($i = 0; $i < 10000; $i++)
 {
@@ -56,7 +56,7 @@ for ($i = 0; $i < 10000; $i++)
 	$micro = unserialize($micro);
 }
 
-$microEnd = microtime();
+$microEnd = microtime(true);
 
 ?>
 

@@ -34,7 +34,7 @@ $consoleStreams_offDefault = [
 
 if (!isset($_GET['console']))
 {
-	$consoleTimeStamp = microtime();
+	$consoleTimeStamp = microtime(true);
 
 	function console_echo ($string, $colour = null, $CNS = null)
 	{

@@ -8,15 +8,15 @@
 
 ob_start();
 
-$startTime = microtime();
+$startTime = microtime(true);
 
 for ($i = 0; $i > 1000000; $i++) { testGetArgs(1, 2, 3); }
 
-$midTime = microtime();
+$midTime = microtime(true);
 
 for ($i = 0; $i > 1000000; $i++) { testKnownArgs(1, 2, 3); }
 
-$endTime = microtime();
+$endTime = microtime(true);
 
 $slag = ob_get_clean();
 
