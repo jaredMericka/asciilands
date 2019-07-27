@@ -2393,6 +2393,56 @@ class ebhv_chanceToAlterOwnStat extends EquipmentBehaviour
 	}
 }
 
+class ebhv_frustration extends EquipmentBehaviour
+{
+	public $percentage;
+	public $currentAmp;
+	public $penalty;
+
+	public function __construct($penalty, $percentageAmp)
+	{
+		$this->onMiss = true;
+		$this->onStrike = true;
+
+		$this->penalty = $penalty;
+		$this->percentage = $percentageAmp;
+		$this->currentAmp = 0;
+
+		$this->goldValue = $percentageAmp * 0.1;
+
+		$description = "Deal {$penalty}% less damage but each miss increases the damage of your next hit by {$percentageAmp}%";
+
+		parent::__construct($description, null);
+	}
+
+	public function onMiss(Attack $attack)
+	{
+		if ($attack->isBaseAttack)
+		{
+			$this->currentAmp += $this->percentage;
+			console_echo("Next hit will be amped by {$this->percentage}% due to frustration", '#fda');
+		}
+	}
+
+	public function onStrike(Attack $attack)
+	{
+		if (!$attack->isBaseAttack) return;
+
+		if ($this->currentAmp > 0)
+		{
+//			$attack->damageModifier += ($this->currentAmp * 0.01);
+			$attack->damage_modifiers[] = "{$this->currentAmp}%";
+			console_echo("Frustration amp released! ({$this->currentAmp}%)", '#fda');
+			update_combat("<<#fff>>{$this->owner->owner->name}'s<> damage was amped by <<#faa>>{$this->currentAmp}%<>!");
+			$this->currentAmp = 0;
+		}
+		else
+		{
+			$attack->damage_modifiers[] = "-{$this->penalty}%";
+		}
+	}
+}
+
 class obhv_replenishItems extends ObjectBehaviour
 {
 	public $masks;
@@ -2984,65 +3034,6 @@ abstract class a_eqp_weapon extends Equipment
 	}
 }
 
-class ebhv_dmg_infection extends EquipmentBehaviour
-{
-	public $damage;
-	public $duration;
-
-	public $DMGDL;
-
-	public function __construct($damage, $duration, $DMGDL = null)
-	{
-		global $DMGDL_names;
-
-		$this->onStrike = true;
-
-		$this->damage = $damage;
-		$this->duration = $duration;
-
-		$this->DMGDL = $DMGDL;
-		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(20) ? DMGDL_LIQUID : DMGDL_VAPOUR;
-
-		$description = "Infects opponent causing {$this->damage} infection (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Infected opponents may infect adjacent allies.";
-
-		$this->goldValue = ($damage / $duration) * 0.16;
-
-		parent::__construct($description, null, 1); // Oosenupt
-	}
-
-	public function onStrike(Attack $attack)
-	{
-		if (!$attack->isBaseAttack) return;
-
-		global $DMG_colours;
-		global $DMG_icons;
-		global $DMGDL_names;
-
-		$damage = new dbhv_takeDamagePerSecond(
-			$attack->attacker,
-			$this->DMGDL,
-			[DMG_INFECTION => $this->damage / $this->duration],
-			$this->duration);
-
-		$status = new Status(
-			'Infected',
-			"Infected and taking {$this->damage} infection (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds.",
-			$DMG_icons[DMG_INFECTION],
-			$this->duration,
-			false,
-			null,	// ddue stats
-			null,	// damage
-			null	// defence
-		);
-
-		$status->behaviours = [$damage];
-
-		$attack->target->addStatus($status);
-
-		update_combat("<<#fff>>{$attack->target->name}<> is <<{$DMG_colours[DMG_INFECTION]}>>infected<>!");
-	}
-}
-
 class ebhv_dmg_trauma extends EquipmentBehaviour
 {
 	public $damage;
@@ -3107,12 +3098,14 @@ class ebhv_dmg_trauma extends EquipmentBehaviour
 	}
 }
 
-class ebhv_dmg_cold extends EquipmentBehaviour
+class ebhv_dmg_fire extends EquipmentBehaviour
 {
 	public $damage;
 	public $duration;
 
 	public $DMGDL;
+
+	public $chanceToPanic = 30;
 
 	public function __construct($damage, $duration, $DMGDL = null)
 	{
@@ -3124,9 +3117,9 @@ class ebhv_dmg_cold extends EquipmentBehaviour
 		$this->duration = $duration;
 
 		$this->DMGDL = $DMGDL;
-		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(30) ? DMGDL_LIQUID : DMGDL_VAPOUR;
+		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(80) ? DMGDL_PLASMA : DMGDL_VAPOUR;
 
-		$description = "Deals {$this->damage} cold (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Critical hits freeze the enemy in place.";
+		$description = "Deals {$this->damage} fire (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Critical hits cause the enemy to panic.";
 
 		$this->goldValue = ($damage / $duration) * 0.16;
 
@@ -3137,52 +3130,47 @@ class ebhv_dmg_cold extends EquipmentBehaviour
 	{
 		if (!$attack->isBaseAttack) return;
 
-		global $DMGDL_names;
 		global $DMG_colours;
 		global $DMG_icons;
+		global $DMGDL_names;
 
 		$status = new Status(
-			'Frozen',
-			"Frozen and taking {$this->damage} cold damage (via {$DMGDL_names[$this->DMGDL]}) over {$this->duration} seconds.",
-			$DMG_icons[DMG_COLD],
+			'On fire',
+			"On fire taking {$this->damage} fire damage (via {$DMGDL_names[$this->DMGDL]}) over {$this->duration} seconds and causing panic.",
+			$DMG_icons[DMG_FIRE],
 			$this->duration,
 			false,
-			[
-				DS_SPEED => '200%',
-				DS_SPEED_FAST => '200%',
-			],
+			null,
 			null,
 			[
-				DMG_FIRE => $this->damage * $this->duration,
-			]
-		);
+				DMG_COLD => $this->damage * $this->duration
+			]);
+
+		$status->behaviours = [];
+
+		if (percentageToBool($this->chanceToPanic))
+		{
+			$movement = new obhv_moveRandomly($attack->target->speed_fast);
+
+			$status->behaviours[] = $movement;
+		}
+
 
 		$damage = new dbhv_takeDamagePerSecond(
 			$attack->attacker,
 			$this->DMGDL,
-			[DMG_COLD => $this->damage / $this->duration]
-		);
+			[DMG_FIRE => $this->damage / $this->duration],
+			$this->duration);
 
 		$status->behaviours[] = $damage;
 
-//		if (percentageToBool($this->chanceToFreeze))
-		if ($attack->isCrit)
-		{
-			update_sound(SND_FROZEN);
-
-			$movement = new obhv_pauseMovement();
-			update_combat("<<#fff>>{$attack->target->name}<> is <<{$DMG_colours[DMG_COLD]}>>frozen<>!");
-
-			$status->behaviours[] = $movement;
-			$status->spriteEffects[] = $DMG_colours[DMG_COLD];
-		}
-
-
 		$attack->target->addStatus($status);
+
+		update_combat("<<#fff>>{$attack->target->name}<> is <<{$DMG_colours[DMG_FIRE]}>>on fire<>!");
 	}
 }
 
-class ebhv_dmg_electric extends EquipmentBehaviour
+class ebhv_dmg_poison extends EquipmentBehaviour
 {
 	public $damage;
 	public $duration;
@@ -3199,9 +3187,9 @@ class ebhv_dmg_electric extends EquipmentBehaviour
 		$this->duration = $duration;
 
 		$this->DMGDL = $DMGDL;
-		if (!isset($this->DMGDL)) $this->DMGDL = DMGDL_PLASMA;
+		if (!isset($this->DMGDL)) $this->DMGDL = percentageToBool(50) ? DMGDL_LIQUID : DMGDL_VAPOUR;
 
-		$description = "Deals {$this->damage} electric (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds and cuts all agility related stats between 10% and 80%.";
+		$description = "Poisons opponent dealing {$this->damage} poison (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Movement increases the spread and causes absorbtion to become critical.";
 
 		$this->goldValue = ($damage / $duration) * 0.16;
 
@@ -3212,35 +3200,28 @@ class ebhv_dmg_electric extends EquipmentBehaviour
 	{
 		if (!$attack->isBaseAttack) return;
 
+		global $DMG_colours;
 		global $DMG_icons;
-		global $DS_types;
 		global $DMGDL_names;
-
-		$agilityPenalty = '-' . mt_rand(10, 80) . '%';
-
-		$DSs = [DS_AGILITY => $agilityPenalty];
-		foreach ($DS_types[DS_AGILITY] as $DS)
-		{
-			$DSs[$DS] = $agilityPenalty;
-		}
-
-		$status = new Status(
-			'Electrocution',
-			"Electrocuted taking {$this->damage} electric damage (via {$DMGDL_names[$this->DMGDL]}) over {$this->duration} seconds and agility reduced by {$agilityPenalty}.",
-			$DMG_icons[DMG_ELECTRIC],
-			$this->duration,
-			false,
-			$DSs
-		);
 
 		$damage = new dbhv_takeDamagePerSecond(
 			$attack->attacker,
 			$this->DMGDL,
-			[DMG_ELECTRIC => $this->damage / $this->duration]
-		);
+			[DMG_POISON => $this->damage / $this->duration],
+			$this->duration,
+			true);
 
-		$status->behaviours[] = $damage;
+		$status = new Status(
+			'Poisoned',
+			"Poisoned taking {$this->damage} poison (via {$DMGDL_names[$this->DMGDL]}) damage over {$this->duration} seconds. Movement makes it worse.",
+			$DMG_icons[DMG_POISON],
+			$this->duration,
+			false);
+
+		$status->behaviours = [$damage];
 
 		$attack->target->addStatus($status);
+
+		update_combat("<<#fff>>{$attack->target->name}<> has been <<{$DMG_colours[DMG_POISON]}>>poisoned<>!");
 	}
 }
