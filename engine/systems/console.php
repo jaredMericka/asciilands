@@ -34,7 +34,7 @@ $consoleStreams_offDefault = [
 
 if (!isset($_GET['console']))
 {
-	$consoleTimeStamp = microtime();
+	$consoleTimeStamp = microtime(true);
 
 	function console_echo ($string, $colour = null, $CNS = null)
 	{
@@ -628,7 +628,7 @@ else
 
 		<?php if(!isset($_GET['build']) || $_GET['build'] !== 'false'){ ?>
 		<div id="iframeContainer">
-			<iframe src="http://localhost:<?php echo $_SERVER['SERVER_PORT']; ?>/asciilands/tools/build.php?debug"></iframe>
+			<iframe src="http://localhost:<?php echo $_SERVER['SERVER_PORT']; ?>/tools/build.php?debug"></iframe>
 		</div>
 		<?php } ?>
 
